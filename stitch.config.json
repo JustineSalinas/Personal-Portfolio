@@ -1,0 +1,14 @@
+{
+  "projectId": "1100899623710537373",
+  "sync": {
+    "enabled": true,
+    "path": "./",
+    "designFile": "./DESIGN.md",
+    "include": ["src/**/*", "public/**/*"],
+    "exclude": ["node_modules", ".next", ".git"]
+  },
+  "ai": {
+    "provider": "gemini-2.0-pro",
+    "vibeSync": true
+  }
+}
