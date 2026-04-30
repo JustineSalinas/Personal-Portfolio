@@ -34,9 +34,27 @@ export const portfolioData = {
   ],
   education: [
     {
-      degree: "BS Information Technology",
+      degree: "Elementary – Grade 7",
+      institution: "Philippine International School in Buraydah",
+      location: "3386, Al Fayziyyah, 7342, Buraydah 52391, Saudi Arabia",
+      year: "July 2010 to May 2019"
+    },
+    {
+      degree: "Grade 8 – Grade 10",
+      institution: "BED University of San Agustin",
+      location: "PGPP+WVW, Jaro, Pavia, 5001 Iloilo",
+      year: "Sept 2019 to May 2022"
+    },
+    {
+      degree: "SHS Grade 11 – Grade 12",
+      institution: "University of San Agustin Main",
+      location: "General Luna St, Iloilo City Proper, Iloilo City, 5000 Iloilo",
+      year: "Sept 2023 to May 2024"
+    },
+    {
+      degree: "College Second Year - Present",
       institution: "University of San Agustin",
-      status: "Sophomore"
+      year: "2024-Present"
     }
   ],
   certifications: [
