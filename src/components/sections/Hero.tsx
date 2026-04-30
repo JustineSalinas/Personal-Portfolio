@@ -3,19 +3,19 @@ import { Card } from "@/components/ui/Card";
 
 export function Hero() {
   return (
-    <section className="flex flex-col items-center text-center gap-10 py-10">
-      <div className="flex flex-col items-center gap-6 max-w-3xl">
+    <section className="flex flex-col md:flex-row items-center justify-between gap-12 py-10">
+      <div className="flex-1 flex flex-col items-start gap-6 max-w-2xl">
         <div className="flex items-center gap-2">
           <span className="text-xs md:text-sm font-bold text-blue-500 uppercase tracking-widest flex items-center gap-2">
              <span className="text-lg opacity-60">📍</span> {portfolioData.personal.location}
           </span>
         </div>
         
-        <h1 className="text-3xl md:text-5xl font-black mb-2 tracking-tight text-white">
+        <h1 className="text-4xl md:text-5xl font-black mb-2 tracking-tight text-white leading-tight">
           {portfolioData.personal.name}
         </h1>
         
-        <div className="flex flex-wrap justify-center items-center gap-2 text-lg md:text-xl text-zinc-400 font-medium">
+        <div className="flex flex-wrap items-center gap-2 text-lg md:text-xl text-zinc-400 font-medium">
           {portfolioData.personal.titles.map((title, index) => (
             <span key={index} className="flex items-center">
               {title}
@@ -26,7 +26,7 @@ export function Hero() {
           ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mt-4">
+        <div className="flex flex-wrap gap-4 mt-4">
           <a 
             href="#projects"
             className="bg-blue-600 text-white px-8 py-2.5 rounded-lg font-bold hover:bg-blue-500 transition-all shadow-lg text-sm"
@@ -52,12 +52,12 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative w-48 h-48 md:w-56 md:h-56">
-        <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-2xl" />
+      <div className="relative w-48 h-48 md:w-64 md:h-64 shrink-0">
+        <div className="absolute inset-0 bg-blue-500/10 rounded-3xl rotate-3 scale-105" />
         <img 
           src="/portrait.png" 
           alt={portfolioData.personal.name}
-          className="relative w-full h-full object-cover rounded-full border-2 border-zinc-900 shadow-2xl grayscale hover:grayscale-0 transition-all duration-500"
+          className="relative w-full h-full object-cover rounded-3xl border border-zinc-800 shadow-2xl grayscale hover:grayscale-0 transition-all duration-500"
         />
       </div>
     </section>

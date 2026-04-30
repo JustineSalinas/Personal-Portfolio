@@ -3,11 +3,11 @@ import { portfolioData } from "@/data";
 export function Experience() {
   return (
     <div className="flex flex-col gap-10">
-      <h3 className="text-2xl font-bold text-white text-center">Work Experience</h3>
+      <h3 className="text-2xl font-bold text-white">Work Experience</h3>
       
       <div className="space-y-12">
         {portfolioData.experience.map((exp, index) => (
-          <div key={index} className="relative pl-10 max-w-2xl mx-auto">
+          <div key={index} className="relative pl-10 max-w-2xl">
             {/* Timeline Line */}
             <div className="absolute left-[5px] top-2 bottom-0 w-px bg-zinc-900" />
             
