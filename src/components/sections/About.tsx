@@ -14,7 +14,7 @@ export function About() {
       <Card className="bg-zinc-900/30 border-zinc-900 p-8 rounded-2xl h-full flex flex-col items-start text-left">
         <h3 className="text-2xl font-bold mb-6 text-white">My Path - Data Engineering</h3>
         <p className="text-zinc-400 leading-relaxed text-sm">
-          {portfolioData.personal.philosophy}
+          {portfolioData.personal.bio}
         </p>
       </Card>
     </div>
