@@ -9,7 +9,7 @@ export function TechStack() {
       <h3 className="text-2xl font-bold text-white">Tech Stack</h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Object.entries(portfolioData.tech).map(([category, skills], index) => (
+        {Object.entries(portfolioData.techStack).map(([category, skills], index) => (
           <Card key={category} className="bg-zinc-900/30 border-zinc-900 p-6 rounded-xl flex flex-col gap-4" delay={0.1 * index}>
             <h4 className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest border-b border-zinc-800/50 pb-2">
               {category}
