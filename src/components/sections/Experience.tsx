@@ -17,11 +17,11 @@ export function Experience() {
             <div className="flex flex-col gap-2">
               <h4 className="text-lg font-bold text-white">{exp.role}</h4>
               <div className="text-xs text-zinc-500 font-bold uppercase tracking-wider">
-                <span className="text-zinc-300">{exp.company}</span> &bull; {exp.year}
+                <span className="text-zinc-300">{exp.company}</span> &bull; {exp.date}
               </div>
               
               <p className="text-zinc-400 leading-relaxed text-sm mt-1">
-                {exp.description}
+                {exp.bullets[0]}
               </p>
             </div>
           </div>
