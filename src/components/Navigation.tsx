@@ -54,29 +54,40 @@ export const Navigation = () => {
         scrolled ? "bg-background/80 backdrop-blur-md border-b border-border py-3" : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="#" className="text-xl font-bold tracking-tighter text-primary">
-          {portfolioData.personal.initials}
-        </a>
+      <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
+        
+        {/* Logo and Links Container */}
+        <div className="flex items-center gap-16">
+          <a href="#" className="text-2xl font-bold tracking-tighter text-primary">
+            {portfolioData.personal.initials}
+          </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-accent",
-                activeSection === link.href.slice(1) ? "text-accent" : "text-secondary"
-              )}
-            >
-              {link.name}
-              {activeSection === link.href.slice(1) && (
-                <div className="h-0.5 w-full bg-accent mt-0.5" />
-              )}
-            </a>
-          ))}
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.slice(0, 4).map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-accent",
+                  activeSection === link.href.slice(1) ? "text-accent" : "text-secondary"
+                )}
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Side Actions */}
+        <div className="hidden md:flex items-center gap-6">
           <ThemeToggle />
+          <a 
+            href={`mailto:${portfolioData.personal.contact.email}`} 
+            className="text-sm font-medium border-b border-primary text-primary hover:text-secondary hover:border-secondary transition-colors pb-0.5 flex items-center gap-1"
+          >
+            Get In Touch <span className="text-lg leading-none mb-1">↗</span>
+          </a>
         </div>
 
         {/* Mobile Actions */}

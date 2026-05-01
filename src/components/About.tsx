@@ -47,7 +47,7 @@ export const About = () => {
               <div className="pt-4 border-t border-border">
                 <a 
                   href={personal.contact.resume}
-                  className="w-full inline-flex justify-center items-center px-6 py-3 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors"
+                  className="w-full inline-flex justify-center items-center px-6 py-3 bg-primary text-surface rounded-full font-medium hover:bg-accent-hover transition-colors"
                 >
                   Download Resume
                 </a>

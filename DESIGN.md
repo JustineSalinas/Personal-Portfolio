@@ -1,45 +1,45 @@
 # Design System: Personal Portfolio
 
-This document defines the design tokens and visual principles for the Personal Portfolio project, intended for synchronization with **Google Stitch**.
+This document defines the design tokens and visual principles for the Personal Portfolio project.
 
 ## 🎨 Visual Identity
-- **Vibe**: Modern, Premium, Sleek, Data-Focused.
-- **Theme**: Dark Mode (Pure Black background).
-- **Aesthetic**: Minimalist glassmorphism with sharp typography and subtle accent glows.
+- **Vibe**: Minimalist, Clean, Sophisticated, Spacious.
+- **Theme**: Light Mode (Off-white/Beige background).
+- **Aesthetic**: Premium minimalist with stark typography, large white space, and no unnecessary decorations (no glows/drifts).
 
 ## 🌈 Color Palette
-- **Primary Background**: `#000000` (Black)
-- **Surface**: `zinc-900/50` with `backdrop-blur-sm`
-- **Borders**: `zinc-800`
-- **Primary Text**: `white`
-- **Secondary Text**: `zinc-400` / `zinc-300`
+- **Primary Background**: `#fdfdfc` (Off-white)
+- **Surface**: `#f4f3ee` (Beige)
+- **Primary Text**: `#1c1c1c` (Charcoal Black)
+- **Secondary Text**: `#6b6b6b` (Muted Gray)
 - **Accents**: 
-  - `green-500` (Availability, Status, Highlights)
-  - `zinc-700` (Interactive Hover States)
+  - `#2c2c2c` (Charcoal highlights)
+  - `#111111` (Interactive Hover States)
+- **Borders**: `rgba(0, 0, 0, 0.08)`
 
 ## 🔠 Typography
-- **Font Family**: `Inter`, sans-serif (System stack).
+- **Font Family**: `Fraunces` (Display), `Outfit` (Sans), `DM Mono` (Code/Labels).
 - **Scale**:
-  - **Hero Heading**: `text-4xl md:text-6xl`, font-extrabold.
-  - **Section Heading**: `text-2xl`, font-bold.
+  - **Hero Heading**: Huge display text `text-7xl md:text-9xl`, tight tracking.
+  - **Section Heading**: `text-4xl`, font-bold.
   - **Body**: `text-base` / `text-lg`, leading-relaxed.
-  - **Labels**: `text-xs`, font-medium, uppercase, tracking-wider.
+  - **Labels**: `text-sm`, font-medium, uppercase, tracking-wider.
 
 ## 📐 Layout & Spacing
 - **Flow**: Linear top-to-bottom vertical rhythm.
 - **Max Width**: `max-w-5xl`.
-- **Gutter**: `p-4 md:p-8 lg:p-12`.
-- **Gap**: `gap-12` between sections.
-- **Border Radius**: `3xl` (24px) for primary containers.
+- **Gutter**: `p-6 md:p-12`.
+- **Gap**: High margin and padding between sections to create breathing room.
+- **Border Radius**: `2xl` (16px) or fully rounded for pills/buttons.
 
 ## ✨ Motion & Interaction
-- **Entrance**: `animate-fade-up` (0.5s ease-out, 20px vertical offset).
+- **Entrance**: `opacity-0 translate-y-10` to `opacity-100 translate-y-0` (slow 1s transition).
 - **Hover**: 
-  - Scale: `scale-[1.02]`
-  - Ring: `ring-1 ring-zinc-700`
-  - Color: Transition to `white` or `green-400`.
+  - Subtly shifting borders or backgrounds.
+  - Grayscale to color transitions for imagery.
 
 ## 📦 Component Library
-- **Card**: The base primitive. Rounded corners, subtle border, semi-transparent background.
-- **Badge**: Rounded-full, zinc-800/50 background, used for tech tags.
-- **Timeline**: Vertical border-l-2, dot indicators, achievement bullets.
+- **Card**: Clean, subtle border, beige surface, soft hover shadow.
+- **Badge**: Pill-shaped, light border, charcoal text.
+- **Timeline**: Clean charcoal dots, thin borders.
+

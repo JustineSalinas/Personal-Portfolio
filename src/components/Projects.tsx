@@ -74,23 +74,15 @@ export const Projects = () => {
                 )}
               >
                 <Tilt 
-                  tiltMaxAngleX={3} 
-                  tiltMaxAngleY={3} 
+                  tiltMaxAngleX={2} 
+                  tiltMaxAngleY={2} 
                   perspective={1000} 
                   transitionSpeed={1500} 
                   scale={1.01}
                   className="h-full"
                 >
-                  <div className={cn(
-                    "h-full group bg-surface border border-border rounded-2xl p-8 transition-colors duration-300 relative overflow-hidden flex flex-col",
-                    ["hover:border-orange-500/50", "hover:border-emerald-500/50", "hover:border-purple-500/50", "hover:border-blue-500/50", "hover:border-rose-500/50"][index % 5]
-                  )}>
-                    {/* Background Glow */}
-                    <div className={cn(
-                      "absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full blur-3xl transition-colors",
-                      ["bg-orange-500/10 group-hover:bg-orange-500/20", "bg-emerald-500/10 group-hover:bg-emerald-500/20", "bg-purple-500/10 group-hover:bg-purple-500/20", "bg-blue-500/10 group-hover:bg-blue-500/20", "bg-rose-500/10 group-hover:bg-rose-500/20"][index % 5]
-                    )} />
-
+                  <div className="h-full group bg-surface border border-border/50 hover:border-border hover:shadow-lg rounded-2xl p-8 transition-all duration-300 relative overflow-hidden flex flex-col">
+                    
                     <div className="space-y-4 relative z-10 h-full flex flex-col">
                       <div className="flex justify-between items-start">
                         <h3 className="text-2xl font-bold text-primary group-hover:text-accent transition-colors">
@@ -110,7 +102,7 @@ export const Projects = () => {
                         </div>
                       </div>
 
-                      <p className="text-accent text-sm font-semibold uppercase tracking-wider">
+                      <p className="text-primary text-sm font-semibold uppercase tracking-wider">
                         {project.oneLiner}
                       </p>
 

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { portfolioData } from '@/data';
-import { Github, Mail, ArrowRight, Linkedin, Facebook } from 'lucide-react';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
+import { ArrowDown } from 'lucide-react';
 
 export const Hero = () => {
   const { ref, isVisible } = useIsVisible();
@@ -12,79 +12,68 @@ export const Hero = () => {
   return (
     <section 
       ref={ref}
-      className="min-h-screen flex items-center pt-20 px-6"
+      className="min-h-screen relative flex items-center overflow-hidden bg-background pt-20"
     >
+      {/* Left Vertical Text */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-6 text-secondary hidden lg:flex h-full py-32">
+        <span className="-rotate-90 whitespace-nowrap text-xs tracking-widest uppercase font-medium mt-auto">
+          {portfolioData.personal.titles[0]}
+        </span>
+        <div className="w-[1px] h-32 bg-border my-4" />
+        <span className="-rotate-90 text-xs tracking-widest font-medium mb-auto">
+          {new Date().getFullYear()}
+        </span>
+      </div>
+
       <div className={cn(
-        "max-w-7xl mx-auto grid md:grid-cols-5 gap-12 items-center transition-all duration-1000",
+        "max-w-7xl mx-auto w-full grid lg:grid-cols-2 h-full transition-all duration-1000 pl-6 lg:pl-32 pr-6",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
-        {/* Mobile: Photo first */}
-        <div className="md:col-span-2 md:order-2 flex justify-center md:justify-end">
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border-2 border-border shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <img 
-              src="/portrait.png" 
-              alt="Adrian Salinas"
-              className="w-full h-full object-cover"
-            />
+        
+        {/* Left Content Area */}
+        <div className="flex flex-col justify-center h-full pt-12 pb-24 lg:pb-0 z-10 relative">
+          
+          {/* Stats */}
+          <div className="flex gap-16 mb-16">
+            <div>
+              <p className="text-4xl md:text-5xl font-light text-primary mb-1 font-sans tracking-tight">+{portfolioData.projects.length}</p>
+              <p className="text-xs text-secondary uppercase tracking-wider font-medium">Projects built</p>
+            </div>
+            <div>
+              <p className="text-4xl md:text-5xl font-light text-primary mb-1 font-sans tracking-tight">+{portfolioData.experience.length}</p>
+              <p className="text-xs text-secondary uppercase tracking-wider font-medium">Roles & Exp</p>
+            </div>
           </div>
-        </div>
 
-        <div className="md:col-span-3 md:order-1 space-y-6">
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-bold text-primary leading-tight font-display">
-              {portfolioData.personal.name}.
+          {/* Main Title */}
+          <div className="mb-4">
+            <h1 className="text-8xl md:text-[11rem] leading-none font-light text-primary tracking-tighter -ml-2 lg:-ml-4 font-sans">
+              Hello
             </h1>
           </div>
 
-          <div className="flex items-center gap-2 text-secondary">
-            <span>📍</span>
-            <span>{portfolioData.personal.location}</span>
-          </div>
-
-          <p className="text-lg text-secondary max-w-xl">
-            {portfolioData.personal.bio}
+          <p className="text-lg md:text-xl text-primary font-medium flex items-center gap-2">
+            — It's {portfolioData.personal.initials}.{portfolioData.personal.name.split(' ')[1]} a {portfolioData.personal.titles[0].toLowerCase()}
           </p>
 
-          <div className="flex flex-wrap gap-4 pt-4">
-            <a 
-              href="#projects" 
-              className="px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-[1.02]"
-            >
-              View Projects <ArrowRight size={18} />
-            </a>
-            <a 
-              href={`mailto:${portfolioData.personal.contact.email}`}
-              className="px-8 py-4 border border-border hover:bg-surface text-primary rounded-lg font-semibold transition-all hover:scale-[1.02]"
-            >
-              Send Email
-            </a>
-            <a 
-              href={portfolioData.personal.contact.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-4 border border-border hover:bg-surface text-primary rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-[1.02]"
-            >
-              <Github size={18} /> GitHub
-            </a>
-            <a 
-              href={portfolioData.personal.contact.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-4 border border-border hover:bg-surface text-primary rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-[1.02]"
-            >
-              <Linkedin size={18} /> LinkedIn
-            </a>
-            <a 
-              href={portfolioData.personal.contact.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-4 border border-border hover:bg-surface text-primary rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-[1.02]"
-            >
-              <Facebook size={18} /> Facebook
+          {/* Scroll Down Indicator */}
+          <div className="mt-auto pt-24 lg:pt-32 lg:absolute lg:bottom-12">
+            <a href="#about" className="flex items-center gap-2 text-sm font-medium text-secondary hover:text-primary transition-colors group">
+              Scroll down <ArrowDown size={14} className="group-hover:translate-y-1 transition-transform" />
             </a>
           </div>
+        </div>
+
+        {/* Right Portrait Area */}
+        <div className="relative h-full w-full hidden lg:flex items-end justify-center pt-20">
+          <img 
+            src="/portrait.png" 
+            alt={portfolioData.personal.name}
+            className="w-full max-w-[500px] h-auto object-contain object-bottom grayscale transition-all duration-700 hover:grayscale-0"
+          />
         </div>
       </div>
     </section>
   );
 };
+

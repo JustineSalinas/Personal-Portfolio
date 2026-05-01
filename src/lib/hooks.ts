@@ -31,9 +31,9 @@ export const useScrollSpy = (ids: string[], offset: number = 100) => {
   return activeId;
 };
 
-export const useIsVisible = (options: IntersectionObserverInit = { threshold: 0.1 }) => {
+export const useIsVisible = <T extends HTMLElement>(options: IntersectionObserverInit = { threshold: 0.1 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
