@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { portfolioData } from '@/data';
-import { Github, Mail, ArrowRight } from 'lucide-react';
+import { Github, Mail, ArrowRight, Linkedin, Facebook } from 'lucide-react';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
@@ -20,28 +20,20 @@ export const Hero = () => {
       )}>
         {/* Mobile: Photo first */}
         <div className="md:col-span-2 md:order-2 flex justify-center md:justify-end">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-accent to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-            <div className="relative w-64 h-64 md:w-80 md:h-80 bg-surface rounded-2xl overflow-hidden border border-border">
-              {/* Photo Placeholder */}
-              <div className="w-full h-full bg-surface flex items-center justify-center text-secondary">
-                <span className="text-4xl font-bold">AJS</span>
-              </div>
-            </div>
+          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border-2 border-border shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <img 
+              src="/portrait.png" 
+              alt="Adrian Salinas"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
 
         <div className="md:col-span-3 md:order-1 space-y-6">
-          <div className="space-y-2">
-            <span className="text-accent text-sm font-bold tracking-widest uppercase">
-              {portfolioData.personal.availability}
-            </span>
-            <h1 className="text-5xl md:text-7xl font-bold text-primary leading-tight">
-              {portfolioData.personal.name}
+          <div className="space-y-4">
+            <h1 className="text-5xl md:text-7xl font-bold text-primary leading-tight font-display">
+              {portfolioData.personal.name}.
             </h1>
-            <p className="text-xl md:text-2xl text-secondary font-medium">
-              {portfolioData.personal.titles.join(' / ')}
-            </p>
           </div>
 
           <div className="flex items-center gap-2 text-secondary">
@@ -70,9 +62,25 @@ export const Hero = () => {
               href={portfolioData.personal.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 border border-border hover:bg-surface text-primary rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-[1.02]"
+              className="px-6 py-4 border border-border hover:bg-surface text-primary rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-[1.02]"
             >
               <Github size={18} /> GitHub
+            </a>
+            <a 
+              href={portfolioData.personal.contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-4 border border-border hover:bg-surface text-primary rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-[1.02]"
+            >
+              <Linkedin size={18} /> LinkedIn
+            </a>
+            <a 
+              href={portfolioData.personal.contact.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-4 border border-border hover:bg-surface text-primary rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-[1.02]"
+            >
+              <Facebook size={18} /> Facebook
             </a>
           </div>
         </div>

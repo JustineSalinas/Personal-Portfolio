@@ -1,14 +1,28 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fraunces, Outfit, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
 
-const inter = Inter({ subsets: ["latin"] });
+const fraunces = Fraunces({ 
+  subsets: ["latin"],
+  variable: '--font-fraunces'
+});
+
+const outfit = Outfit({ 
+  subsets: ["latin"],
+  variable: '--font-outfit'
+});
+
+const dmMono = DM_Mono({ 
+  weight: ['400', '500'],
+  subsets: ["latin"],
+  variable: '--font-dm-mono'
+});
 
 export const metadata: Metadata = {
-  title: "Adrian Justin J. Salinas | Full-Stack Developer",
-  description: "Professional portfolio of Adrian Justin J. Salinas, a Full-Stack Developer and aspiring Data Engineer specializing in modern web technologies and data architecture.",
+  title: "Adrian Salinas | Developer & Tinkerer",
+  description: "Personal portfolio of Adrian Salinas, a 19yo developer from Iloilo building fast, accessible web tools.",
 };
 
 export default function RootLayout({
@@ -18,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${outfit.variable} ${fraunces.variable} ${dmMono.variable} font-sans`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
           <ChatbotWidget />

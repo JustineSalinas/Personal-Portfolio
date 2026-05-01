@@ -45,13 +45,8 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="space-y-1 text-center md:text-left">
-            <p className="text-primary font-bold text-lg">{personal.initials}</p>
-            <p className="text-secondary text-sm">Built with precision</p>
-          </div>
-          
-          <p className="text-secondary text-sm">
+        <div className="pt-12 border-t border-border flex justify-center items-center">
+          <p className="text-secondary text-sm text-center">
             © {new Date().getFullYear()} {personal.name}. All rights reserved.
           </p>
         </div>

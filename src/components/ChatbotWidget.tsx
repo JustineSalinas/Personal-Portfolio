@@ -24,7 +24,7 @@ export const ChatbotWidget = () => {
             {/* Header */}
             <div className="bg-accent text-white p-4 flex justify-between items-center">
               <div>
-                <h3 className="font-bold">AJS Assistant</h3>
+                <h3 className="font-bold">AJ Assistant</h3>
                 <p className="text-xs opacity-80">Ask me about Adrian's portfolio</p>
               </div>
               <button 
@@ -85,9 +85,16 @@ export const ChatbotWidget = () => {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-accent hover:bg-accent-hover text-white rounded-full p-4 shadow-xl transition-all hover:scale-110 active:scale-95 flex items-center justify-center"
+        className="bg-accent hover:bg-accent-hover text-white rounded-full px-6 py-4 shadow-xl transition-all hover:scale-110 active:scale-95 flex items-center justify-center gap-2 group"
       >
-        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+        {isOpen ? (
+          <X size={24} />
+        ) : (
+          <>
+            <MessageSquare size={24} className="group-hover:rotate-12 transition-transform" />
+            <span className="font-bold">Chat with AJ</span>
+          </>
+        )}
       </button>
     </div>
   );

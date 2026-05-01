@@ -21,8 +21,9 @@ const config: Config = {
         border: "var(--border)",
       },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-        display: ["Inter", "DM Sans", "sans-serif"],
+        sans: ["var(--font-outfit)", "sans-serif"],
+        display: ["var(--font-fraunces)", "serif"],
+        mono: ["var(--font-dm-mono)", "monospace"],
       },
       spacing: {
         '18': '4.5rem',

@@ -58,7 +58,7 @@ export const Projects = () => {
           </div>
         </div>
 
-        <motion.div layout className="grid md:grid-cols-2 gap-8">
+        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(250px,auto)]">
           <AnimatePresence>
             {filteredProjects.map((project, index) => (
               <motion.div
@@ -68,18 +68,28 @@ export const Projects = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
+                className={cn(
+                  index === 0 ? "md:col-span-2 lg:col-span-2 lg:row-span-2" : "",
+                  index === 3 || index === 4 ? "md:col-span-1 lg:col-span-1" : ""
+                )}
               >
                 <Tilt 
-                  tiltMaxAngleX={5} 
-                  tiltMaxAngleY={5} 
+                  tiltMaxAngleX={3} 
+                  tiltMaxAngleY={3} 
                   perspective={1000} 
                   transitionSpeed={1500} 
-                  scale={1.02}
+                  scale={1.01}
                   className="h-full"
                 >
-                  <div className="h-full group bg-surface border border-border rounded-2xl p-8 hover:border-accent/50 transition-colors duration-300 relative overflow-hidden">
+                  <div className={cn(
+                    "h-full group bg-surface border border-border rounded-2xl p-8 transition-colors duration-300 relative overflow-hidden flex flex-col",
+                    ["hover:border-orange-500/50", "hover:border-emerald-500/50", "hover:border-purple-500/50", "hover:border-blue-500/50", "hover:border-rose-500/50"][index % 5]
+                  )}>
                     {/* Background Glow */}
-                    <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-accent/10 rounded-full blur-3xl group-hover:bg-accent/20 transition-colors" />
+                    <div className={cn(
+                      "absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full blur-3xl transition-colors",
+                      ["bg-orange-500/10 group-hover:bg-orange-500/20", "bg-emerald-500/10 group-hover:bg-emerald-500/20", "bg-purple-500/10 group-hover:bg-purple-500/20", "bg-blue-500/10 group-hover:bg-blue-500/20", "bg-rose-500/10 group-hover:bg-rose-500/20"][index % 5]
+                    )} />
 
                     <div className="space-y-4 relative z-10 h-full flex flex-col">
                       <div className="flex justify-between items-start">

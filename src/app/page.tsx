@@ -6,12 +6,12 @@ import { Experience } from '@/components/Experience';
 import { Education } from '@/components/Education';
 import { Skills } from '@/components/Skills';
 import { Footer } from '@/components/Footer';
-import { ParticleBackground } from '@/components/ParticleBackground';
+import { SubtleBackground } from '@/components/SubtleBackground';
 
 export default function Home() {
   return (
     <main className="relative min-h-screen">
-      <ParticleBackground />
+      <SubtleBackground />
       <Navigation />
       <Hero />
       <About />

@@ -1,11 +1,11 @@
 export const portfolioData = {
   personal: {
-    name: "Adrian Justin J. Salinas",
-    initials: "AJS",
+    name: "Adrian Salinas",
+    initials: "AS",
     titles: ["Full-Stack Developer", "IT Sophomore", "Aspiring Data Engineer"],
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
-    bio: "I am an IT sophomore with a strong foundation in modern web development and a growing passion for data architecture. My focus is on building robust, scalable systems that solve real-world problems. I thrive in environments that challenge me to learn new technologies and apply them to complex scenarios.",
+    bio: "I'm a 19-year-old developer from Iloilo building fast, accessible web tools. Recently spent three days wrestling with a rogue hydration error, but usually I'm crafting Next.js apps and navigating distributed systems. I prefer building real things over collecting buzzwords.",
     longBio: [
       "I am currently a Bachelor of Science in Information Technology student at the University of San Agustin, where I've developed a deep interest in the intersection of software engineering and data science.",
       "My technical journey is driven by a passion for building efficient, user-centric applications that utilize modern stacks like Next.js, TypeScript, and various AI/ML integrations.",
@@ -22,6 +22,7 @@ export const portfolioData = {
       email: "ajsalinas005@gmail.com",
       linkedin: "https://www.linkedin.com/in/adrian-justin-salinas-a4768b226/",
       github: "https://github.com/JustineSalinas",
+      facebook: "https://www.facebook.com/profile.php?id=100067117067492",
       resume: "#" // Placeholder for resume link
     }
   },

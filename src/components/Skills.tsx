@@ -5,7 +5,6 @@ import { portfolioData } from '@/data';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
-import { TechRadar } from '@/components/TechRadar';
 
 export const Skills = () => {
   const { ref, isVisible } = useIsVisible();
@@ -19,11 +18,6 @@ export const Skills = () => {
         <div className="space-y-4">
           <h2 className="text-4xl font-bold text-primary">Tech Stack</h2>
           <div className="h-1.5 w-20 bg-accent rounded-full" />
-        </div>
-
-        {/* Tech Radar Chart */}
-        <div className="bg-surface/30 border border-border rounded-3xl p-6">
-          <TechRadar />
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 pt-8">
