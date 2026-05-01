@@ -23,7 +23,7 @@ export const Footer = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a 
               href={`mailto:${personal.contact.email}`}
-              className="w-full sm:w-auto px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-lg font-bold flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+              className="w-full sm:w-auto px-8 py-4 bg-accent hover:bg-accent-hover text-background rounded-lg font-bold flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
             >
               <Mail size={20} /> Email Me
             </a>

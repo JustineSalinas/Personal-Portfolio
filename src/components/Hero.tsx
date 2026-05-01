@@ -53,7 +53,7 @@ export const Hero = () => {
           </div>
 
           <p className="text-lg md:text-xl text-primary font-medium flex items-center gap-2">
-            — It's {portfolioData.personal.initials}.{portfolioData.personal.name.split(' ')[1]} a {portfolioData.personal.titles[0].toLowerCase()}
+            — It's {portfolioData.personal.name} a {portfolioData.personal.titles[0].toLowerCase()}
           </p>
 
           {/* Scroll Down Indicator */}

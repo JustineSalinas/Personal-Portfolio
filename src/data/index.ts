@@ -1,7 +1,7 @@
 export const portfolioData = {
   personal: {
     name: "Adrian Salinas",
-    initials: "AS",
+    initials: "AJ",
     titles: ["Full-Stack Developer", "IT Sophomore", "Aspiring Data Engineer"],
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
@@ -29,7 +29,7 @@ export const portfolioData = {
   experience: [
     {
       role: "IT Support (Internship)",
-      company: "INNOVATHINK",
+      company: "Innovathink",
       date: "July 2023",
       location: "Iloilo City, Philippines",
       bullets: [
@@ -41,7 +41,7 @@ export const portfolioData = {
     },
     {
       role: "IT Assistant (Contract)",
-      company: "TELUS",
+      company: "Telus",
       date: "March 2023",
       location: "Iloilo City, Philippines",
       bullets: [
