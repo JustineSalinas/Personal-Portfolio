@@ -45,17 +45,23 @@
 }
 
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
+@layer base {
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 
-::-webkit-scrollbar-track {
-  @apply bg-background;
-}
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-border rounded-full hover:bg-secondary/20 transition-colors;
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full transition-colors;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary/20;
+  }
 }
 
 @layer utilities {
