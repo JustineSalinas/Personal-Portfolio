@@ -16,14 +16,9 @@ export function Education() {
               <div className="absolute left-0 top-2 w-2.5 h-2.5 bg-blue-600 rounded-full ring-4 ring-zinc-950" />
               
               <div className="flex flex-col gap-2">
-                <div className="text-xs font-bold text-blue-500 uppercase tracking-widest">{edu.year}</div>
+                <div className="text-xs font-bold text-blue-500 uppercase tracking-widest">{edu.date}</div>
                 <h4 className="text-lg font-bold text-white leading-snug">{edu.degree}</h4>
                 <div className="text-zinc-400 font-medium text-sm">{edu.institution}</div>
-                {edu.location && (
-                  <div className="text-[11px] text-zinc-600 flex items-start gap-1 mt-1">
-                    <span className="opacity-40">📍</span> {edu.location}
-                  </div>
-                )}
               </div>
             </div>
           ))}
