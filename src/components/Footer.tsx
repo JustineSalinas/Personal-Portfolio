@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { portfolioData } from '@/data';
-import { Github, Linkedin, Facebook, Mail, FileText } from 'lucide-react';
+import { Github, Linkedin, Facebook, Mail, FileText, Instagram } from 'lucide-react';
 import { IsometricBoard } from './IsometricBoard';
 
 export const Footer = () => {
@@ -40,14 +40,21 @@ export const Footer = () => {
             </div>
 
             <div className="flex items-center justify-center lg:justify-start gap-6 pt-4">
-              <a href={personal.contact.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-accent transition-all hover:-translate-y-1">
+              <a href={personal.contact.github} target="_blank" rel="noopener noreferrer" 
+                className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-[#181717] dark:hover:text-white hover:border-[#181717]/20 dark:hover:border-white/20 transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(24,23,23,0.1)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]">
                 <Github size={24} />
               </a>
-              <a href={personal.contact.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-accent transition-all hover:-translate-y-1">
+              <a href={personal.contact.linkedin} target="_blank" rel="noopener noreferrer" 
+                className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-[#0077B5] hover:border-[#0077B5]/20 transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,119,181,0.2)]">
                 <Linkedin size={24} />
               </a>
-              <a href={personal.contact.facebook} target="_blank" rel="noopener noreferrer" className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-accent transition-all hover:-translate-y-1">
+              <a href={personal.contact.facebook} target="_blank" rel="noopener noreferrer" 
+                className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-[#1877F2] hover:border-[#1877F2]/20 transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(24,119,242,0.2)]">
                 <Facebook size={24} />
+              </a>
+              <a href={personal.contact.instagram} target="_blank" rel="noopener noreferrer" 
+                className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-[#E4405F] hover:border-[#E4405F]/20 transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(228,64,95,0.2)]">
+                <Instagram size={24} />
               </a>
             </div>
           </div>

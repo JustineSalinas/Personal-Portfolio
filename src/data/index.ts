@@ -24,6 +24,7 @@ export const portfolioData = {
       linkedin: "https://www.linkedin.com/in/adrian-justin-salinas-a4768b226/",
       github: "https://github.com/JustineSalinas",
       facebook: "https://www.facebook.com/profile.php?id=100067117067492",
+      instagram: "https://www.instagram.com/a.jsalinas/",
       resume: "#" // Placeholder for resume link
     }
   },
@@ -100,6 +101,20 @@ export const portfolioData = {
       date: "2024",
       link: "https://www.udemy.com/certificate/UC-cca1f8fe-aa32-49c9-86ca-9f3e8bb7f8ab/",
       image: "/certs/design-thinking.png"
+    },
+    {
+      title: "Project Management 101- Project Management DUAL Certificate",
+      issuer: "Udemy",
+      date: "2024",
+      link: "https://www.udemy.com/certificate/UC-973a419c-1ea4-45ef-b8a2-028d7f847d9e/",
+      image: "/certs/pm-dual.png"
+    },
+    {
+      title: "Certificate of Completion in IT Operations",
+      issuer: "InnovaThink Corporation",
+      date: "2023",
+      link: "/certs/it-operations.pdf",
+      image: "/certs/it-operations.png"
     }
   ],
   projects: [
