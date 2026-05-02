@@ -37,7 +37,7 @@ export function Education() {
                 </svg>
               </div>
               <span className="text-sm font-medium text-zinc-500 group-hover:text-white transition-colors">
-                {cert}
+                {cert.title}
               </span>
             </div>
           ))}
