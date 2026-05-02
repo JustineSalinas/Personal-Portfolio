@@ -30,6 +30,7 @@ const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience' },
+  { name: 'Certifications', href: '#certifications' },
   { name: 'Skills', href: '#skills' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -62,9 +63,8 @@ export const Navigation = () => {
             {portfolioData.personal.initials}
           </a>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.slice(0, 4).map((link) => (
+            {navLinks.slice(0, 5).map((link) => (
               <a
                 key={link.name}
                 href={link.href}
