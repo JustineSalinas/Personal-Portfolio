@@ -35,8 +35,9 @@ export const Projects = () => {
       )}>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-4">
-            <h2 className="text-4xl font-bold text-primary">Featured Projects</h2>
-            <div className="h-1.5 w-20 bg-accent rounded-full" />
+            <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block mb-4">
+              FEATURED PROJECTS
+            </span>
           </div>
 
           {/* Filters */}
@@ -48,7 +49,7 @@ export const Projects = () => {
                 className={cn(
                   "px-4 py-2 rounded-full text-sm font-semibold transition-all",
                   filter === f 
-                    ? "bg-accent text-white" 
+                    ? "bg-accent text-background" 
                     : "bg-surface border border-border text-secondary hover:text-primary hover:border-accent/50"
                 )}
               >

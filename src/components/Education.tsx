@@ -16,8 +16,9 @@ export const Education = () => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
         <div className="space-y-4">
-          <h2 className="text-4xl font-bold text-primary">Education</h2>
-          <div className="h-1.5 w-20 bg-accent rounded-full" />
+          <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block mb-4">
+            EDUCATION
+          </span>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">

@@ -34,7 +34,7 @@ export const Hero = () => {
         <div className="flex flex-col justify-center h-full pt-12 pb-24 lg:pb-0 z-10 relative">
           
           {/* Stats */}
-          <div className="flex gap-16 mb-16">
+          <div className="flex gap-16 mb-16 relative">
             <div>
               <p className="text-4xl md:text-5xl font-light text-primary mb-1 font-sans tracking-tight">+{portfolioData.projects.length}</p>
               <p className="text-xs text-secondary uppercase tracking-wider font-medium">Projects built</p>

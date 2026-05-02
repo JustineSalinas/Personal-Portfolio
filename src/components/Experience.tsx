@@ -17,9 +17,9 @@ export const Experience = () => {
         {/* Header Section */}
         <div className="grid lg:grid-cols-2 gap-12 mb-20">
           <div>
-            <div className="flex items-center gap-3 text-primary font-medium mb-6 text-sm">
-              <span className="w-2.5 h-2.5 rounded-full bg-primary" /> Experience
-            </div>
+            <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block mb-6">
+              EXPERIENCE
+            </span>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans tracking-tight text-primary leading-tight font-light">
               Explore My Tech Journey
             </h2>

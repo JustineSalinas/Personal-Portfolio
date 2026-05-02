@@ -22,7 +22,7 @@ export const ChatbotWidget = () => {
             style={{ height: '500px', maxHeight: '70vh' }}
           >
             {/* Header */}
-            <div className="bg-accent text-white p-4 flex justify-between items-center">
+            <div className="bg-accent text-background p-4 flex justify-between items-center">
               <div>
                 <h3 className="font-bold">AJ Assistant</h3>
                 <p className="text-xs opacity-80">Ask me about Adrian's portfolio</p>
@@ -48,7 +48,7 @@ export const ChatbotWidget = () => {
                   className={cn(
                     "max-w-[80%] rounded-2xl px-4 py-2 text-sm",
                     m.role === 'user' 
-                      ? "bg-accent text-white ml-auto rounded-br-sm" 
+                      ? "bg-accent text-background ml-auto rounded-br-sm" 
                       : "bg-surface border border-border text-primary mr-auto rounded-bl-sm"
                   )}
                 >
@@ -73,7 +73,7 @@ export const ChatbotWidget = () => {
               <button 
                 type="submit" 
                 disabled={isLoading || !input.trim()}
-                className="bg-accent hover:bg-accent-hover disabled:opacity-50 text-white rounded-full p-2 h-10 w-10 flex items-center justify-center transition-colors"
+                className="bg-accent hover:bg-accent-hover disabled:opacity-50 text-background rounded-full p-2 h-10 w-10 flex items-center justify-center transition-colors"
               >
                 <Send size={16} />
               </button>
@@ -85,7 +85,7 @@ export const ChatbotWidget = () => {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-accent hover:bg-accent-hover text-white rounded-full px-6 py-4 shadow-xl transition-all hover:scale-110 active:scale-95 flex items-center justify-center gap-2 group"
+        className="bg-accent hover:bg-accent-hover text-background rounded-full px-6 py-4 shadow-xl transition-all hover:scale-110 active:scale-95 flex items-center justify-center gap-2 group"
       >
         {isOpen ? (
           <X size={24} />

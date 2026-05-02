@@ -12,6 +12,7 @@ export const portfolioData = {
       "Beyond coding, I am committed to continuous learning and professional growth, constantly seeking to refine my skills in distributed systems and data engineering.",
       "I am actively looking for internships, part-time roles, or freelance opportunities where I can contribute my skills to meaningful projects and learn from industry experts."
     ],
+    tags: ["NEXT.JS", "TYPESCRIPT", "DATA ENGINEERING", "AI / ML", "IOT", "FULL-STACK", "DISTRIBUTED SYSTEMS"],
     quickFacts: {
       status: "IT Sophomore",
       focus: "Full-Stack Dev, Data Engineering, IoT",
@@ -28,38 +29,37 @@ export const portfolioData = {
   },
   experience: [
     {
-      role: "IT Support (Internship)",
-      company: "Innovathink",
-      date: "July 2023",
-      location: "Iloilo City, Philippines",
-      bullets: [
-        "Provided comprehensive technical support and maintained system integrity for internal operations",
-        "Handled diagnostics and troubleshooting for 50+ workstations",
-        "Managed Windows desktop configurations and network setups",
-        "Delivered end-user training, reducing support tickets by 30%"
-      ]
-    },
-    {
       role: "IT Assistant (Contract)",
-      company: "Telus",
+      company: "Telus Corporation",
       date: "March 2023",
       location: "Iloilo City, Philippines",
       bullets: [
-        "Assisted in network troubleshooting, hardware maintenance, and software deployments",
-        "Configured and maintained office computer systems",
-        "Provided technical support for hardware and software issues",
-        "Ensured minimal system downtime through proactive maintenance"
+        "Set up, configured, and maintained computer systems and local networks to guarantee operational readiness.",
+        "Delivered technical support and troubleshooting to ensure all workstations were secure, updated, and optimized for daily operations."
       ]
     },
     {
-      role: "Technical Support",
-      company: "University of San Agustin",
-      date: "Past",
+      role: "IT Support Intern",
+      company: "InnovaThink Corporation Philippines",
+      date: "July 2023",
       location: "Iloilo City, Philippines",
       bullets: [
-        "Resolved student and faculty technical issues",
-        "Managed lab equipment and supported campus IT infrastructure",
-        "Maintained computer labs and provided on-site support"
+        "Provided direct technical support for Windows desktop environments, resolving system configuration and software issues.",
+        "Implemented and maintained endpoint security protocols, including firewall configurations and routine anti-virus deployments.",
+        "Diagnosed hardware defects and coordinated scheduled system maintenance utilizing standardized procedural checklists.",
+        "Assisted in the management and optimization of local network configurations."
+      ]
+    },
+    {
+      role: "Technical Support Intern",
+      company: "University of San Agustin",
+      date: "January 2023",
+      location: "Iloilo City, Philippines",
+      bullets: [
+        "Deployed and configured network routers and infrastructure across multiple campus buildings to establish reliable connectivity.",
+        "Built and optimized computer laboratories and office workstations, executing comprehensive cable management and hardware installations.",
+        "Troubleshot and repaired CPU and peripheral defects, replacing faulty components to minimize hardware downtime.",
+        "Managed IT asset infrastructure, maintaining accurate databases for software licenses and hardware inventory."
       ]
     }
   ],
@@ -121,13 +121,6 @@ export const portfolioData = {
       description: "An IoT-based waste management solution that monitors bin fill levels and optimizes collection routes.",
       techStack: ["Arduino UNO", "Python", "ESP8266", "Sensors"],
       github: "https://github.com/JustineSalinas/BinSense"
-    },
-    {
-      title: "EduSync",
-      oneLiner: "Student data aggregation pipeline system",
-      description: "A data pipeline system designed to aggregate and synchronize student information across multiple educational platforms.",
-      techStack: ["Python", "Node.js", "Pandas", "SQLite", "FastAPI"],
-      github: "https://github.com/JustineSalinas/EduSync"
     }
   ],
   techStack: {
