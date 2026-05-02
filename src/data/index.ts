@@ -87,10 +87,20 @@ export const portfolioData = {
     }
   ],
   certifications: [
-    "Project Management",
-    "Design Thinking",
-    "IT Ops",
-    "Tech Support"
+    {
+      title: "Project Management - Waterfall & Agile",
+      issuer: "Udemy",
+      date: "2024",
+      link: "https://www.udemy.com/certificate/UC-8d5096f4-77eb-4ad9-9efc-e24adaeb3ae3/",
+      image: "/certs/pm-waterfall-agile.png"
+    },
+    {
+      title: "Design Thinking Guide for Successful Professionals",
+      issuer: "Udemy",
+      date: "2024",
+      link: "https://www.udemy.com/certificate/UC-cca1f8fe-aa32-49c9-86ca-9f3e8bb7f8ab/",
+      image: "/certs/design-thinking.png"
+    }
   ],
   projects: [
     {

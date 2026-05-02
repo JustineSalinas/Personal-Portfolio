@@ -45,22 +45,6 @@ export const Skills = () => {
           ))}
         </div>
 
-        {/* Certifications Sidebar/Section */}
-        <div className="pt-12">
-          <div className="bg-accent/5 border border-accent/20 rounded-2xl p-8">
-            <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block mb-6">
-              PROFESSIONAL CERTIFICATIONS
-            </span>
-            <div className="flex flex-wrap gap-4">
-              {portfolioData.certifications.map((cert) => (
-                <div key={cert} className="flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-secondary">
-                  <span className="text-accent text-lg">✓</span>
-                  <span className="font-medium">{cert}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
