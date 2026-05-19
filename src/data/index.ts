@@ -124,28 +124,32 @@ export const portfolioData = {
       description: "A comprehensive project management tool designed to streamline agile workflows for modern development teams.",
       techStack: ["Next.js 15", "TypeScript 5", "Supabase", "PostgreSQL", "Clerk"],
       github: "https://github.com/JustineSalinas/Commit",
-      demo: "https://commit-beta.vercel.app"
+      demo: "https://commit-beta.vercel.app",
+      image: "/projects/commit.png"
     },
     {
       title: "PharmaTrack",
       oneLiner: "Inventory management for small-medium pharmacies",
       description: "A dedicated inventory system that helps pharmacies manage their stock levels, expiration dates, and sales records efficiently.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
-      github: "https://github.com/JustineSalinas/PharmaTrack"
+      github: "https://github.com/JustineSalinas/PharmaTrack",
+      image: "/projects/pharmatrack.png"
     },
     {
       title: "SignSync",
       oneLiner: "Real-time sign language translation using computer vision",
       description: "An innovative tool that translates sign language into text/speech in real-time using computer vision and AI models.",
       techStack: ["React.js", "Python 3", "FastAPI", "MediaPipe", "Gemini API"],
-      github: "https://github.com/JustineSalinas/SignSync"
+      github: "https://github.com/JustineSalinas/SignSync",
+      image: "/projects/signsync.png"
     },
     {
       title: "BinSense",
       oneLiner: "Smart waste bin monitoring with IoT integration",
       description: "An IoT-based waste management solution that monitors bin fill levels and optimizes collection routes.",
       techStack: ["Arduino UNO", "Python", "ESP8266", "Sensors"],
-      github: "https://github.com/JustineSalinas/BinSense"
+      github: "https://github.com/JustineSalinas/BinSense",
+      images: ["/projects/binsense1.jpg", "/projects/binsense2.jpg"]
     }
   ],
   techStack: {

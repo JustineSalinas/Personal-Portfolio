@@ -66,11 +66,20 @@ export const Hero = () => {
 
         {/* Right Portrait Area */}
         <div className="relative h-full w-full hidden lg:flex items-end justify-center pt-20">
-          <img 
-            src="/portrait.png" 
-            alt={portfolioData.personal.name}
-            className="w-full max-w-[500px] h-auto object-contain object-bottom grayscale transition-all duration-700 hover:grayscale-0"
-          />
+          <div className="animate-float relative">
+            {/* Ambient glow behind the card */}
+            <div className="absolute inset-0 blur-3xl opacity-10 bg-white rounded-[24px] scale-95 translate-y-4" />
+            {/* Floating card */}
+            <div className="relative w-[380px] h-[520px] rounded-[24px] overflow-hidden border border-[rgba(255,255,255,0.14)] dark:bg-[#0a0a0a] bg-surface shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
+              <img
+                src="/portrait.png"
+                alt={portfolioData.personal.name}
+                className="w-full h-full object-cover object-top grayscale transition-all duration-700 hover:grayscale-0"
+              />
+              {/* Subtle bottom gradient overlay */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+            </div>
+          </div>
         </div>
       </div>
     </section>

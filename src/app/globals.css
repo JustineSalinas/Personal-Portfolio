@@ -6,23 +6,23 @@
 
 @layer base {
   :root {
-    --background: #fdfdfc;
-    --surface: #f4f3ee;
-    --primary: #1c1c1c;
-    --secondary: #6b6b6b;
-    --accent: #2c2c2c;
-    --accent-hover: #111111;
-    --border: rgba(0, 0, 0, 0.08);
+    --background: #fafafa;
+    --surface: #f0f0f0;
+    --primary: #111111;
+    --secondary: #555555;
+    --accent: #111111;
+    --accent-hover: #000000;
+    --border: rgba(0, 0, 0, 0.10);
   }
 
   .dark {
-    --background: #1c1c1c;
-    --surface: #2c2c2c;
-    --primary: #fdfdfc;
-    --secondary: #a3a3a3;
-    --accent: #f4f3ee;
+    --background: #050505;
+    --surface: #0d0d0d;
+    --primary: rgba(255, 255, 255, 0.96);
+    --secondary: rgba(255, 255, 255, 0.55);
+    --accent: rgba(255, 255, 255, 0.96);
     --accent-hover: #ffffff;
-    --border: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.14);
   }
 }
 
@@ -43,6 +43,11 @@
   50% { transform: translate(60px, 40px) scale(1.1); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(-12px); }
+}
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
@@ -51,6 +56,9 @@
 @layer utilities {
   .animate-marquee {
     animation: marquee 20s linear infinite;
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
   }
 }
 

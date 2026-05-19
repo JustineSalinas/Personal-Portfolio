@@ -104,7 +104,7 @@ export const Projects = () => {
 
           {/* Slider Container */}
           <div className="overflow-visible px-4">
-            <div className="relative h-[500px] md:h-[600px] flex items-center justify-center">
+            <div className="relative h-[550px] md:h-[650px] flex items-center justify-center">
               <AnimatePresence mode="popLayout" initial={false}>
                 {filteredProjects.map((project, index) => {
                   const isCenter = index === currentIndex;
@@ -186,7 +186,28 @@ export const Projects = () => {
                               </div>
                             </div>
 
-                            <p className="text-secondary text-lg leading-relaxed flex-grow">
+                            {/* Project Images */}
+                            {((project as any).image || (project as any).images) && (
+                              <div className="relative w-full rounded-2xl overflow-hidden border border-border/30 bg-black/20 h-48 md:h-[260px] flex-shrink-0 mt-4 mb-4 group/img shadow-inner">
+                                {(project as any).images ? (
+                                  <div className="flex h-full w-full gap-2 p-2">
+                                    {(project as any).images.map((img: string, idx: number) => (
+                                      <div key={idx} className="flex-1 relative rounded-xl overflow-hidden bg-background/50 border border-border/20">
+                                        <img src={img} alt={`${project.title} view ${idx + 1}`} className="w-full h-full object-contain p-1 transition-transform duration-700 group-hover/img:scale-105" />
+                                      </div>
+                                    ))}
+                                  </div>
+                                ) : (
+                                  <div className="w-full h-full p-2">
+                                    <img src={(project as any).image} alt={project.title} className="w-full h-full object-contain rounded-xl transition-transform duration-700 group-hover/img:scale-105" />
+                                  </div>
+                                )}
+                                {/* Inner Shadow Overlay */}
+                                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 pointer-events-none rounded-2xl" />
+                              </div>
+                            )}
+
+                            <p className="text-secondary text-base md:text-lg leading-relaxed flex-grow">
                               {project.description}
                             </p>
 

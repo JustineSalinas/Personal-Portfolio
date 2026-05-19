@@ -3,71 +3,131 @@
 import React from 'react';
 import { portfolioData } from '@/data';
 import { Github, Linkedin, Facebook, Mail, FileText, Instagram } from 'lucide-react';
-import { IsometricBoard } from './IsometricBoard';
 
 export const Footer = () => {
   const { personal } = portfolioData;
 
   return (
-    <footer id="contact" className="bg-surface/30 pt-24 pb-12 px-6 border-t border-border overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto relative">
-          
-          {/* Left Content Area */}
-          <div className="text-center lg:text-left space-y-8 z-10 relative">
-            <div className="space-y-4">
-              <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block mb-4">
-                LET'S CONNECT
-              </span>
-              <p className="text-lg text-secondary max-w-md mx-auto lg:mx-0">
-                Open to opportunities and collaborations. Feel free to reach out if you're interested in working together.
-              </p>
-            </div>
+    <footer
+      id="contact"
+      className="pt-24 pb-12 px-6 border-t border-border overflow-hidden"
+    >
+      <div className="max-w-3xl mx-auto space-y-14 text-center">
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a 
-                href={`mailto:${personal.contact.email}`}
-                className="w-full sm:w-auto px-8 py-4 bg-accent hover:bg-accent-hover text-background rounded-lg font-bold flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
-              >
-                <Mail size={20} /> Email Me
-              </a>
-              <a 
-                href={personal.contact.resume}
-                className="w-full sm:w-auto px-8 py-4 border border-border hover:bg-surface text-primary rounded-lg font-bold flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
-              >
-                <FileText size={20} /> Download Resume
-              </a>
-            </div>
-
-            <div className="flex items-center justify-center lg:justify-start gap-6 pt-4">
-              <a href={personal.contact.github} target="_blank" rel="noopener noreferrer" 
-                className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-[#181717] dark:hover:text-white hover:border-[#181717]/20 dark:hover:border-white/20 transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(24,23,23,0.1)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                <Github size={24} />
-              </a>
-              <a href={personal.contact.linkedin} target="_blank" rel="noopener noreferrer" 
-                className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-[#0077B5] hover:border-[#0077B5]/20 transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,119,181,0.2)]">
-                <Linkedin size={24} />
-              </a>
-              <a href={personal.contact.facebook} target="_blank" rel="noopener noreferrer" 
-                className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-[#1877F2] hover:border-[#1877F2]/20 transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(24,119,242,0.2)]">
-                <Facebook size={24} />
-              </a>
-              <a href={personal.contact.instagram} target="_blank" rel="noopener noreferrer" 
-                className="p-3 bg-background border border-border rounded-xl text-secondary hover:text-[#E4405F] hover:border-[#E4405F]/20 transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(228,64,95,0.2)]">
-                <Instagram size={24} />
-              </a>
-            </div>
-          </div>
-
-          {/* Right Animation Area */}
-          <div className="relative flex justify-center items-center h-[400px]">
-            <div className="absolute inset-0 scale-[1.2] lg:scale-[1.5] flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-500">
-              <IsometricBoard />
-            </div>
-          </div>
+        {/* Heading */}
+        <div className="space-y-5">
+          <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block">
+            CONTACT ME
+          </span>
+          <h2 className="text-4xl md:text-5xl font-light text-primary tracking-tight">
+            Let&apos;s work together
+          </h2>
+          <p className="text-lg text-secondary max-w-sm mx-auto">
+            Open to opportunities and collaborations. Feel free to reach out anytime.
+          </p>
         </div>
 
-        <div className="pt-12 border-t border-border flex justify-center items-center">
+        {/* Contact cards grid */}
+        <div className="grid sm:grid-cols-2 gap-3 max-w-xl mx-auto">
+          {/* Email */}
+          <a
+            href={`mailto:${personal.contact.email}`}
+            className="group p-5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-[18px] flex items-center gap-4 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all hover:-translate-y-0.5"
+          >
+            <div className="p-2.5 bg-black/5 dark:bg-white/5 rounded-xl flex-shrink-0">
+              <Mail size={20} className="text-secondary group-hover:text-primary transition-colors" />
+            </div>
+            <div className="text-left min-w-0">
+              <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-widest mb-0.5">
+                Email
+              </p>
+              <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors truncate">
+                {personal.contact.email}
+              </p>
+            </div>
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href={personal.contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group p-5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-[18px] flex items-center gap-4 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all hover:-translate-y-0.5"
+          >
+            <div className="p-2.5 bg-black/5 dark:bg-white/5 rounded-xl flex-shrink-0">
+              <Linkedin size={20} className="text-secondary group-hover:text-primary transition-colors" />
+            </div>
+            <div className="text-left">
+              <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-widest mb-0.5">
+                LinkedIn
+              </p>
+              <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
+                View Profile ↗
+              </p>
+            </div>
+          </a>
+
+          {/* GitHub */}
+          <a
+            href={personal.contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group p-5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-[18px] flex items-center gap-4 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all hover:-translate-y-0.5"
+          >
+            <div className="p-2.5 bg-black/5 dark:bg-white/5 rounded-xl flex-shrink-0">
+              <Github size={20} className="text-secondary group-hover:text-primary transition-colors" />
+            </div>
+            <div className="text-left">
+              <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-widest mb-0.5">
+                GitHub
+              </p>
+              <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
+                View Projects ↗
+              </p>
+            </div>
+          </a>
+
+          {/* Resume */}
+          <a
+            href={personal.contact.resume}
+            className="group p-5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-[18px] flex items-center gap-4 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all hover:-translate-y-0.5"
+          >
+            <div className="p-2.5 bg-black/5 dark:bg-white/5 rounded-xl flex-shrink-0">
+              <FileText size={20} className="text-secondary group-hover:text-primary transition-colors" />
+            </div>
+            <div className="text-left">
+              <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-widest mb-0.5">
+                Resume
+              </p>
+              <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
+                Download PDF ↗
+              </p>
+            </div>
+          </a>
+        </div>
+
+        {/* Social icon row */}
+        <div className="flex items-center justify-center gap-3">
+          <a
+            href={personal.contact.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl text-secondary hover:text-[#1877F2] hover:border-[#1877F2]/20 transition-all hover:-translate-y-1"
+          >
+            <Facebook size={20} />
+          </a>
+          <a
+            href={personal.contact.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl text-secondary hover:text-[#E4405F] hover:border-[#E4405F]/20 transition-all hover:-translate-y-1"
+          >
+            <Instagram size={20} />
+          </a>
+        </div>
+
+        {/* Copyright */}
+        <div className="pt-8 border-t border-border">
           <p className="text-secondary text-sm text-center">
             © {new Date().getFullYear()} {personal.name}. All rights reserved.
           </p>
