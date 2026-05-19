@@ -127,7 +127,6 @@ export const Projects = () => {
                         scale: isCenter ? 1 : 0.8,
                         x: isCenter ? 0 : isLeft ? -400 : 400,
                         zIndex: isCenter ? 10 : 5,
-                        filter: isCenter ? 'blur(0px)' : 'blur(4px)',
                       }}
                       exit={{ 
                         opacity: 0, 

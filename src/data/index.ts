@@ -129,8 +129,8 @@ export const portfolioData = {
     },
     {
       title: "PharmaTrack",
-      oneLiner: "Inventory management for small-medium pharmacies",
-      description: "A dedicated inventory system that helps pharmacies manage their stock levels, expiration dates, and sales records efficiently.",
+      oneLiner: "Official Pharmacy Attendance Management System",
+      description: "A professional QR-based attendance tracking monitoring system developed exclusively for the University of San Agustin Pharmacy Department.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
       github: "https://github.com/JustineSalinas/PharmaTrack",
       image: "/projects/pharmatrack.png"
