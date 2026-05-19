@@ -52,7 +52,7 @@ export const Skills = () => {
               className="group px-4 py-2.5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl flex items-center gap-2.5 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all cursor-default"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-secondary/40 group-hover:bg-secondary/80 transition-colors flex-shrink-0" />
-              <span className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
+              <span className="text-sm font-medium text-secondary group-hover:text-primary transition-colors whitespace-nowrap">
                 {skill}
               </span>
             </div>
@@ -61,7 +61,7 @@ export const Skills = () => {
           {remaining > 0 && (
             <button
               onClick={() => setModalOpen(true)}
-              className="px-4 py-2.5 border border-dashed border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl text-sm font-medium text-secondary hover:text-primary hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all"
+              className="px-4 py-2.5 border border-dashed border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl text-sm font-medium text-secondary hover:text-primary hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all whitespace-nowrap"
             >
               +{remaining} more
             </button>
@@ -86,7 +86,7 @@ export const Skills = () => {
                   All Technologies
                 </h3>
                 <p className="text-sm text-white/50 mt-0.5">
-                  {allSkills.length} tools &amp; technologies
+                  {`${allSkills.length} tools & technologies`}
                 </p>
               </div>
               <button
@@ -109,7 +109,7 @@ export const Skills = () => {
                       {skills.map((skill) => (
                         <div
                           key={skill}
-                          className="px-3.5 py-2 bg-black border border-[rgba(255,255,255,0.14)] rounded-xl text-sm font-medium text-white/55 hover:text-white/90 hover:border-[rgba(255,255,255,0.28)] transition-all cursor-default"
+                          className="px-3.5 py-2 bg-black border border-[rgba(255,255,255,0.14)] rounded-xl text-sm font-medium text-white/55 hover:text-white/90 hover:border-[rgba(255,255,255,0.28)] transition-all cursor-default whitespace-nowrap"
                         >
                           {skill}
                         </div>

@@ -6,6 +6,7 @@ import { useScrollSpy } from '@/lib/hooks';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
+import { Magnetic } from '@/components/ui/Magnetic';
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -16,13 +17,15 @@ const ThemeToggle = () => {
   if (!mounted) return <div className="w-9 h-9" />;
 
   return (
-    <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-xl bg-surface border border-border text-primary hover:text-accent transition-colors"
-      aria-label="Toggle theme"
-    >
-      {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-    </button>
+    <Magnetic intensity={0.15}>
+      <button
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        className="p-2 rounded-xl bg-surface border border-border text-primary hover:text-accent transition-colors block"
+        aria-label="Toggle theme"
+      >
+        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
+    </Magnetic>
   );
 };
 
@@ -65,16 +68,17 @@ export const Navigation = () => {
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.slice(0, 5).map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-accent",
-                  activeSection === link.href.slice(1) ? "text-accent" : "text-secondary"
-                )}
-              >
-                {link.name}
-              </a>
+              <Magnetic key={link.name} intensity={0.2}>
+                <a
+                  href={link.href}
+                  className={cn(
+                    "text-sm font-medium transition-colors hover:text-accent block py-2",
+                    activeSection === link.href.slice(1) ? "text-accent" : "text-secondary"
+                  )}
+                >
+                  {link.name}
+                </a>
+              </Magnetic>
             ))}
           </div>
         </div>
@@ -82,12 +86,14 @@ export const Navigation = () => {
         {/* Right Side Actions */}
         <div className="hidden md:flex items-center gap-6">
           <ThemeToggle />
-          <a 
-            href={`mailto:${portfolioData.personal.contact.email}`} 
-            className="text-sm font-medium border-b border-primary text-primary hover:text-secondary hover:border-secondary transition-colors pb-0.5 flex items-center gap-1"
-          >
-            Get In Touch <span className="text-lg leading-none mb-1">↗</span>
-          </a>
+          <Magnetic intensity={0.1}>
+            <a 
+              href={`mailto:${portfolioData.personal.contact.email}`} 
+              className="text-sm font-medium border-b border-primary text-primary hover:text-secondary hover:border-secondary transition-colors pb-0.5 flex items-center gap-1 block"
+            >
+              Get In Touch <span className="text-lg leading-none mb-1">↗</span>
+            </a>
+          </Magnetic>
         </div>
 
         {/* Mobile Actions */}

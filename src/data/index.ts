@@ -7,10 +7,8 @@ export const portfolioData = {
     availability: "AVAILABLE FOR OPPORTUNITIES",
     bio: "I'm a 19-year-old developer from Iloilo building fast, accessible web tools. Recently spent three days wrestling with a rogue hydration error, but usually I'm crafting Next.js apps and navigating distributed systems. I prefer building real things over collecting buzzwords.",
     longBio: [
-      "I am currently a Bachelor of Science in Information Technology student at the University of San Agustin, where I've developed a deep interest in the intersection of software engineering and data science.",
-      "My technical journey is driven by a passion for building efficient, user-centric applications that utilize modern stacks like Next.js, TypeScript, and various AI/ML integrations.",
-      "Beyond coding, I am committed to continuous learning and professional growth, constantly seeking to refine my skills in distributed systems and data engineering.",
-      "I am actively looking for internships, part-time roles, or freelance opportunities where I can contribute my skills to meaningful projects and learn from industry experts."
+      "I design and build production-grade web applications from the ground up — handling everything from system architecture and database design to polished front-end interfaces. My recent work includes a real-time attendance management system deployed for a university department and an interactive platform tailored for developers who want to learn and level up their skills, both shipping with Next.js, TypeScript, and Supabase.",
+      "Beyond development, I bring a strong eye for design and data-driven problem solving. Whether it's crafting intuitive user experiences, engineering robust data pipelines, or architecting scalable full-stack systems, I focus on delivering work that is both technically sound and visually refined."
     ],
     tags: ["NEXT.JS", "TYPESCRIPT", "DATA ENGINEERING", "AI / ML", "IOT", "FULL-STACK", "DISTRIBUTED SYSTEMS"],
     quickFacts: {
@@ -120,8 +118,8 @@ export const portfolioData = {
   projects: [
     {
       title: "Commit",
-      oneLiner: "Project management tool for agile teams",
-      description: "A comprehensive project management tool designed to streamline agile workflows for modern development teams.",
+      oneLiner: "Interactive learning platform for developers",
+      description: "A comprehensive platform designed to help developers learn, collaborate, and streamline their workflow efficiently.",
       techStack: ["Next.js 15", "TypeScript 5", "Supabase", "PostgreSQL", "Clerk"],
       github: "https://github.com/JustineSalinas/Commit",
       demo: "https://commit-beta.vercel.app",
@@ -153,10 +151,9 @@ export const portfolioData = {
     }
   ],
   techStack: {
-    "Core Programming": ["Python 3", "TypeScript 5", "C++"],
-    "Frontend": ["Next.js 15", "React.js", "Tailwind CSS"],
-    "Backend": ["Supabase", "PostgreSQL", "FastAPI"],
-    "AI / LLMs": ["MediaPipe", "Gemini API"],
-    "Dev Environments": ["Vercel", "Git", "Arduino"]
+    "Frontend": ["HTML5", "CSS", "TypeScript", "React", "Next.js", "Tailwind CSS"],
+    "Backend": ["Node.js", "Express", "Python", "Java", "PHP"],
+    "Database": ["Supabase", "MySQL"],
+    "Developer Tools": ["Git", "GitHub", "Figma"]
   }
 };
