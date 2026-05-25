@@ -28,12 +28,6 @@ export const Experience = () => {
             <p className="text-secondary text-lg leading-relaxed mb-6 font-light">
               Over the past few years, I've had the opportunity to work in various IT support and technical roles, ensuring system integrity and helping end-users succeed.
             </p>
-            <a 
-              href={`mailto:${portfolioData.personal.contact.email}`}
-              className="inline-flex items-center gap-1 text-primary border-b border-primary pb-0.5 text-sm font-medium hover:text-secondary hover:border-secondary transition-colors"
-            >
-              Get In Touch <span className="text-lg leading-none mb-1">↗</span>
-            </a>
           </div>
         </div>
 
