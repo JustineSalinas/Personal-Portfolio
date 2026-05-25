@@ -5,7 +5,7 @@ export const portfolioData = {
     titles: ["Full-Stack Developer", "IT Sophomore", "Aspiring Data Engineer"],
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
-    bio: "I'm a 19-year-old developer from Iloilo building fast, accessible web tools. Recently spent three days wrestling with a rogue hydration error, but usually I'm crafting Next.js apps and navigating distributed systems. I prefer building real things over collecting buzzwords.",
+    bio: "I'm a 20-year-old developer from Iloilo building fast, accessible web tools. Recently spent three days wrestling with a rogue hydration error, but usually I'm crafting Next.js apps and navigating distributed systems. I prefer building real things over collecting buzzwords.",
     longBio: [
       "I design and build production-grade web applications from the ground up — handling everything from system architecture and database design to polished front-end interfaces. My recent work includes a real-time attendance management system deployed for a university department and an interactive platform tailored for developers who want to learn and level up their skills, both shipping with Next.js, TypeScript, and Supabase.",
       "Beyond development, I bring a strong eye for design and data-driven problem solving. Whether it's crafting intuitive user experiences, engineering robust data pipelines, or architecting scalable full-stack systems, I focus on delivering work that is both technically sound and visually refined."
