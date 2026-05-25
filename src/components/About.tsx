@@ -4,7 +4,7 @@ import React from 'react';
 import { portfolioData } from '@/data';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Trophy } from 'lucide-react';
 
 export const About = () => {
   const { ref, isVisible } = useIsVisible();
@@ -29,6 +29,22 @@ export const About = () => {
                   {paragraph}
                 </p>
               ))}
+            </div>
+
+            {/* Hackathon Achievement */}
+            <div className="space-y-3 pt-4 border-t border-border/30">
+              <span className="text-xs font-bold tracking-[0.2em] text-secondary/60 uppercase block">
+                HACKATHON
+              </span>
+              <div className="bg-surface/30 border border-border/50 rounded-2xl p-5 flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
+                  <Trophy size={18} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-primary text-lg">1st - Runner Up</h4>
+                  <p className="text-sm text-secondary">Hacking the Future of Energy - Nexus Philippines</p>
+                </div>
+              </div>
             </div>
 
             {/* Collaboration Card — below the bio */}

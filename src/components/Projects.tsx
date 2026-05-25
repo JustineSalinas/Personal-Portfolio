@@ -167,8 +167,13 @@ export const Projects = () => {
                                 <span className="text-accent text-xs font-bold uppercase tracking-[0.2em]">
                                   {project.oneLiner}
                                 </span>
-                                <h3 className="text-3xl md:text-4xl font-bold text-primary group-hover:text-accent transition-colors">
+                                <h3 className="text-3xl md:text-4xl font-bold text-primary group-hover:text-accent transition-colors flex items-center gap-3 flex-wrap">
                                   {project.title}
+                                  {(project as any).badge && (
+                                    <span className="px-2.5 py-1 text-[10px] tracking-wider uppercase font-extrabold bg-accent/10 border border-accent/30 text-accent rounded-full">
+                                      {(project as any).badge}
+                                    </span>
+                                  )}
                                 </h3>
                               </div>
                               <div className="flex gap-4">

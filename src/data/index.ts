@@ -117,6 +117,16 @@ export const portfolioData = {
   ],
   projects: [
     {
+      title: "Solmate",
+      oneLiner: "Financial and telemetry dashboard for E-Bangka",
+      description: "E-Ferry is a web-based financial and telemetry dashboard that bridges the gap between hardware conversion and capital. It acts as the digital brain for the E-Bangka, integrating financial services. Built for a hackathon where it won 1st Runner Up.",
+      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
+      github: "https://github.com/JustineSalinas/E-Ferry",
+      demo: "https://e-ferry.vercel.app",
+      image: "/projects/solmate.png",
+      badge: "1st Runner Up - Hackathon"
+    },
+    {
       title: "Commit",
       oneLiner: "Interactive learning platform for developers",
       description: "A comprehensive platform designed to help developers learn, collaborate, and streamline their workflow efficiently.",
