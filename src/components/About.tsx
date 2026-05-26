@@ -25,9 +25,11 @@ export const About = () => {
 
             <div className="space-y-5">
               {personal.longBio.map((paragraph, i) => (
-                <p key={i} className="text-lg text-secondary leading-relaxed">
-                  {paragraph}
-                </p>
+                <p 
+                  key={i} 
+                  className="text-lg text-secondary leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
               ))}
             </div>
 
@@ -36,13 +38,18 @@ export const About = () => {
               <span className="text-xs font-bold tracking-[0.2em] text-secondary/60 uppercase block">
                 HACKATHON
               </span>
-              <div className="bg-surface/30 border border-border/50 rounded-2xl p-5 flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
-                  <Trophy size={18} />
+              <div className="bg-gradient-to-r from-accent/[0.03] to-surface/30 border border-border/60 border-l-4 border-l-accent rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full transition-all hover:bg-surface/40 hover:from-accent/[0.05]">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
+                    <Trophy size={18} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-primary text-lg">1st - Runner Up</h4>
+                    <p className="text-sm text-secondary">Hacking the Future of Energy - Nexus Philippines</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-primary text-lg">1st - Runner Up</h4>
-                  <p className="text-sm text-secondary">Hacking the Future of Energy - Nexus Philippines</p>
+                <div className="sm:text-right text-xs font-mono text-secondary/60 pl-14 sm:pl-0">
+                  May 21 - 23, 2026
                 </div>
               </div>
             </div>

@@ -6,7 +6,7 @@ import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
 export const Education = () => {
-  const { ref, isVisible } = useIsVisible();
+  const { ref, isVisible } = useIsVisible<HTMLDivElement>();
 
   return (
     <div
