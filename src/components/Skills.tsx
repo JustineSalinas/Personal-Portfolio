@@ -6,11 +6,11 @@ import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { ArrowRight, X } from 'lucide-react';
 
-const allSkills = Object.entries(portfolioData.techStack).flatMap(
-  ([category, skills]) => skills.map((skill) => ({ skill, category }))
+const allSkills = Object.entries(portfolioData.techStack).flatMap(([category, skills]) =>
+  skills.map((skill) => ({ skill, category }))
 );
 
-const PREVIEW_COUNT = 8;
+const PREVIEW_COUNT = 10;
 
 export const Skills = () => {
   const { ref, isVisible } = useIsVisible();
@@ -27,32 +27,28 @@ export const Skills = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         )}
       >
-        {/* Header row */}
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase">
-            TECH STACK
-          </span>
+          <div className="flex items-center gap-4">
+            <span className="section-label">07 — Tech Stack</span>
+            <div className="editorial-rule w-16" />
+          </div>
           <button
             onClick={() => setModalOpen(true)}
-            className="flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-primary transition-colors group"
+            className="flex items-center gap-1.5 text-xs font-mono text-secondary/55 hover:text-accent transition-colors group tracking-wider"
           >
             View All
-            <ArrowRight
-              size={14}
-              className="group-hover:translate-x-0.5 transition-transform"
-            />
+            <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
 
-        {/* Preview pill grid */}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2.5">
           {previewSkills.map(({ skill }) => (
             <div
               key={skill}
-              className="group px-4 py-2.5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl flex items-center gap-2.5 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all cursor-default"
+              className="group px-4 py-2.5 bg-surface/60 border border-border/50 rounded-xl flex items-center gap-2.5 hover:border-accent/40 hover:bg-accent/[0.04] transition-all cursor-default"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-secondary/40 group-hover:bg-secondary/80 transition-colors flex-shrink-0" />
-              <span className="text-sm font-medium text-secondary group-hover:text-primary transition-colors whitespace-nowrap">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent/40 group-hover:bg-accent/80 transition-colors flex-shrink-0" />
+              <span className="text-xs font-mono text-secondary/70 group-hover:text-primary transition-colors whitespace-nowrap tracking-wide">
                 {skill}
               </span>
             </div>
@@ -61,7 +57,7 @@ export const Skills = () => {
           {remaining > 0 && (
             <button
               onClick={() => setModalOpen(true)}
-              className="px-4 py-2.5 border border-dashed border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl text-sm font-medium text-secondary hover:text-primary hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all whitespace-nowrap"
+              className="px-4 py-2.5 border border-dashed border-accent/25 rounded-xl text-xs font-mono text-accent/60 hover:text-accent hover:border-accent/50 transition-all whitespace-nowrap tracking-wide"
             >
               +{remaining} more
             </button>
@@ -69,55 +65,55 @@ export const Skills = () => {
         </div>
       </div>
 
-      {/* View All Modal */}
+      {/* Modal */}
       {modalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/70 backdrop-blur-sm"
           onClick={() => setModalOpen(false)}
         >
           <div
-            className="w-full max-w-2xl bg-[#050505] border border-[rgba(255,255,255,0.14)] rounded-2xl p-8 space-y-8 max-h-[80vh] overflow-y-auto"
+            className="relative w-full max-w-xl bg-background border border-border rounded-2xl overflow-hidden shadow-2xl max-h-[80vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal header */}
-            <div className="flex items-center justify-between">
+            {/* Amber top accent */}
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-accent/70 via-accent/30 to-transparent" />
+
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-border/50 flex-shrink-0">
               <div>
-                <h3 className="text-lg font-bold text-white/95 tracking-tight">
-                  All Technologies
-                </h3>
-                <p className="text-sm text-white/50 mt-0.5">
-                  {`${allSkills.length} tools & technologies`}
+                <h3 className="text-sm font-bold text-primary tracking-tight">All Technologies</h3>
+                <p className="text-[10px] font-mono text-secondary/45 mt-0.5 tracking-wider">
+                  {allSkills.length} tools &amp; technologies
                 </p>
               </div>
               <button
                 onClick={() => setModalOpen(false)}
-                className="p-2 rounded-xl text-white/50 hover:text-white/90 hover:bg-white/5 transition-colors"
+                className="p-2 rounded-lg text-secondary/50 hover:text-primary hover:bg-surface/80 transition-colors"
               >
-                <X size={20} />
+                <X size={16} />
               </button>
             </div>
 
-            {/* Categories */}
-            <div className="space-y-7">
-              {Object.entries(portfolioData.techStack).map(
-                ([category, skills]) => (
-                  <div key={category} className="space-y-3">
-                    <span className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">
-                      {category}
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.map((skill) => (
-                        <div
-                          key={skill}
-                          className="px-3.5 py-2 bg-black border border-[rgba(255,255,255,0.14)] rounded-xl text-sm font-medium text-white/55 hover:text-white/90 hover:border-[rgba(255,255,255,0.28)] transition-all cursor-default whitespace-nowrap"
-                        >
-                          {skill}
-                        </div>
-                      ))}
-                    </div>
+            {/* Scrollable content */}
+            <div className="overflow-y-auto flex-1 px-6 py-5 space-y-6">
+              {Object.entries(portfolioData.techStack).map(([category, skills]) => (
+                <div key={category}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="section-label">{category}</span>
+                    <div className="editorial-rule flex-1" />
                   </div>
-                )
-              )}
+                  <div className="flex flex-wrap gap-2">
+                    {skills.map((skill) => (
+                      <div
+                        key={skill}
+                        className="px-3.5 py-2 bg-surface/60 border border-border/50 rounded-lg text-xs font-mono text-secondary/70 hover:text-primary hover:border-accent/35 hover:bg-accent/[0.04] transition-all cursor-default whitespace-nowrap tracking-wide"
+                      >
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

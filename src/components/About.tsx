@@ -5,6 +5,7 @@ import { portfolioData } from '@/data';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { ArrowUpRight, Trophy } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const About = () => {
   const { ref, isVisible } = useIsVisible();
@@ -12,95 +13,117 @@ export const About = () => {
 
   return (
     <section id="about" className="section-padding px-6" ref={ref}>
-      <div className={cn(
-        "max-w-7xl mx-auto transition-all duration-1000",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      )}>
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
-          {/* Background Column */}
-          <div className="lg:col-span-7 space-y-8">
-            <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block">
-              BACKGROUND
-            </span>
+      <div
+        className={cn(
+          'max-w-7xl mx-auto transition-all duration-1000',
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        )}
+      >
+        {/* Section header */}
+        <div className="flex items-center gap-4 mb-16">
+          <span className="section-label">02 — Background</span>
+          <div className="editorial-rule flex-1 max-w-xs" />
+        </div>
 
-            <div className="space-y-5">
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
+          {/* Bio column */}
+          <div className="lg:col-span-7 space-y-8">
+            {/* Big editorial heading */}
+            <h2
+              className="font-display italic font-light text-primary leading-tight"
+              style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
+            >
+              Building things that{' '}
+              <span className="text-accent not-italic">matter.</span>
+            </h2>
+
+            <div className="space-y-5 pt-2">
               {personal.longBio.map((paragraph, i) => (
-                <p 
-                  key={i} 
-                  className="text-lg text-secondary leading-relaxed"
+                <p
+                  key={i}
+                  className="text-base md:text-lg text-secondary leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: paragraph }}
                 />
               ))}
             </div>
 
             {/* Hackathon Achievement */}
-            <div className="space-y-3 pt-4 border-t border-border/30">
-              <span className="text-xs font-bold tracking-[0.2em] text-secondary/60 uppercase block">
-                HACKATHON
-              </span>
-              <div className="bg-gradient-to-r from-accent/[0.03] to-surface/30 border border-border/60 border-l-4 border-l-accent rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full transition-all hover:bg-surface/40 hover:from-accent/[0.05]">
+            <div className="pt-6 border-t border-border/40">
+              <span className="section-label block mb-4">Hackathon</span>
+              <div className="border border-border/60 border-l-[3px] border-l-accent rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] transition-colors">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
-                    <Trophy size={18} />
+                  <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
+                    <Trophy size={16} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-primary text-lg">1st - Runner Up</h4>
-                    <p className="text-sm text-secondary">Hacking the Future of Energy - Nexus Philippines</p>
+                    <h4 className="font-bold text-primary text-base">1st Runner Up</h4>
+                    <p className="text-sm text-secondary">Hacking the Future of Energy — Nexus Philippines</p>
                   </div>
                 </div>
-                <div className="sm:text-right text-xs font-mono text-secondary/60 pl-14 sm:pl-0">
-                  May 21 - 23, 2026
+                <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
+                  May 21–23, 2026
                 </div>
               </div>
             </div>
 
-            {/* Collaboration Card — below the bio */}
-            <a 
+            {/* Collaboration CTA */}
+            <a
               href={`mailto:${personal.contact.email}`}
-              className="bg-surface/50 border border-border rounded-2xl p-6 flex justify-between items-center group hover:border-accent transition-all duration-300 block"
+              className="block bg-surface/40 border border-border rounded-xl p-6 flex justify-between items-center group hover:border-accent/50 transition-all duration-300"
             >
               <div className="space-y-1">
-                <h4 className="font-bold text-primary text-lg">Open to collaborations.</h4>
+                <h4 className="font-bold text-primary text-base">Open to collaborations.</h4>
                 <p className="text-sm text-secondary">Let&apos;s build something meaningful together.</p>
               </div>
-              <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center group-hover:bg-accent group-hover:text-background transition-all duration-300 flex-shrink-0">
-                <ArrowUpRight size={20} className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <div className="w-9 h-9 rounded-full border border-border flex items-center justify-center group-hover:bg-accent group-hover:border-accent group-hover:text-background transition-all duration-300 flex-shrink-0">
+                <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </a>
           </div>
 
-          {/* Facts Column */}
+          {/* Quick Facts column */}
           <div className="lg:col-span-5">
-            <div className="bg-surface border border-border rounded-2xl p-8 space-y-8">
-              <h3 className="text-3xl font-display text-primary">Quick Facts</h3>
-              
-              <div className="space-y-6">
+            <div className="bg-surface/60 border border-border rounded-xl p-8 space-y-8 relative overflow-hidden">
+              {/* Corner accent */}
+              <div className="absolute top-0 right-0 w-24 h-0.5 bg-gradient-to-l from-accent/50 to-transparent" />
+              <div className="absolute top-0 right-0 w-0.5 h-24 bg-gradient-to-b from-accent/50 to-transparent" />
+
+              <div className="flex items-center gap-3">
+                <span className="section-label">Quick Facts</span>
+                <div className="editorial-rule flex-1" />
+              </div>
+
+              <div className="space-y-5">
                 {[
                   { label: 'STATUS', value: personal.quickFacts.status },
                   { label: 'FOCUS', value: personal.quickFacts.focus },
                   { label: 'LOOKING FOR', value: personal.quickFacts.lookingFor },
-                  { label: 'AVAILABLE', value: personal.quickFacts.available, isAvailable: true }
+                  { label: 'AVAILABLE', value: personal.quickFacts.available, isAvailable: true },
                 ].map((item) => (
-                  <div key={item.label} className="space-y-2 pb-4 border-b border-border/50 last:border-0 last:pb-0">
-                    <span className="text-[10px] font-bold text-secondary/50 uppercase tracking-widest">
-                      {item.label}
-                    </span>
+                  <div
+                    key={item.label}
+                    className="space-y-1.5 pb-5 border-b border-border/40 last:border-0 last:pb-0"
+                  >
+                    <span className="section-label">{item.label}</span>
                     {item.isAvailable ? (
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                        <p className="text-lg text-primary font-medium">{item.value}</p>
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                        <p className="text-base text-primary font-medium">{item.value}</p>
                       </div>
                     ) : (
-                      <p className="text-lg text-primary font-medium leading-tight">{item.value}</p>
+                      <p className="text-base text-primary font-medium leading-snug">{item.value}</p>
                     )}
                   </div>
                 ))}
               </div>
 
-              <div className="pt-2">
-                <a 
+              <div className="pt-1">
+                <a
                   href={personal.contact.resume}
-                  className="w-full inline-flex justify-center items-center px-8 py-4 bg-primary text-background rounded-lg font-mono text-sm tracking-widest hover:bg-accent-hover transition-all duration-300 uppercase shadow-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="Adrian_Salinas_Resume.pdf"
+                  className="w-full inline-flex justify-center items-center px-8 py-3.5 bg-accent text-background rounded-lg font-mono text-xs tracking-[0.2em] hover:bg-accent-hover transition-all duration-300 uppercase shadow-sm shadow-accent/20"
                 >
                   Download Resume
                 </a>

@@ -1,0 +1,342 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - link "AJ" [ref=e6] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e7]:
+            - link "About" [ref=e9] [cursor=pointer]:
+              - /url: "#about"
+            - link "Projects" [ref=e11] [cursor=pointer]:
+              - /url: "#projects"
+            - link "Experience" [ref=e13] [cursor=pointer]:
+              - /url: "#experience"
+            - link "Certifications" [ref=e15] [cursor=pointer]:
+              - /url: "#certifications"
+            - link "Skills" [ref=e17] [cursor=pointer]:
+              - /url: "#skills"
+        - link "Get In Touch ↗" [ref=e21] [cursor=pointer]:
+          - /url: mailto:ajsalinas005@gmail.com
+          - text: Get In Touch
+          - generic [ref=e22]: ↗
+    - generic [ref=e24]:
+      - generic [ref=e26]: 01 — INTRO
+      - generic [ref=e29]:
+        - heading "Hello," [level=1] [ref=e31]
+        - generic [ref=e33]: I'm Adrian.
+        - generic [ref=e34]:
+          - generic [ref=e35]: Full-Stack Developer
+          - generic [ref=e37]: Iloilo City, Philippines
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - paragraph [ref=e40]: "+6"
+            - paragraph [ref=e41]: Projects built
+          - generic [ref=e42]:
+            - paragraph [ref=e43]: "+3"
+            - paragraph [ref=e44]: Roles & exp
+        - link "Scroll down ↓" [ref=e46] [cursor=pointer]:
+          - /url: "#about"
+          - text: Scroll down
+          - generic [ref=e47]: ↓
+    - generic [ref=e49]:
+      - generic [ref=e51]: 02 — Background
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - heading "Building things that matter." [level=2] [ref=e55]
+          - generic [ref=e56]:
+            - paragraph [ref=e57]:
+              - text: I design and build
+              - strong [ref=e58]: production-grade web applications
+              - text: from the ground up — handling everything from system architecture and database design to polished front-end interfaces. My recent work includes a real-time attendance management system deployed for a university department and an interactive platform tailored for developers who want to learn and level up their skills, both shipping with Next.js, TypeScript, and Supabase.
+            - paragraph [ref=e59]:
+              - text: Beyond development, I bring a
+              - emphasis [ref=e60]: strong eye for design
+              - text: and
+              - emphasis [ref=e61]: data-driven problem solving
+              - text: . Whether it's crafting intuitive user experiences, engineering robust data pipelines, or
+              - strong [ref=e62]: architecting scalable full-stack systems
+              - text: ", I focus on delivering work that is both technically sound and visually refined."
+          - generic [ref=e63]:
+            - generic [ref=e64]: Hackathon
+            - generic [ref=e65]:
+              - generic [ref=e66]:
+                - img [ref=e68]
+                - generic [ref=e74]:
+                  - heading "1st Runner Up" [level=4] [ref=e75]
+                  - paragraph [ref=e76]: Hacking the Future of Energy — Nexus Philippines
+              - generic [ref=e77]: May 21–23, 2026
+          - link "Open to collaborations. Let's build something meaningful together." [ref=e78] [cursor=pointer]:
+            - /url: mailto:ajsalinas005@gmail.com
+            - generic [ref=e79]:
+              - heading "Open to collaborations." [level=4] [ref=e80]
+              - paragraph [ref=e81]: Let's build something meaningful together.
+            - img [ref=e83]
+        - generic [ref=e87]:
+          - generic [ref=e91]: Quick Facts
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - text: STATUS
+              - paragraph [ref=e95]: IT Sophomore
+            - generic [ref=e96]:
+              - text: FOCUS
+              - paragraph [ref=e97]: Full-Stack Dev, Data Engineering, IoT
+            - generic [ref=e98]:
+              - text: LOOKING FOR
+              - paragraph [ref=e99]: Internships, Part-time, Freelance
+            - generic [ref=e100]:
+              - text: AVAILABLE
+              - paragraph [ref=e103]: Immediately
+          - link "Download Resume" [ref=e105] [cursor=pointer]:
+            - /url: "#"
+    - generic [ref=e107]:
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - generic [ref=e111]: 03 — Featured Projects
+          - heading "Work that speaks for itself." [level=2] [ref=e113]
+        - generic [ref=e114]:
+          - button "All" [ref=e115] [cursor=pointer]
+          - button "Next.js" [ref=e116] [cursor=pointer]
+          - button "React.js" [ref=e117] [cursor=pointer]
+          - button "Python" [ref=e118] [cursor=pointer]
+          - button "TypeScript" [ref=e119] [cursor=pointer]
+      - generic [ref=e120]:
+        - button "Previous project" [ref=e122] [cursor=pointer]:
+          - img [ref=e123]
+        - button "Next project" [ref=e126] [cursor=pointer]:
+          - img [ref=e127]
+        - generic [ref=e130]:
+          - generic [ref=e135]:
+            - generic [ref=e136]:
+              - generic [ref=e137]:
+                - text: Financial and telemetry dashboard for E-Bangka
+                - heading "Solmate 1st Runner Up - Hackathon" [level=3] [ref=e138]:
+                  - text: Solmate
+                  - generic [ref=e139]: 1st Runner Up - Hackathon
+              - generic [ref=e140]:
+                - link [ref=e141] [cursor=pointer]:
+                  - /url: https://github.com/JustineSalinas/E-Ferry
+                  - img [ref=e142]
+                - link [ref=e145] [cursor=pointer]:
+                  - /url: https://e-ferry.vercel.app
+                  - img [ref=e146]
+            - img "Solmate" [ref=e152]
+            - paragraph [ref=e153]: E-Ferry is a web-based financial and telemetry dashboard that bridges the gap between hardware conversion and capital. It acts as the digital brain for the E-Bangka, integrating financial services. Built for a hackathon where it won 1st Runner Up.
+            - generic [ref=e154]:
+              - generic [ref=e155]: Next.js
+              - generic [ref=e156]: TypeScript
+              - generic [ref=e157]: Tailwind CSS
+              - generic [ref=e158]: Recharts
+              - generic [ref=e159]: MapLibre GL
+          - generic [ref=e163]:
+            - generic [ref=e164]:
+              - generic [ref=e165]:
+                - text: Interactive learning platform for developers
+                - heading "Commit" [level=3] [ref=e166]
+              - generic [ref=e167]:
+                - link [ref=e168] [cursor=pointer]:
+                  - /url: https://github.com/JustineSalinas/Commit
+                  - img [ref=e169]
+                - link [ref=e172] [cursor=pointer]:
+                  - /url: https://commit-beta.vercel.app
+                  - img [ref=e173]
+            - img "Commit" [ref=e179]
+            - paragraph [ref=e180]: A comprehensive platform designed to help developers learn, collaborate, and streamline their workflow efficiently.
+            - generic [ref=e181]:
+              - generic [ref=e182]: Next.js 15
+              - generic [ref=e183]: TypeScript 5
+              - generic [ref=e184]: Supabase
+              - generic [ref=e185]: PostgreSQL
+              - generic [ref=e186]: Clerk
+          - generic [ref=e190]:
+            - generic [ref=e191]:
+              - generic [ref=e192]:
+                - text: Smart waste bin monitoring with IoT integration
+                - heading "BinSense" [level=3] [ref=e193]
+              - link [ref=e195] [cursor=pointer]:
+                - /url: https://github.com/JustineSalinas/BinSense
+                - img [ref=e196]
+            - generic [ref=e200]:
+              - img "BinSense view 1" [ref=e202]
+              - img "BinSense view 2" [ref=e204]
+            - paragraph [ref=e205]: An IoT-based waste management solution that monitors bin fill levels and optimizes collection routes.
+            - generic [ref=e206]:
+              - generic [ref=e207]: Arduino UNO
+              - generic [ref=e208]: Python
+              - generic [ref=e209]: ESP8266
+              - generic [ref=e210]: Sensors
+        - generic [ref=e211]:
+          - button "Go to slide 1" [ref=e212] [cursor=pointer]
+          - button "Go to slide 2" [ref=e213] [cursor=pointer]
+          - button "Go to slide 3" [ref=e214] [cursor=pointer]
+          - button "Go to slide 4" [ref=e215] [cursor=pointer]
+          - button "Go to slide 5" [ref=e216] [cursor=pointer]
+    - generic [ref=e218]:
+      - generic [ref=e219]:
+        - generic [ref=e220]:
+          - generic [ref=e222]: 04 — Experience
+          - heading "My tech journey." [level=2] [ref=e224]:
+            - text: My tech
+            - text: journey.
+        - paragraph [ref=e226]: Hands-on IT roles across hardware, networking, and systems — building the foundation for the full-stack work I do today.
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - generic [ref=e230]: "01"
+          - generic [ref=e231]:
+            - heading "Telus Corporation" [level=3] [ref=e232]
+            - paragraph [ref=e233]: Iloilo City · March 2023
+          - generic [ref=e234]:
+            - paragraph [ref=e235]: IT Assistant (Contract)
+            - paragraph [ref=e236]: Set up, configured, and maintained computer systems and local networks to guarantee operational readiness.
+          - generic [ref=e238]: Tech
+        - generic [ref=e239]:
+          - generic [ref=e241]: "02"
+          - generic [ref=e242]:
+            - heading "InnovaThink Corporation Philippines" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Iloilo City · July 2023
+          - generic [ref=e245]:
+            - paragraph [ref=e246]: IT Support Intern
+            - paragraph [ref=e247]: Provided direct technical support for Windows desktop environments, resolving system configuration and software issues.
+          - generic [ref=e249]: IT Support
+        - generic [ref=e250]:
+          - generic [ref=e252]: "03"
+          - generic [ref=e253]:
+            - heading "University of San Agustin" [level=3] [ref=e254]
+            - paragraph [ref=e255]: Iloilo City · January 2023
+          - generic [ref=e256]:
+            - paragraph [ref=e257]: Technical Support Intern
+            - paragraph [ref=e258]: Deployed and configured network routers and infrastructure across multiple campus buildings to establish reliable connectivity.
+          - generic [ref=e260]: IT Support
+    - generic [ref=e262]:
+      - generic [ref=e263]:
+        - generic [ref=e265]: 05 — Education
+        - list [ref=e269]:
+          - listitem [ref=e270]:
+            - generic [ref=e272]:
+              - text: 2024 - Present
+              - heading "University of San Agustin" [level=3] [ref=e273]
+              - paragraph [ref=e274]: Bachelor of Science in Information Technology
+              - paragraph [ref=e275]: College - Second Year
+          - listitem [ref=e276]:
+            - generic [ref=e278]:
+              - text: Sept 2023 - May 2024
+              - heading "University of San Agustin Main" [level=3] [ref=e279]
+              - paragraph [ref=e280]: SHS Grade 11 - Grade 12
+          - listitem [ref=e281]:
+            - generic [ref=e283]:
+              - text: Sept 2019 - May 2022
+              - heading "BED University of San Agustin" [level=3] [ref=e284]
+              - paragraph [ref=e285]: Grade 8 - Grade 10
+          - listitem [ref=e286]:
+            - generic [ref=e288]:
+              - text: July 2010 - May 2019
+              - heading "Philippine International School in Buraydah, Saudi Arabia" [level=3] [ref=e289]
+              - paragraph [ref=e290]: Elementary - Grade 7
+      - generic [ref=e291]:
+        - generic [ref=e292]:
+          - generic [ref=e294]: 06 — Certifications
+          - link "View All ›" [ref=e295] [cursor=pointer]:
+            - /url: /certifications
+            - text: View All
+            - generic [ref=e296]: ›
+        - generic [ref=e297]:
+          - link "Project Management - Waterfall & Agile Udemy · 2024" [ref=e298] [cursor=pointer]:
+            - /url: https://www.udemy.com/certificate/UC-8d5096f4-77eb-4ad9-9efc-e24adaeb3ae3/
+            - generic [ref=e299]:
+              - generic [ref=e300]:
+                - heading "Project Management - Waterfall & Agile" [level=3] [ref=e301]
+                - paragraph [ref=e302]:
+                  - text: Udemy
+                  - generic [ref=e303]: ·
+                  - generic [ref=e304]: "2024"
+              - img [ref=e305]
+          - link "Design Thinking Guide for Successful Professionals Udemy · 2024" [ref=e309] [cursor=pointer]:
+            - /url: https://www.udemy.com/certificate/UC-cca1f8fe-aa32-49c9-86ca-9f3e8bb7f8ab/
+            - generic [ref=e310]:
+              - generic [ref=e311]:
+                - heading "Design Thinking Guide for Successful Professionals" [level=3] [ref=e312]
+                - paragraph [ref=e313]:
+                  - text: Udemy
+                  - generic [ref=e314]: ·
+                  - generic [ref=e315]: "2024"
+              - img [ref=e316]
+          - link "Project Management 101- Project Management DUAL Certificate Udemy · 2024" [ref=e320] [cursor=pointer]:
+            - /url: https://www.udemy.com/certificate/UC-973a419c-1ea4-45ef-b8a2-028d7f847d9e/
+            - generic [ref=e321]:
+              - generic [ref=e322]:
+                - heading "Project Management 101- Project Management DUAL Certificate" [level=3] [ref=e323]
+                - paragraph [ref=e324]:
+                  - text: Udemy
+                  - generic [ref=e325]: ·
+                  - generic [ref=e326]: "2024"
+              - img [ref=e327]
+          - link "Certificate of Completion in IT Operations InnovaThink Corporation · 2023" [ref=e331] [cursor=pointer]:
+            - /url: /certs/it-operations.pdf
+            - generic [ref=e332]:
+              - generic [ref=e333]:
+                - heading "Certificate of Completion in IT Operations" [level=3] [ref=e334]
+                - paragraph [ref=e335]:
+                  - text: InnovaThink Corporation
+                  - generic [ref=e336]: ·
+                  - generic [ref=e337]: "2023"
+              - img [ref=e338]
+    - generic [ref=e343]:
+      - generic [ref=e344]:
+        - generic [ref=e346]: 07 — Tech Stack
+        - button "View All" [ref=e348] [cursor=pointer]:
+          - text: View All
+          - img [ref=e349]
+      - generic [ref=e351]:
+        - generic [ref=e354]: HTML5
+        - generic [ref=e357]: CSS
+        - generic [ref=e360]: TypeScript
+        - generic [ref=e363]: React
+        - generic [ref=e366]: Next.js
+        - generic [ref=e369]: Tailwind CSS
+        - generic [ref=e372]: Node.js
+        - generic [ref=e375]: Express
+        - button "+8 more" [ref=e376] [cursor=pointer]
+    - generic [ref=e378]:
+      - generic [ref=e379]:
+        - generic [ref=e382]: 08 — Contact
+        - heading "Let's work" [level=2] [ref=e384]
+        - heading "together." [level=2] [ref=e385]
+        - paragraph [ref=e386]: Open to opportunities and collaborations. Feel free to reach out anytime.
+      - generic [ref=e387]:
+        - link "Email ajsalinas005@gmail.com" [ref=e388] [cursor=pointer]:
+          - /url: mailto:ajsalinas005@gmail.com
+          - img [ref=e390]
+          - generic [ref=e393]:
+            - paragraph [ref=e394]: Email
+            - paragraph [ref=e395]: ajsalinas005@gmail.com
+        - link "LinkedIn View Profile ↗" [ref=e396] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/adrian-justin-salinas-a4768b226/
+          - img [ref=e398]
+          - generic [ref=e402]:
+            - paragraph [ref=e403]: LinkedIn
+            - paragraph [ref=e404]: View Profile ↗
+        - link "GitHub View Projects ↗" [ref=e405] [cursor=pointer]:
+          - /url: https://github.com/JustineSalinas
+          - img [ref=e407]
+          - generic [ref=e410]:
+            - paragraph [ref=e411]: GitHub
+            - paragraph [ref=e412]: View Projects ↗
+        - link "Resume Download PDF ↗" [ref=e413] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e415]
+          - generic [ref=e418]:
+            - paragraph [ref=e419]: Resume
+            - paragraph [ref=e420]: Download PDF ↗
+      - generic [ref=e421]:
+        - link [ref=e422] [cursor=pointer]:
+          - /url: https://www.facebook.com/profile.php?id=100067117067492
+          - img [ref=e423]
+        - link [ref=e425] [cursor=pointer]:
+          - /url: https://www.instagram.com/a.jsalinas/
+          - img [ref=e426]
+      - paragraph [ref=e430]: © 2026 Adrian Salinas. All rights reserved.
+  - button "Chat with AJ" [ref=e432] [cursor=pointer]:
+    - img [ref=e433]
+    - generic [ref=e435]: Chat with AJ
+  - button "Open Next.js Dev Tools" [ref=e441] [cursor=pointer]:
+    - img [ref=e442]

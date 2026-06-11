@@ -14,64 +14,64 @@ export const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Extract unique tech stacks for filters
   const filters = useMemo(() => {
     return ['All', 'Next.js', 'React.js', 'Python', 'TypeScript'];
   }, []);
 
   const filteredProjects = useMemo(() => {
     if (filter === 'All') return portfolioData.projects;
-    return portfolioData.projects.filter(p => 
-      p.techStack.some(tech => tech.includes(filter))
+    return portfolioData.projects.filter((p) =>
+      p.techStack.some((tech) => tech.includes(filter))
     );
   }, [filter]);
 
-  // Reset index when filter changes
   useEffect(() => {
     setCurrentIndex(0);
   }, [filter]);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
-  };
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
-  };
-
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const threshold = 50;
-    if (info.offset.x < -threshold) {
-      nextSlide();
-    } else if (info.offset.x > threshold) {
-      prevSlide();
-    }
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (info.offset.x < -50) nextSlide();
+    else if (info.offset.x > 50) prevSlide();
   };
 
   return (
     <section id="projects" className="section-padding px-6" ref={ref}>
-      <div className={cn(
-        "max-w-7xl mx-auto space-y-12 transition-all duration-1000",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      )}>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-4">
-            <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block mb-4">
-              FEATURED PROJECTS
-            </span>
+      <div
+        className={cn(
+          'max-w-7xl mx-auto space-y-12 transition-all duration-1000',
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        )}
+      >
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <div className="flex items-center gap-4 mb-5">
+              <span className="section-label">03 — Featured Projects</span>
+              <div className="editorial-rule w-20" />
+            </div>
+            <h2
+              className="font-display italic font-light text-primary leading-tight"
+              style={{ fontSize: 'clamp(2rem, 4.5vw, 3.2rem)' }}
+            >
+              Work that speaks
+              <span className="text-accent"> for itself.</span>
+            </h2>
           </div>
 
           {/* Filters */}
           <div className="flex flex-wrap gap-2">
-            {filters.map(f => (
+            {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
                 className={cn(
-                  "px-4 py-2 rounded-full text-sm font-semibold transition-all",
-                  filter === f 
-                    ? "bg-accent text-background" 
-                    : "bg-surface border border-border text-secondary hover:text-primary hover:border-accent/50"
+                  'px-4 py-2 rounded-full text-xs font-mono tracking-wider transition-all uppercase',
+                  filter === f
+                    ? 'bg-accent text-background shadow-sm shadow-accent/30'
+                    : 'bg-surface border border-border text-secondary hover:text-primary hover:border-accent/40'
                 )}
               >
                 {f}
@@ -80,31 +80,32 @@ export const Projects = () => {
           </div>
         </div>
 
-        <div className="relative group/slider">
-          {/* Navigation Arrows */}
-          <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-20 flex items-center justify-center">
+        <div className="relative group/slider" ref={containerRef}>
+          {/* Left arrow */}
+          <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-20">
             <button
               onClick={prevSlide}
-              className="p-3 rounded-full bg-surface/80 backdrop-blur-md border border-border/50 text-secondary hover:text-accent hover:border-accent/50 transition-all shadow-xl group/btn"
-              aria-label="Previous Project"
+              className="p-3 rounded-full bg-surface/80 backdrop-blur-md border border-border/60 text-secondary hover:text-accent hover:border-accent/40 transition-all shadow-xl group/btn"
+              aria-label="Previous project"
             >
-              <ChevronLeft size={24} className="group-hover/btn:-translate-x-0.5 transition-transform" />
+              <ChevronLeft size={22} className="group-hover/btn:-translate-x-0.5 transition-transform" />
             </button>
           </div>
 
-          <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-20 flex items-center justify-center">
+          {/* Right arrow */}
+          <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-20">
             <button
               onClick={nextSlide}
-              className="p-3 rounded-full bg-surface/80 backdrop-blur-md border border-border/50 text-secondary hover:text-accent hover:border-accent/50 transition-all shadow-xl group/btn"
-              aria-label="Next Project"
+              className="p-3 rounded-full bg-surface/80 backdrop-blur-md border border-border/60 text-secondary hover:text-accent hover:border-accent/40 transition-all shadow-xl group/btn"
+              aria-label="Next project"
             >
-              <ChevronRight size={24} className="group-hover/btn:translate-x-0.5 transition-transform" />
+              <ChevronRight size={22} className="group-hover/btn:translate-x-0.5 transition-transform" />
             </button>
           </div>
 
-          {/* Slider Container */}
+          {/* Slider */}
           <div className="overflow-visible px-4">
-            <div className="relative h-[550px] md:h-[650px] flex items-center justify-center">
+            <div className="relative h-[560px] md:h-[660px] flex items-center justify-center">
               <AnimatePresence mode="popLayout" initial={false}>
                 {filteredProjects.map((project, index) => {
                   const isCenter = index === currentIndex;
@@ -116,110 +117,123 @@ export const Projects = () => {
                   return (
                     <motion.div
                       key={project.title}
-                      initial={{ 
-                        opacity: 0, 
-                        scale: 0.8,
-                        x: isLeft ? -300 : isRight ? 300 : 0,
-                        zIndex: 0
-                      }}
-                      animate={{ 
-                        opacity: isCenter ? 1 : 0.4, 
-                        scale: isCenter ? 1 : 0.8,
+                      initial={{ opacity: 0, scale: 0.82, x: isLeft ? -300 : 300, zIndex: 0 }}
+                      animate={{
+                        opacity: isCenter ? 1 : 0.35,
+                        scale: isCenter ? 1 : 0.82,
                         x: isCenter ? 0 : isLeft ? -400 : 400,
                         zIndex: isCenter ? 10 : 5,
                       }}
-                      exit={{ 
-                        opacity: 0, 
-                        scale: 0.8,
-                        x: isLeft ? -300 : isRight ? 300 : 0,
-                      }}
-                      transition={{ 
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 30,
-                        opacity: { duration: 0.2 }
-                      }}
+                      exit={{ opacity: 0, scale: 0.82, x: isLeft ? -300 : 300 }}
+                      transition={{ type: 'spring', stiffness: 290, damping: 28, opacity: { duration: 0.2 } }}
                       drag="x"
                       dragConstraints={{ left: 0, right: 0 }}
                       onDragEnd={handleDragEnd}
                       className="absolute w-full max-w-2xl cursor-grab active:cursor-grabbing"
                     >
-                      <Tilt 
-                        tiltMaxAngleX={isCenter ? 2 : 0} 
-                        tiltMaxAngleY={isCenter ? 2 : 0} 
-                        perspective={1000} 
-                        transitionSpeed={1500} 
-                        scale={isCenter ? 1.02 : 1}
+                      <Tilt
+                        tiltMaxAngleX={isCenter ? 2 : 0}
+                        tiltMaxAngleY={isCenter ? 2 : 0}
+                        perspective={1100}
+                        transitionSpeed={1600}
+                        scale={isCenter ? 1.01 : 1}
                         className="h-full"
                       >
-                        <div className={cn(
-                          "h-full group bg-surface border border-border/50 rounded-3xl p-8 md:p-12 transition-all duration-500 relative overflow-hidden flex flex-col shadow-2xl",
-                          isCenter ? "border-accent/30 shadow-accent/5" : "opacity-50 grayscale-[0.5]"
-                        )}>
-                          {/* Background Glow */}
-                          {isCenter && (
-                            <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/10 rounded-full blur-[80px] pointer-events-none" />
+                        <div
+                          className={cn(
+                            'h-full group bg-surface border rounded-2xl p-8 md:p-10 transition-all duration-500 relative overflow-hidden flex flex-col shadow-2xl',
+                            isCenter
+                              ? 'border-accent/25 shadow-accent/8'
+                              : 'border-border/40 opacity-50'
                           )}
-                          
-                          <div className="space-y-6 relative z-10 h-full flex flex-col">
+                        >
+                          {/* Amber glow — center only */}
+                          {isCenter && (
+                            <div className="absolute -top-20 -right-20 w-56 h-56 bg-accent/12 rounded-full blur-[70px] pointer-events-none" />
+                          )}
+                          {isCenter && (
+                            <div className="absolute top-0 left-0 w-32 h-0.5 bg-gradient-to-r from-accent/60 to-transparent" />
+                          )}
+
+                          <div className="space-y-5 relative z-10 h-full flex flex-col">
                             <div className="flex justify-between items-start">
-                              <div className="space-y-2">
-                                <span className="text-accent text-xs font-bold uppercase tracking-[0.2em]">
+                              <div className="space-y-1.5">
+                                <span className="text-[10px] font-mono text-accent/80 uppercase tracking-[0.2em]">
                                   {project.oneLiner}
                                 </span>
-                                <h3 className="text-3xl md:text-4xl font-bold text-primary group-hover:text-accent transition-colors flex items-center gap-3 flex-wrap">
+                                <h3 className="text-2xl md:text-3xl font-display italic font-light text-primary group-hover:text-accent transition-colors flex items-center gap-3 flex-wrap">
                                   {project.title}
                                   {(project as any).badge && (
-                                    <span className="px-2.5 py-1 text-[10px] tracking-wider uppercase font-extrabold bg-accent/10 border border-accent/30 text-accent rounded-full">
+                                    <span className="px-2.5 py-0.5 text-[9px] tracking-wider uppercase font-bold bg-accent/12 border border-accent/25 text-accent rounded-full not-italic font-mono">
                                       {(project as any).badge}
                                     </span>
                                   )}
                                 </h3>
                               </div>
-                              <div className="flex gap-4">
+                              <div className="flex gap-3">
                                 {project.github && (
-                                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 border border-border/50 text-secondary hover:text-primary transition-all">
-                                    <Github size={22} />
+                                  <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="p-2 rounded-full bg-background/50 border border-border/50 text-secondary hover:text-accent hover:border-accent/40 transition-all"
+                                  >
+                                    <Github size={18} />
                                   </a>
                                 )}
                                 {project.demo && (
-                                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 border border-border/50 text-secondary hover:text-primary transition-all">
-                                    <ExternalLink size={22} />
+                                  <a
+                                    href={project.demo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="p-2 rounded-full bg-background/50 border border-border/50 text-secondary hover:text-accent hover:border-accent/40 transition-all"
+                                  >
+                                    <ExternalLink size={18} />
                                   </a>
                                 )}
                               </div>
                             </div>
 
-                            {/* Project Images */}
+                            {/* Images */}
                             {((project as any).image || (project as any).images) && (
-                              <div className="relative w-full rounded-2xl overflow-hidden border border-border/30 bg-black/20 h-48 md:h-[260px] flex-shrink-0 mt-4 mb-4 group/img shadow-inner">
+                              <div className="relative w-full rounded-xl overflow-hidden border border-border/30 bg-black/20 h-44 md:h-[240px] flex-shrink-0 group/img">
                                 {(project as any).images ? (
                                   <div className="flex h-full w-full gap-2 p-2">
                                     {(project as any).images.map((img: string, idx: number) => (
-                                      <div key={idx} className="flex-1 relative rounded-xl overflow-hidden bg-background/50 border border-border/20">
-                                        <img src={img} alt={`${project.title} view ${idx + 1}`} className="w-full h-full object-contain p-1 transition-transform duration-700 group-hover/img:scale-105" />
+                                      <div
+                                        key={idx}
+                                        className="flex-1 relative rounded-lg overflow-hidden bg-background/50 border border-border/20"
+                                      >
+                                        <img
+                                          src={img}
+                                          alt={`${project.title} view ${idx + 1}`}
+                                          className="w-full h-full object-contain p-1 transition-transform duration-700 group-hover/img:scale-105"
+                                        />
                                       </div>
                                     ))}
                                   </div>
                                 ) : (
                                   <div className="w-full h-full p-2">
-                                    <img src={(project as any).image} alt={project.title} className="w-full h-full object-contain rounded-xl transition-transform duration-700 group-hover/img:scale-105" />
+                                    <img
+                                      src={(project as any).image}
+                                      alt={project.title}
+                                      className="w-full h-full object-contain rounded-lg transition-transform duration-700 group-hover/img:scale-105"
+                                    />
                                   </div>
                                 )}
-                                {/* Inner Shadow Overlay */}
-                                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 pointer-events-none rounded-2xl" />
+                                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 pointer-events-none rounded-xl" />
                               </div>
                             )}
 
-                            <p className="text-secondary text-base md:text-lg leading-relaxed flex-grow">
+                            <p className="text-secondary text-sm md:text-base leading-relaxed flex-grow">
                               {project.description}
                             </p>
 
-                            <div className="flex flex-wrap gap-3 pt-6 border-t border-border/50">
+                            <div className="flex flex-wrap gap-2 pt-5 border-t border-border/40">
                               {project.techStack.map((tech) => (
-                                <span 
+                                <span
                                   key={tech}
-                                  className="px-4 py-1.5 bg-background border border-border/50 rounded-full text-xs font-semibold text-secondary/80"
+                                  className="px-3.5 py-1.5 bg-background border border-border/50 rounded-full text-[10px] font-mono text-secondary/70 tracking-wide"
                                 >
                                   {tech}
                                 </span>
@@ -235,17 +249,15 @@ export const Projects = () => {
             </div>
           </div>
 
-          {/* Pagination Dots */}
-          <div className="flex justify-center gap-3 mt-8">
+          {/* Pagination dots */}
+          <div className="flex justify-center gap-2.5 mt-8">
             {filteredProjects.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
                 className={cn(
-                  "h-2 transition-all duration-300 rounded-full",
-                  i === currentIndex 
-                    ? "w-8 bg-accent" 
-                    : "w-2 bg-secondary/20 hover:bg-secondary/40"
+                  'h-1.5 transition-all duration-300 rounded-full',
+                  i === currentIndex ? 'w-8 bg-accent' : 'w-1.5 bg-secondary/20 hover:bg-secondary/40'
                 )}
                 aria-label={`Go to slide ${i + 1}`}
               />

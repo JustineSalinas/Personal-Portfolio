@@ -7,12 +7,12 @@ export const portfolioData = {
     availability: "AVAILABLE FOR OPPORTUNITIES",
     bio: "I'm a 20-year-old developer from Iloilo building fast, accessible web tools. Recently spent three days wrestling with a rogue hydration error, but usually I'm crafting Next.js apps and navigating distributed systems. I prefer building real things over collecting buzzwords.",
     longBio: [
-      "I design and build <strong class=\"text-primary font-bold\">production-grade web applications</strong> from the ground up — handling everything from system architecture and database design to polished front-end interfaces. My recent work includes a <span class=\"text-primary font-semibold\">real-time attendance management system</span> deployed for a university department and an <span class=\"text-primary font-semibold\">interactive platform tailored for developers</span> who want to learn and level up their skills, both shipping with Next.js, TypeScript, and Supabase.",
-      "Beyond development, I bring a <em class=\"text-primary not-italic font-semibold border-b border-accent/20\">strong eye for design</em> and <em class=\"text-primary not-italic font-semibold border-b border-accent/20\">data-driven problem solving</em>. Whether it's crafting intuitive user experiences, engineering robust data pipelines, or <strong class=\"text-primary font-bold\">architecting scalable full-stack systems</strong>, I focus on delivering work that is both technically sound and visually refined."
+      "I design and build <strong class=\"text-primary font-bold\">production-grade web applications</strong> from the ground up — handling everything from system architecture and database design to polished front-end interfaces. My recent work includes a <span class=\"text-primary font-semibold\">real-time attendance management system</span> deployed for 700+ students at a university department, and an <span class=\"text-primary font-semibold\">agile workspace platform for developers</span> with PWA offline support — both shipping with Next.js, TypeScript, and Supabase.",
+      "Beyond development, I bring a <em class=\"text-primary not-italic font-semibold\">strong eye for design</em> and <em class=\"text-primary not-italic font-semibold\">data-driven problem solving</em>. Whether it's crafting intuitive user experiences, engineering robust data pipelines, or <strong class=\"text-primary font-bold\">architecting scalable full-stack systems</strong>, I focus on delivering work that is both technically sound and visually refined."
     ],
     tags: ["NEXT.JS", "TYPESCRIPT", "DATA ENGINEERING", "AI / ML", "IOT", "FULL-STACK", "DISTRIBUTED SYSTEMS"],
     quickFacts: {
-      status: "IT Sophomore",
+      status: "IT Sophomore — GWA 1.85",
       focus: "Full-Stack Dev, Data Engineering, IoT",
       lookingFor: "Internships, Part-time, Freelance",
       available: "Immediately"
@@ -23,10 +23,21 @@ export const portfolioData = {
       github: "https://github.com/JustineSalinas",
       facebook: "https://www.facebook.com/profile.php?id=100067117067492",
       instagram: "https://www.instagram.com/a.jsalinas/",
-      resume: "#" // Placeholder for resume link
+      resume: "/ajsalinas-resume.pdf"
     }
   },
   experience: [
+    {
+      role: "Founder & AI Engineer",
+      company: "Cascade Development Group (CDG)",
+      date: "2025 – Present",
+      location: "Iloilo City, Philippines",
+      bullets: [
+        "Running an IT solutions startup delivering web development, database architecture, and technical consulting to local clients.",
+        "Architecting full-stack systems and AI-assisted tools; leading client engagements from requirements gathering through deployment.",
+        "Managing sprint workflows, client deliverables, and cross-functional project timelines."
+      ]
+    },
     {
       role: "IT Assistant (Contract)",
       company: "Telus Corporation",
@@ -101,7 +112,7 @@ export const portfolioData = {
       image: "/certs/design-thinking.png"
     },
     {
-      title: "Project Management 101- Project Management DUAL Certificate",
+      title: "Project Management 101 - Dual Certificate",
       issuer: "Udemy",
       date: "2024",
       link: "https://www.udemy.com/certificate/UC-973a419c-1ea4-45ef-b8a2-028d7f847d9e/",
@@ -118,52 +129,61 @@ export const portfolioData = {
   projects: [
     {
       title: "Solmate",
-      oneLiner: "Financial and telemetry dashboard for E-Bangka",
-      description: "E-Ferry is a web-based financial and telemetry dashboard that bridges the gap between hardware conversion and capital. It acts as the digital brain for the E-Bangka, integrating financial services. Built for a hackathon where it won 1st Runner Up.",
+      oneLiner: "Financial & telemetry dashboard for E-Bangka",
+      description: "A web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka. Built in under 3 days for the Nexus Philippines Hackathon 2026, integrating real-time IoT feeds and geospatial mapping to bridge hardware data with capital planning.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
       github: "https://github.com/JustineSalinas/E-Ferry",
       demo: "https://e-ferry.vercel.app",
       image: "/projects/solmate.png",
-      badge: "1st Runner Up - Hackathon"
+      badge: "1st Runner Up — Hackathon"
+    },
+    {
+      title: "PharmaTrack",
+      oneLiner: "University Pharmacy Attendance System",
+      description: "A QR-based attendance tracking system deployed for the University of San Agustin Pharmacy Department. Supports 700+ students with role-based access (Student/Faculty/Admin), real-time analytics dashboards, and zero physical hardware dependencies.",
+      techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
+      github: "https://github.com/JustineSalinas/PharmaTrack",
+      image: "/projects/pharmatrack.png"
     },
     {
       title: "Commit",
-      oneLiner: "Interactive learning platform for developers",
-      description: "A comprehensive platform designed to help developers learn, collaborate, and streamline their workflow efficiently.",
+      oneLiner: "Agile workspace & productivity platform",
+      description: "An agile workspace for developers combining a Markdown code journal, Pomodoro focus sessions, and sprint task management. Features PWA offline support and real-time collaboration built with Next.js 15, Supabase, and Clerk.",
       techStack: ["Next.js 15", "TypeScript 5", "Supabase", "PostgreSQL", "Clerk"],
       github: "https://github.com/JustineSalinas/Commit",
       demo: "https://commit-beta.vercel.app",
       image: "/projects/commit.png"
     },
     {
-      title: "PharmaTrack",
-      oneLiner: "Official Pharmacy Attendance Management System",
-      description: "A professional QR-based attendance tracking monitoring system developed exclusively for the University of San Agustin Pharmacy Department.",
-      techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
-      github: "https://github.com/JustineSalinas/PharmaTrack",
-      image: "/projects/pharmatrack.png"
+      title: "Famly",
+      oneLiner: "Collaborative household financial tracker",
+      description: "A dark-themed Progressive Web App for managing household financial visibility — tracking tuition assessments, savings milestones, and debt ledgers. Real-time Supabase sync with offline fallback for family-wide use.",
+      techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "PWA"],
+      github: "https://github.com/JustineSalinas/famly-app",
+      image: "/projects/solmate.png"
     },
     {
       title: "SignSync",
-      oneLiner: "Real-time sign language translation using computer vision",
-      description: "An innovative tool that translates sign language into text/speech in real-time using computer vision and AI models.",
+      oneLiner: "Real-time sign language translation",
+      description: "An innovative tool that translates sign language into text/speech in real-time using computer vision and AI models — making communication accessible without specialized hardware.",
       techStack: ["React.js", "Python 3", "FastAPI", "MediaPipe", "Gemini API"],
       github: "https://github.com/JustineSalinas/SignSync",
       image: "/projects/signsync.png"
     },
     {
       title: "BinSense",
-      oneLiner: "Smart waste bin monitoring with IoT integration",
-      description: "An IoT-based waste management solution that monitors bin fill levels and optimizes collection routes.",
+      oneLiner: "Smart waste bin monitoring — IoT",
+      description: "An IoT-based waste management solution that monitors bin fill levels using ultrasonic sensors and optimizes collection routes in real time via a web dashboard.",
       techStack: ["Arduino UNO", "Python", "ESP8266", "Sensors"],
       github: "https://github.com/JustineSalinas/BinSense",
       images: ["/projects/binsense1.jpg", "/projects/binsense2.jpg"]
     }
   ],
   techStack: {
-    "Frontend": ["HTML5", "CSS", "TypeScript", "React", "Next.js", "Tailwind CSS"],
-    "Backend": ["Node.js", "Express", "Python", "Java", "PHP"],
-    "Database": ["Supabase", "MySQL"],
-    "Developer Tools": ["Git", "GitHub", "Figma"]
+    "Frontend": ["HTML5", "CSS3", "TypeScript", "React", "Next.js", "Tailwind CSS"],
+    "Backend": ["Node.js", "Express", "Python", "Java", "FastAPI", "PHP"],
+    "Database": ["Supabase", "PostgreSQL", "MySQL", "Firebase"],
+    "Auth & BaaS": ["Clerk", "Supabase Auth"],
+    "Developer Tools": ["Git", "GitHub", "Figma", "Notion", "Vercel"]
   }
 };

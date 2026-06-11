@@ -19,42 +19,43 @@ export const Certifications = () => {
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       )}
     >
-      {/* Header */}
-      <div className="flex justify-between items-center pb-4 border-b border-border/50">
-        <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase">
-          RECENT CERTIFICATIONS
-        </span>
+      <div className="flex justify-between items-center pb-4 border-b border-border/40">
+        <div className="flex items-center gap-4">
+          <span className="section-label">06 — Certifications</span>
+        </div>
         <Link
           href="/certifications"
-          className="text-sm font-medium text-secondary hover:text-accent transition-colors flex items-center gap-1 group"
+          className="text-xs font-mono text-secondary/60 hover:text-accent transition-colors flex items-center gap-1 group tracking-wider"
         >
-          View All <span className="group-hover:translate-x-1 transition-transform inline-block">›</span>
+          View All
+          <span className="group-hover:translate-x-0.5 transition-transform inline-block">›</span>
         </Link>
       </div>
 
-      {/* List */}
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {portfolioData.certifications.map((cert, index) => (
           <a
             key={index}
             href={cert.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block bg-surface/40 hover:bg-surface border border-border/50 hover:border-accent/30 rounded-xl p-4 transition-all duration-300"
+            className="group block bg-surface/30 hover:bg-surface border border-border/40 hover:border-accent/30 rounded-xl p-4 transition-all duration-300"
           >
             <div className="flex justify-between items-center gap-4">
-              <div className="space-y-0.5">
-                <h3 className="text-base font-bold text-primary group-hover:text-accent transition-colors">
+              <div className="space-y-0.5 min-w-0">
+                <h3 className="text-sm font-bold text-primary group-hover:text-accent transition-colors truncate">
                   {cert.title}
                 </h3>
-                <p className="text-sm text-secondary font-medium tracking-wide">
+                <p className="text-[11px] font-mono text-secondary/55 tracking-wide flex items-center gap-2">
                   {cert.issuer}
+                  <span className="text-border">·</span>
+                  <span className="text-accent/60">{cert.date}</span>
                 </p>
               </div>
-
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                <ExternalLink size={18} className="text-accent" />
-              </div>
+              <ExternalLink
+                size={14}
+                className="text-secondary/30 group-hover:text-accent transition-colors flex-shrink-0"
+              />
             </div>
           </a>
         ))}

@@ -8,127 +8,118 @@ export const Footer = () => {
   const { personal } = portfolioData;
 
   return (
-    <footer
-      id="contact"
-      className="pt-24 pb-12 px-6 border-t border-border overflow-hidden"
-    >
-      <div className="max-w-3xl mx-auto space-y-14 text-center">
+    <footer id="contact" className="pt-28 pb-12 px-6 border-t border-border/50 overflow-hidden relative">
+      {/* Ambient amber glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-48 bg-accent/[0.06] blur-[80px] pointer-events-none" />
 
-        {/* Heading */}
-        <div className="space-y-5">
-          <span className="text-xl font-bold tracking-[0.3em] text-secondary/60 uppercase block">
-            CONTACT ME
-          </span>
-          <h2 className="text-4xl md:text-5xl font-light text-primary tracking-tight">
-            Let&apos;s work together
+      <div className="max-w-4xl mx-auto relative">
+        {/* Big editorial heading */}
+        <div className="mb-16 text-center">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="editorial-rule flex-1 max-w-[120px]" />
+            <span className="section-label">08 — Contact</span>
+            <div className="h-px flex-1 max-w-[120px] bg-gradient-to-l from-accent/50 via-accent/15 to-transparent" />
+          </div>
+
+          <h2
+            className="font-display italic font-light text-primary leading-tight mb-4"
+            style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)' }}
+          >
+            Let&apos;s work
           </h2>
-          <p className="text-lg text-secondary max-w-sm mx-auto">
+          <h2
+            className="font-display italic font-light text-accent leading-tight mb-8"
+            style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)' }}
+          >
+            together.
+          </h2>
+          <p className="text-secondary text-base max-w-sm mx-auto leading-relaxed">
             Open to opportunities and collaborations. Feel free to reach out anytime.
           </p>
         </div>
 
-        {/* Contact cards grid */}
-        <div className="grid sm:grid-cols-2 gap-3 max-w-xl mx-auto">
-          {/* Email */}
-          <a
-            href={`mailto:${personal.contact.email}`}
-            className="group p-5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-[18px] flex items-center gap-4 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all hover:-translate-y-0.5"
-          >
-            <div className="p-2.5 bg-black/5 dark:bg-white/5 rounded-xl flex-shrink-0">
-              <Mail size={20} className="text-secondary group-hover:text-primary transition-colors" />
-            </div>
-            <div className="text-left min-w-0">
-              <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-widest mb-0.5">
-                Email
-              </p>
-              <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors truncate">
-                {personal.contact.email}
-              </p>
-            </div>
-          </a>
-
-          {/* LinkedIn */}
-          <a
-            href={personal.contact.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group p-5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-[18px] flex items-center gap-4 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all hover:-translate-y-0.5"
-          >
-            <div className="p-2.5 bg-black/5 dark:bg-white/5 rounded-xl flex-shrink-0">
-              <Linkedin size={20} className="text-secondary group-hover:text-primary transition-colors" />
-            </div>
-            <div className="text-left">
-              <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-widest mb-0.5">
-                LinkedIn
-              </p>
-              <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
-                View Profile ↗
-              </p>
-            </div>
-          </a>
-
-          {/* GitHub */}
-          <a
-            href={personal.contact.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group p-5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-[18px] flex items-center gap-4 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all hover:-translate-y-0.5"
-          >
-            <div className="p-2.5 bg-black/5 dark:bg-white/5 rounded-xl flex-shrink-0">
-              <Github size={20} className="text-secondary group-hover:text-primary transition-colors" />
-            </div>
-            <div className="text-left">
-              <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-widest mb-0.5">
-                GitHub
-              </p>
-              <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
-                View Projects ↗
-              </p>
-            </div>
-          </a>
-
-          {/* Resume */}
-          <a
-            href={personal.contact.resume}
-            className="group p-5 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-[18px] flex items-center gap-4 hover:border-black/20 dark:hover:border-[rgba(255,255,255,0.28)] transition-all hover:-translate-y-0.5"
-          >
-            <div className="p-2.5 bg-black/5 dark:bg-white/5 rounded-xl flex-shrink-0">
-              <FileText size={20} className="text-secondary group-hover:text-primary transition-colors" />
-            </div>
-            <div className="text-left">
-              <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-widest mb-0.5">
-                Resume
-              </p>
-              <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
-                Download PDF ↗
-              </p>
-            </div>
-          </a>
+        {/* Contact cards */}
+        <div className="grid sm:grid-cols-2 gap-3 max-w-xl mx-auto mb-12">
+          {[
+            {
+              href: `mailto:${personal.contact.email}`,
+              icon: <Mail size={18} />,
+              label: 'Email',
+              value: personal.contact.email,
+              truncate: true,
+            },
+            {
+              href: personal.contact.linkedin,
+              icon: <Linkedin size={18} />,
+              label: 'LinkedIn',
+              value: 'View Profile ↗',
+              external: true,
+            },
+            {
+              href: personal.contact.github,
+              icon: <Github size={18} />,
+              label: 'GitHub',
+              value: 'View Projects ↗',
+              external: true,
+            },
+            {
+              href: personal.contact.resume,
+              icon: <FileText size={18} />,
+              label: 'Resume',
+              value: 'Download PDF ↗',
+              external: true,
+              download: 'Adrian_Salinas_Resume.pdf',
+            },
+          ].map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+              download={(item as any).download}
+              className="group p-5 bg-surface/40 border border-border/50 rounded-xl flex items-center gap-4 hover:border-accent/40 hover:bg-accent/[0.03] transition-all hover:-translate-y-0.5"
+            >
+              <div className="p-2.5 bg-accent/8 border border-accent/15 rounded-xl flex-shrink-0 text-accent/60 group-hover:text-accent transition-colors">
+                {item.icon}
+              </div>
+              <div className="text-left min-w-0">
+                <p className="section-label mb-0.5">{item.label}</p>
+                <p
+                  className={cn(
+                    'text-sm font-medium text-secondary group-hover:text-primary transition-colors',
+                    item.truncate ? 'truncate' : ''
+                  )}
+                >
+                  {item.value}
+                </p>
+              </div>
+            </a>
+          ))}
         </div>
 
-        {/* Social icon row */}
-        <div className="flex items-center justify-center gap-3">
+        {/* Social icons */}
+        <div className="flex items-center justify-center gap-3 mb-12">
           <a
             href={personal.contact.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl text-secondary hover:text-[#1877F2] hover:border-[#1877F2]/20 transition-all hover:-translate-y-1"
+            className="p-3 bg-surface/40 border border-border/50 rounded-xl text-secondary/60 hover:text-[#1877F2] hover:border-[#1877F2]/20 transition-all hover:-translate-y-1"
           >
-            <Facebook size={20} />
+            <Facebook size={18} />
           </a>
           <a
             href={personal.contact.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-white dark:bg-black border border-black/10 dark:border-[rgba(255,255,255,0.14)] rounded-xl text-secondary hover:text-[#E4405F] hover:border-[#E4405F]/20 transition-all hover:-translate-y-1"
+            className="p-3 bg-surface/40 border border-border/50 rounded-xl text-secondary/60 hover:text-[#E4405F] hover:border-[#E4405F]/20 transition-all hover:-translate-y-1"
           >
-            <Instagram size={20} />
+            <Instagram size={18} />
           </a>
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 border-t border-border">
-          <p className="text-secondary text-sm text-center">
+        <div className="pt-8 border-t border-border/40 text-center">
+          <p className="text-[11px] font-mono text-secondary/35 tracking-wider">
             © {new Date().getFullYear()} {personal.name}. All rights reserved.
           </p>
         </div>
@@ -136,3 +127,7 @@ export const Footer = () => {
     </footer>
   );
 };
+
+function cn(...classes: (string | boolean | undefined)[]) {
+  return classes.filter(Boolean).join(' ');
+}
