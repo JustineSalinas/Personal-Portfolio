@@ -169,6 +169,23 @@ export const Projects = () => {
                                     </span>
                                   )}
                                 </h3>
+                                {((project as any).year || (project as any).role) && (
+                                  <div className="flex items-center gap-2 pt-0.5">
+                                    {(project as any).role && (
+                                      <span className="text-[10px] font-mono text-secondary/60 tracking-wide">
+                                        {(project as any).role}
+                                      </span>
+                                    )}
+                                    {(project as any).year && (project as any).role && (
+                                      <span className="w-1 h-1 rounded-full bg-secondary/30" />
+                                    )}
+                                    {(project as any).year && (
+                                      <span className="text-[10px] font-mono text-secondary/60 tracking-wide">
+                                        {(project as any).year}
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
                               </div>
                               <div className="flex gap-3">
                                 {project.github && (

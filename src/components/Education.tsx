@@ -23,39 +23,70 @@ export const Education = () => {
       </div>
 
       <div className="relative">
-        {/* Vertical amber line */}
-        <div className="absolute left-[8px] top-2 bottom-2 w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent" aria-hidden="true" />
+        {/* Amber gradient timeline line */}
+        <div
+          className="absolute left-[8px] top-2 bottom-2 w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent"
+          aria-hidden="true"
+        />
 
         <ol className="space-y-9">
-          {portfolioData.education.map((edu, index) => (
-            <li
-              key={index}
-              className={cn(
-                'relative pl-10 transition-all duration-700',
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              )}
-              style={{ transitionDelay: `${index * 120}ms` }}
-            >
-              {/* Amber dot */}
-              <span
-                className="absolute left-0 top-1.5 w-4 h-4 rounded-full border-2 border-accent bg-background shadow-sm shadow-accent/20"
-                aria-hidden="true"
-              />
+          {portfolioData.education.map((edu, index) => {
+            const achievements = (edu as any).achievements as
+              | { role: string; org: string }[]
+              | undefined;
 
-              <div className="space-y-0.5">
-                <span className="text-[10px] font-mono text-accent/80 uppercase tracking-[0.2em]">
-                  {edu.date}
-                </span>
-                <h3 className="text-sm font-bold text-primary leading-snug">
-                  {edu.institution}
-                </h3>
-                {edu.degree && (
-                  <p className="text-xs text-secondary">{edu.degree}</p>
+            return (
+              <li
+                key={index}
+                className={cn(
+                  'relative pl-10 transition-all duration-700',
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 )}
-                <p className="text-[11px] font-mono text-secondary/45 tracking-wide">{edu.level}</p>
-              </div>
-            </li>
-          ))}
+                style={{ transitionDelay: `${index * 120}ms` }}
+              >
+                {/* Amber dot */}
+                <span
+                  className="absolute left-0 top-1.5 w-4 h-4 rounded-full border-2 border-accent bg-background shadow-sm shadow-accent/20"
+                  aria-hidden="true"
+                />
+
+                <div className="space-y-1.5">
+                  <span className="text-[10px] font-mono text-accent/80 uppercase tracking-[0.2em]">
+                    {edu.date}
+                  </span>
+                  <h3 className="text-sm font-bold text-primary leading-snug">
+                    {edu.institution}
+                  </h3>
+                  {edu.degree && (
+                    <p className="text-xs text-secondary">{edu.degree}</p>
+                  )}
+                  <p className="text-[11px] font-mono text-secondary/45 tracking-wide">
+                    {edu.level}
+                  </p>
+
+                  {/* Achievements */}
+                  {achievements && achievements.length > 0 && (
+                    <div className="flex flex-col gap-1.5 pt-2">
+                      {achievements.map((a, i) => (
+                        <div
+                          key={i}
+                          className="inline-flex items-center gap-2 w-fit"
+                        >
+                          <span className="w-1 h-1 rounded-full bg-accent/60 flex-shrink-0" />
+                          <span className="text-[11px] font-mono text-primary/80 tracking-wide">
+                            {a.role}
+                          </span>
+                          <span className="text-[10px] font-mono text-secondary/45 tracking-wide">
+                            — {a.org}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </div>

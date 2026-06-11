@@ -78,12 +78,20 @@ export const portfolioData = {
       level: "College - Second Year",
       institution: "University of San Agustin",
       degree: "Bachelor of Science in Information Technology",
-      date: "2024 - Present"
+      date: "2024 - Present",
+      achievements: [
+        { role: "Head of Design", org: "CAS (College of Arts & Sciences)" },
+        { role: "Mobile App Lead", org: "ITSA (IT School Organization)" },
+      ]
     },
     {
       level: "SHS Grade 11 - Grade 12",
       institution: "University of San Agustin Main",
-      date: "Sept 2023 - May 2024"
+      date: "Sept 2023 - May 2024",
+      achievements: [
+        { role: "Vice President", org: "Grade 11" },
+        { role: "President", org: "Grade 12" },
+      ]
     },
     {
       level: "Grade 8 - Grade 10",
@@ -100,28 +108,28 @@ export const portfolioData = {
     {
       title: "Project Management - Waterfall & Agile",
       issuer: "Udemy",
-      date: "2024",
+      date: "2026",
       link: "https://www.udemy.com/certificate/UC-8d5096f4-77eb-4ad9-9efc-e24adaeb3ae3/",
       image: "/certs/pm-waterfall-agile.png"
     },
     {
       title: "Design Thinking Guide for Successful Professionals",
       issuer: "Udemy",
-      date: "2024",
+      date: "2025",
       link: "https://www.udemy.com/certificate/UC-cca1f8fe-aa32-49c9-86ca-9f3e8bb7f8ab/",
       image: "/certs/design-thinking.png"
     },
     {
       title: "Project Management 101 - Dual Certificate",
       issuer: "Udemy",
-      date: "2024",
+      date: "2025",
       link: "https://www.udemy.com/certificate/UC-973a419c-1ea4-45ef-b8a2-028d7f847d9e/",
       image: "/certs/pm-dual.png"
     },
     {
       title: "Certificate of Completion in IT Operations",
       issuer: "InnovaThink Corporation",
-      date: "2023",
+      date: "2024",
       link: "/certs/it-operations.pdf",
       image: "/certs/it-operations.png"
     }
@@ -130,6 +138,8 @@ export const portfolioData = {
     {
       title: "Solmate",
       oneLiner: "Financial & telemetry dashboard for E-Bangka",
+      year: "2026",
+      role: "Solo Developer",
       description: "A web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka. Built in under 3 days for the Nexus Philippines Hackathon 2026, integrating real-time IoT feeds and geospatial mapping to bridge hardware data with capital planning.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
       github: "https://github.com/JustineSalinas/E-Ferry",
@@ -140,6 +150,8 @@ export const portfolioData = {
     {
       title: "PharmaTrack",
       oneLiner: "University Pharmacy Attendance System",
+      year: "2026",
+      role: "Project Manager & Lead Developer",
       description: "A QR-based attendance tracking system deployed for the University of San Agustin Pharmacy Department. Supports 700+ students with role-based access (Student/Faculty/Admin), real-time analytics dashboards, and zero physical hardware dependencies.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
       github: "https://github.com/JustineSalinas/PharmaTrack",
@@ -148,6 +160,8 @@ export const portfolioData = {
     {
       title: "Commit",
       oneLiner: "Agile workspace & productivity platform",
+      year: "2026",
+      role: "Solo Developer",
       description: "An agile workspace for developers combining a Markdown code journal, Pomodoro focus sessions, and sprint task management. Features PWA offline support and real-time collaboration built with Next.js 15, Supabase, and Clerk.",
       techStack: ["Next.js 15", "TypeScript 5", "Supabase", "PostgreSQL", "Clerk"],
       github: "https://github.com/JustineSalinas/Commit",
@@ -156,15 +170,19 @@ export const portfolioData = {
     },
     {
       title: "Famly",
-      oneLiner: "Collaborative household financial tracker",
-      description: "A dark-themed Progressive Web App for managing household financial visibility — tracking tuition assessments, savings milestones, and debt ledgers. Real-time Supabase sync with offline fallback for family-wide use.",
+      oneLiner: "Collaborative Family Financial Tracker",
+      year: "2026",
+      role: "Solo Developer",
+      description: "Designed a dark-themed PWA tracking tuition assessments, savings milestones, debt ledgers, and family project proposals — solving a real household financial visibility problem. Implemented real-time Supabase sync for multi-device collaboration with PWA offline fallback, reflecting strong product intuition and self-driven initiative.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "PWA"],
       github: "https://github.com/JustineSalinas/famly-app",
-      image: "/projects/solmate.png"
+      image: "/projects/famly.png"
     },
     {
       title: "SignSync",
       oneLiner: "Real-time sign language translation",
+      year: "2026",
+      role: "Solo Developer",
       description: "An innovative tool that translates sign language into text/speech in real-time using computer vision and AI models — making communication accessible without specialized hardware.",
       techStack: ["React.js", "Python 3", "FastAPI", "MediaPipe", "Gemini API"],
       github: "https://github.com/JustineSalinas/SignSync",
@@ -173,6 +191,8 @@ export const portfolioData = {
     {
       title: "BinSense",
       oneLiner: "Smart waste bin monitoring — IoT",
+      year: "2024",
+      role: "Project Manager",
       description: "An IoT-based waste management solution that monitors bin fill levels using ultrasonic sensors and optimizes collection routes in real time via a web dashboard.",
       techStack: ["Arduino UNO", "Python", "ESP8266", "Sensors"],
       github: "https://github.com/JustineSalinas/BinSense",
