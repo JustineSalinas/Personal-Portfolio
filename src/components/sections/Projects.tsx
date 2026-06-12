@@ -16,7 +16,15 @@ export function Projects() {
                 <polyline points="8 6 2 12 8 18"></polyline>
               </svg>
             </div>
-            
+
+            {project.badge && (
+              <div className="absolute top-0 left-6 -translate-y-1/2">
+                <span className="bg-blue-600 text-white text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
+                  {project.badge}
+                </span>
+              </div>
+            )}
+
             <div>
               <h4 className="text-xl font-bold text-white mb-4 pr-10">{project.title}</h4>
               <p className="text-zinc-400 leading-relaxed mb-6 text-sm">

@@ -2,19 +2,19 @@ export const portfolioData = {
   personal: {
     name: "Adrian Salinas",
     initials: "AJ",
-    titles: ["Full-Stack Developer", "IT Sophomore", "Aspiring Data Engineer"],
+    titles: ["Full-Stack AI Developer", "IT Solutions Founder", "1st Runner-Up · Nexus PH Hackathon 2026"],
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
-    bio: "I'm a 20-year-old developer from Iloilo building fast, accessible web tools. Recently spent three days wrestling with a rogue hydration error, but usually I'm crafting Next.js apps and navigating distributed systems. I prefer building real things over collecting buzzwords.",
+    bio: "Full-Stack Developer and IT Solutions Founder from Iloilo. I ship real systems — a QR attendance platform for 700+ users, a hackathon-winning IoT dashboard, and a functioning startup (CDG). I build with Next.js, TypeScript, Supabase, and Python. I prefer shipping over collecting buzzwords.",
     longBio: [
       "I design and build <strong class=\"text-primary font-bold\">production-grade web applications</strong> from the ground up — handling everything from system architecture and database design to polished front-end interfaces. My recent work includes a <span class=\"text-primary font-semibold\">real-time attendance management system</span> deployed for 700+ students at a university department, and an <span class=\"text-primary font-semibold\">agile workspace platform for developers</span> with PWA offline support — both shipping with Next.js, TypeScript, and Supabase.",
       "Beyond development, I bring a <em class=\"text-primary not-italic font-semibold\">strong eye for design</em> and <em class=\"text-primary not-italic font-semibold\">data-driven problem solving</em>. Whether it's crafting intuitive user experiences, engineering robust data pipelines, or <strong class=\"text-primary font-bold\">architecting scalable full-stack systems</strong>, I focus on delivering work that is both technically sound and visually refined."
     ],
-    tags: ["NEXT.JS", "TYPESCRIPT", "DATA ENGINEERING", "AI / ML", "IOT", "FULL-STACK", "DISTRIBUTED SYSTEMS"],
+    tags: ["NEXT.JS", "TYPESCRIPT", "AI / ML", "FULL-STACK", "IOT", "STARTUP FOUNDER", "DISTRIBUTED SYSTEMS"],
     quickFacts: {
-      status: "IT Sophomore — GWA 1.85",
-      focus: "Full-Stack Dev, Data Engineering, IoT",
-      lookingFor: "Internships, Part-time, Freelance",
+      status: "IT 2nd Year — GWA 1.85",
+      focus: "Full-Stack Dev, AI Engineering, IoT",
+      lookingFor: "Internships, Part-time, Remote",
       available: "Immediately"
     },
     contact: {
@@ -30,46 +30,75 @@ export const portfolioData = {
     {
       role: "Founder & AI Engineer",
       company: "Cascade Development Group (CDG)",
-      date: "2025 – Present",
+      date: "2026 – Present",
       location: "Iloilo City, Philippines",
       bullets: [
-        "Running an IT solutions startup delivering web development, database architecture, and technical consulting to local clients.",
-        "Architecting full-stack systems and AI-assisted tools; leading client engagements from requirements gathering through deployment.",
-        "Managing sprint workflows, client deliverables, and cross-functional project timelines."
+        "IT solutions startup delivering web development, database architecture, and technical consulting to clients across the Visayas — operating solo across the full business lifecycle from scoping to deployment.",
+        "Architected and shipped end-to-end client solutions using Next.js, TypeScript, Supabase, and Vercel — owning the complete stack from schema design and REST API development to polished front-end interfaces.",
+        "Designed and maintained the official CDG platform (cdg-official.vercel.app) serving as a live product portfolio and active client acquisition channel.",
+        "Established structured project management workflows using Notion and GitHub enabling sprint-based delivery cycles and transparent timelines across client engagements."
+      ]
+    },
+    {
+      role: "Project Manager & Lead Developer",
+      company: "PharmaTrack — University of San Agustin, Pharmacy Department",
+      date: "2026",
+      location: "Iloilo City, Philippines",
+      bullets: [
+        "Led a full-stack QR-based attendance system for 700+ Pharmacy students — eliminating all physical hardware dependencies and replacing manual paper-based processes entirely.",
+        "Built a role-based access platform with three distinct portals (Student, Faculty, Admin) using Next.js 14 App Router, Supabase Auth, and PostgreSQL with row-level security policies.",
+        "Delivered a full Admin analytics dashboard with CSV/PDF export, system-wide attendance logs, and user management providing department leadership with live operational visibility."
+      ]
+    },
+    {
+      role: "Participant · National AI Hackathon",
+      company: "Next Hackathon — Philippines",
+      date: "August 3–5, 2026",
+      location: "Philippines",
+      bullets: [
+        "Competing in the National AI Hackathon organized by Next Hackathon Philippines.",
+        "Building an AI-powered solution under competition time constraints with live deployment."
+      ]
+    },
+    {
+      role: "Full-Stack Developer · 1st Runner-Up",
+      company: "Solmate / E-Ferry — Nexus Philippines Hackathon",
+      date: "May 21–23, 2026",
+      location: "Philippines",
+      bullets: [
+        "Built E-Ferry (Solmate), a web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka — bridging hardware IoT data with capital planning for electric ferry operations.",
+        "Earned 1st Runner-Up at the Nexus Philippines Hackathon: Hacking the Future of Energy, competing against university-level teams with a fully functional deployed MVP in under 3 days.",
+        "Integrated real-time telemetry feeds into a React/TypeScript dashboard using Recharts and MapLibre GL, demonstrating cross-domain ability across IoT, geospatial mapping, and financial analytics."
       ]
     },
     {
       role: "IT Assistant (Contract)",
       company: "Telus Corporation",
-      date: "March 2023",
+      date: "March 2025",
       location: "Iloilo City, Philippines",
       bullets: [
-        "Set up, configured, and maintained computer systems and local networks to guarantee operational readiness.",
-        "Delivered technical support and troubleshooting to ensure all workstations were secure, updated, and optimized for daily operations."
+        "Set up, configured, and maintained computer systems and local area networks to ensure operational readiness across the organization.",
+        "Resolved hardware and software issues efficiently minimizing downtime and ensuring continuous productivity for end users."
       ]
     },
     {
       role: "IT Support Intern",
       company: "InnovaThink Corporation Philippines",
-      date: "July 2023",
+      date: "July 2024",
       location: "Iloilo City, Philippines",
       bullets: [
-        "Provided direct technical support for Windows desktop environments, resolving system configuration and software issues.",
-        "Implemented and maintained endpoint security protocols, including firewall configurations and routine anti-virus deployments.",
-        "Diagnosed hardware defects and coordinated scheduled system maintenance utilizing standardized procedural checklists.",
-        "Assisted in the management and optimization of local network configurations."
+        "Provided direct technical support for Windows desktop environments diagnosing and resolving system configuration, software, and network connectivity issues.",
+        "Completed a formal Certificate of Completion in IT Operations, demonstrating professional proficiency across hardware support, system diagnostics, and network troubleshooting."
       ]
     },
     {
       role: "Technical Support Intern",
       company: "University of San Agustin",
-      date: "January 2023",
+      date: "January 2024",
       location: "Iloilo City, Philippines",
       bullets: [
-        "Deployed and configured network routers and infrastructure across multiple campus buildings to establish reliable connectivity.",
-        "Built and optimized computer laboratories and office workstations, executing comprehensive cable management and hardware installations.",
-        "Troubleshot and repaired CPU and peripheral defects, replacing faulty components to minimize hardware downtime.",
-        "Managed IT asset infrastructure, maintaining accurate databases for software licenses and hardware inventory."
+        "Deployed and configured network routers and infrastructure across multiple campus buildings establishing reliable campus-wide connectivity.",
+        "Coordinated physical infrastructure rollout across departments, developing strong skills in network topology, cable management, and IT project execution."
       ]
     }
   ],
@@ -132,6 +161,13 @@ export const portfolioData = {
       date: "2024",
       link: "/certs/it-operations.pdf",
       image: "/certs/it-operations.png"
+    },
+    {
+      title: "AWS AI Practitioner",
+      issuer: "Udacity",
+      date: "2026",
+      link: "",
+      image: "/certs/aws-ai-practitioner.png"
     }
   ],
   projects: [
@@ -145,7 +181,7 @@ export const portfolioData = {
       github: "https://github.com/JustineSalinas/E-Ferry",
       demo: "https://e-ferry.vercel.app",
       image: "/projects/solmate.png",
-      badge: "1st Runner Up — Hackathon"
+      badge: "HACKATHON"
     },
     {
       title: "PharmaTrack",

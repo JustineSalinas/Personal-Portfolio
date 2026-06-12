@@ -47,21 +47,41 @@ export const About = () => {
               ))}
             </div>
 
-            {/* Hackathon Achievement */}
+            {/* Hackathon Achievements */}
             <div className="pt-6 border-t border-border/40">
-              <span className="section-label block mb-4">Hackathon</span>
-              <div className="border border-border/60 border-l-[3px] border-l-accent rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
-                    <Trophy size={16} />
+              <span className="section-label block mb-4">Hackathons</span>
+              <div className="flex flex-col gap-3">
+                {/* Nexus Hackathon */}
+                <div className="border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
+                      <Trophy size={16} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-primary text-base mb-0.5">1st Runner Up</h4>
+                      <p className="text-sm text-secondary">Hacking the Future of Energy — Nexus Philippines</p>
+                      <p className="text-xs text-secondary/50 mt-0.5 italic">Ready, Spark, Charge 2026</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-primary text-base">1st Runner Up</h4>
-                    <p className="text-sm text-secondary">Hacking the Future of Energy — Nexus Philippines</p>
+                  <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
+                    May 21–23, 2026
                   </div>
                 </div>
-                <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
-                  May 21–23, 2026
+                {/* Next Hackathon */}
+                <div className="border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
+                      <Trophy size={16} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-primary text-base mb-0.5">National AI Hackathon</h4>
+                      <p className="text-sm text-secondary">Next Hackathon — Philippines · ICC Iloilo City</p>
+                      <p className="text-xs text-secondary/50 mt-0.5 italic">Building an AI-Ready Future, Together</p>
+                    </div>
+                  </div>
+                  <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
+                    Aug 3–5, 2026
+                  </div>
                 </div>
               </div>
             </div>
