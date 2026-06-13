@@ -1,14 +1,26 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-sdk/react';
+import { TextStreamChatTransport } from 'ai';
 import { MessageSquare, X, Send, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+  const [input, setInput] = useState('');
+  const { messages, sendMessage, status } = useChat({ transport: new TextStreamChatTransport({ api: '/api/chat' }) });
+  const isLoading = status === 'streaming' || status === 'submitted';
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    sendMessage({ text: input });
+    setInput('');
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end" suppressHydrationWarning={true}>
@@ -52,7 +64,7 @@ export const ChatbotWidget = () => {
                       : "bg-surface border border-border text-primary mr-auto rounded-bl-sm"
                   )}
                 >
-                  {m.content}
+                  {m.parts.filter(p => p.type === 'text').map(p => p.text).join('')}
                 </div>
               ))}
               {isLoading && (
