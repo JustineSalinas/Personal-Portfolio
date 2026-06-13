@@ -146,16 +146,16 @@ export const Hero = () => {
                 {/* Name + availability overlay */}
                 <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
                   <div>
-                    <p className="text-[10px] font-mono text-primary/55 tracking-[0.2em] uppercase">
+                    <p className="text-[10px] font-mono text-white/70 tracking-[0.2em] uppercase">
                       {portfolioData.personal.name}
                     </p>
-                    <p className="text-[9px] font-mono text-accent/65 tracking-wider">
+                    <p className="text-[9px] font-mono text-white/60 tracking-wider">
                       {portfolioData.personal.titles[0]}
                     </p>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-                    <span className="text-[9px] font-mono text-secondary/50 tracking-wider uppercase">
+                    <span className="text-[9px] font-mono text-white/60 tracking-wider uppercase">
                       Available
                     </span>
                   </div>

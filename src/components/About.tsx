@@ -88,7 +88,7 @@ export const About = () => {
 
             {/* Collaboration CTA */}
             <a
-              href={`mailto:${personal.contact.email}`}
+              href="#contact"
               className="block bg-surface/40 border border-border rounded-xl p-6 flex justify-between items-center group hover:border-accent/50 transition-all duration-300"
             >
               <div className="space-y-1">
