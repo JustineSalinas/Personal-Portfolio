@@ -51,16 +51,6 @@ export const portfolioData = {
       ]
     },
     {
-      role: "Participant · National AI Hackathon",
-      company: "Next Hackathon — Philippines",
-      date: "August 3–5, 2026",
-      location: "Philippines",
-      bullets: [
-        "Competing in the National AI Hackathon organized by Next Hackathon Philippines.",
-        "Building an AI-powered solution under competition time constraints with live deployment."
-      ]
-    },
-    {
       role: "Full-Stack Developer · 1st Runner-Up",
       company: "Solmate / E-Ferry — Nexus Philippines Hackathon",
       date: "May 21–23, 2026",
