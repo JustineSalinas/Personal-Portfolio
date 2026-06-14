@@ -45,17 +45,32 @@ export const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close menu when resizing to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setIsOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Lock body scroll while mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4',
-        scrolled
-          ? 'bg-background/85 backdrop-blur-md border-b border-border/60 py-3'
-          : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6',
+        scrolled || isOpen
+          ? 'bg-background/95 backdrop-blur-md border-b border-border/60 py-3'
+          : 'bg-background/60 backdrop-blur-sm py-4'
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
@@ -64,6 +79,7 @@ export const Navigation = () => {
             {portfolioData.personal.initials}
           </a>
 
+          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-7">
             {navLinks.slice(0, 5).map((link) => (
               <Magnetic key={link.name} intensity={0.2}>
@@ -81,6 +97,7 @@ export const Navigation = () => {
           </div>
         </div>
 
+        {/* Desktop right side */}
         <div className="hidden md:flex items-center gap-5">
           <ThemeToggle />
           <Magnetic intensity={0.1}>
@@ -93,38 +110,58 @@ export const Navigation = () => {
           </Magnetic>
         </div>
 
+        {/* Mobile toggle */}
         <div className="flex md:hidden items-center gap-4">
           <ThemeToggle />
-          <button className="text-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          <button
+            className="p-2 rounded-xl bg-surface border border-border text-secondary hover:text-accent hover:border-accent/40 transition-colors"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu overlay */}
       <div
         className={cn(
-          'fixed inset-0 top-[56px] bg-background z-40 md:hidden transition-transform duration-300 p-8 border-t border-border/50',
+          'fixed inset-x-0 top-[53px] bottom-0 bg-background z-40 md:hidden flex flex-col transition-transform duration-300 ease-in-out will-change-transform',
           isOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
-        <div className="flex flex-col gap-7">
-          {navLinks.map((link, i) => (
+        {/* Nav links */}
+        <div className="flex flex-col px-8 pt-10 gap-1 flex-1 overflow-y-auto">
+          {navLinks.slice(0, 5).map((link, i) => (
             <a
               key={link.name}
               href={link.href}
-              className={cn(
-                'font-display italic text-3xl font-light transition-colors',
-                activeSection === link.href.slice(1) ? 'text-accent' : 'text-secondary/60'
-              )}
               onClick={() => setIsOpen(false)}
+              className={cn(
+                'flex items-center gap-4 py-5 border-b border-border/30 last:border-0 transition-colors',
+                activeSection === link.href.slice(1) ? 'text-accent' : 'text-secondary/60 hover:text-primary'
+              )}
             >
-              <span className="text-[10px] font-mono not-italic text-accent/50 mr-3 tracking-widest">
+              <span className="text-[10px] font-mono text-accent/40 tracking-widest w-6">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              {link.name}
+              <span className="font-display italic text-3xl font-light leading-none">
+                {link.name}
+              </span>
             </a>
           ))}
+        </div>
+
+        {/* Bottom contact */}
+        <div className="px-8 py-8 border-t border-border/30 flex-shrink-0">
+          <a
+            href={`mailto:${portfolioData.personal.contact.email}`}
+            onClick={() => setIsOpen(false)}
+            className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-secondary/50 hover:text-accent transition-colors"
+          >
+            Get In Touch <span className="text-base">↗</span>
+          </a>
         </div>
       </div>
     </nav>

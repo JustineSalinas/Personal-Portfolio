@@ -104,7 +104,7 @@ export const Projects = () => {
           </div>
 
           {/* Slider */}
-          <div className="overflow-visible px-4">
+          <div className="overflow-hidden px-4">
             <div className="relative h-[560px] md:h-[660px] flex items-center justify-center">
               <AnimatePresence mode="popLayout" initial={false}>
                 {filteredProjects.map((project, index) => {
@@ -129,7 +129,7 @@ export const Projects = () => {
                       drag="x"
                       dragConstraints={{ left: 0, right: 0 }}
                       onDragEnd={handleDragEnd}
-                      className="absolute w-full max-w-2xl cursor-grab active:cursor-grabbing"
+                      className="absolute w-full max-w-2xl cursor-grab active:cursor-grabbing touch-pan-y"
                     >
                       <Tilt
                         tiltMaxAngleX={isCenter ? 2 : 0}
