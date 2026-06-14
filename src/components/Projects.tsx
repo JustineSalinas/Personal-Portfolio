@@ -104,8 +104,8 @@ export const Projects = () => {
           </div>
 
           {/* Slider */}
-          <div className="overflow-hidden px-4">
-            <div className="relative h-[560px] md:h-[660px] flex items-center justify-center">
+          <div className="overflow-x-hidden px-4">
+            <div className="relative h-[600px] sm:h-[580px] md:h-[660px] flex items-center justify-center">
               <AnimatePresence mode="popLayout" initial={false}>
                 {filteredProjects.map((project, index) => {
                   const isCenter = index === currentIndex;
@@ -141,7 +141,7 @@ export const Projects = () => {
                       >
                         <div
                           className={cn(
-                            'h-full group bg-surface border rounded-2xl p-8 md:p-10 transition-all duration-500 relative overflow-hidden flex flex-col shadow-2xl',
+                            'h-full group bg-surface border rounded-2xl p-5 md:p-8 lg:p-10 transition-all duration-500 relative overflow-hidden flex flex-col shadow-2xl',
                             isCenter
                               ? 'border-accent/25 shadow-accent/8'
                               : 'border-border/40 opacity-50'
@@ -213,7 +213,7 @@ export const Projects = () => {
 
                             {/* Images */}
                             {((project as any).image || (project as any).images) && (
-                              <div className="relative w-full rounded-xl overflow-hidden border border-border/30 bg-black/20 h-44 md:h-[240px] flex-shrink-0 group/img">
+                              <div className="relative w-full rounded-xl overflow-hidden border border-border/30 bg-black/20 h-32 sm:h-40 md:h-[240px] flex-shrink-0 group/img">
                                 {(project as any).images ? (
                                   <div className="flex h-full w-full gap-2 p-2">
                                     {(project as any).images.map((img: string, idx: number) => (

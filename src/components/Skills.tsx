@@ -27,14 +27,14 @@ export const Skills = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         )}
       >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="section-label">07 — Tech Stack</span>
-            <div className="editorial-rule w-16" />
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4 min-w-0">
+            <span className="section-label shrink-0">07 — Tech Stack</span>
+            <div className="editorial-rule w-16 hidden sm:block" />
           </div>
           <button
             onClick={() => setModalOpen(true)}
-            className="flex items-center gap-1.5 text-xs font-mono text-secondary/55 hover:text-accent transition-colors group tracking-wider"
+            className="flex items-center gap-1.5 text-xs font-mono text-secondary/55 hover:text-accent transition-colors group tracking-wider shrink-0 whitespace-nowrap"
           >
             View All
             <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />

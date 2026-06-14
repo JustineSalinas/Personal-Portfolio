@@ -19,13 +19,13 @@ export const Certifications = () => {
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       )}
     >
-      <div className="flex justify-between items-center pb-4 border-b border-border/40">
-        <div className="flex items-center gap-4">
-          <span className="section-label">06 — Certifications</span>
+      <div className="flex justify-between items-center gap-4 pb-4 border-b border-border/40">
+        <div className="flex items-center gap-4 min-w-0">
+          <span className="section-label shrink-0">06 — Certifications</span>
         </div>
         <Link
           href="/certifications"
-          className="text-xs font-mono text-secondary/60 hover:text-accent transition-colors flex items-center gap-1 group tracking-wider"
+          className="text-xs font-mono text-secondary/60 hover:text-accent transition-colors flex items-center gap-1 group tracking-wider shrink-0 whitespace-nowrap"
         >
           View All
           <span className="group-hover:translate-x-0.5 transition-transform inline-block">›</span>
