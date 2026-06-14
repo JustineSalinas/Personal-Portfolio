@@ -78,6 +78,11 @@
     overflow-x: hidden;
   }
 
+  /* Offset anchor scroll targets below the fixed navbar */
+  #about, #projects, #experience, #certifications, #skills, #contact {
+    scroll-margin-top: 72px;
+  }
+
   body {
     @apply bg-background text-primary font-sans antialiased transition-colors duration-300;
     overflow-x: hidden;

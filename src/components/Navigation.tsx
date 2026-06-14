@@ -43,6 +43,16 @@ export const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const activeSection = useScrollSpy(navLinks.map((l) => l.href.slice(1)));
 
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    // Wait for menu close + body overflow restore before scrolling
+    setTimeout(() => {
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }, 320);
+  };
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -132,12 +142,12 @@ export const Navigation = () => {
         )}
       >
         {/* Nav links */}
-        <div className="flex flex-col px-8 pt-10 gap-1 flex-1 overflow-y-auto">
+        <div className="flex flex-col px-8 pt-10 gap-1 overflow-y-auto">
           {navLinks.slice(0, 5).map((link, i) => (
             <a
               key={link.name}
               href={link.href}
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => handleMobileNavClick(e, link.href)}
               className={cn(
                 'flex items-center gap-4 py-5 border-b border-border/30 last:border-0 transition-colors',
                 activeSection === link.href.slice(1) ? 'text-accent' : 'text-secondary/60 hover:text-primary'
@@ -153,16 +163,6 @@ export const Navigation = () => {
           ))}
         </div>
 
-        {/* Bottom contact */}
-        <div className="px-8 py-8 border-t border-border/30 flex-shrink-0">
-          <a
-            href={`mailto:${portfolioData.personal.contact.email}`}
-            onClick={() => setIsOpen(false)}
-            className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-secondary/50 hover:text-accent transition-colors"
-          >
-            Get In Touch <span className="text-base">↗</span>
-          </a>
-        </div>
       </div>
     </nav>
   );
