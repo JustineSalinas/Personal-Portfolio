@@ -75,7 +75,6 @@
 
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
   }
 
   /* Offset anchor scroll targets below the fixed navbar */
