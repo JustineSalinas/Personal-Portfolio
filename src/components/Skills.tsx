@@ -83,7 +83,7 @@ export const Skills = () => {
               <div>
                 <h3 className="text-sm font-bold text-primary tracking-tight">All Technologies</h3>
                 <p className="text-[10px] font-mono text-secondary/45 mt-0.5 tracking-wider">
-                  {allSkills.length} tools &amp; technologies
+                  {allSkills.length}{' '}tools &amp; technologies
                 </p>
               </div>
               <button

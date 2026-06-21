@@ -74,8 +74,8 @@ export const About = () => {
                       <Trophy size={16} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-primary text-base mb-0.5">National AI Hackathon</h4>
-                      <p className="text-sm text-secondary">Next Hackathon — Philippines · ICC Iloilo City</p>
+                      <h4 className="font-bold text-primary text-base mb-0.5">Next Hackathon</h4>
+                      <p className="text-sm text-secondary">National AI Hackathon — @ ICC Iloilo City, Philippines</p>
                       <p className="text-xs text-secondary/50 mt-0.5 italic">Building an AI-Ready Future, Together</p>
                     </div>
                   </div>

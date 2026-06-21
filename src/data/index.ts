@@ -154,9 +154,9 @@ export const portfolioData = {
     },
     {
       title: "AWS AI Practitioner",
-      issuer: "Udacity",
+      issuer: "Udacity - Accenture",
       date: "2026",
-      link: "",
+      link: "https://www.udacity.com/certificate/e/943e4ce6-2cb7-11f1-b209-279edb78a4f9",
       image: "/certs/aws-ai-practitioner.png"
     }
   ],
