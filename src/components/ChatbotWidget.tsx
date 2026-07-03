@@ -22,7 +22,7 @@ const ANSWERS: Record<string, string> = {
     "Adrian Salinas is a Full-Stack AI Developer, IT Solutions Founder, and student based in Iloilo City, Philippines. He is currently pursuing his IT degree (2nd Year — GWA 1.85) while leading Cascade Development Group (CDG). He specializes in shipping high-quality Next.js, TypeScript, and Supabase systems.",
 
   "Tell me about Cascade Development Group (CDG)": 
-    "Cascade Development Group (CDG) is Adrian's IT solutions startup delivering web development, database architecture, and technical consulting. He operates CDG solo across the full business lifecycle, architecting and deploying clean, production-ready web apps for clients using Next.js and Supabase.",
+    "Cascade Development Group (CDG) is Adrian's IT solutions startup delivering web development, database architecture, and technical consulting. He collaborates with a team across the full business lifecycle, architecting and deploying clean, production-ready web apps for clients using Next.js and Supabase.",
 
   "What projects has Adrian built?": 
     "Adrian has built several major projects:\n\n• PharmaTrack: A QR attendance tracking system supporting 700+ students at the University of San Agustin.\n• Solmate (E-Ferry): A real-time IoT dashboard that won 1st Runner-Up at the Nexus PH Hackathon 2026.\n• Commit: An Agile developer workspace productivity tool.\n• Famly: A collaborative family budget tracker.",

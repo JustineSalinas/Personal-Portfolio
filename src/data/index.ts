@@ -33,7 +33,7 @@ export const portfolioData = {
       date: "2026 – Present",
       location: "Iloilo City, Philippines",
       bullets: [
-        "IT solutions startup delivering web development, database architecture, and technical consulting to clients across the Visayas — operating solo across the full business lifecycle from scoping to deployment.",
+        "IT solutions startup delivering web development, database architecture, and technical consulting to clients across the Visayas — collaborating with a team across the full business lifecycle from scoping to deployment.",
         "Architected and shipped end-to-end client solutions using Next.js, TypeScript, Supabase, and Vercel — owning the complete stack from schema design and REST API development to polished front-end interfaces.",
         "Designed and maintained the official CDG platform (cdg-official.vercel.app) serving as a live product portfolio and active client acquisition channel.",
         "Established structured project management workflows using Notion and GitHub enabling sprint-based delivery cycles and transparent timelines across client engagements."
