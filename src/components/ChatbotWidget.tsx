@@ -1,9 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useChat } from '@ai-sdk/react';
-import { TextStreamChatTransport } from 'ai';
-import { MessageSquare, X, Send, Loader2 } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { MessageSquare, X, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -19,19 +17,97 @@ const SUGGESTIONS = [
   "How can I contact Adrian?"
 ];
 
+const ANSWERS: Record<string, string> = {
+  "What is Adrian's background and experience?": 
+    "Adrian Salinas is a Full-Stack AI Developer, IT Solutions Founder, and student based in Iloilo City, Philippines. He is currently pursuing his IT degree (2nd Year — GWA 1.85) while leading Cascade Development Group (CDG). He specializes in shipping high-quality Next.js, TypeScript, and Supabase systems.",
+
+  "Tell me about Cascade Development Group (CDG)": 
+    "Cascade Development Group (CDG) is Adrian's IT solutions startup delivering web development, database architecture, and technical consulting. He operates CDG solo across the full business lifecycle, architecting and deploying clean, production-ready web apps for clients using Next.js and Supabase.",
+
+  "What projects has Adrian built?": 
+    "Adrian has built several major projects:\n\n• PharmaTrack: A QR attendance tracking system supporting 700+ students at the University of San Agustin.\n• Solmate (E-Ferry): A real-time IoT dashboard that won 1st Runner-Up at the Nexus PH Hackathon 2026.\n• Commit: An Agile developer workspace productivity tool.\n• Famly: A collaborative family budget tracker.",
+
+  "What certifications does Adrian hold?": 
+    "Adrian holds the following certifications:\n\n1. Advanced Scrum Master (Agile Enterprise, 2026)\n2. AWS AI Practitioner (Udacity - Accenture, 2026)\n3. Project Management - Waterfall & Agile (Udemy, 2026)\n4. Design Thinking Guide for Successful Professionals (Udemy, 2025)\n5. Project Management 101 - Dual Certificate (Udemy, 2025)\n6. Certificate of Completion in IT Operations (InnovaThink Corporation, 2024)",
+
+  "What technologies/skills does Adrian specialize in?": 
+    "Adrian's core specialties include:\n\n• Frontend: Next.js (App Router), React, TypeScript, Tailwind CSS, Framer Motion\n• Backend & Database: Node.js, Python, PostgreSQL, Supabase\n• Architecture: REST APIs, IoT integrations, AI/ML integrations, and Agile/Scrum workflows.",
+
+  "Is Adrian open to job/internship opportunities?": 
+    "Yes, absolutely! Adrian is actively looking for internships, part-time, or remote roles where he can apply his full-stack capabilities. He is available immediately and is open to teams that welcome his status as an IT student.",
+
+  "Tell me about the PharmaTrack project": 
+    "PharmaTrack is a QR-based attendance tracking system deployed for the USA Pharmacy Department. It replaced paper attendance for 700+ students, utilizing Next.js 14, Supabase Auth, and PostgreSQL row-level security with tailored student, faculty, and admin dashboards.",
+
+  "Tell me about the Solmate (E-Ferry) project": 
+    "Solmate (also known as E-Ferry) is an IoT-powered telemetry and financial planning dashboard built for electric ferries. Deployed as a working MVP in under 3 days, it won 1st Runner-Up at the Nexus Philippines Hackathon 2026.",
+
+  "How can I contact Adrian?": 
+    "You can reach Adrian through the following channels:\n\n• Email: ajsalinas005@gmail.com\n• LinkedIn: linkedin.com/in/adrian-justin-salinas-a4768b226/\n• GitHub: github.com/JustineSalinas\n\nYou can also download his resume directly from the header on the main page!"
+};
+
+interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 export const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { messages, sendMessage, status } = useChat({ transport: new TextStreamChatTransport({ api: '/api/chat' }) });
-  const isLoading = status === 'streaming' || status === 'submitted';
-  const chatEndRef = React.useRef<HTMLDivElement>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const chatEndRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }
   }, [messages, isLoading, isOpen]);
+
+  const handleInquiryClick = (suggestion: string) => {
+    if (isLoading) return;
+
+    const userMsg: ChatMessage = {
+      id: String(Date.now()),
+      role: 'user',
+      content: suggestion
+    };
+
+    setMessages(prev => [...prev, userMsg]);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      const answer = ANSWERS[suggestion] || "I don't have information on that question.";
+      const botMsgId = String(Date.now() + 1);
+      
+      const botMsgPlaceholder: ChatMessage = {
+        id: botMsgId,
+        role: 'assistant',
+        content: ''
+      };
+      
+      setMessages(prev => [...prev, botMsgPlaceholder]);
+
+      const words = answer.split(' ');
+      let wordIndex = 0;
+      let currentText = '';
+
+      const interval = setInterval(() => {
+        if (wordIndex < words.length) {
+          currentText += (wordIndex === 0 ? '' : ' ') + words[wordIndex];
+          setMessages(prev =>
+            prev.map(m => (m.id === botMsgId ? { ...m, content: currentText } : m))
+          );
+          wordIndex++;
+        } else {
+          clearInterval(interval);
+          setIsLoading(false);
+        }
+      }, 35);
+    }, 400);
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end" suppressHydrationWarning={true}>
@@ -70,16 +146,16 @@ export const ChatbotWidget = () => {
                 <div 
                   key={m.id} 
                   className={cn(
-                    "max-w-[80%] rounded-2xl px-4 py-2 text-sm",
+                    "max-w-[80%] rounded-2xl px-4 py-2 text-sm whitespace-pre-line",
                     m.role === 'user' 
                       ? "bg-accent text-background ml-auto rounded-br-sm" 
                       : "bg-surface border border-border text-primary mr-auto rounded-bl-sm"
                   )}
                 >
-                  {m.parts.filter(p => p.type === 'text').map(p => p.text).join('')}
+                  {m.content}
                 </div>
               ))}
-              {isLoading && (
+              {isLoading && messages[messages.length - 1]?.role === 'user' && (
                 <div className="bg-surface border border-border text-primary mr-auto rounded-2xl rounded-bl-sm px-4 py-2 w-fit">
                   <Loader2 size={16} className="animate-spin" />
                 </div>
@@ -96,7 +172,7 @@ export const ChatbotWidget = () => {
                 {SUGGESTIONS.map((suggestion, index) => (
                   <button
                     key={index}
-                    onClick={() => sendMessage({ text: suggestion })}
+                    onClick={() => handleInquiryClick(suggestion)}
                     disabled={isLoading}
                     className="text-left text-xs bg-background hover:bg-border/30 border border-border/80 hover:border-accent/40 text-primary rounded-xl px-4 py-2.5 transition-all duration-200 disabled:opacity-50 active:scale-[0.98] cursor-pointer"
                   >
