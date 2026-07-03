@@ -125,6 +125,20 @@ export const portfolioData = {
   ],
   certifications: [
     {
+      title: "Advanced Scrum Master",
+      issuer: "Agile Enterprise",
+      date: "2026",
+      link: "/certs/advanced-scrum.png",
+      image: "/certs/advanced-scrum.png"
+    },
+    {
+      title: "AWS AI Practitioner",
+      issuer: "Udacity - Accenture",
+      date: "2026",
+      link: "/certs/aws-ai-practitioner.png",
+      image: "/certs/aws-ai-practitioner.png"
+    },
+    {
       title: "Project Management - Waterfall & Agile",
       issuer: "Udemy",
       date: "2026",
@@ -151,13 +165,6 @@ export const portfolioData = {
       date: "2024",
       link: "/certs/it-operations.pdf",
       image: "/certs/it-operations.png"
-    },
-    {
-      title: "AWS AI Practitioner",
-      issuer: "Udacity - Accenture",
-      date: "2026",
-      link: "https://www.udacity.com/certificate/e/943e4ce6-2cb7-11f1-b209-279edb78a4f9",
-      image: "/certs/aws-ai-practitioner.png"
     }
   ],
   projects: [

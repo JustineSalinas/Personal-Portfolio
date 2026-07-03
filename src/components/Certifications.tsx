@@ -33,17 +33,14 @@ export const Certifications = () => {
       </div>
 
       <div className="space-y-2.5">
-        {portfolioData.certifications.map((cert, index) => (
-          <a
-            key={index}
-            href={cert.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group block bg-surface/30 hover:bg-surface border border-border/40 hover:border-accent/30 rounded-xl p-4 transition-all duration-300"
-          >
+        {portfolioData.certifications.map((cert, index) => {
+          const content = (
             <div className="flex justify-between items-center gap-4">
               <div className="space-y-0.5 min-w-0">
-                <h3 className="text-sm font-bold text-primary group-hover:text-accent transition-colors truncate">
+                <h3 className={cn(
+                  "text-sm font-bold text-primary transition-colors truncate",
+                  cert.link && "group-hover:text-accent"
+                )}>
                   {cert.title}
                 </h3>
                 <p className="text-[11px] font-mono text-secondary/55 tracking-wide flex items-center gap-2">
@@ -52,13 +49,38 @@ export const Certifications = () => {
                   <span className="text-accent/60">{cert.date}</span>
                 </p>
               </div>
-              <ExternalLink
-                size={14}
-                className="text-secondary/30 group-hover:text-accent transition-colors flex-shrink-0"
-              />
+              {cert.link && (
+                <ExternalLink
+                  size={14}
+                  className="text-secondary/30 group-hover:text-accent transition-colors flex-shrink-0"
+                />
+              )}
             </div>
-          </a>
-        ))}
+          );
+
+          if (cert.link) {
+            return (
+              <a
+                key={index}
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block bg-surface/30 hover:bg-surface border border-border/40 hover:border-accent/30 rounded-xl p-4 transition-all duration-300"
+              >
+                {content}
+              </a>
+            );
+          }
+
+          return (
+            <div
+              key={index}
+              className="block bg-surface/30 border border-border/40 rounded-xl p-4 transition-all duration-300"
+            >
+              {content}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

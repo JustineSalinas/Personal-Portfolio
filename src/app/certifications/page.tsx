@@ -30,17 +30,14 @@ export default function CertificationsPage() {
 
         <div className="grid lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-7 space-y-4">
-            {portfolioData.certifications.map((cert, index) => (
-              <a 
-                key={index}
-                href={cert.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block bg-surface/40 hover:bg-surface border border-border/50 hover:border-accent/30 rounded-2xl p-6 transition-all duration-300"
-              >
+            {portfolioData.certifications.map((cert, index) => {
+              const content = (
                 <div className="flex justify-between items-center">
                   <div className="space-y-1">
-                    <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors">
+                    <h3 className={cn(
+                      "text-xl font-bold text-primary transition-colors",
+                      cert.link && "group-hover:text-accent"
+                    )}>
                       {cert.title}
                     </h3>
                     <p className="text-secondary font-medium tracking-wide">
@@ -48,13 +45,39 @@ export default function CertificationsPage() {
                     </p>
                   </div>
                   
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-4">
+                  <div className={cn(
+                    "flex items-center gap-4",
+                    cert.link ? "opacity-0 group-hover:opacity-100 transition-opacity" : "opacity-100"
+                  )}>
                     <span className="text-xs font-medium text-secondary/40">{cert.date}</span>
-                    <ExternalLink size={18} className="text-accent" />
+                    {cert.link && <ExternalLink size={18} className="text-accent" />}
                   </div>
                 </div>
-              </a>
-            ))}
+              );
+
+              if (cert.link) {
+                return (
+                  <a 
+                    key={index}
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block bg-surface/40 hover:bg-surface border border-border/50 hover:border-accent/30 rounded-2xl p-6 transition-all duration-300"
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
+              return (
+                <div 
+                  key={index}
+                  className="block bg-surface/40 border border-border/50 rounded-2xl p-6 transition-all duration-300"
+                >
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
