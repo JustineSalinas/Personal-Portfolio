@@ -11,23 +11,27 @@ const SUGGESTIONS = [
   "What is Adrian's background and experience?",
   "Tell me about Cascade Development Group (CDG)",
   "What projects has Adrian built?",
-  "What certifications does Adrian hold?"
+  "What certifications does Adrian hold?",
+  "What technologies/skills does Adrian specialize in?",
+  "Is Adrian open to job/internship opportunities?",
+  "Tell me about the PharmaTrack project",
+  "Tell me about the Solmate (E-Ferry) project",
+  "How can I contact Adrian?"
 ];
 
 export const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [input, setInput] = useState('');
   const { messages, sendMessage, status } = useChat({ transport: new TextStreamChatTransport({ api: '/api/chat' }) });
   const isLoading = status === 'streaming' || status === 'submitted';
+  const chatEndRef = React.useRef<HTMLDivElement>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-    sendMessage({ text: input });
-    setInput('');
-  };
+  React.useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [messages, isLoading, isOpen]);
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end" suppressHydrationWarning={true}>
@@ -38,7 +42,7 @@ export const ChatbotWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             className="bg-surface border border-border shadow-2xl rounded-2xl w-80 sm:w-96 mb-4 overflow-hidden flex flex-col"
-            style={{ height: '500px', maxHeight: '70vh' }}
+            style={{ height: '520px', maxHeight: '75vh' }}
           >
             {/* Header */}
             <div className="bg-accent text-background p-4 flex justify-between items-center">
@@ -57,22 +61,9 @@ export const ChatbotWidget = () => {
             {/* Chat Area */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background">
               {messages.length === 0 && (
-                <div className="space-y-4 mt-4">
-                  <p className="text-center text-secondary text-sm">
-                    Hi! I'm an AI trained on Adrian's portfolio. Ask me anything!
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    {SUGGESTIONS.map((suggestion, index) => (
-                      <button
-                        key={index}
-                        onClick={() => sendMessage({ text: suggestion })}
-                        disabled={isLoading}
-                        className="text-left text-xs bg-surface hover:bg-border/30 border border-border text-primary rounded-xl px-4 py-2.5 transition-all duration-200 hover:border-accent/40 active:scale-[0.98]"
-                      >
-                        {suggestion}
-                      </button>
-                    ))}
-                  </div>
+                <div className="text-center text-secondary text-sm mt-4 space-y-2">
+                  <p className="font-medium text-primary">Hi! I'm Adrian's AI assistant.</p>
+                  <p className="text-xs">Click on any of the suggested questions below to learn more about my work!</p>
                 </div>
               )}
               {messages.map((m) => (
@@ -93,24 +84,27 @@ export const ChatbotWidget = () => {
                   <Loader2 size={16} className="animate-spin" />
                 </div>
               )}
+              <div ref={chatEndRef} />
             </div>
 
-            {/* Input Area */}
-            <form onSubmit={handleSubmit} className="p-3 border-t border-border bg-surface flex gap-2">
-              <input
-                value={input}
-                onChange={handleInputChange}
-                placeholder="Type your question..."
-                className="flex-1 bg-background border border-border rounded-full px-4 py-2 text-sm focus:outline-none focus:border-accent text-primary"
-              />
-              <button 
-                type="submit" 
-                disabled={isLoading || !input.trim()}
-                className="bg-accent hover:bg-accent-hover disabled:opacity-50 text-background rounded-full p-2 h-10 w-10 flex items-center justify-center transition-colors"
-              >
-                <Send size={16} />
-              </button>
-            </form>
+            {/* Quick Questions Area */}
+            <div className="p-3 border-t border-border bg-surface flex flex-col gap-2 max-h-[190px] overflow-y-auto">
+              <span className="text-[10px] font-mono text-secondary/60 uppercase tracking-wider px-1">
+                Suggested Inquiries
+              </span>
+              <div className="flex flex-col gap-1.5">
+                {SUGGESTIONS.map((suggestion, index) => (
+                  <button
+                    key={index}
+                    onClick={() => sendMessage({ text: suggestion })}
+                    disabled={isLoading}
+                    className="text-left text-xs bg-background hover:bg-border/30 border border-border/80 hover:border-accent/40 text-primary rounded-xl px-4 py-2.5 transition-all duration-200 disabled:opacity-50 active:scale-[0.98] cursor-pointer"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
