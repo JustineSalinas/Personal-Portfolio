@@ -7,6 +7,13 @@ import { MessageSquare, X, Send, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 
+const SUGGESTIONS = [
+  "What is Adrian's background and experience?",
+  "Tell me about Cascade Development Group (CDG)",
+  "What projects has Adrian built?",
+  "What certifications does Adrian hold?"
+];
+
 export const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
@@ -50,9 +57,23 @@ export const ChatbotWidget = () => {
             {/* Chat Area */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background">
               {messages.length === 0 && (
-                <p className="text-center text-secondary text-sm mt-4">
-                  Hi! I'm an AI trained on Adrian's portfolio. Ask me anything!
-                </p>
+                <div className="space-y-4 mt-4">
+                  <p className="text-center text-secondary text-sm">
+                    Hi! I'm an AI trained on Adrian's portfolio. Ask me anything!
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {SUGGESTIONS.map((suggestion, index) => (
+                      <button
+                        key={index}
+                        onClick={() => sendMessage({ text: suggestion })}
+                        disabled={isLoading}
+                        className="text-left text-xs bg-surface hover:bg-border/30 border border-border text-primary rounded-xl px-4 py-2.5 transition-all duration-200 hover:border-accent/40 active:scale-[0.98]"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               )}
               {messages.map((m) => (
                 <div 
