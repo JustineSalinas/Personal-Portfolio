@@ -178,7 +178,7 @@ export const portfolioData = {
       github: "https://github.com/JustineSalinas/split-rails",
       demo: "https://split-rails.vercel.app",
       image: "/projects/splitrails.png",
-      badge: "STELLAR APAC"
+      badge: "STELLAR APAC HACKATHON"
     },
     {
       title: "Solmate",
@@ -190,7 +190,7 @@ export const portfolioData = {
       github: "https://github.com/JustineSalinas/E-Ferry",
       demo: "https://e-ferry.vercel.app",
       image: "/projects/solmate.png",
-      badge: "HACKATHON"
+      badge: "1st RUNNER UP HACKATHON"
     },
     {
       title: "PharmaTrack",
