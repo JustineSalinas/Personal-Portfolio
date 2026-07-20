@@ -23,7 +23,36 @@ export const MusicPlayer = () => {
     }
   };
 
-  // Sync volume with player
+  // Listen to messages from YouTube iframe to know when it's fully initialized
+  useEffect(() => {
+    const handleWindowMessage = (event: MessageEvent) => {
+      if (!event.origin.includes('youtube.com')) return;
+
+      try {
+        const data = JSON.parse(event.data);
+        // YouTube API sends 'onReady' when the player is ready to accept postMessage calls
+        if (data.event === 'onReady' || data.event === 'initialDelivery') {
+          setIsReady(true);
+          // Set initial volume immediately
+          if (iframeRef.current && iframeRef.current.contentWindow) {
+            iframeRef.current.contentWindow.postMessage(
+              JSON.stringify({ event: 'command', func: 'setVolume', args: [volume] }),
+              '*'
+            );
+          }
+        }
+      } catch (err) {
+        // Not a JSON message, safe to ignore
+      }
+    };
+
+    window.addEventListener('message', handleWindowMessage);
+    return () => {
+      window.removeEventListener('message', handleWindowMessage);
+    };
+  }, [volume]);
+
+  // Sync volume changes with player
   useEffect(() => {
     if (isReady) {
       sendCommand('setVolume', [volume]);
@@ -57,15 +86,6 @@ export const MusicPlayer = () => {
     }, 400);
   };
 
-  const handleIframeLoad = () => {
-    setIsReady(true);
-    // Initialize volume shortly after load
-    setTimeout(() => {
-      sendCommand('setVolume', [volume]);
-    }, 1000);
-  };
-
-  // Safe window origin extraction
   const getOrigin = () => {
     if (typeof window !== 'undefined') {
       return window.location.origin;
@@ -75,20 +95,20 @@ export const MusicPlayer = () => {
 
   return (
     <>
-      {/* Hidden iframe controller — placed offscreen to prevent visibility blocks */}
+      {/* Hidden iframe controller — placed in viewport but sized 1x1 to satisfy browser security policies */}
       <iframe
         ref={iframeRef}
-        onLoad={handleIframeLoad}
         src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&controls=0&loop=1&playlist=${VIDEO_ID}&origin=${encodeURIComponent(getOrigin())}`}
         title="Naruto Loneliness Audio Stream"
         style={{
           position: 'fixed',
-          width: '200px',
-          height: '200px',
-          bottom: '24px',
-          left: '-300px', // Hidden offscreen
+          width: '1px',
+          height: '1px',
+          bottom: '10px',
+          left: '10px',
+          opacity: 0.01,
           pointerEvents: 'none',
-          zIndex: -100,
+          zIndex: -9999,
           border: 'none',
         }}
         allow="autoplay"
@@ -136,15 +156,16 @@ export const MusicPlayer = () => {
           </div>
         </div>
 
-        {/* Pill button */}
+        {/* Pill button with premium hover & active effects */}
         <button
           onClick={togglePlay}
           disabled={!isReady}
           aria-label={isPlaying ? 'Pause music' : 'Play music'}
-          className={`flex items-center gap-2.5 px-4 py-2.5 rounded-full border transition-all duration-300
+          className={`flex items-center gap-2.5 px-4 py-2.5 rounded-full border transition-all duration-300 ease-out
+            hover:scale-[1.04] active:scale-[0.96] hover:shadow-lg
             ${isPlaying
-              ? 'bg-primary border-primary text-background shadow-lg'
-              : 'bg-background border-border text-primary hover:border-primary/50 shadow-md'
+              ? 'bg-primary border-primary text-background'
+              : 'bg-background border-border text-primary hover:border-primary/80'
             }
             ${!isReady ? 'opacity-50 cursor-wait' : 'cursor-pointer'}
           `}
@@ -155,7 +176,7 @@ export const MusicPlayer = () => {
               <span
                 key={i}
                 className={`w-[2px] rounded-full transition-all duration-300 ${
-                  isPlaying ? 'bg-background' : 'bg-secondary/40'
+                  isPlaying ? 'bg-background' : 'bg-secondary/40 group-hover:bg-primary'
                 }`}
                 style={{
                   height: isPlaying ? `${h * 100}%` : '28%',
@@ -170,8 +191,8 @@ export const MusicPlayer = () => {
           </div>
 
           <span
-            className={`text-[10px] tracking-[0.2em] uppercase ${
-              isPlaying ? 'text-background' : 'text-secondary/70'
+            className={`text-[10px] tracking-[0.25em] uppercase font-bold transition-colors ${
+              isPlaying ? 'text-background' : 'text-secondary/80 hover:text-primary'
             }`}
           >
             {!isReady ? 'Loading…' : isPlaying ? 'Playing' : 'Music'}
@@ -182,7 +203,9 @@ export const MusicPlayer = () => {
             height="11"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className={isPlaying ? 'text-background' : 'text-secondary/60'}
+            className={`transition-transform duration-300 ${
+              isPlaying ? 'text-background rotate-90' : 'text-secondary/60 hover:text-primary hover:scale-110'
+            }`}
           >
             {isPlaying ? (
               <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
