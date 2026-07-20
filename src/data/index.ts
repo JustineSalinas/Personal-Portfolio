@@ -173,11 +173,12 @@ export const portfolioData = {
       oneLiner: "Collaborative expense-splitting & Stellar escrow platform",
       year: "2026",
       role: "Project Manager & Smart Contract Developer",
-      description: "A collaborative expense splitting and invoice management platform integrated with smart-contract escrows built on the Stellar testnet using USDC. Features transparent on-chain verification, a general ledger (GL) export system for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
+      description: "A collaborative expense-splitting and invoice management platform integrated with smart-contract escrows. Built for the Stellar APAC Hackathon, utilizing the Stellar testnet and USDC. Features transparent on-chain verification, a general ledger (GL) export system for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Stellar SDK", "Recharts"],
       github: "https://github.com/JustineSalinas/split-rails",
       demo: "https://split-rails.vercel.app",
-      image: "/projects/splitrails.png"
+      image: "/projects/splitrails.png",
+      badge: "STELLAR APAC"
     },
     {
       title: "Solmate",
