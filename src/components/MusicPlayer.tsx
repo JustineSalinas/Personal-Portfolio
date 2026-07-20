@@ -9,22 +9,19 @@ declare global {
   }
 }
 
-// RADWIMPS — Nandemonaiya (なんでもないや) / Kimi no Na wa OST
-const VIDEO_ID = 'g652j7o1t78';
+// Naruto Shippuden OST — Loneliness (孤独)
+const VIDEO_ID = 'F0f8sH_W4J0';
 
 export const MusicPlayer = () => {
   const playerRef = useRef<any>(null);
-  const iframeContainerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [volume, setVolume] = useState(40);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const createPlayer = useCallback(() => {
-    if (!window.YT || !window.YT.Player || playerRef.current) return;
-
-    // Ensure the target div exists
+  const initPlayer = useCallback(() => {
+    if (playerRef.current || !window.YT) return;
     const container = document.getElementById('yt-music-player');
     if (!container) return;
 
@@ -40,7 +37,6 @@ export const MusicPlayer = () => {
         iv_load_policy: 3,
         modestbranding: 1,
         rel: 0,
-        origin: window.location.origin,
       },
       events: {
         onReady: (e: any) => {
@@ -48,21 +44,29 @@ export const MusicPlayer = () => {
           setIsReady(true);
         },
         onStateChange: (e: any) => {
-          // 0 = ended → loop it
           if (e.data === 0) {
             playerRef.current?.seekTo(0);
             playerRef.current?.playVideo();
           }
           setIsPlaying(e.data === 1);
         },
-        onError: (e: any) => {
-          console.warn('YouTube player error:', e.data);
-        },
       },
     });
   }, []);
 
   useEffect(() => {
+    let interval: ReturnType<typeof setTimeout>;
+
+    const checkAndInit = () => {
+      if (window.YT && window.YT.Player && document.getElementById('yt-music-player')) {
+        initPlayer();
+        clearInterval(interval);
+      }
+    };
+
+    checkAndInit();
+    interval = setInterval(checkAndInit, 200);
+
     const loadAPI = () => {
       if (!document.getElementById('yt-api-script')) {
         const tag = document.createElement('script');
@@ -73,21 +77,22 @@ export const MusicPlayer = () => {
     };
 
     if (window.YT && window.YT.Player) {
-      // API already loaded (e.g. hot reload)
-      createPlayer();
+      initPlayer();
     } else {
-      window.onYouTubeIframeAPIReady = createPlayer;
+      window.onYouTubeIframeAPIReady = () => {
+        checkAndInit();
+      };
       loadAPI();
     }
 
     return () => {
-      // Cleanup on unmount
+      clearInterval(interval);
       if (playerRef.current) {
         try { playerRef.current.destroy(); } catch {}
         playerRef.current = null;
       }
     };
-  }, [createPlayer]);
+  }, [initPlayer]);
 
   const togglePlay = () => {
     if (!isReady || !playerRef.current) return;
@@ -117,9 +122,8 @@ export const MusicPlayer = () => {
 
   return (
     <>
-      {/* YouTube player target — must stay in DOM */}
+      {/* YouTube player target */}
       <div
-        ref={iframeContainerRef}
         aria-hidden="true"
         style={{
           position: 'fixed',
@@ -155,13 +159,12 @@ export const MusicPlayer = () => {
             {/* Song info */}
             <div>
               <p className="text-[9px] tracking-[0.25em] text-secondary/50 uppercase mb-1">Now Playing</p>
-              <p className="text-[12px] text-primary font-medium leading-snug">Nandemonaiya</p>
-              <p className="text-[10px] text-secondary/60">RADWIMPS — Kimi no Na wa</p>
+              <p className="text-[12px] text-primary font-medium leading-snug">Loneliness</p>
+              <p className="text-[10px] text-secondary/60">Naruto Shippuden OST</p>
             </div>
 
             {/* Volume slider */}
             <div className="flex items-center gap-2">
-              {/* Mute icon */}
               <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" className="text-secondary/50 flex-shrink-0">
                 <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
               </svg>
@@ -174,10 +177,7 @@ export const MusicPlayer = () => {
                 className="flex-1 cursor-pointer"
                 style={{ accentColor: 'var(--primary)', height: '2px' }}
               />
-              {/* Volume icon */}
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" className="text-secondary/50 flex-shrink-0">
-                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
-              </svg>
+              <span className="text-[9px] text-secondary/40 w-5 text-right">{volume}</span>
             </div>
           </div>
         </div>
