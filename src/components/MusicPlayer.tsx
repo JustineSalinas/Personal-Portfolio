@@ -5,65 +5,106 @@ import React, { useRef, useState, useEffect } from 'react';
 // Naruto Shippuden — Loneliness (Lofi Hip Hop Remix by Rifti Beats)
 const VIDEO_ID = 'k5j4Y8rG-Ew';
 
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady?: () => void;
+    YT?: any;
+  }
+}
+
+let apiLoadingPromise: Promise<void> | null = null;
+
+const loadYouTubeAPI = (): Promise<void> => {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if (window.YT && window.YT.Player) return Promise.resolve();
+
+  if (apiLoadingPromise) return apiLoadingPromise;
+
+  apiLoadingPromise = new Promise<void>((resolve) => {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    if (firstScriptTag && firstScriptTag.parentNode) {
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    } else {
+      document.head.appendChild(tag);
+    }
+
+    const previousCallback = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      if (previousCallback) previousCallback();
+      resolve();
+    };
+  });
+
+  return apiLoadingPromise;
+};
+
 export const MusicPlayer = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [volume, setVolume] = useState(40);
+  const [isMounted, setIsMounted] = useState(false);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Send a control command to the YouTube iframe via postMessage
-  const sendCommand = (func: string, args: any[] = []) => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      iframeRef.current.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func, args }),
-        '*'
-      );
-    }
-  };
-
-  // Listen to messages from YouTube iframe to know when it's fully initialized
   useEffect(() => {
-    const handleWindowMessage = (event: MessageEvent) => {
-      if (!event.origin.includes('youtube.com')) return;
+    setIsMounted(true);
+  }, []);
 
-      try {
-        let data = event.data;
-        // YouTube messages can be pre-parsed objects or raw JSON strings depending on browser/version
-        if (typeof data === 'string') {
-          data = JSON.parse(data);
-        }
+  useEffect(() => {
+    if (!isMounted) return;
 
-        if (data && (data.event === 'onReady' || data.event === 'initialDelivery')) {
-          setIsReady(true);
-          sendCommand('setVolume', [volume]);
+    let active = true;
+    let player: any = null;
+
+    loadYouTubeAPI().then(() => {
+      if (!active || !iframeRef.current) return;
+
+      player = new window.YT.Player(iframeRef.current, {
+        events: {
+          onReady: (event: any) => {
+            if (!active) return;
+            setIsReady(true);
+            event.target.setVolume(volume);
+          },
+          onStateChange: (event: any) => {
+            if (!active) return;
+            if (event.data === 1) { // Playing
+              setIsPlaying(true);
+            } else if (event.data === 2) { // Paused
+              setIsPlaying(false);
+            }
+          }
         }
-      } catch (err) {
-        // Safe to ignore
+      });
+      playerRef.current = player;
+    });
+
+    return () => {
+      active = false;
+      if (player && typeof player.destroy === 'function') {
+        player.destroy();
       }
     };
-
-    window.addEventListener('message', handleWindowMessage);
-    return () => {
-      window.removeEventListener('message', handleWindowMessage);
-    };
-  }, [volume]);
+  }, [isMounted]);
 
   // Sync volume changes with player
   useEffect(() => {
-    if (isReady) {
-      sendCommand('setVolume', [volume]);
+    if (isReady && playerRef.current && typeof playerRef.current.setVolume === 'function') {
+      playerRef.current.setVolume(volume);
     }
   }, [volume, isReady]);
 
   const togglePlay = () => {
-    if (!isReady) return;
+    if (!isReady || !playerRef.current) return;
     if (isPlaying) {
-      sendCommand('pauseVideo');
+      playerRef.current.pauseVideo();
       setIsPlaying(false);
     } else {
-      sendCommand('playVideo');
+      playerRef.current.playVideo();
       setIsPlaying(true);
     }
   };
@@ -84,42 +125,28 @@ export const MusicPlayer = () => {
     }, 400);
   };
 
-  // Fallback: If onLoad triggers, make it interactive immediately rather than waiting for YT callbacks
-  const handleIframeLoad = () => {
-    setIsReady(true);
-    // Initialize volume shortly after load
-    setTimeout(() => {
-      sendCommand('setVolume', [volume]);
-    }, 500);
-  };
-
-  const getOrigin = () => {
-    if (typeof window !== 'undefined') {
-      return window.location.origin;
-    }
-    return '';
-  };
-
   return (
     <>
       {/* Hidden iframe controller — standard size but offscreen to satisfy browser autoplay policies */}
-      <iframe
-        ref={iframeRef}
-        onLoad={handleIframeLoad}
-        src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&controls=0&loop=1&playlist=${VIDEO_ID}&origin=${encodeURIComponent(getOrigin())}`}
-        title="Naruto Loneliness Audio Stream"
-        style={{
-          position: 'fixed',
-          width: '300px',
-          height: '200px',
-          bottom: '24px',
-          left: '-500px', // Hidden offscreen
-          pointerEvents: 'none',
-          zIndex: -100,
-          border: 'none',
-        }}
-        allow="autoplay"
-      />
+      {isMounted && (
+        <iframe
+          ref={iframeRef}
+          src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&controls=0&loop=1&playlist=${VIDEO_ID}&origin=${encodeURIComponent(window.location.origin)}`}
+          title="Naruto Loneliness Audio Stream"
+          style={{
+            position: 'fixed',
+            width: '300px',
+            height: '200px',
+            bottom: '24px',
+            left: '-500px', // Hidden offscreen
+            pointerEvents: 'none',
+            zIndex: -100,
+            border: 'none',
+          }}
+          allow="autoplay"
+          sandbox="allow-scripts allow-same-origin allow-presentation"
+        />
+      )}
 
       {/* Floating widget */}
       <div
