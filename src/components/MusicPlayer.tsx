@@ -1,113 +1,49 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
+import React, { useRef, useState, useEffect } from 'react';
 
 // Naruto Shippuden OST — Loneliness (孤独)
 const VIDEO_ID = 'F0f8sH_W4J0';
 
 export const MusicPlayer = () => {
-  const playerRef = useRef<any>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [volume, setVolume] = useState(40);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const initPlayer = useCallback(() => {
-    if (playerRef.current || !window.YT) return;
-    const container = document.getElementById('yt-music-player');
-    if (!container) return;
-
-    playerRef.current = new window.YT.Player('yt-music-player', {
-      height: '1',
-      width: '1',
-      videoId: VIDEO_ID,
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        disablekb: 1,
-        fs: 0,
-        iv_load_policy: 3,
-        modestbranding: 1,
-        rel: 0,
-        origin: window.location.origin,
-      },
-      events: {
-        onReady: (e: any) => {
-          e.target.setVolume(40);
-          setIsReady(true);
-        },
-        onStateChange: (e: any) => {
-          if (e.data === 0) {
-            playerRef.current?.seekTo(0);
-            playerRef.current?.playVideo();
-          }
-          setIsPlaying(e.data === 1);
-        },
-      },
-    });
-  }, []);
-
-  useEffect(() => {
-    let interval: ReturnType<typeof setTimeout>;
-
-    const checkAndInit = () => {
-      if (window.YT && window.YT.Player && document.getElementById('yt-music-player')) {
-        initPlayer();
-        clearInterval(interval);
-      }
-    };
-
-    checkAndInit();
-    interval = setInterval(checkAndInit, 200);
-
-    const loadAPI = () => {
-      if (!document.getElementById('yt-api-script')) {
-        const tag = document.createElement('script');
-        tag.id = 'yt-api-script';
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
-      }
-    };
-
-    if (window.YT && window.YT.Player) {
-      initPlayer();
-    } else {
-      window.onYouTubeIframeAPIReady = () => {
-        checkAndInit();
-      };
-      loadAPI();
+  // Send a control command to the YouTube iframe via postMessage
+  const sendCommand = (func: string, args: any[] = []) => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func, args }),
+        '*'
+      );
     }
+  };
 
-    return () => {
-      clearInterval(interval);
-      if (playerRef.current) {
-        try { playerRef.current.destroy(); } catch {}
-        playerRef.current = null;
-      }
-    };
-  }, [initPlayer]);
+  // Sync volume with player
+  useEffect(() => {
+    if (isReady) {
+      sendCommand('setVolume', [volume]);
+    }
+  }, [volume, isReady]);
 
   const togglePlay = () => {
-    if (!isReady || !playerRef.current) return;
+    if (!isReady) return;
     if (isPlaying) {
-      playerRef.current.pauseVideo();
+      sendCommand('pauseVideo');
+      setIsPlaying(false);
     } else {
-      playerRef.current.playVideo();
+      sendCommand('playVideo');
+      setIsPlaying(true);
     }
   };
 
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = Number(e.target.value);
     setVolume(val);
-    playerRef.current?.setVolume(val);
   };
 
   const handleMouseEnter = () => {
@@ -121,23 +57,42 @@ export const MusicPlayer = () => {
     }, 400);
   };
 
+  const handleIframeLoad = () => {
+    setIsReady(true);
+    // Initialize volume shortly after load
+    setTimeout(() => {
+      sendCommand('setVolume', [volume]);
+    }, 1000);
+  };
+
+  // Safe window origin extraction
+  const getOrigin = () => {
+    if (typeof window !== 'undefined') {
+      return window.location.origin;
+    }
+    return '';
+  };
+
   return (
     <>
-      {/* YouTube player target — placed off-screen to satisfy YouTube's player layout checks */}
-      <div
-        aria-hidden="true"
+      {/* Hidden iframe controller — placed offscreen to prevent visibility blocks */}
+      <iframe
+        ref={iframeRef}
+        onLoad={handleIframeLoad}
+        src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&controls=0&loop=1&playlist=${VIDEO_ID}&origin=${encodeURIComponent(getOrigin())}`}
+        title="Naruto Loneliness Audio Stream"
         style={{
           position: 'fixed',
           width: '200px',
           height: '200px',
           bottom: '24px',
-          left: '-300px',
+          left: '-300px', // Hidden offscreen
           pointerEvents: 'none',
           zIndex: -100,
+          border: 'none',
         }}
-      >
-        <div id="yt-music-player" />
-      </div>
+        allow="autoplay"
+      />
 
       {/* Floating widget */}
       <div
