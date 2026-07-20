@@ -2,8 +2,8 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 
-// Naruto Shippuden OST — Loneliness (孤独)
-const VIDEO_ID = 'F0f8sH_W4J0';
+// Naruto Shippuden — Loneliness (Lofi Hip Hop Remix by Rifti Beats)
+const VIDEO_ID = 'k5j4Y8rG-Ew';
 
 export const MusicPlayer = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -140,8 +140,8 @@ export const MusicPlayer = () => {
             {/* Song info */}
             <div>
               <p className="text-[9px] tracking-[0.25em] text-secondary/50 uppercase mb-1">Now Playing</p>
-              <p className="text-[12px] text-primary font-medium leading-snug">Loneliness</p>
-              <p className="text-[10px] text-secondary/60">Naruto Shippuden OST</p>
+              <p className="text-[12px] text-primary font-medium leading-snug">Loneliness (Lofi Remix)</p>
+              <p className="text-[10px] text-secondary/60">Rifti Beats</p>
             </div>
 
             {/* Volume slider */}
