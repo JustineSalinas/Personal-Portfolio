@@ -172,7 +172,7 @@ export const portfolioData = {
       title: "SplitRails",
       oneLiner: "Collaborative expense-splitting & Stellar escrow platform",
       year: "2026",
-      role: "Solo Developer",
+      role: "Project Manager & Smart Contract Developer",
       description: "A collaborative expense splitting and invoice management platform integrated with smart-contract escrows built on the Stellar testnet using USDC. Features transparent on-chain verification, a general ledger (GL) export system for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Stellar SDK", "Recharts"],
       github: "https://github.com/JustineSalinas/split-rails",
