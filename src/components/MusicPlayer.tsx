@@ -37,6 +37,7 @@ export const MusicPlayer = () => {
         iv_load_policy: 3,
         modestbranding: 1,
         rel: 0,
+        origin: window.location.origin,
       },
       events: {
         onReady: (e: any) => {
