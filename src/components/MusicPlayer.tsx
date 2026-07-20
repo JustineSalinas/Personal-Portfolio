@@ -29,20 +29,18 @@ export const MusicPlayer = () => {
       if (!event.origin.includes('youtube.com')) return;
 
       try {
-        const data = JSON.parse(event.data);
-        // YouTube API sends 'onReady' when the player is ready to accept postMessage calls
-        if (data.event === 'onReady' || data.event === 'initialDelivery') {
+        let data = event.data;
+        // YouTube messages can be pre-parsed objects or raw JSON strings depending on browser/version
+        if (typeof data === 'string') {
+          data = JSON.parse(data);
+        }
+
+        if (data && (data.event === 'onReady' || data.event === 'initialDelivery')) {
           setIsReady(true);
-          // Set initial volume immediately
-          if (iframeRef.current && iframeRef.current.contentWindow) {
-            iframeRef.current.contentWindow.postMessage(
-              JSON.stringify({ event: 'command', func: 'setVolume', args: [volume] }),
-              '*'
-            );
-          }
+          sendCommand('setVolume', [volume]);
         }
       } catch (err) {
-        // Not a JSON message, safe to ignore
+        // Safe to ignore
       }
     };
 
@@ -86,6 +84,15 @@ export const MusicPlayer = () => {
     }, 400);
   };
 
+  // Fallback: If onLoad triggers, make it interactive immediately rather than waiting for YT callbacks
+  const handleIframeLoad = () => {
+    setIsReady(true);
+    // Initialize volume shortly after load
+    setTimeout(() => {
+      sendCommand('setVolume', [volume]);
+    }, 500);
+  };
+
   const getOrigin = () => {
     if (typeof window !== 'undefined') {
       return window.location.origin;
@@ -98,6 +105,7 @@ export const MusicPlayer = () => {
       {/* Hidden iframe controller — placed in viewport but sized 1x1 to satisfy browser security policies */}
       <iframe
         ref={iframeRef}
+        onLoad={handleIframeLoad}
         src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&controls=0&loop=1&playlist=${VIDEO_ID}&origin=${encodeURIComponent(getOrigin())}`}
         title="Naruto Loneliness Audio Stream"
         style={{
