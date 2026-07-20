@@ -9,8 +9,8 @@ declare global {
   }
 }
 
-// Ludovico Einaudi — Experience (Official Live Session)
-const VIDEO_ID = 'hN2yMTF8Mws';
+// RADWIMPS — Nandemonaiya (なんでもないや) / Kimi no Na wa OST
+const VIDEO_ID = 'g652j7o1t78';
 
 export const MusicPlayer = () => {
   const playerRef = useRef<any>(null);
@@ -155,8 +155,8 @@ export const MusicPlayer = () => {
             {/* Song info */}
             <div>
               <p className="text-[9px] tracking-[0.25em] text-secondary/50 uppercase mb-1">Now Playing</p>
-              <p className="text-[12px] text-primary font-medium leading-snug">Experience</p>
-              <p className="text-[10px] text-secondary/60">Ludovico Einaudi</p>
+              <p className="text-[12px] text-primary font-medium leading-snug">Nandemonaiya</p>
+              <p className="text-[10px] text-secondary/60">RADWIMPS — Kimi no Na wa</p>
             </div>
 
             {/* Volume slider */}
