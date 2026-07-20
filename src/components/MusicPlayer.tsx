@@ -102,7 +102,7 @@ export const MusicPlayer = () => {
 
   return (
     <>
-      {/* Hidden iframe controller — placed in viewport but sized 1x1 to satisfy browser security policies */}
+      {/* Hidden iframe controller — standard size but offscreen to satisfy browser autoplay policies */}
       <iframe
         ref={iframeRef}
         onLoad={handleIframeLoad}
@@ -110,13 +110,12 @@ export const MusicPlayer = () => {
         title="Naruto Loneliness Audio Stream"
         style={{
           position: 'fixed',
-          width: '1px',
-          height: '1px',
-          bottom: '10px',
-          left: '10px',
-          opacity: 0.01,
+          width: '300px',
+          height: '200px',
+          bottom: '24px',
+          left: '-500px', // Hidden offscreen
           pointerEvents: 'none',
-          zIndex: -9999,
+          zIndex: -100,
           border: 'none',
         }}
         allow="autoplay"
