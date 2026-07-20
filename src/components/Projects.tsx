@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { portfolioData } from '@/data';
-import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
@@ -164,7 +164,7 @@ export const Projects = () => {
                                 <h3 className="text-2xl md:text-3xl font-display italic font-light text-primary group-hover:text-accent transition-colors flex items-center gap-3 flex-wrap">
                                   {project.title}
                                   {(project as any).badge && (
-                                    <span className="px-2.5 py-0.5 text-[9px] tracking-wider uppercase font-bold bg-accent/12 border border-accent/25 text-accent rounded-full not-italic font-mono">
+                                    <span className="px-2.5 py-0.5 text-[9px] tracking-wider uppercase font-bold bg-accent/12 border border-accent/25 text-accent rounded-full not-italic font-mono transition-all duration-300 hover:bg-accent/20 hover:border-accent/45 hover:scale-[1.03] cursor-default">
                                       {(project as any).badge}
                                     </span>
                                   )}
@@ -188,16 +188,6 @@ export const Projects = () => {
                                 )}
                               </div>
                               <div className="flex gap-3">
-                                {project.github && (
-                                  <a
-                                    href={project.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2 rounded-full bg-background/50 border border-border/50 text-secondary hover:text-accent hover:border-accent/40 transition-all"
-                                  >
-                                    <Github size={18} />
-                                  </a>
-                                )}
                                 {project.demo && (
                                   <a
                                     href={project.demo}

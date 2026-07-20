@@ -12,7 +12,7 @@ export const portfolioData = {
     ],
     tags: ["NEXT.JS", "TYPESCRIPT", "AI / ML", "FULL-STACK", "IOT", "STARTUP FOUNDER", "DISTRIBUTED SYSTEMS"],
     quickFacts: {
-      status: "IT 2nd Year — GWA 1.85",
+      status: "IT 3rd Year Level",
       focus: "Full-Stack Dev, AI Engineering, IoT",
       lookingFor: "Internships, Part-time, Remote",
       available: "Immediately"
@@ -94,7 +94,7 @@ export const portfolioData = {
   ],
   education: [
     {
-      level: "College - Second Year",
+      level: "College - Third Year",
       institution: "University of San Agustin",
       degree: "Bachelor of Science in Information Technology",
       date: "2024 - Present",
@@ -175,7 +175,6 @@ export const portfolioData = {
       role: "Project Manager & Smart Contract Developer",
       description: "A collaborative expense-splitting and invoice management platform integrated with smart-contract escrows. Built for the Stellar APAC Hackathon, utilizing the Stellar testnet and USDC. Features transparent on-chain verification, a general ledger (GL) export system for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Stellar SDK", "Recharts"],
-      github: "https://github.com/JustineSalinas/split-rails",
       demo: "https://split-rails.vercel.app",
       image: "/projects/splitrails.png",
       badge: "STELLAR APAC HACKATHON"
@@ -187,7 +186,6 @@ export const portfolioData = {
       role: "Solo Developer",
       description: "A web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka. Built in under 3 days for the Nexus Philippines Hackathon 2026, integrating real-time IoT feeds and geospatial mapping to bridge hardware data with capital planning.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
-      github: "https://github.com/JustineSalinas/E-Ferry",
       demo: "https://e-ferry.vercel.app",
       image: "/projects/solmate.png",
       badge: "1st RUNNER UP HACKATHON"
@@ -199,7 +197,6 @@ export const portfolioData = {
       role: "Project Manager & Lead Developer",
       description: "A QR-based attendance tracking system deployed for the University of San Agustin Pharmacy Department. Supports 700+ students with role-based access (Student/Faculty/Admin), real-time analytics dashboards, and zero physical hardware dependencies.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
-      github: "https://github.com/JustineSalinas/PharmaTrack",
       image: "/projects/pharmatrack.png"
     },
     {
@@ -209,7 +206,6 @@ export const portfolioData = {
       role: "Solo Developer",
       description: "An agile workspace for developers combining a Markdown code journal, Pomodoro focus sessions, and sprint task management. Features PWA offline support and real-time collaboration built with Next.js 15, Supabase, and Clerk.",
       techStack: ["Next.js 15", "TypeScript 5", "Supabase", "PostgreSQL", "Clerk"],
-      github: "https://github.com/JustineSalinas/Commit",
       demo: "https://commit-beta.vercel.app",
       image: "/projects/commit.png"
     },
@@ -220,7 +216,6 @@ export const portfolioData = {
       role: "Solo Developer",
       description: "Designed a dark-themed PWA tracking tuition assessments, savings milestones, debt ledgers, and family project proposals — solving a real household financial visibility problem. Implemented real-time Supabase sync for multi-device collaboration with PWA offline fallback, reflecting strong product intuition and self-driven initiative.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "PWA"],
-      github: "https://github.com/JustineSalinas/famly-app",
       image: "/projects/famly.png"
     },
     {
@@ -230,7 +225,6 @@ export const portfolioData = {
       role: "Solo Developer",
       description: "An innovative tool that translates sign language into text/speech in real-time using computer vision and AI models — making communication accessible without specialized hardware.",
       techStack: ["React.js", "Python 3", "FastAPI", "MediaPipe", "Gemini API"],
-      github: "https://github.com/JustineSalinas/SignSync",
       image: "/projects/signsync.png"
     },
     {
@@ -240,7 +234,6 @@ export const portfolioData = {
       role: "Project Manager",
       description: "An IoT-based waste management solution that monitors bin fill levels using ultrasonic sensors and optimizes collection routes in real time via a web dashboard.",
       techStack: ["Arduino UNO", "Python", "ESP8266", "Sensors"],
-      github: "https://github.com/JustineSalinas/BinSense",
       images: ["/projects/binsense1.jpg", "/projects/binsense2.jpg"]
     }
   ],
