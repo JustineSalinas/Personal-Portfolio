@@ -8,6 +8,7 @@ import { Certifications } from '@/components/Certifications';
 import { Skills } from '@/components/Skills';
 import { Footer } from '@/components/Footer';
 import { SubtleBackground } from '@/components/SubtleBackground';
+import { MusicPlayer } from '@/components/MusicPlayer';
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       </section>
       <Skills />
       <Footer />
+      <MusicPlayer />
     </main>
   );
 }

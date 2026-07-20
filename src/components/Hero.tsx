@@ -89,7 +89,7 @@ export const Hero = () => {
               className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 mb-12"
             >
               <span className="text-base md:text-lg font-sans font-medium text-primary">
-                {portfolioData.personal.titles[0]}
+                AI-First Software Engineer
               </span>
               <span className="hidden sm:block w-1 h-1 rounded-full bg-accent/60" />
               <span className="text-base md:text-lg font-sans text-secondary">
@@ -105,7 +105,7 @@ export const Hero = () => {
               className="flex gap-12"
             >
               {[
-                { num: '+6', label: 'Projects built' },
+                { num: '+12', label: 'Projects built' },
                 { num: `+${portfolioData.experience.length}`, label: 'Roles & exp' },
               ].map(({ num, label }) => (
                 <div key={label}>
@@ -150,7 +150,7 @@ export const Hero = () => {
                       {portfolioData.personal.name}
                     </p>
                     <p className="text-[9px] font-mono text-white/60 tracking-wider">
-                      {portfolioData.personal.titles[0]}
+                      Student Founder
                     </p>
                   </div>
                   <div className="flex items-center gap-1.5">

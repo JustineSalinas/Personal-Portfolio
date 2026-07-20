@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: "Adrian Salinas",
     initials: "AJ",
-    titles: ["Full-Stack AI Developer", "IT Solutions Founder", "1st Runner-Up · Nexus PH Hackathon 2026"],
+    titles: ["Student Founder", "AI-First Software Engineer", "1st Runner-Up · Nexus PH Hackathon 2026"],
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
     bio: "Full-Stack Developer and IT Solutions Founder from Iloilo. I ship real systems — a QR attendance platform for 700+ users, a hackathon-winning IoT dashboard, and a functioning startup (CDG). I build with Next.js, TypeScript, Supabase, and Python. I prefer shipping over collecting buzzwords.",
@@ -100,7 +100,7 @@ export const portfolioData = {
       date: "2024 - Present",
       achievements: [
         { role: "Head of Design", org: "CAS (College of Arts & Sciences)" },
-        { role: "Mobile App Lead", org: "ITSA (IT School Organization)" },
+        { role: "Web Development Lead", org: "ITSA (IT School Organization)" },
       ]
     },
     {

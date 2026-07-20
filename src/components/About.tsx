@@ -67,20 +67,36 @@ export const About = () => {
                     May 21–23, 2026
                   </div>
                 </div>
-                {/* Next Hackathon */}
+                {/* National AI Hackathon */}
                 <div className="border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors">
                   <div className="flex items-center gap-4">
                     <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
                       <Trophy size={16} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-primary text-base mb-0.5">Next Hackathon</h4>
+                      <h4 className="font-bold text-primary text-base mb-0.5">Currently Top 5 Finalists (ongoing)</h4>
                       <p className="text-sm text-secondary">National AI Hackathon — @ ICC Iloilo City, Philippines</p>
                       <p className="text-xs text-secondary/50 mt-0.5 italic">Building an AI-Ready Future, Together</p>
                     </div>
                   </div>
                   <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
                     Aug 3–5, 2026
+                  </div>
+                </div>
+
+                {/* Stellar APAC Hackathon */}
+                <div className="border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
+                      <Trophy size={16} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-primary text-base mb-0.5">Participant in Regional Hackathon</h4>
+                      <p className="text-sm text-secondary">Stellar APAC Hackathon</p>
+                    </div>
+                  </div>
+                  <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
+                    July 2026
                   </div>
                 </div>
               </div>
