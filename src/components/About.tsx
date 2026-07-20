@@ -52,10 +52,10 @@ export const About = () => {
               <span className="section-label block mb-4">Hackathons</span>
               <div className="flex flex-col gap-3">
                 {/* Nexus Hackathon */}
-                <div className="border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors">
+                <div className="group border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02]">
                   <div className="flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
-                      <Trophy size={16} />
+                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
+                      <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
                     </div>
                     <div>
                       <h4 className="font-bold text-primary text-base mb-0.5">1st Runner Up</h4>
@@ -68,10 +68,10 @@ export const About = () => {
                   </div>
                 </div>
                 {/* National AI Hackathon */}
-                <div className="border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors">
+                <div className="group border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02]">
                   <div className="flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
-                      <Trophy size={16} />
+                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
+                      <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
                     </div>
                     <div>
                       <h4 className="font-bold text-primary text-base mb-0.5">Currently Top 5 Finalists (ongoing)</h4>
@@ -85,10 +85,10 @@ export const About = () => {
                 </div>
 
                 {/* Stellar APAC Hackathon */}
-                <div className="border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors">
+                <div className="group border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02]">
                   <div className="flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
-                      <Trophy size={16} />
+                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
+                      <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
                     </div>
                     <div>
                       <h4 className="font-bold text-primary text-base mb-0.5">Participant in Regional Hackathon</h4>
