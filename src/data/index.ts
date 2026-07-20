@@ -169,6 +169,17 @@ export const portfolioData = {
   ],
   projects: [
     {
+      title: "SplitRails",
+      oneLiner: "Collaborative expense-splitting & Stellar escrow platform",
+      year: "2026",
+      role: "Solo Developer",
+      description: "A collaborative expense splitting and invoice management platform integrated with smart-contract escrows built on the Stellar testnet using USDC. Features transparent on-chain verification, a general ledger (GL) export system for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
+      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Stellar SDK", "Recharts"],
+      github: "https://github.com/JustineSalinas/split-rails",
+      demo: "https://split-rails.vercel.app",
+      image: "/projects/splitrails.png"
+    },
+    {
       title: "Solmate",
       oneLiner: "Financial & telemetry dashboard for E-Bangka",
       year: "2026",
