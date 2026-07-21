@@ -121,6 +121,14 @@
     @apply backdrop-blur-md border border-border;
   }
 
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .section-padding {
     @apply py-16 md:py-24 lg:py-32;
   }

@@ -2,8 +2,8 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 
-// Naruto Shippuden — Loneliness (Lofi Hip Hop Remix by Rifti Beats)
-const VIDEO_ID = 'k5j4Y8rG-Ew';
+// Naruto OST — Loneliness (Kodoku) slowed
+const VIDEO_ID = '6eIV1vDMGk0';
 
 declare global {
   interface Window {
@@ -125,13 +125,15 @@ export const MusicPlayer = () => {
     }, 400);
   };
 
+  if (!isMounted) return null;
+
   return (
     <>
       {/* Hidden iframe controller — standard size but offscreen to satisfy browser autoplay policies */}
       {isMounted && (
         <iframe
           ref={iframeRef}
-          src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&controls=0&loop=1&playlist=${VIDEO_ID}&origin=${encodeURIComponent(window.location.origin)}`}
+          src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&controls=0&loop=1&playlist=${VIDEO_ID}&start=7&origin=${encodeURIComponent(window.location.origin)}`}
           title="Naruto Loneliness Audio Stream"
           style={{
             position: 'fixed',
@@ -167,8 +169,8 @@ export const MusicPlayer = () => {
             {/* Song info */}
             <div>
               <p className="text-[9px] tracking-[0.25em] text-secondary/50 uppercase mb-1">Now Playing</p>
-              <p className="text-[12px] text-primary font-medium leading-snug">Loneliness (Lofi Remix)</p>
-              <p className="text-[10px] text-secondary/60">Rifti Beats</p>
+              <p className="text-[12px] text-primary font-medium leading-snug">Loneliness (Slowed)</p>
+              <p className="text-[10px] text-secondary/60">Naruto OST</p>
             </div>
 
             {/* Volume slider */}

@@ -1,18 +1,159 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, MouseEvent } from 'react';
 import { portfolioData } from '@/data';
-import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, Terminal, Cpu, User, Briefcase, Award } from 'lucide-react';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence, PanInfo } from 'framer-motion';
-import Tilt from 'react-parallax-tilt';
+import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from 'framer-motion';
+
+// Bento Card Component with Mouse Cursor Spotlight Glow
+const BentoCard = ({
+  project,
+  className,
+}: {
+  project: typeof portfolioData.projects[0];
+  className?: string;
+}) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  const isWide = className?.includes('md:col-span-2');
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4 }}
+      onMouseMove={handleMouseMove}
+      className={cn(
+        'group relative rounded-2xl border border-border/40 bg-surface/40 hover:bg-surface/60 transition-colors p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md hover:border-accent/20 h-full',
+        className
+      )}
+    >
+      {/* Spotlight radial gradient overlay tracking cursor */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 z-0"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              350px circle at ${mouseX}px ${mouseY}px,
+              color-mix(in srgb, var(--accent), transparent 93%),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+
+      {/* Content wrapper */}
+      <div className={cn('relative z-10 flex flex-col h-full gap-5 w-full', isWide && 'md:flex-row md:items-center')}>
+        {/* Project details */}
+        <div className={cn('flex flex-col flex-1 justify-between h-full gap-4', isWide && 'md:max-w-[55%] md:pr-4')}>
+          <div className="space-y-3.5">
+            {/* Upper label and demo link */}
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-[9px] font-mono text-accent tracking-[0.25em] uppercase">
+                {project.oneLiner}
+              </span>
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-full bg-background border border-border text-secondary hover:text-accent hover:border-accent/40 transition-colors"
+                  aria-label={`Open demo for ${project.title}`}
+                >
+                  <ArrowUpRight size={14} />
+                </a>
+              )}
+            </div>
+
+            {/* Title, Badge & Meta */}
+            <div className="space-y-2">
+              <h3 className="text-xl md:text-2xl font-display italic font-light text-primary flex items-center gap-2.5 flex-wrap">
+                {project.title}
+                {project.badge && (
+                  <span className="px-2.5 py-0.5 text-[8px] tracking-wider uppercase font-bold bg-accent/12 border border-accent/20 text-accent rounded-full not-italic font-mono">
+                    {project.badge}
+                  </span>
+                )}
+              </h3>
+              {((project as any).year || (project as any).role) && (
+                <div className="flex items-center gap-2 font-mono text-[9px] text-secondary/60 tracking-wider uppercase">
+                  {(project as any).role && <span>{(project as any).role}</span>}
+                  {(project as any).year && (project as any).role && <span className="w-1 h-1 rounded-full bg-secondary/30" />}
+                  {(project as any).year && <span>{(project as any).year}</span>}
+                </div>
+              )}
+            </div>
+
+            {/* Description */}
+            <p className="text-secondary text-xs md:text-sm leading-relaxed">
+              {project.description}
+            </p>
+          </div>
+
+          {/* Tech tags */}
+          <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border/20">
+            {project.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="px-2.5 py-1 bg-background border border-border/40 rounded-full text-[9px] font-mono text-secondary/80"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Mockup / Image visualization */}
+        {((project as any).image || (project as any).images) && (
+          <div
+            className={cn(
+              'relative w-full rounded-xl overflow-hidden border border-border/30 bg-black/5 dark:bg-white/[0.02] flex items-center justify-center p-2 group-hover:scale-[1.015] transition-all duration-500',
+              isWide ? 'h-48 md:h-64 md:flex-1' : 'h-40 md:h-44'
+            )}
+          >
+            {(project as any).images ? (
+              <div className="flex h-full w-full gap-2">
+                {(project as any).images.map((img: string, idx: number) => (
+                  <div
+                    key={idx}
+                    className="flex-1 relative rounded-lg overflow-hidden bg-background/50 border border-border/20 p-1 flex items-center justify-center"
+                  >
+                    <img
+                      src={img}
+                      alt={`${project.title} view ${idx + 1}`}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <img
+                src={(project as any).image}
+                alt={project.title}
+                className="max-w-full max-h-full object-contain p-1"
+              />
+            )}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+};
 
 export const Projects = () => {
   const { ref, isVisible } = useIsVisible();
   const [filter, setFilter] = useState('All');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const filters = useMemo(() => {
     return ['All', 'Next.js', 'React.js', 'Python', 'TypeScript'];
@@ -25,16 +166,11 @@ export const Projects = () => {
     );
   }, [filter]);
 
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [filter]);
-
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
-
-  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    if (info.offset.x < -50) nextSlide();
-    else if (info.offset.x > 50) prevSlide();
+  const getCardSpan = (title: string) => {
+    if (title === 'SplitRails' || title === 'Commit') {
+      return 'md:col-span-2';
+    }
+    return 'md:col-span-1';
   };
 
   return (
@@ -45,7 +181,7 @@ export const Projects = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         )}
       >
-        {/* Header */}
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <div className="flex items-center gap-4 mb-5">
@@ -61,7 +197,7 @@ export const Projects = () => {
             </h2>
           </div>
 
-          {/* Filters */}
+          {/* Filtering Tags */}
           <div className="flex flex-wrap gap-2">
             {filters.map((f) => (
               <button
@@ -80,197 +216,18 @@ export const Projects = () => {
           </div>
         </div>
 
-        <div className="relative group/slider" ref={containerRef}>
-          {/* Left arrow */}
-          <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-20">
-            <button
-              onClick={prevSlide}
-              className="p-3 rounded-full bg-surface/80 backdrop-blur-md border border-border/60 text-secondary hover:text-accent hover:border-accent/40 transition-all shadow-xl group/btn"
-              aria-label="Previous project"
-            >
-              <ChevronLeft size={22} className="group-hover/btn:-translate-x-0.5 transition-transform" />
-            </button>
-          </div>
-
-          {/* Right arrow */}
-          <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-20">
-            <button
-              onClick={nextSlide}
-              className="p-3 rounded-full bg-surface/80 backdrop-blur-md border border-border/60 text-secondary hover:text-accent hover:border-accent/40 transition-all shadow-xl group/btn"
-              aria-label="Next project"
-            >
-              <ChevronRight size={22} className="group-hover/btn:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
-
-          {/* Slider */}
-          <div className="overflow-x-hidden px-4">
-            <div className="relative h-[600px] sm:h-[580px] md:h-[660px] flex items-center justify-center">
-              <AnimatePresence mode="popLayout" initial={false}>
-                {filteredProjects.map((project, index) => {
-                  const isCenter = index === currentIndex;
-                  const isLeft = index === (currentIndex - 1 + filteredProjects.length) % filteredProjects.length;
-                  const isRight = index === (currentIndex + 1) % filteredProjects.length;
-
-                  if (!isCenter && !isLeft && !isRight) return null;
-
-                  return (
-                    <motion.div
-                      key={project.title}
-                      initial={{ opacity: 0, scale: 0.82, x: isLeft ? -300 : 300, zIndex: 0 }}
-                      animate={{
-                        opacity: isCenter ? 1 : 0.35,
-                        scale: isCenter ? 1 : 0.82,
-                        x: isCenter ? 0 : isLeft ? -400 : 400,
-                        zIndex: isCenter ? 10 : 5,
-                      }}
-                      exit={{ opacity: 0, scale: 0.82, x: isLeft ? -300 : 300 }}
-                      transition={{ type: 'spring', stiffness: 290, damping: 28, opacity: { duration: 0.2 } }}
-                      drag="x"
-                      dragConstraints={{ left: 0, right: 0 }}
-                      onDragEnd={handleDragEnd}
-                      className="absolute w-full max-w-2xl cursor-grab active:cursor-grabbing touch-pan-y"
-                    >
-                      <Tilt
-                        tiltMaxAngleX={isCenter ? 2 : 0}
-                        tiltMaxAngleY={isCenter ? 2 : 0}
-                        perspective={1100}
-                        transitionSpeed={1600}
-                        scale={isCenter ? 1.01 : 1}
-                        className="h-full"
-                      >
-                        <div
-                          className={cn(
-                            'h-full group bg-surface border rounded-2xl p-5 md:p-8 lg:p-10 transition-all duration-500 relative overflow-hidden flex flex-col shadow-2xl',
-                            isCenter
-                              ? 'border-accent/25 shadow-accent/8'
-                              : 'border-border/40 opacity-50'
-                          )}
-                        >
-                          {/* Amber glow — center only */}
-                          {isCenter && (
-                            <div className="absolute -top-20 -right-20 w-56 h-56 bg-accent/12 rounded-full blur-[70px] pointer-events-none" />
-                          )}
-                          {isCenter && (
-                            <div className="absolute top-0 left-0 w-32 h-0.5 bg-gradient-to-r from-accent/60 to-transparent" />
-                          )}
-
-                          <div className="space-y-5 relative z-10 h-full flex flex-col">
-                            <div className="flex justify-between items-start">
-                              <div className="space-y-1.5">
-                                <span className="text-[10px] font-mono text-accent/80 uppercase tracking-[0.2em]">
-                                  {project.oneLiner}
-                                </span>
-                                <h3 className="text-2xl md:text-3xl font-display italic font-light text-primary group-hover:text-accent transition-colors flex items-center gap-3 flex-wrap">
-                                  {project.title}
-                                  {(project as any).badge && (
-                                    <span className="px-2.5 py-0.5 text-[9px] tracking-wider uppercase font-bold bg-accent/12 border border-accent/25 text-accent rounded-full not-italic font-mono transition-all duration-300 hover:bg-accent/20 hover:border-accent/45 hover:scale-[1.03] cursor-default">
-                                      {(project as any).badge}
-                                    </span>
-                                  )}
-                                </h3>
-                                {((project as any).year || (project as any).role) && (
-                                  <div className="flex items-center gap-2 pt-0.5">
-                                    {(project as any).role && (
-                                      <span className="text-[10px] font-mono text-secondary/60 tracking-wide">
-                                        {(project as any).role}
-                                      </span>
-                                    )}
-                                    {(project as any).year && (project as any).role && (
-                                      <span className="w-1 h-1 rounded-full bg-secondary/30" />
-                                    )}
-                                    {(project as any).year && (
-                                      <span className="text-[10px] font-mono text-secondary/60 tracking-wide">
-                                        {(project as any).year}
-                                      </span>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                              <div className="flex gap-3">
-                                {project.demo && (
-                                  <a
-                                    href={project.demo}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2 rounded-full bg-background/50 border border-border/50 text-secondary hover:text-accent hover:border-accent/40 transition-all"
-                                  >
-                                    <ExternalLink size={18} />
-                                  </a>
-                                )}
-                              </div>
-                            </div>
-
-                            {/* Images */}
-                            {((project as any).image || (project as any).images) && (
-                              <div className="relative w-full rounded-xl overflow-hidden border border-border/30 bg-black/20 h-32 sm:h-40 md:h-[240px] flex-shrink-0 group/img">
-                                {(project as any).images ? (
-                                  <div className="flex h-full w-full gap-2 p-2">
-                                    {(project as any).images.map((img: string, idx: number) => (
-                                      <div
-                                        key={idx}
-                                        className="flex-1 relative rounded-lg overflow-hidden bg-background/50 border border-border/20"
-                                      >
-                                        <img
-                                          src={img}
-                                          alt={`${project.title} view ${idx + 1}`}
-                                          className="w-full h-full object-contain p-1 transition-transform duration-700 group-hover/img:scale-105"
-                                        />
-                                      </div>
-                                    ))}
-                                  </div>
-                                ) : (
-                                  <div className="w-full h-full p-2">
-                                    <img
-                                      src={(project as any).image}
-                                      alt={project.title}
-                                      className="w-full h-full object-contain rounded-lg transition-transform duration-700 group-hover/img:scale-105"
-                                    />
-                                  </div>
-                                )}
-                                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 pointer-events-none rounded-xl" />
-                              </div>
-                            )}
-
-                            <p className="text-secondary text-sm md:text-base leading-relaxed flex-grow">
-                              {project.description}
-                            </p>
-
-                            <div className="flex flex-wrap gap-2 pt-5 border-t border-border/40">
-                              {project.techStack.map((tech) => (
-                                <span
-                                  key={tech}
-                                  className="px-3.5 py-1.5 bg-background border border-border/50 rounded-full text-[10px] font-mono text-secondary/70 tracking-wide"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </Tilt>
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Pagination dots */}
-          <div className="flex justify-center gap-2.5 mt-8">
-            {filteredProjects.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={cn(
-                  'h-1.5 transition-all duration-300 rounded-full',
-                  i === currentIndex ? 'w-8 bg-accent' : 'w-1.5 bg-secondary/20 hover:bg-secondary/40'
-                )}
-                aria-label={`Go to slide ${i + 1}`}
+        {/* Bento Grid */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {filteredProjects.map((project) => (
+              <BentoCard
+                key={project.title}
+                project={project}
+                className={getCardSpan(project.title)}
               />
             ))}
-          </div>
-        </div>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

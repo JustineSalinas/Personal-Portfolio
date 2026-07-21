@@ -3,10 +3,24 @@
 import React, { useState, useEffect } from 'react';
 import { portfolioData } from '@/data';
 import { useScrollSpy } from '@/lib/hooks';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Moon,
+  Sun,
+  User,
+  Briefcase,
+  Award,
+  Terminal,
+  Cpu,
+  Mail,
+  Github,
+  Linkedin,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
 import { Magnetic } from '@/components/ui/Magnetic';
+import { FloatingDock, FloatingDockItem } from '@/components/ui/FloatingDock';
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -71,6 +85,55 @@ export const Navigation = () => {
     }, 320);
   };
 
+  const dockItems: FloatingDockItem[] = [
+    {
+      title: 'About',
+      icon: <User size={20} />,
+      href: '#about',
+      active: activeSection === 'about',
+    },
+    {
+      title: 'Projects',
+      icon: <Terminal size={20} />,
+      href: '#projects',
+      active: activeSection === 'projects',
+    },
+    {
+      title: 'Experience',
+      icon: <Briefcase size={20} />,
+      href: '#experience',
+      active: activeSection === 'experience',
+    },
+    {
+      title: 'Certifications',
+      icon: <Award size={20} />,
+      href: '#certifications',
+      active: activeSection === 'certifications',
+    },
+    {
+      title: 'Skills',
+      icon: <Cpu size={20} />,
+      href: '#skills',
+      active: activeSection === 'skills',
+    },
+    {
+      title: 'Contact',
+      icon: <Mail size={20} />,
+      href: '#contact',
+      active: activeSection === 'contact',
+    },
+    {
+      title: 'GitHub',
+      icon: <Github size={20} />,
+      href: portfolioData.personal.contact.github,
+    },
+    {
+      title: 'LinkedIn',
+      icon: <Linkedin size={20} />,
+      href: portfolioData.personal.contact.linkedin,
+    },
+  ];
+
   return (
     <>
       {/* Navbar bar */}
@@ -87,23 +150,6 @@ export const Navigation = () => {
             <a href="#" className="font-display italic text-xl font-light text-primary hover:text-accent transition-colors">
               {portfolioData.personal.initials}
             </a>
-
-            {/* Desktop links */}
-            <div className="hidden md:flex items-center gap-7">
-              {navLinks.slice(0, 5).map((link) => (
-                <Magnetic key={link.name} intensity={0.2}>
-                  <a
-                    href={link.href}
-                    className={cn(
-                      'text-xs font-mono tracking-wider uppercase transition-colors hover:text-accent block py-2',
-                      activeSection === link.href.slice(1) ? 'text-accent' : 'text-secondary/70'
-                    )}
-                  >
-                    {link.name}
-                  </a>
-                </Magnetic>
-              ))}
-            </div>
           </div>
 
           {/* Desktop right */}
@@ -112,7 +158,7 @@ export const Navigation = () => {
             <Magnetic intensity={0.1}>
               <a
                 href={`mailto:${portfolioData.personal.contact.email}`}
-                className="text-xs font-mono tracking-wider uppercase text-secondary/70 hover:text-accent border-b border-transparent hover:border-accent/60 transition-all pb-0.5 flex items-center gap-1.5 block"
+                className="text-xs font-mono tracking-wider uppercase text-secondary/70 hover:text-accent border-b border-transparent hover:border-accent/60 transition-all pb-0.5 flex items-center gap-1.5"
               >
                 Get In Touch <span className="text-base leading-none">↗</span>
               </a>
@@ -134,7 +180,7 @@ export const Navigation = () => {
         </div>
       </nav>
 
-      {/* Mobile menu — sibling of nav so it has its own stacking context */}
+      {/* Mobile menu drawer */}
       <div
         className={cn(
           'fixed inset-0 bg-background z-[45] md:hidden transition-transform duration-300 ease-in-out',
@@ -143,7 +189,7 @@ export const Navigation = () => {
         style={{ paddingTop: '53px' }}
       >
         <div className="flex flex-col px-8 pt-10 gap-1">
-          {navLinks.slice(0, 5).map((link, i) => (
+          {navLinks.map((link, i) => (
             <a
               key={link.name}
               href={link.href}
@@ -162,6 +208,16 @@ export const Navigation = () => {
             </a>
           ))}
         </div>
+      </div>
+
+      {/* Desktop Floating Dock Navigation */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden md:block">
+        <FloatingDock items={dockItems} />
+      </div>
+
+      {/* Mobile Floating Dock Navigation */}
+      <div className="fixed bottom-6 right-6 z-50 block md:hidden">
+        <FloatingDock items={dockItems} />
       </div>
     </>
   );

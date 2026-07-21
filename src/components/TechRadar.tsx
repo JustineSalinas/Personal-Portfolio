@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Radar,
   RadarChart,
@@ -13,13 +13,10 @@ import {
 import { portfolioData } from '@/data';
 import { useTheme } from 'next-themes';
 
-// Convert tech stack into radar chart data
-// We'll give a simulated "score" for the categories based on the number of items or arbitrary values
 const data = Object.keys(portfolioData.techStack).map((key) => {
   const items = portfolioData.techStack[key as keyof typeof portfolioData.techStack];
   return {
     subject: key,
-    // Just an arbitrary score based on array length + base value to make the chart look full
     A: Math.min(100, items.length * 15 + 40), 
     fullMark: 100,
   };
@@ -27,20 +24,57 @@ const data = Object.keys(portfolioData.techStack).map((key) => {
 
 export const TechRadar = () => {
   const { theme } = useTheme();
-  const isDark = theme === 'dark' || !theme;
-  
-  const textColor = isDark ? '#a0a0a0' : '#4b5563';
-  const gridColor = isDark ? '#333333' : '#e5e7eb';
-  const accentColor = '#3b82f6';
+  const [mounted, setMounted] = useState(false);
+  const [colors, setColors] = useState({
+    text: '#a0a0a0',
+    grid: '#333333',
+    accent: '#3b82f6',
+  });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const updateColors = () => {
+      const isDark = document.documentElement.classList.contains('dark') || theme === 'dark';
+      
+      const computedStyles = getComputedStyle(document.documentElement);
+      const accentVar = computedStyles.getPropertyValue('--accent').trim();
+      const borderVar = computedStyles.getPropertyValue('--border').trim();
+
+      setColors({
+        text: isDark ? 'rgba(255, 255, 255, 0.45)' : '#555555',
+        grid: borderVar || (isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.12)'),
+        accent: accentVar || (isDark ? '#e0e0e0' : '#1a1a1a'),
+      });
+    };
+
+    updateColors();
+
+    const observer = new MutationObserver(updateColors);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, [theme, mounted]);
+
+  if (!mounted) {
+    return <div className="w-full h-[320px] bg-surface/10 rounded-2xl animate-pulse" />;
+  }
 
   return (
-    <div className="w-full h-[400px] flex items-center justify-center">
+    <div className="w-full h-[320px] flex items-center justify-center">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
-          <PolarGrid stroke={gridColor} />
+          <PolarGrid stroke={colors.grid} />
           <PolarAngleAxis 
             dataKey="subject" 
-            tick={{ fill: textColor, fontSize: 12, fontWeight: 600 }} 
+            tick={{ fill: colors.text, fontSize: 10, fontWeight: 500, fontFamily: 'var(--font-outfit), sans-serif' }} 
           />
           <PolarRadiusAxis 
             angle={30} 
@@ -50,19 +84,21 @@ export const TechRadar = () => {
           />
           <Tooltip 
             contentStyle={{ 
-              backgroundColor: isDark ? '#1a1a1a' : '#ffffff',
-              borderColor: isDark ? '#333333' : '#e5e7eb',
-              color: isDark ? '#ffffff' : '#000000',
-              borderRadius: '8px'
+              backgroundColor: 'var(--surface)',
+              borderColor: 'var(--border)',
+              color: 'var(--primary)',
+              fontFamily: 'var(--font-outfit), sans-serif',
+              fontSize: '11px',
+              borderRadius: '12px'
             }}
             formatter={(value: number) => [`Proficiency Level`, 'Skill']}
           />
           <Radar
             name="Tech Stack"
             dataKey="A"
-            stroke={accentColor}
-            fill={accentColor}
-            fillOpacity={isDark ? 0.4 : 0.6}
+            stroke={colors.accent}
+            fill={colors.accent}
+            fillOpacity={0.3}
           />
         </RadarChart>
       </ResponsiveContainer>
