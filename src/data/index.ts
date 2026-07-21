@@ -187,7 +187,7 @@ export const portfolioData = {
       description: "A web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka. Built in under 3 days for the Nexus Philippines Hackathon 2026, integrating real-time IoT feeds and geospatial mapping to bridge hardware data with capital planning.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
       demo: "https://e-ferry.vercel.app",
-      image: "/projects/solmate.png",
+      images: ["/projects/solmate.png", "/projects/solmate-team.png", "/projects/solmate-award.png"],
       badge: "1st RUNNER UP HACKATHON"
     },
     {
