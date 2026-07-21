@@ -146,6 +146,13 @@ export const portfolioData = {
       image: "/certs/pm-waterfall-agile.png"
     },
     {
+      title: "Introduction to Large Language Models",
+      issuer: "IBM SkillsBuild",
+      date: "2025",
+      link: "/certs/ibm-llm.png",
+      image: "/certs/ibm-llm.png"
+    },
+    {
       title: "Design Thinking Guide for Successful Professionals",
       issuer: "Udemy",
       date: "2025",
