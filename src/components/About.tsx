@@ -131,35 +131,35 @@ export const About = () => {
                 <div>
                   <h4 className="font-bold text-primary text-base mb-0.5">1st Runner Up</h4>
                   <p className="text-xs text-secondary leading-snug">Hacking the Future of Energy — Nexus Philippines</p>
-                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[10px] text-secondary/50 font-mono">
+                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-xs text-secondary/50 font-mono">
                     <span className="italic">Ready, Spark, Charge 2026</span>
                     <span>•</span>
-                    <span className="tracking-wider">May 21–23</span>
+                    <span className="tracking-wider">May 21–23, 2026</span>
                   </div>
                 </div>
               </div>
 
               <div className="mt-3.5 pt-3.5 border-t border-border/20 grid grid-cols-2 gap-2 w-full flex-grow">
                 {/* Team photo */}
-                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-28 md:h-32 flex items-center justify-center p-1 hover:border-accent/20 transition-all duration-300">
+                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-1.5 hover:border-accent/20 transition-all duration-300">
                   <img
                     src="/projects/solmate-team.png"
                     alt="Nexus Hackathon Team"
                     className="max-w-full max-h-full object-contain rounded transition-transform duration-500 group-hover/img:scale-[1.03]"
                   />
-                  <div className="absolute bottom-1 left-1 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[6px] font-mono text-secondary uppercase tracking-wider">
-                    Team
+                  <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[7px] font-mono text-secondary uppercase tracking-wider">
+                    Team Photo
                   </div>
                 </div>
                 {/* Award ceremony photo */}
-                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-28 md:h-32 flex items-center justify-center p-1 hover:border-accent/20 transition-all duration-300">
+                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-1.5 hover:border-accent/20 transition-all duration-300">
                   <img
                     src="/projects/solmate-award.png"
                     alt="1st Runner Up Award Presentation"
                     className="max-w-full max-h-full object-contain rounded transition-transform duration-500 group-hover/img:scale-[1.03]"
                   />
-                  <div className="absolute bottom-1 left-1 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[6px] font-mono text-secondary uppercase tracking-wider">
-                    Award
+                  <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[7px] font-mono text-secondary uppercase tracking-wider">
+                    Award Presentation
                   </div>
                 </div>
               </div>
@@ -174,23 +174,23 @@ export const About = () => {
                 <div>
                   <h4 className="font-bold text-primary text-base mb-0.5">Currently Top 5 Finalists</h4>
                   <p className="text-xs text-secondary leading-snug">National AI Hackathon — @ ICC Iloilo City</p>
-                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[10px] text-secondary/50 font-mono">
+                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-xs text-secondary/50 font-mono">
                     <span className="italic">Building an AI Future</span>
                     <span>•</span>
-                    <span className="tracking-wider">Aug 3–5</span>
+                    <span className="tracking-wider">Aug 3–5, 2026</span>
                   </div>
                 </div>
               </div>
 
               <div className="mt-3.5 pt-3.5 border-t border-border/20 w-full flex-grow">
-                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-28 md:h-32 flex items-center justify-center p-1 hover:border-accent/20 transition-all duration-300">
+                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-1.5 hover:border-accent/20 transition-all duration-300">
                   <img
                     src="/projects/national-team.png"
                     alt="National AI Hackathon Team"
                     className="max-w-full max-h-full object-contain rounded-lg transition-transform duration-500 group-hover/img:scale-[1.03]"
                   />
-                  <div className="absolute bottom-1 left-1 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[6px] font-mono text-secondary uppercase tracking-wider">
-                    Workspace
+                  <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[7px] font-mono text-secondary uppercase tracking-wider">
+                    Workspace / Team
                   </div>
                 </div>
               </div>
@@ -200,25 +200,25 @@ export const About = () => {
             <div className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02] gap-0 md:col-span-2 lg:col-span-1">
               <div className="flex items-center gap-4">
                 <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
-                  <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
+                  < Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
                 </div>
                 <div>
                   <h4 className="font-bold text-primary text-base mb-0.5">Participant in Regional Hackathon</h4>
                   <p className="text-xs text-secondary leading-snug">Stellar APAC Hackathon</p>
-                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[10px] text-secondary/50 font-mono">
+                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-xs text-secondary/50 font-mono">
                     <span className="tracking-wider">July 2026</span>
                   </div>
                 </div>
               </div>
 
               <div className="mt-3.5 pt-3.5 border-t border-border/20 w-full flex-grow">
-                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-28 md:h-32 flex items-center justify-center p-1 hover:border-accent/20 transition-all duration-300">
+                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-1.5 hover:border-accent/20 transition-all duration-300">
                   <img
                     src="/projects/stellar-team.jpg"
                     alt="Stellar APAC Hackathon Collaboration"
                     className="max-w-full max-h-full object-contain rounded transition-transform duration-500 group-hover/img:scale-[1.03]"
                   />
-                  <div className="absolute bottom-1 left-1 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[6px] font-mono text-secondary uppercase tracking-wider">
+                  <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[7px] font-mono text-secondary uppercase tracking-wider">
                     Development & Scoping
                   </div>
                 </div>
