@@ -180,6 +180,15 @@ export const portfolioData = {
       badge: "STELLAR APAC HACKATHON"
     },
     {
+      title: "PharmaTrack",
+      oneLiner: "University Pharmacy Attendance System",
+      year: "2026",
+      role: "Project Manager & Lead Developer",
+      description: "A QR-based attendance tracking system deployed for the University of San Agustin Pharmacy Department. Supports 700+ students with role-based access (Student/Faculty/Admin), real-time analytics dashboards, and zero physical hardware dependencies.",
+      techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
+      image: "/projects/pharmatrack.png"
+    },
+    {
       title: "Solmate",
       oneLiner: "Financial & telemetry dashboard for E-Bangka",
       year: "2026",
@@ -189,15 +198,6 @@ export const portfolioData = {
       demo: "https://e-ferry.vercel.app",
       images: ["/projects/solmate.png", "/projects/solmate-team.png", "/projects/solmate-award.png"],
       badge: "1st RUNNER UP HACKATHON"
-    },
-    {
-      title: "PharmaTrack",
-      oneLiner: "University Pharmacy Attendance System",
-      year: "2026",
-      role: "Project Manager & Lead Developer",
-      description: "A QR-based attendance tracking system deployed for the University of San Agustin Pharmacy Department. Supports 700+ students with role-based access (Student/Faculty/Admin), real-time analytics dashboards, and zero physical hardware dependencies.",
-      techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
-      image: "/projects/pharmatrack.png"
     },
     {
       title: "Commit",
