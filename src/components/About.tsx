@@ -50,7 +50,7 @@ export const About = () => {
             {/* Hackathon Achievements */}
             <div className="pt-6 border-t border-border/40">
               <span className="section-label block mb-4">Hackathons</span>
-              <div className="flex flex-col gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Nexus Hackathon */}
                 <div className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02] gap-0">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
@@ -128,7 +128,7 @@ export const About = () => {
                 </div>
 
                 {/* Stellar APAC Hackathon */}
-                <div className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02] gap-0">
+                <div className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02] gap-0 md:col-span-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
                     <div className="flex items-center gap-4">
                       <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
