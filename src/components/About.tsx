@@ -1,15 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { portfolioData } from '@/data';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { ArrowUpRight, Trophy } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight, Trophy, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const About = () => {
   const { ref, isVisible } = useIsVisible();
   const { personal } = portfolioData;
+  const [isNexusExpanded, setIsNexusExpanded] = useState(false);
 
   return (
     <section id="about" className="section-padding px-6" ref={ref}>
@@ -52,20 +53,74 @@ export const About = () => {
               <span className="section-label block mb-4">Hackathons</span>
               <div className="flex flex-col gap-3">
                 {/* Nexus Hackathon */}
-                <div className="group border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02]">
-                  <div className="flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
-                      <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
+                <div
+                  onClick={() => setIsNexusExpanded(prev => !prev)}
+                  className={cn(
+                    "group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02] cursor-pointer select-none gap-0",
+                    isNexusExpanded && "bg-accent/[0.05] border-accent/30 shadow-md scale-[1.015] -translate-y-0.5"
+                  )}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
+                    <div className="flex items-center gap-4">
+                      <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
+                        <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-primary text-base mb-0.5">1st Runner Up</h4>
+                        <p className="text-sm text-secondary">Hacking the Future of Energy — Nexus Philippines</p>
+                        <p className="text-xs text-secondary/50 mt-0.5 italic">Ready, Spark, Charge 2026</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-primary text-base mb-0.5">1st Runner Up</h4>
-                      <p className="text-sm text-secondary">Hacking the Future of Energy — Nexus Philippines</p>
-                      <p className="text-xs text-secondary/50 mt-0.5 italic">Ready, Spark, Charge 2026</p>
+                    <div className="flex items-center gap-3 self-end sm:self-auto">
+                      <span className="text-[10px] font-mono text-secondary/50 tracking-wider">
+                        May 21–23, 2026
+                      </span>
+                      <ChevronDown
+                        size={14}
+                        className={cn(
+                          "text-secondary/40 transition-transform duration-300 shrink-0",
+                          isNexusExpanded ? "rotate-180 text-accent" : "group-hover:text-accent"
+                        )}
+                      />
                     </div>
                   </div>
-                  <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
-                    May 21–23, 2026
-                  </div>
+
+                  <AnimatePresence initial={false}>
+                    {isNexusExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        className="overflow-hidden w-full"
+                      >
+                        <div className="mt-4 pt-4 border-t border-border/20 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {/* Team photo */}
+                          <div className="group/img relative rounded-xl overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-2 hover:border-accent/20 transition-all duration-300">
+                            <img
+                              src="/projects/solmate-team.png"
+                              alt="Nexus Hackathon Team"
+                              className="max-w-full max-h-full object-contain rounded-lg transition-transform duration-500 group-hover/img:scale-[1.03]"
+                            />
+                            <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-2 py-1 rounded text-[8px] font-mono text-secondary uppercase tracking-wider">
+                              Team Photo
+                            </div>
+                          </div>
+                          {/* Award ceremony photo */}
+                          <div className="group/img relative rounded-xl overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-2 hover:border-accent/20 transition-all duration-300">
+                            <img
+                              src="/projects/solmate-award.png"
+                              alt="1st Runner Up Award Presentation"
+                              className="max-w-full max-h-full object-contain rounded-lg transition-transform duration-500 group-hover/img:scale-[1.03]"
+                            />
+                            <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-2 py-1 rounded text-[8px] font-mono text-secondary uppercase tracking-wider">
+                              Award Presentation
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 {/* National AI Hackathon */}
                 <div className="group border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02]">
