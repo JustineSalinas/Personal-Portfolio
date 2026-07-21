@@ -96,35 +96,65 @@ export const About = () => {
                 </div>
 
                 {/* National AI Hackathon */}
-                <div className="group border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02]">
-                  <div className="flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
-                      <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
+                <div className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02] gap-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
+                    <div className="flex items-center gap-4">
+                      <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
+                        <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-primary text-base mb-0.5">Currently Top 5 Finalists (ongoing)</h4>
+                        <p className="text-sm text-secondary">National AI Hackathon — @ ICC Iloilo City, Philippines</p>
+                        <p className="text-xs text-secondary/50 mt-0.5 italic">Building an AI-Ready Future, Together</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-primary text-base mb-0.5">Currently Top 5 Finalists (ongoing)</h4>
-                      <p className="text-sm text-secondary">National AI Hackathon — @ ICC Iloilo City, Philippines</p>
-                      <p className="text-xs text-secondary/50 mt-0.5 italic">Building an AI-Ready Future, Together</p>
+                    <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
+                      Aug 3–5, 2026
                     </div>
                   </div>
-                  <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
-                    Aug 3–5, 2026
+
+                  <div className="mt-4 pt-4 border-t border-border/20 grid grid-cols-1 gap-4 w-full">
+                    <div className="group/img relative rounded-xl overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-2 hover:border-accent/20 transition-all duration-300">
+                      <img
+                        src="/projects/national-team.png"
+                        alt="National AI Hackathon Team"
+                        className="max-w-full max-h-full object-contain rounded-lg transition-transform duration-500 group-hover/img:scale-[1.03]"
+                      />
+                      <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-2 py-1 rounded text-[8px] font-mono text-secondary uppercase tracking-wider">
+                        Workspace / Team
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 {/* Stellar APAC Hackathon */}
-                <div className="group border border-border/60 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02]">
-                  <div className="flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
-                      <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
+                <div className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-all duration-300 hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/[0.02] gap-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
+                    <div className="flex items-center gap-4">
+                      <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
+                        <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-primary text-base mb-0.5">Participant in Regional Hackathon</h4>
+                        <p className="text-sm text-secondary">Stellar APAC Hackathon</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-primary text-base mb-0.5">Participant in Regional Hackathon</h4>
-                      <p className="text-sm text-secondary">Stellar APAC Hackathon</p>
+                    <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
+                      July 2026
                     </div>
                   </div>
-                  <div className="sm:text-right text-[10px] font-mono text-secondary/50 pl-13 sm:pl-0 tracking-wider">
-                    July 2026
+
+                  <div className="mt-4 pt-4 border-t border-border/20 grid grid-cols-1 gap-4 w-full">
+                    <div className="group/img relative rounded-xl overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-2 hover:border-accent/20 transition-all duration-300">
+                      <img
+                        src="/projects/stellar-team.jpg"
+                        alt="Stellar APAC Hackathon Collaboration"
+                        className="max-w-full max-h-full object-contain rounded-lg transition-transform duration-500 group-hover/img:scale-[1.03]"
+                      />
+                      <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-2 py-1 rounded text-[8px] font-mono text-secondary uppercase tracking-wider">
+                        Development & Scoping
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
