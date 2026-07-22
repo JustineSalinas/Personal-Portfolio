@@ -98,6 +98,7 @@ export const portfolioData = {
       institution: "University of San Agustin",
       degree: "Bachelor of Science in Information Technology",
       date: "2024 - Present",
+      logo: "/logos/USALOGO.png",
       achievements: [
         { role: "Head of Design", org: "CAS (College of Arts & Sciences)" },
         { role: "Web Development Lead", org: "ITSA (IT School Organization)" },
@@ -107,6 +108,7 @@ export const portfolioData = {
       level: "SHS Grade 11 - Grade 12",
       institution: "University of San Agustin Main",
       date: "Sept 2023 - May 2024",
+      logo: "/logos/USALOGO.png",
       achievements: [
         { role: "Vice President", org: "Grade 11" },
         { role: "President", org: "Grade 12" },
@@ -115,12 +117,14 @@ export const portfolioData = {
     {
       level: "Grade 8 - Grade 10",
       institution: "BED University of San Agustin",
-      date: "Sept 2019 - May 2022"
+      date: "Sept 2019 - May 2022",
+      logo: "/logos/USALOGO.png"
     },
     {
       level: "Elementary - Grade 7",
       institution: "Philippine International School in Buraydah, Saudi Arabia",
-      date: "July 2010 - May 2019"
+      date: "July 2010 - May 2019",
+      logo: "/logos/pisb.jpg"
     }
   ],
   certifications: [
@@ -129,49 +133,56 @@ export const portfolioData = {
       issuer: "Agile Enterprise",
       date: "2026",
       link: "/certs/advanced-scrum.png",
-      image: "/certs/advanced-scrum.png"
+      image: "/certs/advanced-scrum.png",
+      logo: "/certs/advanced-scrum.png"
     },
     {
       title: "AWS AI Practitioner",
       issuer: "Udacity - Accenture",
       date: "2026",
       link: "/certs/aws-ai-practitioner.png",
-      image: "/certs/aws-ai-practitioner.png"
+      image: "/certs/aws-ai-practitioner.png",
+      logo: "/certs/aws-ai-practitioner.png"
     },
     {
       title: "Project Management - Waterfall & Agile",
       issuer: "Udemy",
       date: "2026",
       link: "https://www.udemy.com/certificate/UC-8d5096f4-77eb-4ad9-9efc-e24adaeb3ae3/",
-      image: "/certs/pm-waterfall-agile.png"
+      image: "/certs/pm-waterfall-agile.png",
+      logo: "/logos/udemy.svg"
     },
     {
       title: "Introduction to Large Language Models",
       issuer: "IBM SkillsBuild",
       date: "2025",
       link: "/certs/ibm-llm.png",
-      image: "/certs/ibm-llm.png"
+      image: "/certs/ibm-llm.png",
+      logo: "/certs/ibm-llm.png"
     },
     {
       title: "Design Thinking Guide for Successful Professionals",
       issuer: "Udemy",
       date: "2025",
       link: "https://www.udemy.com/certificate/UC-cca1f8fe-aa32-49c9-86ca-9f3e8bb7f8ab/",
-      image: "/certs/design-thinking.png"
+      image: "/certs/design-thinking.png",
+      logo: "/logos/udemy.svg"
     },
     {
       title: "Project Management 101 - Dual Certificate",
       issuer: "Udemy",
       date: "2025",
       link: "https://www.udemy.com/certificate/UC-973a419c-1ea4-45ef-b8a2-028d7f847d9e/",
-      image: "/certs/pm-dual.png"
+      image: "/certs/pm-dual.png",
+      logo: "/logos/udemy.svg"
     },
     {
       title: "Certificate of Completion in IT Operations",
       issuer: "InnovaThink Corporation",
       date: "2024",
       link: "/certs/it-operations.pdf",
-      image: "/certs/it-operations.png"
+      image: "/certs/it-operations.png",
+      logo: "/logos/innovathink.svg"
     }
   ],
   projects: [

@@ -3,6 +3,8 @@ import { Fraunces, Outfit, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const fraunces = Fraunces({ 
   subsets: ["latin"],
@@ -39,6 +41,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${outfit.variable} ${fraunces.variable} ${dmMono.variable} font-sans`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <ScrollProgress />
           {children}
           <ChatbotWidget />
         </ThemeProvider>

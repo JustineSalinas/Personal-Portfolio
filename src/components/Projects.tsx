@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, MouseEvent } from 'react';
 import { portfolioData } from '@/data';
-import { ArrowUpRight, Terminal, Cpu, User, Briefcase, Award } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from 'framer-motion';
@@ -29,10 +29,10 @@ const BentoCard = ({
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4 }}
+      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.94, y: 12 }}
+      transition={{ type: 'spring', stiffness: 350, damping: 25 }}
       onMouseMove={handleMouseMove}
       className={cn(
         'group relative rounded-2xl border border-border/40 bg-surface/40 hover:bg-surface/60 transition-colors p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md hover:border-accent/20 h-full',
@@ -68,7 +68,7 @@ const BentoCard = ({
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-1.5 rounded-full bg-background border border-border text-secondary hover:text-accent hover:border-accent/40 transition-colors"
+                  className="p-1.5 rounded-full bg-background border border-border text-secondary hover:text-accent hover:border-accent/40 transition-colors cursor-pointer"
                   aria-label={`Open demo for ${project.title}`}
                 >
                   <ArrowUpRight size={14} />
@@ -197,26 +197,37 @@ export const Projects = () => {
             </h2>
           </div>
 
-          {/* Filtering Tags */}
+          {/* Filtering Tags with Motion layoutId glide pill */}
           <div className="flex flex-wrap gap-2">
-            {filters.map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={cn(
-                  'px-4 py-2 rounded-full text-xs font-mono tracking-wider transition-all uppercase',
-                  filter === f
-                    ? 'bg-accent text-background shadow-sm shadow-accent/30'
-                    : 'bg-surface border border-border text-secondary hover:text-primary hover:border-accent/40'
-                )}
-              >
-                {f}
-              </button>
-            ))}
+            {filters.map((f) => {
+              const isActive = filter === f;
+              return (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={cn(
+                    'relative px-4 py-2 rounded-full text-xs font-mono tracking-wider uppercase transition-colors duration-200 z-10 cursor-pointer',
+                    isActive ? 'text-background font-semibold' : 'text-secondary hover:text-primary'
+                  )}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeFilterPill"
+                      className="absolute inset-0 bg-accent rounded-full shadow-sm shadow-accent/30 -z-10"
+                      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                    />
+                  )}
+                  {!isActive && (
+                    <div className="absolute inset-0 rounded-full border border-border bg-surface/60 -z-10" />
+                  )}
+                  {f}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Bento Grid */}
+        {/* Bento Grid with layout spring animation */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
           <AnimatePresence mode="popLayout" initial={false}>
             {filteredProjects.map((project) => (

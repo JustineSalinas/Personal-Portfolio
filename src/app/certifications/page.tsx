@@ -33,16 +33,25 @@ export default function CertificationsPage() {
             {portfolioData.certifications.map((cert, index) => {
               const content = (
                 <div className="flex justify-between items-center">
-                  <div className="space-y-1">
-                    <h3 className={cn(
-                      "text-xl font-bold text-primary transition-colors",
-                      cert.link && "group-hover:text-accent"
-                    )}>
-                      {cert.title}
-                    </h3>
-                    <p className="text-secondary font-medium tracking-wide">
-                      {cert.issuer}
-                    </p>
+                  <div className="flex items-center gap-4 min-w-0">
+                    {((cert as any).logo || cert.image) && (
+                      <img
+                        src={(cert as any).logo || cert.image}
+                        alt={cert.issuer}
+                        className="w-12 h-12 object-contain shrink-0 rounded-lg"
+                      />
+                    )}
+                    <div className="space-y-1 min-w-0">
+                      <h3 className={cn(
+                        "text-lg md:text-xl font-bold text-primary transition-colors",
+                        cert.link && "group-hover:text-accent"
+                      )}>
+                        {cert.title}
+                      </h3>
+                      <p className="text-secondary text-sm font-medium tracking-wide">
+                        {cert.issuer}
+                      </p>
+                    </div>
                   </div>
                   
                   <div className={cn(

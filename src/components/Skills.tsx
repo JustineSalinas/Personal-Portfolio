@@ -4,13 +4,15 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { portfolioData } from '@/data';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { Github } from 'lucide-react';
-import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { Github, Flame, Activity } from 'lucide-react';
+import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 
 interface ContributionDay {
   date: string;
   level: number;
+  count?: number;
+  text?: string;
 }
 
 // GitHub contribution heatmap showing real contributions fetched from the backend API
@@ -19,6 +21,7 @@ const CommitHeatmap = () => {
   const [streak, setStreak] = useState<number>(0);
   const [consistency, setConsistency] = useState<number>(0);
   const [totalContributions, setTotalContributions] = useState<string>('0');
+  const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -65,6 +68,7 @@ const CommitHeatmap = () => {
       const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
       
       let level = 0;
+      let count = 0;
       const rand = Math.sin(i * 12.5) * 0.5 + 0.5;
 
       if (isWeekend) {
@@ -72,36 +76,48 @@ const CommitHeatmap = () => {
       } else {
         level = rand > 0.85 ? 4 : rand > 0.6 ? 3 : rand > 0.35 ? 2 : rand > 0.15 ? 1 : 0;
       }
-      list.push({ date: dateString, level });
+      count = level > 0 ? Math.floor(rand * 15) + 1 : 0;
+      list.push({ date: dateString, level, count, text: `${count === 0 ? 'No' : count} contribution${count === 1 ? '' : 's'} on ${dateString}` });
     }
     return list;
   }, []);
 
-  const displayDays = useMemo(() => {
+  const displayDays = useMemo<ContributionDay[]>(() => {
     if (loading) {
-      // Return 371 empty cells for loading skeleton
-      return Array.from({ length: 371 }, (_, i) => ({ date: `loading-${i}`, level: -1 }));
+      // Return empty cells for loading skeleton
+      return Array.from({ length: 364 }, (_, i) => ({
+        date: `loading-${i}`,
+        level: -1,
+        count: 0,
+        text: 'Loading...',
+      }));
     }
-    
+
     const rawDays = error || data.length === 0 ? mockContributions : data;
-    
-    // Pad the beginning so we have exactly 371 days (53 full weeks) starting on Sunday
-    const targetLength = 371;
-    if (rawDays.length < targetLength) {
-      const padCount = targetLength - rawDays.length;
-      const padding = Array.from({ length: padCount }, (_, i) => {
-        const firstDate = new Date(rawDays[0]?.date || new Date());
-        const padDate = new Date(firstDate);
-        padDate.setDate(firstDate.getDate() - (padCount - i));
+    if (rawDays.length === 0) return [];
+
+    // Ensure the first day of displayDays is always a Sunday (getDay() === 0)
+    // so that rows match GitHub's 0=Sun, 1=Mon, ..., 6=Sat grid layout
+    const firstDateObj = new Date(rawDays[0].date);
+    const firstDayOfWeek = firstDateObj.getDay();
+
+    let padding: ContributionDay[] = [];
+    if (firstDayOfWeek !== 0) {
+      const padCount = firstDayOfWeek;
+      padding = Array.from({ length: padCount }, (_, i) => {
+        const padDate = new Date(firstDateObj);
+        padDate.setDate(firstDateObj.getDate() - (padCount - i));
+        const dStr = padDate.toISOString().split('T')[0];
         return {
-          date: padDate.toISOString().split('T')[0],
-          level: 0
+          date: dStr,
+          level: 0,
+          count: 0,
+          text: `No contributions on ${dStr}`,
         };
       });
-      return [...padding, ...rawDays];
     }
-    
-    return rawDays.slice(-targetLength);
+
+    return [...padding, ...rawDays];
   }, [loading, error, data, mockContributions]);
 
   const displayStreak = error ? 18 : streak;
@@ -139,32 +155,49 @@ const CommitHeatmap = () => {
     return labels;
   }, [weeks]);
 
+function formatGithubDate(dateStr: string) {
+  if (!dateStr || dateStr.startsWith('loading')) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return dateStr;
+  const month = d.toLocaleString('en-US', { month: 'short' });
+  const day = d.getDate();
+  const suffix = (n: number) => {
+    if (n > 3 && n < 21) return 'th';
+    switch (n % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
+  return `${month} ${day}${suffix(day)}`;
+}
+
   return (
     <div className="w-full flex flex-col">
-      {/* Title & Streak Stats */}
+      {/* Header Metrics Row */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-4 select-none">
-        <span className="text-[14px] text-primary/95 font-sans font-medium">
-          {loading ? (
-            <span className="animate-pulse">Loading contributions...</span>
-          ) : (
-            <>
-              <span className="font-semibold text-primary">{displayTotalContributions}</span> contributions in the last year
-            </>
-          )}
-        </span>
+        <h3 className="text-base text-primary/90 font-sans font-normal">
+          <span className="font-semibold text-primary">{displayTotalContributions}</span> contributions in the last year
+        </h3>
 
         {!loading && (
-          <div className="flex items-center gap-3 text-[10px] font-mono text-accent font-semibold uppercase tracking-wider bg-accent/5 px-2.5 py-1 rounded-md border border-accent/10">
-            <span>Streak: {displayStreak} Days</span>
-            <span className="w-1 h-1 rounded-full bg-accent/40 animate-pulse" />
-            <span>Consistency: {displayConsistency}%</span>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 text-[10px] font-mono text-secondary tracking-wider uppercase bg-surface/50 px-3 py-1.5 rounded-lg border border-border/50">
+              <Flame size={13} className="text-accent shrink-0" />
+              <span>Highest Streak: <strong className="text-primary font-bold">{displayStreak} Days</strong></span>
+            </div>
+            <div className="flex items-center gap-2 text-[10px] font-mono text-secondary tracking-wider uppercase bg-surface/50 px-3 py-1.5 rounded-lg border border-border/50">
+              <Activity size={13} className="text-accent shrink-0" />
+              <span>Consistency: <strong className="text-primary font-bold">{displayConsistency}%</strong></span>
+            </div>
           </div>
         )}
       </div>
 
-      {/* Grid container with custom scrollbar support */}
-      <div className="overflow-x-auto pb-3 pt-1 scrollbar-none w-full border border-border/30 rounded-xl bg-surface/10 p-4">
-        <div className="flex items-start gap-2 min-w-[760px] justify-center mx-auto">
+      {/* Grid container with fast single tooltip */}
+      <div className="overflow-x-auto pb-3 pt-3 scrollbar-none w-full border border-border/40 rounded-xl bg-surface/30 backdrop-blur-md p-4 relative">
+        <div className="flex items-start gap-2 min-w-[760px] justify-center mx-auto relative">
           {/* Day labels column */}
           <div className="grid grid-rows-7 gap-[3.5px] text-[9px] font-mono text-secondary/50 pt-[14px] h-[91px] select-none text-right pr-1">
             <div className="h-2.5 flex items-center justify-end"></div> {/* Sun */}
@@ -177,63 +210,69 @@ const CommitHeatmap = () => {
           </div>
 
           {/* Grid (months + squares) */}
-          <div className="flex-grow max-w-[716px]">
+          <div className="flex-grow max-w-[716px] relative">
             {/* Months row */}
             <div className="relative h-4 text-[9px] font-mono text-secondary/50 mb-1 select-none w-full">
               {monthLabels.map((label) => (
                 <span
                   key={label.index}
                   className="absolute"
-                  style={{ left: `${label.index * 13.5}px` }} // 10px width + 3.5px gap
+                  style={{ left: `${label.index * 13.5}px` }}
                 >
                   {label.text}
                 </span>
               ))}
             </div>
 
-            {/* Heatmap grid */}
+            {/* Heatmap grid container */}
             <div className="grid grid-flow-col grid-rows-7 gap-[3.5px] select-none w-full">
-              {displayDays.map((day, idx) => (
-                <div
-                  key={day.date}
-                  title={day.level >= 0 ? `${day.date}: Level ${day.level}` : 'Loading...'}
-                  className={cn(
-                    "w-2.5 h-2.5 rounded-[2px] transition-all duration-200 hover:scale-125 cursor-pointer border border-transparent",
-                    day.level === -1 && "bg-surface/30 animate-pulse",
-                    day.level === 0 && "bg-[#ebedf0] dark:bg-[#161b22] border-border/10",
-                    day.level === 1 && "bg-[#9be9a8] dark:bg-[#0e4429]",
-                    day.level === 2 && "bg-[#40c463] dark:bg-[#006d32]",
-                    day.level === 3 && "bg-[#30a14e] dark:bg-[#26a641]",
-                    day.level === 4 && "bg-[#216e39] dark:bg-[#39d353]"
-                  )}
-                  style={{
-                    animationDelay: day.level === -1 ? `${(idx % 7) * 50 + Math.floor(idx / 7) * 20}ms` : undefined
-                  }}
-                />
-              ))}
+              {displayDays.map((day) => {
+                const isHovered = hoveredDay?.date === day.date;
+                const formattedTooltipText = day.date.startsWith('loading')
+                  ? 'Loading...'
+                  : `${day.count === 0 ? 'No contributions' : `${day.count} contribution${day.count === 1 ? '' : 's'}`} on ${formatGithubDate(day.date)}`;
+
+                return (
+                  <div
+                    key={day.date}
+                    onMouseEnter={() => setHoveredDay(day)}
+                    onMouseLeave={() => setHoveredDay(null)}
+                    onClick={() => setHoveredDay(day)}
+                    title={formattedTooltipText}
+                    className={cn(
+                      "w-2.5 h-2.5 rounded-[2px] transition-all duration-75 cursor-pointer border border-transparent relative",
+                      isHovered && "scale-125 z-30 ring-2 ring-accent shadow-md shadow-accent/50",
+                      day.level === -1 && "bg-surface/30 animate-pulse",
+                      day.level === 0 && "bg-surface/40 border-border/20",
+                      day.level === 1 && "bg-amber-950/70 border-amber-900/30",
+                      day.level === 2 && "bg-amber-800/80 border-amber-700/40",
+                      day.level === 3 && "bg-[#c8843a] border-accent/60",
+                      day.level === 4 && "bg-amber-400 border-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.5)]"
+                    )}
+                  >
+                    {/* Instant fast floating tooltip */}
+                    {isHovered && !day.date.startsWith('loading') && (
+                      <div className="pointer-events-none absolute bottom-full mb-2 left-1/2 -translate-x-1/2 z-50 bg-[#1c2128] border border-[#30363d] text-[#e6edf3] text-[11px] font-sans font-medium px-2.5 py-1 rounded-md shadow-2xl whitespace-nowrap">
+                        {formattedTooltipText}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom info row matching GitHub */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[11px] font-mono text-secondary/50 pt-4 mt-2">
-        <a
-          href="https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-accent transition-colors"
-        >
-          Learn how we count contributions
-        </a>
-        
-        <div className="flex items-center gap-1.5 justify-center sm:justify-start">
+      {/* Bottom info row (removed "Learn how we count contributions") */}
+      <div className="flex items-center justify-end text-[11px] font-mono text-secondary/50 pt-3">
+        <div className="flex items-center gap-1.5">
           <span>Less</span>
-          <div className="w-2.5 h-2.5 rounded-[2px] bg-[#ebedf0] dark:bg-[#161b22] border border-border/5" />
-          <div className="w-2.5 h-2.5 rounded-[2px] bg-[#9be9a8] dark:bg-[#0e4429]" />
-          <div className="w-2.5 h-2.5 rounded-[2px] bg-[#40c463] dark:bg-[#006d32]" />
-          <div className="w-2.5 h-2.5 rounded-[2px] bg-[#30a14e] dark:bg-[#26a641]" />
-          <div className="w-2.5 h-2.5 rounded-[2px] bg-[#216e39] dark:bg-[#39d353]" />
+          <div className="w-2.5 h-2.5 rounded-[2px] bg-surface/40 border border-border/20" />
+          <div className="w-2.5 h-2.5 rounded-[2px] bg-amber-950/70" />
+          <div className="w-2.5 h-2.5 rounded-[2px] bg-amber-800/80" />
+          <div className="w-2.5 h-2.5 rounded-[2px] bg-[#c8843a]" />
+          <div className="w-2.5 h-2.5 rounded-[2px] bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.5)]" />
           <span>More</span>
         </div>
       </div>
@@ -481,8 +520,8 @@ export const Skills = () => {
                     <h3 className="text-lg font-medium text-primary tracking-tight">
                       Commit Activity
                     </h3>
-                    <p className="text-secondary text-xs leading-relaxed max-w-xl">
-                      Real-time tracking of code deployment cycles, repository updates, and consistency metrics across full-stack projects.
+                    <p className="text-secondary text-xs md:text-sm leading-relaxed max-w-xl">
+                      Every line of code tells a story of curiosity, continuous learning, and momentum. Here&apos;s a live glimpse into my daily journey of building, refining, and shipping software.
                     </p>
                   </div>
 

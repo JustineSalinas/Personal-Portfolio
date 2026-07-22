@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export const Education = () => {
   const { ref, isVisible } = useIsVisible<HTMLDivElement>();
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -84,21 +84,30 @@ export const Education = () => {
                   )}
                 >
                   <div className="flex justify-between items-start gap-4">
-                    <div className="space-y-1.5 min-w-0">
-                      <div className="flex items-center gap-3">
-                        <span className="text-[10px] font-mono text-accent/80 uppercase tracking-[0.2em]">
-                          {edu.date}
-                        </span>
-                      </div>
-                      <h3 className="text-sm font-bold text-primary leading-snug group-hover:text-accent transition-colors truncate">
-                        {edu.institution}
-                      </h3>
-                      {edu.degree && (
-                        <p className="text-xs text-secondary font-medium leading-relaxed">{edu.degree}</p>
+                    <div className="flex items-start gap-3.5 min-w-0">
+                      {(edu as any).logo && (
+                        <img
+                          src={(edu as any).logo}
+                          alt={edu.institution}
+                          className="w-10 h-10 object-contain shrink-0 rounded-lg"
+                        />
                       )}
-                      <p className="text-[10px] font-mono text-secondary/45 tracking-wide">
-                        {edu.level}
-                      </p>
+                      <div className="space-y-1 min-w-0">
+                        <div className="flex items-center gap-3">
+                          <span className="text-[10px] font-mono text-accent/80 uppercase tracking-[0.2em]">
+                            {edu.date}
+                          </span>
+                        </div>
+                        <h3 className="text-sm font-bold text-primary leading-snug group-hover:text-accent transition-colors truncate">
+                          {edu.institution}
+                        </h3>
+                        {edu.degree && (
+                          <p className="text-xs text-secondary font-medium leading-relaxed">{edu.degree}</p>
+                        )}
+                        <p className="text-[10px] font-mono text-secondary/45 tracking-wide">
+                          {edu.level}
+                        </p>
+                      </div>
                     </div>
 
                     <ChevronDown

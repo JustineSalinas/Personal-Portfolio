@@ -1,18 +1,62 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { portfolioData } from '@/data';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 
+const sentenceVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const letterVariants = {
+  hidden: { opacity: 0, y: 50, rotate: 5 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    transition: {
+      type: 'spring',
+      damping: 15,
+      stiffness: 200,
+    },
+  },
+};
+
 export const Hero = () => {
-  const { ref, isVisible } = useIsVisible();
+  const { ref: visibilityRef, isVisible } = useIsVisible();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Scroll Parallax for Hero portrait & background glow using Motion useScroll & useTransform
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const portraitY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const portraitRotate = useTransform(scrollYProgress, [0, 1], [0, 4]);
+  const portraitScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.2]);
+
+  const helloText = "Hello,".split("");
+  const nameText = "I'm Adrian.".split("");
 
   return (
     <section
-      ref={ref}
+      ref={(node) => {
+        // combine refs
+        (visibilityRef as React.MutableRefObject<HTMLElement | null>).current = node;
+        (sectionRef as React.MutableRefObject<HTMLElement | null>).current = node;
+      }}
       className="min-h-screen relative flex flex-col overflow-hidden bg-background pt-20"
     >
       {/* Left vertical label */}
@@ -50,11 +94,11 @@ export const Hero = () => {
             {/* "Hello," — big italic serif */}
             <div className="overflow-hidden mb-1">
               <motion.h1
-                initial={{ y: '105%', rotate: 1.5 }}
-                animate={isVisible ? { y: 0, rotate: 0 } : {}}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                className="font-display italic font-light leading-[0.86] tracking-tight text-primary"
-                style={{ fontSize: 'clamp(4.5rem, 11vw, 10rem)' }}
+                initial={{ y: '105%', rotate: 1.5, opacity: 0 }}
+                animate={isVisible ? { y: 0, rotate: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                className="font-display italic font-light leading-[0.86] tracking-tight text-primary whitespace-nowrap"
+                style={{ fontSize: 'clamp(3.2rem, 7vw, 6.8rem)' }}
               >
                 Hello,
               </motion.h1>
@@ -63,11 +107,11 @@ export const Hero = () => {
             {/* "I'm Adrian." — accent color */}
             <div className="overflow-hidden mb-9">
               <motion.div
-                initial={{ y: '105%' }}
-                animate={isVisible ? { y: 0 } : {}}
-                transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: 0.36 }}
-                className="font-display italic font-light leading-[0.86] tracking-tight text-accent"
-                style={{ fontSize: 'clamp(4.5rem, 11vw, 10rem)' }}
+                initial={{ y: '105%', opacity: 0 }}
+                animate={isVisible ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
+                className="font-display italic font-light leading-[0.86] tracking-tight text-accent whitespace-nowrap"
+                style={{ fontSize: 'clamp(3.2rem, 7vw, 6.8rem)' }}
               >
                 I&apos;m Adrian.
               </motion.div>
@@ -120,52 +164,67 @@ export const Hero = () => {
 
           </div>
 
-          {/* Right: Portrait */}
+          {/* Right: Portrait with Scroll Parallax Transformation */}
           <div className="relative hidden lg:flex items-center justify-center h-full min-h-[640px]">
-            {/* Warm glow behind portrait */}
-            <div className="absolute top-1/2 -translate-y-1/2 right-1/4 w-80 h-80 bg-accent/18 rounded-full blur-[90px] pointer-events-none" />
-            <div className="absolute top-1/2 -translate-y-1/2 right-1/3 w-48 h-48 bg-amber-500/8 rounded-full blur-[50px] pointer-events-none" />
+            {/* Warm glow behind portrait with scroll fade */}
+            <motion.div
+              style={{ opacity: glowOpacity }}
+              className="absolute top-1/2 -translate-y-1/2 right-1/4 w-80 h-80 bg-accent/18 rounded-full blur-[90px] pointer-events-none"
+            />
+            <motion.div
+              style={{ opacity: glowOpacity }}
+              className="absolute top-1/2 -translate-y-1/2 right-1/3 w-48 h-48 bg-amber-500/8 rounded-full blur-[50px] pointer-events-none"
+            />
 
-            <Tilt
-              tiltMaxAngleX={4}
-              tiltMaxAngleY={4}
-              perspective={1100}
-              transitionSpeed={1300}
-              scale={1.02}
-              className="animate-float relative cursor-pointer"
+            <motion.div
+              style={{
+                y: portraitY,
+                rotate: portraitRotate,
+                scale: portraitScale,
+              }}
+              className="w-full flex justify-center"
             >
-              {/* Card */}
-              <div className="relative w-[360px] h-[500px] rounded-[18px] overflow-hidden border border-accent/18 shadow-[0_32px_80px_rgba(200,132,58,0.18),0_0_0_1px_rgba(200,132,58,0.07)]">
-                <img
-                  src="/portrait.png"
-                  alt={portfolioData.personal.name}
-                  className="w-full h-full object-cover object-center transition-all duration-700 hover:scale-105 sepia-[0.12] hover:sepia-0"
-                />
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080604]/65 to-transparent pointer-events-none" />
+              <Tilt
+                tiltMaxAngleX={4}
+                tiltMaxAngleY={4}
+                perspective={1100}
+                transitionSpeed={1300}
+                scale={1.02}
+                className="animate-float relative cursor-pointer"
+              >
+                {/* Card */}
+                <div className="relative w-[360px] h-[500px] rounded-[18px] overflow-hidden border border-accent/18 shadow-[0_32px_80px_rgba(200,132,58,0.18),0_0_0_1px_rgba(200,132,58,0.07)]">
+                  <img
+                    src="/portrait.png"
+                    alt={portfolioData.personal.name}
+                    className="w-full h-full object-cover object-center transition-all duration-700 hover:scale-105 sepia-[0.12] hover:sepia-0"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080604]/65 to-transparent pointer-events-none" />
 
-                {/* Name + availability overlay */}
-                <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-                  <div>
-                    <p className="text-[10px] font-mono text-white/70 tracking-[0.2em] uppercase">
-                      {portfolioData.personal.name}
-                    </p>
-                    <p className="text-[9px] font-mono text-white/60 tracking-wider">
-                      Student Founder
-                    </p>
+                  {/* Name + availability overlay */}
+                  <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                    <div>
+                      <p className="text-[10px] font-mono text-white/70 tracking-[0.2em] uppercase">
+                        {portfolioData.personal.name}
+                      </p>
+                      <p className="text-[9px] font-mono text-white/60 tracking-wider">
+                        Student Founder
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                      <span className="text-[9px] font-mono text-white/60 tracking-wider uppercase">
+                        Available
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-                    <span className="text-[9px] font-mono text-white/60 tracking-wider uppercase">
-                      Available
-                    </span>
-                  </div>
+
+                  {/* Corner amber accent line */}
+                  <div className="absolute top-0 left-0 w-16 h-0.5 bg-gradient-to-r from-accent/70 to-transparent" />
+                  <div className="absolute top-0 left-0 w-0.5 h-16 bg-gradient-to-b from-accent/70 to-transparent" />
                 </div>
-
-                {/* Corner amber accent line */}
-                <div className="absolute top-0 left-0 w-16 h-0.5 bg-gradient-to-r from-accent/70 to-transparent" />
-                <div className="absolute top-0 left-0 w-0.5 h-16 bg-gradient-to-b from-accent/70 to-transparent" />
-              </div>
-            </Tilt>
+              </Tilt>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -5,53 +5,95 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export const CustomCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Smooth spring physics for outer ring
+  const springConfig = { damping: 28, stiffness: 350, mass: 0.5 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // Only run on desktop devices
+    // Only run on fine pointer devices
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - (isHovered ? 24 : 8));
-      cursorY.set(e.clientY - (isHovered ? 24 : 8));
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      // Check if we are hovering over something interactive
-      const isInteractive = target.closest('a, button, [role="button"], input, select, textarea');
-      setIsHovered(!!isInteractive);
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+
+    const handleOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'A' ||
+          target.tagName === 'BUTTON' ||
+          target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.closest('a') ||
+          target.closest('button') ||
+          target.closest('.cursor-pointer') ||
+          target.getAttribute('role') === 'button')
+      ) {
+        setIsHovered(true);
+      } else {
+        setIsHovered(false);
+      }
     };
 
     window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mouseover', handleOver);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mouseover', handleOver);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [cursorX, cursorY, isHovered]);
+  }, [mouseX, mouseY, isVisible]);
 
-  // Hide custom cursor on touch devices entirely
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-      style={{
-        x: cursorXSpring,
-        y: cursorYSpring,
-        width: isHovered ? 48 : 16,
-        height: isHovered ? 48 : 16,
-      }}
-      transition={{ type: 'tween', ease: 'backOut', duration: 0.3 }}
-    />
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden hidden md:block">
+      {/* Outer Spring Follower Ring */}
+      <motion.div
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+        animate={{
+          scale: isHovered ? 1.8 : 1,
+          borderColor: isHovered ? 'var(--accent)' : 'rgba(200, 132, 58, 0.4)',
+          backgroundColor: isHovered ? 'rgba(200, 132, 58, 0.08)' : 'transparent',
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-accent/40 pointer-events-none"
+      />
+
+      {/* Inner Dot */}
+      <motion.div
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+        animate={{
+          scale: isHovered ? 0.5 : 1,
+        }}
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-accent pointer-events-none shadow-[0_0_8px_rgba(200,132,58,0.8)]"
+      />
+    </div>
   );
 };

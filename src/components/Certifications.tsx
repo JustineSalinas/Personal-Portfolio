@@ -49,15 +49,15 @@ export const Certifications = () => {
             >
               <div className="flex justify-between items-center gap-4">
                 <div className="flex items-center gap-3.5 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-accent/5 border border-accent/10 flex items-center justify-center text-accent shrink-0 group-hover:bg-accent/10 transition-colors">
-                    {cert.title.toLowerCase().includes('scrum') ? (
-                      <ShieldCheck size={18} />
-                    ) : cert.title.toLowerCase().includes('ai') || cert.title.toLowerCase().includes('aws') ? (
-                      <Cpu size={18} />
-                    ) : (
-                      <Award size={18} />
-                    )}
-                  </div>
+                  {(cert as any).logo || cert.image ? (
+                    <img
+                      src={(cert as any).logo || cert.image}
+                      alt={cert.issuer}
+                      className="w-10 h-10 object-contain shrink-0 rounded-lg"
+                    />
+                  ) : (
+                    <Award size={20} className="text-accent shrink-0" />
+                  )}
                   <div className="space-y-0.5 min-w-0">
                     <h3 className="text-xs md:text-sm font-bold text-primary transition-colors truncate group-hover:text-accent">
                       {cert.title}

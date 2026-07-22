@@ -45,21 +45,35 @@ export const Footer = () => {
             <div className="h-px flex-1 max-w-[120px] bg-gradient-to-l from-accent/50 via-accent/15 to-transparent" />
           </div>
 
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, type: 'spring', damping: 20 }}
             className="font-display italic font-light text-primary leading-tight mb-4"
             style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)' }}
           >
             Let&apos;s work
-          </h2>
-          <h2
+          </motion.h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.15, type: 'spring', damping: 20 }}
             className="font-display italic font-light text-accent leading-tight mb-8"
             style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)' }}
           >
             together.
-          </h2>
-          <p className="text-secondary text-base max-w-sm mx-auto leading-relaxed">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-secondary text-base max-w-sm mx-auto leading-relaxed"
+          >
             Open to opportunities and collaborations. Feel free to reach out anytime.
-          </p>
+          </motion.p>
         </div>
 
         {/* Contact form */}
@@ -188,14 +202,19 @@ export const Footer = () => {
               external: true,
               download: 'Adrian_Salinas_Resume.pdf',
             },
-          ].map((item) => (
-            <a
+          ].map((item, idx) => (
+            <motion.a
               key={item.label}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.4 }}
+              whileHover={{ y: -3, scale: 1.01 }}
               href={item.href}
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
               download={(item as any).download}
-              className="group p-5 bg-surface/40 border border-border/50 rounded-xl flex items-center gap-4 hover:border-accent/40 hover:bg-accent/[0.03] transition-all hover:-translate-y-0.5"
+              className="group p-5 bg-surface/40 border border-border/50 rounded-xl flex items-center gap-4 hover:border-accent/40 hover:bg-accent/[0.03] transition-all cursor-pointer"
             >
               <div className="p-2.5 bg-accent/8 border border-accent/15 rounded-xl flex-shrink-0 text-accent/60 group-hover:text-accent transition-colors">
                 {item.icon}
@@ -211,7 +230,7 @@ export const Footer = () => {
                   {item.value}
                 </p>
               </div>
-            </a>
+            </motion.a>
           ))}
         </div>
 
