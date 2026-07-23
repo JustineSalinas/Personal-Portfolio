@@ -1,5 +1,6 @@
 import { Navigation } from '@/components/Navigation';
 import { Hero } from '@/components/Hero';
+import { CDGShowcase } from '@/components/CDGShowcase';
 import { About } from '@/components/About';
 import { Projects } from '@/components/Projects';
 import { Experience } from '@/components/Experience';
@@ -16,6 +17,7 @@ export default function Home() {
       <SubtleBackground />
       <Navigation />
       <Hero />
+      <CDGShowcase />
       <About />
       <Projects />
       <Experience />

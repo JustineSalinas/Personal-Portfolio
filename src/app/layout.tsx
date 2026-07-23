@@ -42,6 +42,7 @@ export default function RootLayout({
       <body className={`${outfit.variable} ${fraunces.variable} ${dmMono.variable} font-sans`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <ScrollProgress />
+          <CustomCursor />
           {children}
           <ChatbotWidget />
         </ThemeProvider>

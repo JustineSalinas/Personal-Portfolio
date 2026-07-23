@@ -24,6 +24,7 @@ import { FloatingDock, FloatingDockItem } from '@/components/ui/FloatingDock';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
+  { name: 'CDG Agency', href: '#cdg' },
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience' },
