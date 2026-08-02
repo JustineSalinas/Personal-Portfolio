@@ -14,7 +14,7 @@ export const Certifications = () => {
 
   const hasCertificateImage = (imagePath?: string) => {
     if (!imagePath) return false;
-    return imagePath.includes('advanced-scrum') || imagePath.includes('aws-ai-practitioner');
+    return imagePath.includes('advanced-scrum') || imagePath.includes('aws-ai-practitioner') || imagePath.includes('ibm-llm') || imagePath.includes('ragcert');
   };
 
   return (

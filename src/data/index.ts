@@ -129,6 +129,14 @@ export const portfolioData = {
   ],
   certifications: [
     {
+      title: "RAG Strategy & Execution: Build Enterprise Knowledge Systems",
+      issuer: "Udemy",
+      date: "2026",
+      link: "https://www.udemy.com/certificate/UC-f36bc933-c6e4-4b2a-a3a3-0058504688ea/",
+      image: "/certs/ragcert.png",
+      logo: "/logos/udemy.svg"
+    },
+    {
       title: "Advanced Scrum Master",
       issuer: "Agile Enterprise",
       date: "2026",

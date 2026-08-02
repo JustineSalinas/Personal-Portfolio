@@ -57,7 +57,7 @@ const INQUIRIES: Inquiry[] = [
     category: "Credentials",
     icon: <GraduationCap className="w-3.5 h-3.5 text-purple-400 shrink-0" />,
     question: "What certifications does Adrian hold?",
-    answer: "Adrian holds industry-recognized credentials in Agile, Cloud AI, and PM:\n\n1. **Advanced Scrum Master** (Agile Enterprise, 2026)\n2. **AWS AI Practitioner** (Udacity / Accenture, 2026)\n3. **Project Management - Waterfall & Agile** (Udemy, 2026)\n4. **Design Thinking Guide for Successful Professionals** (Udemy, 2025)\n5. **Project Management 101 - Dual Certificate** (Udemy, 2025)\n6. **IT Operations Completion Certificate** (InnovaThink Corp, 2024)"
+    answer: "Adrian holds industry-recognized credentials in AI, RAG Systems, Agile, Cloud AI, and PM:\n\n1. **RAG Strategy & Execution: Build Enterprise Knowledge Systems** (Udemy, 2026)\n2. **Advanced Scrum Master** (Agile Enterprise, 2026)\n3. **AWS AI Practitioner** (Udacity / Accenture, 2026)\n4. **Project Management - Waterfall & Agile** (Udemy, 2026)\n5. **Introduction to Large Language Models** (IBM SkillsBuild, 2025)\n6. **Design Thinking Guide for Successful Professionals** (Udemy, 2025)\n7. **Project Management 101 - Dual Certificate** (Udemy, 2025)\n8. **IT Operations Completion Certificate** (InnovaThink Corp, 2024)"
   },
   {
     category: "Career",
