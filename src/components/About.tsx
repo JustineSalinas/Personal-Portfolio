@@ -4,8 +4,108 @@ import React, { useState } from 'react';
 import { portfolioData } from '@/data';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { ArrowUpRight, Trophy, FileText, MapPin, Sparkles, X, Download, Briefcase, GraduationCap, Code } from 'lucide-react';
+import { ArrowUpRight, Trophy, FileText, MapPin, Sparkles, X, Download, Briefcase, GraduationCap, Code, Github } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+export interface HackathonItem {
+  id: string;
+  badge: string;
+  badgePill: string;
+  placement: string;
+  competition: string;
+  date: string;
+  location: string;
+  projectName: string;
+  tagline: string;
+  shortConcept: string;
+  fullConcept: string;
+  solution: string;
+  myRole: string;
+  highlights: string[];
+  techStack: string[];
+  images: { src: string; caption: string }[];
+  github?: string;
+  demo?: string;
+}
+
+const HACKATHON_DATA: HackathonItem[] = [
+  {
+    id: 'nexus-solmate',
+    badge: '1st Runner-Up',
+    badgePill: 'bg-gradient-to-r from-[#1c1d22] via-[#2a2c33] to-[#1c1d22] text-slate-100 border border-slate-300/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_6px_20px_rgba(0,0,0,0.9)] ring-1 ring-black/80',
+    placement: '1st Runner-Up · 17 Teams National',
+    competition: 'Nexus Philippines Hackathon 2026',
+    date: 'May 21–23, 2026',
+    location: 'Philippines',
+    projectName: 'SOLMATE — E-Ferry Retrofit',
+    tagline: 'Green Fintech & IoT Telemetry Platform for Maritime Electrification',
+    shortConcept: 'Electrification & green fintech platform converting vessel IoT telemetry into bankable loan structures and green bonds.',
+    fullConcept: 'E-Ferry Retrofit Service by SOLMATE — bridging maritime vessel conversion with institutional capital.',
+    solution: 'Green Fintech Platform unlocking institutional ESG capital for maritime vessel electrification. Converts tamper-proof IoT telemetry into bankable loan structures, tokenized green bonds, and automated carbon credit monetization.',
+    myRole: 'Developed the web-based financial and telemetry dashboard that bridges the gap between hardware conversion and capital.',
+    highlights: [
+      'Green Fintech Platform unlocking institutional ESG capital for vessel electrification',
+      'Converts tamper-proof IoT telemetry into bankable loan structures',
+      'Tokenized green bonds & automated carbon credit monetization'
+    ],
+    techStack: ['Next.js 15', 'TypeScript', 'Recharts', 'MapLibre GL', 'IoT Telemetry', 'Fintech Analytics'],
+    images: [
+      { src: '/projects/solmate-team.png', caption: 'Solmate Hackathon Team Photo' },
+      { src: '/projects/solmate-award.png', caption: '1st Runner-Up Award Presentation' },
+    ],
+    demo: 'https://e-ferry.vercel.app',
+  },
+  {
+    id: 'ai-fest-iloilo',
+    badge: '2nd Place',
+    badgePill: 'bg-gradient-to-r from-[#2b1704] via-[#45280a] to-[#2b1704] text-amber-200 border border-amber-400/50 shadow-[inset_0_1px_1px_rgba(254,240,138,0.35),0_6px_20px_rgba(0,0,0,0.9)] ring-1 ring-black/80',
+    placement: '2nd Place · 24 Teams Open Category',
+    competition: 'AI Fest: AI National Hackathon - Iloilo 2026',
+    date: 'Aug 3–5, 2026',
+    location: 'Iloilo City, PH',
+    projectName: 'AI Boat Advisory System',
+    tagline: 'Tri-Sensor Parallel AI Optimization Bridge Display',
+    shortConcept: 'AI advisory platform for traditional diesel fiberglass boats with live waypoint routes & throttle recommendations.',
+    fullConcept: 'AI advisory system for traditional diesel fiberglass passenger boats in the Philippines.',
+    solution: 'Three sensor systems feed three parallel AI modules — Speed Optimization, Route Optimization, and Predictive Maintenance — which converge on a single bridge display showing a live waypoint route and a recommended throttle setting.',
+    myRole: 'Developed the AI advisory bridge display, live sensor stream ingestion, and real-time multi-module optimization UI.',
+    highlights: [
+      'Three sensor systems feeding three parallel AI modules',
+      'Speed Optimization, Route Optimization & Predictive Maintenance',
+      'Converges on a single bridge display with live waypoint route & recommended throttle setting'
+    ],
+    techStack: ['React 19', 'TypeScript', 'AI Optimization Engines', 'Geospatial Routing', 'Sensor Telemetry'],
+    images: [
+      { src: '/projects/national-team.png', caption: 'AI Fest Hackathon Team & Workspace' },
+    ],
+  },
+  {
+    id: 'stellar-apac',
+    badge: 'Regional Participant',
+    badgePill: 'bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] text-zinc-100 border border-zinc-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_6px_20px_rgba(0,0,0,0.9)] ring-1 ring-black/80',
+    placement: 'Participant · APAC Regional',
+    competition: 'Stellar APAC Regional Hackathon',
+    date: 'July 2026',
+    location: 'APAC / Remote',
+    projectName: 'SplitRails (Stellar Escrows)',
+    tagline: 'Collaborative Expense-Splitting & Smart Escrows on Stellar Network',
+    shortConcept: 'On-chain expense-splitting and invoice management platform with Soroban smart-contract escrows and GL exports.',
+    fullConcept: 'Collaborative expense-splitting and invoice management platform integrated with smart-contract escrows.',
+    solution: 'Built on the Stellar testnet using USDC and Soroban smart contracts. Features transparent on-chain verification, general ledger (GL) export system for accounting tools, real-time activity tracking, and multi-step escrow split creator.',
+    myRole: 'Architected and developed the whole backend, complete UI, Stellar Freighter wallet integration, and smart Soroban contracts.',
+    highlights: [
+      'Architected and developed the entire backend infrastructure and full user interface',
+      'Stellar Freighter wallet integration operating on Stellar testnet with USDC',
+      'Smart Soroban contract escrow engine with general ledger (GL) export capabilities'
+    ],
+    techStack: ['Next.js', 'TypeScript', 'Stellar SDK', 'Soroban Smart Contracts', 'Freighter Wallet', 'Recharts'],
+    images: [
+      { src: '/projects/stellar-team.jpg', caption: 'Stellar APAC Scoping & Architecture' },
+    ],
+    github: 'https://github.com/JustineSalinas/SplitRails',
+    demo: 'https://split-rails.vercel.app',
+  },
+];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -24,6 +124,7 @@ export const About = () => {
   const { ref, isVisible } = useIsVisible();
   const { personal } = portfolioData;
   const [showResumeModal, setShowResumeModal] = useState(false);
+  const [selectedHackathon, setSelectedHackathon] = useState<HackathonItem | null>(null);
 
   return (
     <section id="about" className="section-padding px-6" ref={ref}>
@@ -191,137 +292,126 @@ export const About = () => {
         </div>
 
         {/* Hackathon Achievements */}
-        <div className="pt-16 mt-16 border-t border-border/40 w-full">
-          <div className="flex items-center gap-4 mb-8">
-            <span className="section-label">02.5 — Hackathons</span>
-            <div className="editorial-rule flex-1 max-w-xs" />
+        <div className="pt-24 mt-20 border-t border-border/40 w-full space-y-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-4">
+                <span className="section-label">02.5 — Hackathons &amp; Competition Engineering</span>
+                <div className="editorial-rule w-16" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-primary tracking-tight">
+                National &amp; Regional Achievements
+              </h3>
+            </div>
+            <span className="text-xs font-mono text-accent/80 bg-accent/5 border border-accent/20 px-3 py-1.5 rounded-full">
+              Click any card for full concept &amp; architectural deep dive →
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Card 1: Nexus Hackathon */}
-            <motion.div
-              custom={0}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              whileHover={{ y: -4, transition: { type: 'spring', stiffness: 350, damping: 25 } }}
-              className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors duration-300 hover:shadow-lg hover:shadow-accent/[0.02] gap-0 cursor-pointer"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
-                  <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12 pt-6">
+            {HACKATHON_DATA.map((hackathon, idx) => (
+              <motion.div
+                key={hackathon.id}
+                custom={idx}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+                whileHover={{ y: -6, transition: { type: 'spring', stiffness: 350, damping: 25 } }}
+                onClick={() => setSelectedHackathon(hackathon)}
+                className="group bg-surface hover:bg-surface/90 border border-border hover:border-accent/40 rounded-2xl p-6 pt-7 flex flex-col justify-between transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-accent/5 cursor-pointer relative space-y-6"
+              >
+                {/* Centered Metallic Badge Straddling Card Top Border */}
+                <div className={cn("absolute -top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-5 py-1.5 rounded-full text-[10px] sm:text-[11px] font-mono border shadow-2xl font-extrabold tracking-wider uppercase whitespace-nowrap", hackathon.badgePill)}>
+                  <Trophy size={13} className="shrink-0 text-current" />
+                  <span>{hackathon.badge}</span>
                 </div>
-                <div>
-                  <h4 className="font-bold text-primary text-base mb-0.5">1st Runner Up</h4>
-                  <p className="text-xs text-secondary leading-snug">Hacking the Future of Energy — Nexus Philippines</p>
-                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-xs text-secondary/50 font-mono">
-                    <span className="italic">Ready, Spark, Charge 2026</span>
-                    <span>•</span>
-                    <span className="tracking-wider">May 21–23, 2026</span>
-                  </div>
-                </div>
-              </div>
 
-              <div className="mt-3.5 pt-3.5 border-t border-border/20 grid grid-cols-2 gap-2 w-full flex-grow">
-                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-1.5 hover:border-accent/20 transition-all duration-300">
+                {/* Top Media Header */}
+                <div className="relative rounded-xl overflow-hidden bg-background border border-border/60 h-48 md:h-52 flex items-center justify-center group/img">
                   <img
-                    src="/projects/solmate-team.png"
-                    alt="Nexus Hackathon Team"
-                    className="max-w-full max-h-full object-contain rounded transition-transform duration-500 group-hover/img:scale-[1.03]"
+                    src={hackathon.images[0].src}
+                    alt={hackathon.images[0].caption}
+                    className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover/img:scale-105"
                   />
-                  <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[7px] font-mono text-secondary uppercase tracking-wider">
-                    Team Photo
-                  </div>
-                </div>
-                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-1.5 hover:border-accent/20 transition-all duration-300">
-                  <img
-                    src="/projects/solmate-award.png"
-                    alt="1st Runner Up Award Presentation"
-                    className="max-w-full max-h-full object-contain rounded transition-transform duration-500 group-hover/img:scale-[1.03]"
-                  />
-                  <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[7px] font-mono text-secondary uppercase tracking-wider">
-                    Award Presentation
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-90 transition-opacity" />
 
-            {/* Card 2: National AI Hackathon */}
-            <motion.div
-              custom={1}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              whileHover={{ y: -4, transition: { type: 'spring', stiffness: 350, damping: 25 } }}
-              className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors duration-300 hover:shadow-lg hover:shadow-accent/[0.02] gap-0 cursor-pointer"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
-                  <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary text-base mb-0.5">Currently Top 5 Finalists</h4>
-                  <p className="text-xs text-secondary leading-snug">National AI Hackathon — @ ICC Iloilo City</p>
-                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-xs text-secondary/50 font-mono">
-                    <span className="italic">Building an AI Future</span>
-                    <span>•</span>
-                    <span className="tracking-wider">Aug 3–5, 2026</span>
+                  {/* Date tag at top right - Solid Opacity */}
+                  <div className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-md text-[9px] font-mono bg-background text-primary font-bold border border-border shadow-xl">
+                    {hackathon.date}
                   </div>
-                </div>
-              </div>
 
-              <div className="mt-3.5 pt-3.5 border-t border-border/20 w-full flex-grow">
-                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-1.5 hover:border-accent/20 transition-all duration-300">
-                  <img
-                    src="/projects/national-team.png"
-                    alt="National AI Hackathon Team"
-                    className="max-w-full max-h-full object-contain rounded-lg transition-transform duration-500 group-hover/img:scale-[1.03]"
-                  />
-                  <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[7px] font-mono text-secondary uppercase tracking-wider">
-                    Workspace / Team
+                  {/* Title overlay at bottom of image */}
+                  <div className="absolute bottom-3 left-3 right-3 z-10 space-y-0.5 text-center">
+                    <span className="text-[10px] font-mono text-accent uppercase tracking-widest block font-bold">
+                      {hackathon.placement}
+                    </span>
+                    <h4 className="text-lg font-bold text-primary tracking-tight leading-snug drop-shadow-lg">
+                      {hackathon.projectName}
+                    </h4>
                   </div>
                 </div>
-              </div>
-            </motion.div>
 
-            {/* Card 3: Stellar APAC Hackathon */}
-            <motion.div
-              custom={2}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              whileHover={{ y: -4, transition: { type: 'spring', stiffness: 350, damping: 25 } }}
-              className="group border border-border/60 rounded-xl p-5 flex flex-col bg-accent/[0.03] hover:bg-accent/[0.06] hover:border-accent/40 transition-colors duration-300 hover:shadow-lg hover:shadow-accent/[0.02] gap-0 md:col-span-2 lg:col-span-1 cursor-pointer"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-background group-hover:border-accent transition-all duration-300">
-                  <Trophy size={16} className="group-hover:scale-110 group-hover:rotate-[10deg] transition-transform duration-300" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary text-base mb-0.5">Participant in Regional Hackathon</h4>
-                  <p className="text-xs text-secondary leading-snug">Stellar APAC Hackathon</p>
-                  <div className="flex flex-wrap items-center gap-1.5 mt-1 text-xs text-secondary/50 font-mono">
-                    <span className="tracking-wider">July 2026</span>
+                {/* Card Body & Summary */}
+                <div className="space-y-4 flex-grow flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <p className="text-[11px] font-mono text-secondary/80 uppercase tracking-wider">
+                      {hackathon.competition}
+                    </p>
+                    <p className="text-xs text-secondary leading-relaxed font-light line-clamp-3">
+                      {hackathon.shortConcept}
+                    </p>
                   </div>
-                </div>
-              </div>
 
-              <div className="mt-3.5 pt-3.5 border-t border-border/20 w-full flex-grow">
-                <div className="group/img relative rounded-lg overflow-hidden border border-border/40 bg-surface/50 h-48 md:h-56 flex items-center justify-center p-1.5 hover:border-accent/20 transition-all duration-300">
-                  <img
-                    src="/projects/stellar-team.jpg"
-                    alt="Stellar APAC Hackathon Collaboration"
-                    className="max-w-full max-h-full object-contain rounded transition-transform duration-500 group-hover/img:scale-[1.03]"
-                  />
-                  <div className="absolute bottom-2 left-2 bg-background/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[7px] font-mono text-secondary uppercase tracking-wider">
-                    Development &amp; Scoping
+                  {/* Highlighted Role Tag - Solid Background */}
+                  <div className="p-3.5 rounded-xl bg-surface border border-accent/25 space-y-1 shadow-sm">
+                    <span className="text-[9.5px] font-mono text-accent uppercase font-bold tracking-wider block">TECHNICAL ROLE &amp; SCOPE:</span>
+                    <p className="text-xs text-primary font-medium leading-snug">
+                      {hackathon.myRole}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack Pills */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {hackathon.techStack.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 bg-surface/80 border border-border/40 rounded-lg text-[9.5px] font-mono text-secondary/80 uppercase"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {hackathon.techStack.length > 4 && (
+                      <span className="px-2 py-1 text-[9.5px] font-mono text-secondary/50">
+                        +{hackathon.techStack.length - 4}
+                      </span>
+                    )}
                   </div>
                 </div>
-              </div>
-            </motion.div>
+
+                {/* Card Footer / Actions */}
+                <div className="pt-4 border-t border-border/30 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    {hackathon.github && (
+                      <a
+                        href={hackathon.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-3 py-1.5 bg-surface hover:bg-accent/20 border border-border/60 hover:border-accent/40 rounded-xl text-secondary hover:text-accent transition-colors text-xs flex items-center gap-1.5 font-mono"
+                      >
+                        <Github size={13} />
+                        <span>GitHub</span>
+                      </a>
+                    )}
+                  </div>
+
+                  <span className="text-xs font-mono text-accent font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Full Details →
+                  </span>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
@@ -446,6 +536,149 @@ export const About = () => {
                 >
                   <Download size={14} /> Download Official PDF
                 </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Interactive Hackathon Detail Modal Overlay */}
+      <AnimatePresence>
+        {selectedHackathon && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-background/85 backdrop-blur-md"
+            onClick={() => setSelectedHackathon(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-surface border border-border/80 rounded-3xl p-6 md:p-10 space-y-8 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex justify-between items-start border-b border-border/30 pb-6">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono bg-accent/10 text-accent border border-accent/20 font-bold">
+                      <Trophy size={13} />
+                      {selectedHackathon.badge}
+                    </span>
+                    <span className="text-xs font-mono text-secondary/70">
+                      {selectedHackathon.competition} • {selectedHackathon.date}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-primary tracking-tight">
+                    {selectedHackathon.projectName}
+                  </h3>
+                  <p className="text-xs md:text-sm font-mono text-accent/90">
+                    {selectedHackathon.tagline}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedHackathon(null)}
+                  className="p-2.5 rounded-xl bg-surface/80 hover:bg-surface text-secondary hover:text-primary transition-colors border border-border/60"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Detailed Content Grid */}
+              <div className="space-y-6">
+                {/* Concept & Solution */}
+                <div className="bg-surface/50 border border-border/50 rounded-2xl p-6 space-y-4">
+                  <div className="space-y-1">
+                    <h4 className="text-xs font-mono uppercase text-accent font-bold tracking-wider">Concept &amp; Product Vision</h4>
+                    <p className="text-base text-primary font-semibold">{selectedHackathon.fullConcept}</p>
+                  </div>
+                  <div className="space-y-2 pt-2 border-t border-border/30">
+                    <h4 className="text-xs font-mono uppercase text-accent font-bold tracking-wider">The Solution &amp; Engineering Scope</h4>
+                    <p className="text-xs md:text-sm text-secondary leading-relaxed font-light">{selectedHackathon.solution}</p>
+                  </div>
+                </div>
+
+                {/* Key Technical Highlights */}
+                <div className="space-y-3">
+                  <h4 className="text-xs font-mono uppercase text-accent font-bold tracking-wider">Core System Highlights</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {selectedHackathon.highlights.map((highlight, hIdx) => (
+                      <div key={hIdx} className="p-4 bg-surface/60 border border-border/40 rounded-xl space-y-1 flex flex-col justify-between">
+                        <span className="text-[10px] font-mono text-accent font-bold">0{hIdx + 1}.</span>
+                        <p className="text-xs text-primary font-medium leading-snug">{highlight}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Individual Role Breakdown */}
+                <div className="p-6 bg-accent/5 border border-accent/20 rounded-2xl space-y-2">
+                  <h4 className="text-xs font-mono uppercase text-accent font-bold tracking-wider">My Individual Contribution &amp; Implementation</h4>
+                  <p className="text-sm md:text-base text-primary font-medium leading-relaxed">{selectedHackathon.myRole}</p>
+                </div>
+
+                {/* Tech Stack */}
+                <div className="space-y-2">
+                  <h4 className="text-xs font-mono uppercase text-secondary/70 tracking-wider">Technologies &amp; Protocols</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedHackathon.techStack.map((tech) => (
+                      <span key={tech} className="px-3.5 py-1.5 bg-surface border border-border/60 rounded-xl text-xs font-mono text-secondary">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Media gallery */}
+                <div className="space-y-3">
+                  <h4 className="text-xs font-mono uppercase text-secondary/70 tracking-wider">Hackathon Documentation &amp; Team Gallery</h4>
+                  <div className={cn("grid gap-4", selectedHackathon.images.length > 1 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1")}>
+                    {selectedHackathon.images.map((img, idx) => (
+                      <div key={idx} className="rounded-2xl overflow-hidden border border-border/50 bg-surface/50 p-2.5 flex flex-col items-center">
+                        <img src={img.src} alt={img.caption} className="max-h-72 object-contain rounded-xl" />
+                        <span className="text-[11px] font-mono text-secondary/80 mt-2.5 font-medium">{img.caption}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Links */}
+                <div className="pt-6 border-t border-border/30 flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex flex-wrap gap-3">
+                    {selectedHackathon.github && (
+                      <a
+                        href={selectedHackathon.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-surface hover:bg-surface/80 border border-border text-primary font-mono text-xs rounded-xl font-semibold transition-colors"
+                      >
+                        <Github size={16} />
+                        <span>GitHub Repository</span>
+                        <ArrowUpRight size={14} />
+                      </a>
+                    )}
+                    {selectedHackathon.demo && (
+                      <a
+                        href={selectedHackathon.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-background font-mono text-xs font-bold rounded-xl transition-colors shadow-lg shadow-accent/20"
+                      >
+                        <span>Live Project Demo</span>
+                        <ArrowUpRight size={14} />
+                      </a>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() => setSelectedHackathon(null)}
+                    className="px-5 py-2.5 text-xs font-mono text-secondary hover:text-primary transition-colors"
+                  >
+                    Close Window
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>

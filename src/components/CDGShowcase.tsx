@@ -4,14 +4,6 @@ import React from 'react';
 import { useIsVisible } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { 
-  ExternalLink, 
-  Sparkles, 
-  Code2, 
-  Palette, 
-  BrainCircuit, 
-  Rocket, 
-  ShieldCheck, 
-  Layers, 
   ArrowUpRight,
   Globe,
   CheckCircle2
@@ -22,32 +14,7 @@ import Tilt from 'react-parallax-tilt';
 export const CDGShowcase = () => {
   const { ref, isVisible } = useIsVisible<HTMLDivElement>();
 
-  const services = [
-    {
-      icon: <Code2 className="w-5 h-5 text-accent" />,
-      title: "Full-Stack Web Engineering",
-      description: "Modern, high-performance web applications built with Next.js 15 (App Router), React 19, TypeScript, and Tailwind CSS.",
-      tags: ["Next.js", "TypeScript", "Tailwind", "Vercel"]
-    },
-    {
-      icon: <Palette className="w-5 h-5 text-sky-400" />,
-      title: "UI/UX Design & Systems Prototyping",
-      description: "User-centered interface design, high-fidelity Figma wireframes, design systems, and responsive interactive prototypes.",
-      tags: ["Figma", "UI/UX Design", "Wireframing", "Design Systems"]
-    },
-    {
-      icon: <BrainCircuit className="w-5 h-5 text-purple-400" />,
-      title: "AI Integration & Automation",
-      description: "Embedding LLM workflows, custom AI chatbots, OpenAI/Anthropic APIs, and automated data pipelines into client platforms.",
-      tags: ["OpenAI", "Anthropic", "AI Agents", "Automations"]
-    },
-    {
-      icon: <Rocket className="w-5 h-5 text-emerald-400" />,
-      title: "Rapid MVP & Tech Consulting",
-      description: "0-to-1 product development for startups and enterprises with transparent Notion sprint tracking and clean code delivery.",
-      tags: ["Sprint Delivery", "Notion Workflows", "System Design"]
-    }
-  ];
+
 
   const highlights = [
     { metric: "100%", label: "Production Delivery Rate" },
@@ -217,50 +184,6 @@ export const CDGShowcase = () => {
             </div>
           </div>
         </Tilt>
-
-        {/* Core Services Bento Grid */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] font-mono text-accent/80 uppercase tracking-[0.2em]">
-              CDG Service Capabilities
-            </span>
-            <span className="text-xs text-secondary/60 font-mono">04 Core Offerings</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-                className="bg-surface/30 hover:bg-surface/60 border border-border/40 hover:border-accent/30 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between space-y-4 group shadow-sm"
-              >
-                <div className="space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-background border border-border/60 flex items-center justify-center shadow-xs group-hover:border-accent/40 transition-colors">
-                    {service.icon}
-                  </div>
-                  <h4 className="text-sm font-bold text-primary group-hover:text-accent transition-colors font-mono uppercase tracking-tight">
-                    {service.title}
-                  </h4>
-                  <p className="text-xs text-secondary leading-relaxed font-light">
-                    {service.description}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-1 pt-3 border-t border-border/20">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 bg-background/80 border border-border/50 rounded-md text-[9px] font-mono text-secondary/70 uppercase tracking-wider"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
