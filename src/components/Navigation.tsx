@@ -16,6 +16,7 @@ import {
   Mail,
   Github,
   Linkedin,
+  Trophy,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
@@ -26,6 +27,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navLinks = [
   { name: 'CDG Agency', href: '#cdg' },
   { name: 'About', href: '#about' },
+  { name: 'Hackathons', href: '#hackathons' },
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience' },
   { name: 'Certifications', href: '#certifications' },
@@ -54,66 +56,7 @@ const ThemeToggle = () => {
   );
 };
 
-/** Left vertical scroll rail — desktop (lg+) only */
-const LeftScrollRail = ({ activeSection }: { activeSection: string }) => {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
-  };
 
-  return (
-    <div className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-start gap-4">
-      {navLinks.map((link, i) => {
-        const isActive = activeSection === link.href.slice(1);
-
-        return (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={(e) => handleClick(e, link.href)}
-            className="group flex items-center gap-2.5 h-5 cursor-pointer"
-            aria-label={link.name}
-          >
-            {/* Number - vertically centered */}
-            <span
-              className={cn(
-                'text-[11px] font-mono leading-none transition-colors duration-200 w-4 text-right tabular-nums flex items-center justify-end select-none',
-                isActive ? 'text-accent font-semibold' : 'text-secondary/40 group-hover:text-secondary/70'
-              )}
-            >
-              {String(i + 1).padStart(2, '0')}
-            </span>
-
-            {/* Dot container - fixed dimensions to keep dot perfectly centered */}
-            <div className="w-3.5 h-3.5 flex items-center justify-center shrink-0">
-              <div
-                className={cn(
-                  'rounded-full transition-all duration-300',
-                  isActive
-                    ? 'w-2.5 h-2.5 bg-accent shadow-[0_0_10px_2px_hsl(var(--accent)/0.5)]'
-                    : 'w-1.5 h-1.5 bg-border/60 group-hover:bg-secondary/70'
-                )}
-              />
-            </div>
-
-            {/* Section label - perfectly aligned baseline */}
-            <span
-              className={cn(
-                'text-[10px] font-mono uppercase tracking-widest leading-none transition-all duration-200 whitespace-nowrap select-none',
-                isActive
-                  ? 'opacity-100 text-accent font-semibold translate-x-0'
-                  : 'opacity-0 group-hover:opacity-75 text-secondary -translate-x-1 group-hover:translate-x-0'
-              )}
-            >
-              {link.name}
-            </span>
-          </a>
-        );
-      })}
-    </div>
-  );
-};
 
 
 export const Navigation = () => {
@@ -155,6 +98,12 @@ export const Navigation = () => {
       icon: <User size={20} />,
       href: '#about',
       active: activeSection === 'about',
+    },
+    {
+      title: 'Hackathons',
+      icon: <Trophy size={20} />,
+      href: '#hackathons',
+      active: activeSection === 'hackathons',
     },
     {
       title: 'Projects',
@@ -200,9 +149,6 @@ export const Navigation = () => {
 
   return (
     <>
-      {/* Left vertical scroll rail — desktop only */}
-      <LeftScrollRail activeSection={activeSection} />
-
       {/* Top navbar */}
       <nav
         className={cn(
@@ -221,6 +167,14 @@ export const Navigation = () => {
 
           {/* Desktop right */}
           <div className="hidden md:flex items-center gap-5">
+            <Magnetic intensity={0.1}>
+              <a
+                href="#hackathons"
+                className="text-xs font-mono tracking-wider uppercase text-secondary/70 hover:text-accent border-b border-transparent hover:border-accent/60 transition-all pb-0.5 flex items-center gap-1.5"
+              >
+                <Trophy size={13} className="text-accent" /> Hackathons
+              </a>
+            </Magnetic>
             <ThemeToggle />
             <Magnetic intensity={0.1}>
               <a

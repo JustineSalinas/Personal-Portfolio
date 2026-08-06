@@ -167,7 +167,7 @@ export const Projects = () => {
   }, [filter]);
 
   const getCardSpan = (title: string) => {
-    if (title === 'SplitRails' || title === 'Solmate') {
+    if (title === 'Marine-AI' || title === 'SplitRails' || title === 'Solmate') {
       return 'md:col-span-2';
     }
     return 'md:col-span-1';

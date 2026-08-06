@@ -59,25 +59,27 @@ const HACKATHON_DATA: HackathonItem[] = [
     id: 'ai-fest-iloilo',
     badge: '2nd Place',
     badgePill: 'bg-gradient-to-r from-[#2b1704] via-[#45280a] to-[#2b1704] text-amber-200 border border-amber-400/50 shadow-[inset_0_1px_1px_rgba(254,240,138,0.35),0_6px_20px_rgba(0,0,0,0.9)] ring-1 ring-black/80',
-    placement: '2nd Place · 24 Teams Open Category',
-    competition: 'AI Fest: AI National Hackathon - Iloilo 2026',
-    date: 'Aug 3–5, 2026',
-    location: 'Iloilo City, PH',
-    projectName: 'AI Boat Advisory System',
-    tagline: 'Tri-Sensor Parallel AI Optimization Bridge Display',
-    shortConcept: 'AI advisory platform for traditional diesel fiberglass boats with live waypoint routes & throttle recommendations.',
-    fullConcept: 'AI advisory system for traditional diesel fiberglass passenger boats in the Philippines.',
-    solution: 'Three sensor systems feed three parallel AI modules — Speed Optimization, Route Optimization, and Predictive Maintenance — which converge on a single bridge display showing a live waypoint route and a recommended throttle setting.',
-    myRole: 'Developed the AI advisory bridge display, live sensor stream ingestion, and real-time multi-module optimization UI.',
+    placement: '2nd Place · National AI Hackathon 2026',
+    competition: 'National AI Hackathon 2026 (Blue Economy Track)',
+    date: '2026',
+    location: 'Philippines',
+    projectName: 'Marine-AI',
+    tagline: 'Retrofittable IoT & AI Advisory System for Passenger Boats',
+    shortConcept: 'Retrofittable IoT and AI advisory system for traditional diesel fiberglass passenger boats in the Philippines with live waypoint routes & throttle recommendations.',
+    fullConcept: 'Marine-AI — A retrofittable IoT and AI advisory system for traditional diesel passenger boats, featuring Speed Optimization, Route Optimization, and Predictive Maintenance.',
+    solution: 'Three sensor systems feed three parallel AI modules — Speed Optimization (XGBoost/ONNX), Route Optimization (Gradient Boosted models), and Predictive Maintenance (PCA Autoencoder) — which converge on a single bridge display showing live route tracks, optimal throttle settings, and an auditable CO₂ emissions layer.',
+    myRole: 'Developed the AI advisory bridge display, live sensor stream ingestion, and real-time multi-module optimization API.',
     highlights: [
-      'Three sensor systems feeding three parallel AI modules',
-      'Speed Optimization, Route Optimization & Predictive Maintenance',
-      'Converges on a single bridge display with live waypoint route & recommended throttle setting'
+      'Three sensor systems feeding three parallel AI modules (Speed, Route, Maintenance)',
+      'Deterministic safety rule table enforcing AI prediction-decision boundaries',
+      'Auditable emissions layer generating monthly CO₂-avoided reports'
     ],
-    techStack: ['React 19', 'TypeScript', 'AI Optimization Engines', 'Geospatial Routing', 'Sensor Telemetry'],
+    techStack: ['Python', 'ONNX', 'XGBoost', 'NumPy', 'Next.js', 'TypeScript', 'FastAPI', 'IoT'],
     images: [
-      { src: '/projects/national-team.png', caption: 'AI Fest Hackathon Team & Workspace' },
+      { src: '/projects/national-award.jpg', caption: '2nd Place Award Presentation at National AI Hackathon' },
+      { src: '/projects/national-team.png', caption: 'Team SOLMATE Workspace' },
     ],
+    demo: 'https://solmate-marine-ai.vercel.app',
   },
   {
     id: 'stellar-apac',
@@ -156,17 +158,15 @@ export const About = () => {
               </span>
             </motion.div>
 
-            {/* Big editorial heading */}
+            {/* Professional Clean Heading */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="font-display italic font-light text-primary leading-tight"
-              style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary leading-tight"
             >
-              Building things that{' '}
-              <span className="text-accent not-italic">matter.</span>
+              Building systems that <span className="text-accent font-semibold">matter.</span>
             </motion.h2>
 
             <div className="space-y-5 pt-2">
@@ -292,7 +292,7 @@ export const About = () => {
         </div>
 
         {/* Hackathon Achievements */}
-        <div className="pt-24 mt-20 border-t border-border/40 w-full space-y-10">
+        <div id="hackathons" className="pt-24 mt-20 border-t border-border/40 w-full space-y-10 scroll-mt-24">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-2">
               <div className="flex items-center gap-4">

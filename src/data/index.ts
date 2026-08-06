@@ -195,6 +195,17 @@ export const portfolioData = {
   ],
   projects: [
     {
+      title: "Marine-AI",
+      oneLiner: "Retrofittable IoT & AI advisory system for passenger boats",
+      year: "2026",
+      role: "Team SOLMATE · AI Lead",
+      description: "A retrofittable IoT and AI advisory system for traditional diesel fiberglass passenger boats in the Philippines. Three sensor systems feed parallel AI modules — Speed Optimization (XGBoost/ONNX), Route Optimization (gradient-boosted models), and Predictive Maintenance (PCA autoencoder) — converging on a single bridge display showing live route tracks, optimal throttle settings, and an auditable CO₂ emissions layer.",
+      techStack: ["Python", "ONNX", "XGBoost", "NumPy", "Next.js", "TypeScript", "FastAPI", "IoT"],
+      demo: "https://solmate-marine-ai.vercel.app",
+      images: ["/projects/national-team.png", "/projects/national-award.jpg"],
+      badge: "NATIONAL AI HACKATHON 2026"
+    },
+    {
       title: "SplitRails",
       oneLiner: "Collaborative expense-splitting & Stellar escrow platform",
       year: "2026",
