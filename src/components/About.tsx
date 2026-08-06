@@ -61,7 +61,7 @@ const HACKATHON_DATA: HackathonItem[] = [
     badgePill: 'bg-gradient-to-r from-[#2b1704] via-[#45280a] to-[#2b1704] text-amber-200 border border-amber-400/50 shadow-[inset_0_1px_1px_rgba(254,240,138,0.35),0_6px_20px_rgba(0,0,0,0.9)] ring-1 ring-black/80',
     placement: '2nd Place · National AI Hackathon 2026',
     competition: 'National AI Hackathon 2026 (Blue Economy Track)',
-    date: '2026',
+    date: 'August 3–5, 2026',
     location: 'Philippines',
     projectName: 'Marine-AI',
     tagline: 'Retrofittable IoT & AI Advisory System for Passenger Boats',
