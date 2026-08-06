@@ -102,6 +102,7 @@ export const portfolioData = {
       achievements: [
         { role: "Head of Design", org: "CAS (College of Arts & Sciences)" },
         { role: "Web Development Lead", org: "ITSA (IT School Organization)" },
+        { role: "Developer", org: "ADS (Augustinian Developer Society)" },
       ]
     },
     {
