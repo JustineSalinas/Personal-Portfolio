@@ -4,23 +4,46 @@
 
 @layer base {
   :root {
+    /* --page is the outer rail behind the reading column; --background is the column itself */
+    --page: #f4f4f3;
     --background: #ffffff;
-    --surface: #f2f2f2;
-    --primary: #0a0a0a;
-    --secondary: #555555;
-    --accent: #1a1a1a;
-    --accent-hover: #333333;
-    --border: rgba(0, 0, 0, 0.12);
+    --surface: #fafafa;
+    --primary: #18181b;
+    --secondary: #71717a;
+    --muted: #a1a1aa;
+    --accent: #18181b;
+    --accent-hover: #000000;
+    --link: #2563eb;
+    --border: rgba(0, 0, 0, 0.09);
+    --rail: rgba(0, 0, 0, 0.035);
+
+    /* GitHub's own contribution ramp, light theme */
+    --gh-0: #ebedf0;
+    --gh-1: #9be9a8;
+    --gh-2: #40c463;
+    --gh-3: #30a14e;
+    --gh-4: #216e39;
   }
 
   .dark {
-    --background: #000000;
-    --surface: #111111;
-    --primary: rgba(255, 255, 255, 0.94);
-    --secondary: rgba(255, 255, 255, 0.45);
-    --accent: #e0e0e0;
+    --page: #09090b;
+    --background: #0f0f11;
+    --surface: #161618;
+    --primary: rgba(255, 255, 255, 0.93);
+    --secondary: rgba(255, 255, 255, 0.48);
+    --muted: rgba(255, 255, 255, 0.32);
+    --accent: #fafafa;
     --accent-hover: #ffffff;
-    --border: rgba(255, 255, 255, 0.10);
+    --link: #7ea6ff;
+    --border: rgba(255, 255, 255, 0.09);
+    --rail: rgba(255, 255, 255, 0.028);
+
+    /* GitHub's own contribution ramp, dark theme */
+    --gh-0: #161b22;
+    --gh-1: #0e4429;
+    --gh-2: #006d32;
+    --gh-3: #26a641;
+    --gh-4: #39d353;
   }
 }
 
@@ -78,12 +101,12 @@
   }
 
   /* Offset anchor scroll targets below the fixed navbar */
-  #about, #projects, #experience, #certifications, #skills, #contact {
-    scroll-margin-top: 72px;
+  [id] {
+    scroll-margin-top: 84px;
   }
 
   body {
-    @apply bg-background text-primary font-sans antialiased transition-colors duration-300;
+    @apply bg-page text-primary font-sans antialiased transition-colors duration-300;
     overflow-x: hidden;
   }
 
@@ -92,9 +115,26 @@
   }
 }
 
+/* The circular theme wipe. Both snapshots are held still and the incoming one
+   is clipped open by a JS animation, so the old theme stays put underneath. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2147483646;
+}
+
 @layer base {
   ::-webkit-scrollbar {
     width: 8px;
+    /* Without an explicit height, horizontal bars fall back to the OS default
+       (~17px on Windows), which dwarfs anything in this layout. */
+    height: 8px;
   }
 
   ::-webkit-scrollbar-track {
@@ -143,6 +183,72 @@
     letter-spacing: 0.35em;
     text-transform: uppercase;
     color: color-mix(in srgb, var(--accent), transparent 30%);
+  }
+
+  /* Diagonal hatch on the rails flanking the reading column */
+  .rail-hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--rail) 0px,
+      var(--rail) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  }
+
+  /* Applied to <html> only while the theme flips, so hover transitions
+     elsewhere keep their own (faster) timing the rest of the time. */
+  .theme-switching *,
+  .theme-switching *::before,
+  .theme-switching *::after {
+    transition:
+      background-color 420ms ease,
+      border-color 420ms ease,
+      color 420ms ease !important;
+  }
+
+  /*
+    "Peek" hover: hovering anywhere in a collection dims every item except the
+    one under the cursor, pulling focus to it. Put `.peek` on the container and
+    `.peek-item` on each child; add `.peek-rows` for the harder dim used on
+    list rows. Implemented with :has() so it works without JS.
+  */
+  .peek-item {
+    transition:
+      opacity 300ms ease-out,
+      border-color 300ms ease-out,
+      box-shadow 300ms ease-out,
+      background-color 300ms ease-out;
+  }
+
+  .peek:has(.peek-item:hover) .peek-item {
+    opacity: 0.55;
+  }
+
+  .peek-rows:has(.peek-item:hover) .peek-item {
+    opacity: 0.4;
+    transition-duration: 250ms;
+  }
+
+  /* Wins over the dim above via specificity, not source order. */
+  .peek:has(.peek-item:hover) .peek-item:hover {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .peek-item {
+      transition-duration: 1ms;
+    }
+  }
+
+  /* Inline links inside prose copy */
+  .prose-link {
+    color: var(--link);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+  .prose-link:hover {
+    opacity: 0.7;
   }
 
   .editorial-rule {

@@ -1,35 +1,103 @@
-import { Navigation } from '@/components/Navigation';
-import { Hero } from '@/components/Hero';
-import { CDGShowcase } from '@/components/CDGShowcase';
-import { About } from '@/components/About';
-import { Projects } from '@/components/Projects';
-import { Experience } from '@/components/Experience';
-import { Education } from '@/components/Education';
-import { Certifications } from '@/components/Certifications';
-import { Skills } from '@/components/Skills';
-import { Footer } from '@/components/Footer';
-import { SubtleBackground } from '@/components/SubtleBackground';
-import { MusicPlayer } from '@/components/MusicPlayer';
+import Link from 'next/link';
+import { portfolioData } from '@/data';
+import { TopBar } from '@/components/profile/TopBar';
+import { ProfileHeader } from '@/components/profile/ProfileHeader';
+import { Section } from '@/components/profile/Section';
+import { ExperienceList } from '@/components/profile/ExperienceList';
+import { WorkGrid } from '@/components/profile/WorkGrid';
+import { BuildingNow } from '@/components/profile/BuildingNow';
+import { GithubHeatmap } from '@/components/profile/GithubHeatmap';
+import { HackathonList } from '@/components/profile/HackathonList';
+import { StackGrid } from '@/components/profile/StackGrid';
+import { CredentialsList } from '@/components/profile/CredentialsList';
+import { EducationList } from '@/components/profile/EducationList';
+import { ConnectFooter } from '@/components/profile/ConnectFooter';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen">
-      <SubtleBackground />
-      <Navigation />
-      <Hero />
-      <CDGShowcase />
-      <About />
-      <Projects />
-      <Experience />
-      <section className="section-padding px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          <Education />
-          <Certifications />
+    // The hatched page acts as a rail; everything readable sits in one 660px column.
+    <main className="min-h-screen rail-hatch">
+      <div className="mx-auto min-h-screen w-full max-w-[660px] border-x border-border bg-background">
+        <TopBar />
+        <ProfileHeader />
+
+        <div className="px-5 pb-16">
+          <Section id="experience" label="Professional Experience">
+            <ExperienceList />
+          </Section>
+
+          <Section
+            id="work"
+            label="Proof of Work"
+            action={
+              <span className="text-[12px] text-secondary">
+                <span className="font-medium text-primary">
+                  {portfolioData.personal.projectsBuilt}
+                </span>{' '}
+                projects built
+              </span>
+            }
+          >
+            <WorkGrid />
+          </Section>
+
+          <Section id="building" label="Currently Building">
+            <BuildingNow />
+          </Section>
+
+          <Section
+            id="github"
+            label="GitHub Contributions"
+            action={
+              <a
+                href="https://github.com/JustineSalinas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[12px] font-medium text-secondary transition-colors hover:text-primary"
+              >
+                @JustineSalinas →
+              </a>
+            }
+          >
+            <GithubHeatmap />
+          </Section>
+
+          <Section id="hackathons" label="Hackathons & Awards">
+            <HackathonList />
+          </Section>
+
+          <Section
+            id="stack"
+            label="Stack I use"
+            intro="Technologies I work with to build products that solve real problems."
+          >
+            <StackGrid />
+          </Section>
+
+          <Section
+            id="certifications"
+            label="Certifications"
+            action={
+              <Link
+                href="/certifications"
+                className="text-[12px] font-medium text-secondary transition-colors hover:text-primary"
+              >
+                View all →
+              </Link>
+            }
+          >
+            <CredentialsList />
+          </Section>
+
+          <Section id="education" label="Education">
+            <EducationList />
+          </Section>
+
+          <div className="pt-16">
+            <ConnectFooter />
+          </div>
         </div>
-      </section>
-      <Skills />
-      <Footer />
-      <MusicPlayer />
+      </div>
     </main>
   );
 }

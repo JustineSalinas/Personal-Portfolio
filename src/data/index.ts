@@ -11,6 +11,7 @@ export const portfolioData = {
       "Through <strong class=\"text-primary font-bold\">CDG (Cascade Development Group)</strong>, I provide IT solutions built on clean, thoughtful engineering. I care as much about the experience users feel as the code running behind it. Open to internships, part-time, or full-time opportunities with companies that welcome <em class=\"text-primary not-italic font-semibold\">student status</em>."
     ],
     tags: ["NEXT.JS", "TYPESCRIPT", "AI / ML", "FULL-STACK", "IOT", "STARTUP FOUNDER", "DISTRIBUTED SYSTEMS"],
+    projectsBuilt: "17+",
     quickFacts: {
       status: "IT 3rd Year Level",
       focus: "Full-Stack Dev, AI Engineering, IoT",
@@ -194,6 +195,37 @@ export const portfolioData = {
       logo: "/logos/innovathink.svg"
     }
   ],
+  // Active work — mirrors the pinned/most-recently-pushed repos on
+  // github.com/JustineSalinas. Keep `repo` and `demo` in sync with GitHub.
+  building: [
+    {
+      name: "ITSA Website",
+      role: "Project Manager",
+      blurb: "Official site for the IT Student Association of the University of San Agustin, built and shipped with the org's dev team.",
+      demo: "https://itsa-website-psi.vercel.app",
+      repo: "https://github.com/JustineSalinas/ITSA-Website"
+    },
+    {
+      name: "Nan Builders",
+      blurb: "Construction company website for a builder based in Iloilo City — services, project gallery, and enquiry flow.",
+      demo: "https://nan-builders.vercel.app",
+      repo: "https://github.com/JustineSalinas/Nan-Builders"
+    },
+    {
+      name: "Commit",
+      role: "Solo Developer",
+      blurb: "The missing personal workspace for beginner developers and CS/IT students — code journal, focus sessions, and sprint tasks.",
+      demo: "https://commit-project-web-app-otl9.vercel.app",
+      repo: "https://github.com/JustineSalinas/Commit-Project-Web-App"
+    },
+    {
+      name: "Famly",
+      role: "Solo Developer",
+      blurb: "Collaborative family financial tracker for tuition assessments, savings milestones, debt ledgers, and project proposals.",
+      demo: "https://famly-app.vercel.app",
+      repo: "https://github.com/JustineSalinas/famly-app"
+    }
+  ],
   projects: [
     {
       title: "Marine-AI",
@@ -204,7 +236,10 @@ export const portfolioData = {
       techStack: ["Python", "ONNX", "XGBoost", "NumPy", "Next.js", "TypeScript", "FastAPI", "IoT"],
       demo: "https://solmate-marine-ai.vercel.app",
       images: ["/projects/national-team.png", "/projects/national-award.jpg"],
-      badge: "NATIONAL AI HACKATHON 2026"
+      badge: "NATIONAL AI HACKATHON 2026",
+      placement: "2nd Place out of 24 teams — National Open Professional Category",
+      // Team/award photos surfaced in the Hackathons & Awards section
+      awardImages: ["/projects/national-team.png", "/projects/national-award.jpg"]
     },
     {
       title: "SplitRails",
@@ -215,7 +250,8 @@ export const portfolioData = {
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Stellar SDK", "Recharts"],
       demo: "https://split-rails.vercel.app",
       image: "/projects/splitrails.png",
-      badge: "STELLAR APAC HACKATHON"
+      badge: "STELLAR APAC HACKATHON",
+      awardImages: ["/projects/stellar-team.jpg"]
     },
     {
       title: "PharmaTrack",
@@ -235,7 +271,9 @@ export const portfolioData = {
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
       demo: "https://e-ferry.vercel.app",
       images: ["/projects/solmate.png", "/projects/solmate-team.png", "/projects/solmate-award.png"],
-      badge: "1st RUNNER UP HACKATHON"
+      badge: "NEXUS PH HACKATHON 2026",
+      placement: "1st Runner-Up (National) out of 17 teams",
+      awardImages: ["/projects/solmate-team.png", "/projects/solmate-award.png"]
     },
     {
       title: "Commit",
@@ -254,6 +292,7 @@ export const portfolioData = {
       role: "Solo Developer",
       description: "Designed a dark-themed PWA tracking tuition assessments, savings milestones, debt ledgers, and family project proposals — solving a real household financial visibility problem. Implemented real-time Supabase sync for multi-device collaboration with PWA offline fallback, reflecting strong product intuition and self-driven initiative.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "PWA"],
+      demo: "https://famly-app.vercel.app",
       image: "/projects/famly.png"
     },
     {

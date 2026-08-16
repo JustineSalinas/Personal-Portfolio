@@ -1,160 +1,177 @@
 import { NextResponse } from 'next/server';
 import { portfolioData } from '@/data';
 
-export const dynamic = 'force-dynamic';
+/**
+ * Contribution calendar, from whichever source is available:
+ *
+ *  - GITHUB_TOKEN set  → GraphQL API.
+ *  - no token          → scrapes the public contributions page.
+ *
+ * Either way the total includes private contributions only if GitHub is willing
+ * to disclose them: Settings → Profile → "Include private contributions on my
+ * profile" puts them on the public page too, so the scrape is usually enough.
+ *
+ * Numbers are always reported exactly as GitHub returns them.
+ */
+/** 60s: near-live without hammering GitHub — all visitors share one cached fetch. */
+export const revalidate = 60;
 
-export async function GET() {
-  try {
-    const githubUrl = portfolioData.personal.contact.github;
-    const username = githubUrl.split('/').pop() || 'JustineSalinas';
+export interface ContributionDay {
+  date: string;
+  level: number;
+  count: number;
+}
 
-    // Fetch user's public contributions page from GitHub
-    const res = await fetch(`https://github.com/users/${username}/contributions`, {
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      },
-      next: { revalidate: 1800 }, // Cache for 30 minutes
-    });
+const USERNAME =
+  portfolioData.personal.contact.github.split('/').filter(Boolean).pop() ?? 'JustineSalinas';
 
-    if (!res.ok) {
-      throw new Error(`GitHub responded with status ${res.status}`);
-    }
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36';
 
-    const html = await res.text();
+const LEVELS: Record<string, number> = {
+  NONE: 0,
+  FIRST_QUARTILE: 1,
+  SECOND_QUARTILE: 2,
+  THIRD_QUARTILE: 3,
+  FOURTH_QUARTILE: 4,
+};
 
-    // Parse tooltips mapping id -> count and formatted text
-    const tooltipMap = new Map<string, { count: number; text: string }>();
-    const ttRegex = /<tool-tip[^>]*for="([^"]+)"[^>]*>(.*?)<\/tool-tip>/g;
-    let tt;
-    while ((tt = ttRegex.exec(html)) !== null) {
-      const id = tt[1];
-      const text = tt[2].replace(/<[^>]+>/g, '').trim();
-      let count = 0;
-      const numMatch = text.match(/^([\d,]+)\s+contribution/i);
-      if (numMatch) {
-        count = parseInt(numMatch[1].replace(/,/g, ''), 10);
-      }
-      tooltipMap.set(id, { count, text });
-    }
-
-    // Regex to match data-date and data-level attributes
-    const cellRegex = /<td[^>]*data-date="([^"]+)"[^>]*>/g;
-    const contributions: { date: string; level: number; count: number; text: string }[] = [];
-    let match;
-
-    while ((match = cellRegex.exec(html)) !== null) {
-      const fullTag = match[0];
-      const date = match[1];
-
-      const levelMatch = fullTag.match(/data-level="([^"]+)"/);
-      const level = levelMatch ? parseInt(levelMatch[1], 10) : 0;
-
-      const idMatch = fullTag.match(/id="([^"]+)"/);
-      const id = idMatch ? idMatch[1] : '';
-
-      const tooltip = tooltipMap.get(id) || {
-        count: level > 0 ? level * 2 : 0,
-        text: level > 0 ? `${level * 2} contributions on ${date}` : `No contributions on ${date}`,
-      };
-
-      contributions.push({
-        date,
-        level,
-        count: tooltip.count,
-        text: tooltip.text,
-      });
-    }
-
-    if (contributions.length === 0) {
-      throw new Error('No contribution cells found in the response');
-    }
-
-    // Sort contributions chronologically
-    contributions.sort((a, b) => a.date.localeCompare(b.date));
-
-    // Helper for day ordinal suffix
-    const getSuffix = (n: number) => {
-      if (n > 3 && n < 21) return 'th';
-      switch (n % 10) {
-        case 1: return 'st';
-        case 2: return 'nd';
-        case 3: return 'rd';
-        default: return 'th';
-      }
-    };
-
-    // Specific missed July days requested by user
-    const missedJulyDays = new Set([
-      '2026-07-06',
-      '2026-07-09',
-      '2026-07-16',
-      '2026-07-19',
-      '2026-07-22',
-    ]);
-
-    // Ensure June 2026 & July 2026 accurately reflect active vs missed days
-    for (const day of contributions) {
-      if (missedJulyDays.has(day.date)) {
-        const dayNum = parseInt(day.date.split('-')[2], 10);
-        day.count = 0;
-        day.level = 0;
-        day.text = `No contributions on July ${dayNum}${getSuffix(dayNum)}.`;
-      } else if (day.date.startsWith('2026-06') || day.date.startsWith('2026-07')) {
-        if (day.count === 0 || day.level === 0) {
-          const dayNum = parseInt(day.date.split('-')[2], 10);
-          const monthNum = parseInt(day.date.split('-')[1], 10);
-          const monthName = monthNum === 6 ? 'June' : 'July';
-          const c = (dayNum % 6) + 4; // 4 to 9 contributions daily
-          const lvl = c > 7 ? 3 : c > 5 ? 2 : 1;
-          day.count = c;
-          day.level = lvl;
-          day.text = `${c} contributions on ${monthName} ${dayNum}${getSuffix(dayNum)}.`;
+const GRAPHQL_QUERY = `
+  query($login: String!) {
+    user(login: $login) {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays { date contributionCount contributionLevel }
+          }
         }
       }
     }
+  }
+`;
 
-    // Extract total contributions text in the last year
-    const countRegex = /([\d,]+)\s+contributions\s+in\s+the\s+last\s+year/i;
-    const countMatch = html.match(countRegex);
-    
-    let totalContributions = countMatch ? countMatch[1] : '1,103';
-    if (username.toLowerCase() === 'justinesalinas' && (!countMatch || parseInt(countMatch[1].replace(/,/g, ''), 10) < 1000)) {
-      totalContributions = '1,103';
-    }
+/** Authenticated path — includes private contributions. */
+async function fromGraphQL(token: string) {
+  const res = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'User-Agent': UA,
+    },
+    body: JSON.stringify({ query: GRAPHQL_QUERY, variables: { login: USERNAME } }),
+    next: { revalidate },
+  });
 
-    // Calculate highest continuous streak
-    let currentRun = 0;
-    let maxStreak = 0;
-    for (const c of contributions) {
-      if (c.count > 0 || c.level > 0) {
-        currentRun++;
-        if (currentRun > maxStreak) maxStreak = currentRun;
-      } else {
-        currentRun = 0;
+  if (!res.ok) throw new Error(`GitHub GraphQL responded ${res.status}`);
+
+  const json = await res.json();
+  if (json.errors?.length) throw new Error(json.errors[0].message);
+
+  const calendar = json.data?.user?.contributionsCollection?.contributionCalendar;
+  if (!calendar) throw new Error('No contribution calendar in GraphQL response');
+
+  const days: ContributionDay[] = calendar.weeks.flatMap(
+    (w: { contributionDays: { date: string; contributionCount: number; contributionLevel: string }[] }) =>
+      w.contributionDays.map((d) => ({
+        date: d.date,
+        count: d.contributionCount,
+        level: LEVELS[d.contributionLevel] ?? 0,
+      }))
+  );
+
+  return { days, total: calendar.totalContributions as number, source: 'graphql' as const };
+}
+
+/** Unauthenticated fallback — reads whatever the public profile page discloses. */
+async function fromScrape() {
+  const res = await fetch(`https://github.com/users/${USERNAME}/contributions`, {
+    headers: { 'User-Agent': UA, Accept: 'text/html' },
+    next: { revalidate },
+  });
+
+  if (!res.ok) throw new Error(`GitHub responded ${res.status}`);
+  const html = await res.text();
+
+  const counts = new Map<string, number>();
+  for (const m of html.matchAll(/<tool-tip[^>]*for="([^"]+)"[^>]*>(.*?)<\/tool-tip>/g)) {
+    const text = m[2].replace(/<[^>]+>/g, '').trim();
+    const n = text.match(/^([\d,]+)\s+contribution/i);
+    counts.set(m[1], n ? parseInt(n[1].replace(/,/g, ''), 10) : 0);
+  }
+
+  const days: ContributionDay[] = [];
+  for (const m of html.matchAll(/<td[^>]*data-date="([^"]+)"[^>]*>/g)) {
+    const tag = m[0];
+    const id = tag.match(/id="([^"]+)"/)?.[1] ?? '';
+    days.push({
+      date: m[1],
+      level: Number(tag.match(/data-level="(\d+)"/)?.[1] ?? 0),
+      count: counts.get(id) ?? 0,
+    });
+  }
+
+  if (days.length === 0) throw new Error('No contribution cells found');
+
+  const headerTotal = html.match(/([\d,]+)\s+contributions\s+in\s+the\s+last\s+year/i)?.[1];
+  const total = headerTotal
+    ? parseInt(headerTotal.replace(/,/g, ''), 10)
+    : days.reduce((sum, d) => sum + d.count, 0);
+
+  return { days, total, source: 'scrape' as const };
+}
+
+export async function GET() {
+  const token = process.env.GITHUB_TOKEN;
+
+  try {
+    let result;
+    if (token) {
+      try {
+        result = await fromGraphQL(token);
+      } catch (err) {
+        // A bad or expired token shouldn't blank the section.
+        console.warn('[api/github] GraphQL failed, falling back to scrape:', err);
+        result = await fromScrape();
       }
+    } else {
+      result = await fromScrape();
     }
 
-    // Calculate consistency over all parsed days
-    const activeDays = contributions.filter((c) => c.count > 0 || c.level > 0).length;
-    const consistency = Math.round((activeDays / contributions.length) * 100);
+    const days = [...result.days].sort((a, b) => a.date.localeCompare(b.date));
+
+    let longestStreak = 0;
+    let run = 0;
+    for (const d of days) {
+      run = d.count > 0 ? run + 1 : 0;
+      if (run > longestStreak) longestStreak = run;
+    }
+
+    let currentStreak = 0;
+    for (let i = days.length - 1; i >= 0; i--) {
+      // Today may legitimately be empty this early in the day; don't break on it.
+      if (days[i].count === 0) {
+        if (i === days.length - 1) continue;
+        break;
+      }
+      currentStreak++;
+    }
 
     return NextResponse.json({
       success: true,
-      username,
-      totalContributions,
-      contributions,
-      streak: maxStreak,
-      consistency,
+      username: USERNAME,
+      total: result.total,
+      source: result.source,
+      days,
+      longestStreak,
+      currentStreak,
+      updatedAt: new Date().toISOString(),
     });
-  } catch (error: any) {
-    console.error('Error in GitHub contributions API:', error);
+  } catch (error) {
+    console.error('[api/github] contribution fetch failed:', error);
     return NextResponse.json(
-      {
-        success: false,
-        error: error.message || 'Failed to fetch contribution data',
-      },
-      { status: 500 }
+      { success: false, error: error instanceof Error ? error.message : 'Fetch failed' },
+      { status: 502 }
     );
   }
 }

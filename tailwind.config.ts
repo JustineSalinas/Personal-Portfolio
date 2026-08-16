@@ -10,10 +10,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        page: "var(--page)",
         background: "var(--background)",
         surface: "var(--surface)",
         primary: "var(--primary)",
         secondary: "var(--secondary)",
+        muted: "var(--muted)",
+        link: "var(--link)",
         accent: {
           DEFAULT: "var(--accent)",
           hover: "var(--accent-hover)",
