@@ -9,22 +9,22 @@ import { isSvg } from '@/lib/utils';
 export default function CertificationsPage() {
   return (
     <main className="min-h-screen rail-hatch">
-      <div className="mx-auto min-h-screen w-full max-w-[660px] border-x border-border bg-background">
+      <div className="mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
         <TopBar />
 
-        <div className="px-5 py-8">
+        <div className="px-7 py-10">
           <Link
             href="/"
-            className="group inline-flex items-center gap-1.5 text-[12px] font-medium text-secondary transition-colors hover:text-primary"
+            className="group inline-flex items-center gap-1.5 text-[16px] font-medium text-secondary transition-colors hover:text-primary"
           >
-            <ArrowLeft size={13} className="transition-transform group-hover:-translate-x-0.5" />
+            <ArrowLeft size={17} className="transition-transform group-hover:-translate-x-0.5" />
             Back to home
           </Link>
 
-          <h1 className="mt-6 font-display text-[22px] font-semibold tracking-tight text-primary">
+          <h1 className="mt-6 font-display text-[29px] font-semibold tracking-tight text-primary">
             All certifications
           </h1>
-          <p className="mt-1 text-[13px] text-secondary">
+          <p className="mt-1 text-[17px] text-secondary">
             {portfolioData.certifications.length} credentials in AI, cloud, agile, and project
             management.
           </p>
@@ -41,21 +41,21 @@ export default function CertificationsPage() {
                 <Image
                   src={cert.logo || cert.image}
                   alt={cert.issuer}
-                  width={36}
-                  height={36}
+                  width={48}
+                  height={48}
                   unoptimized={isSvg(cert.logo || cert.image)}
-                  className="h-9 w-9 shrink-0 rounded-lg border border-border bg-surface object-contain p-1"
+                  className="h-12 w-12 shrink-0 rounded-lg border border-border bg-surface object-contain p-1"
                 />
                 <span className="min-w-0 flex-1">
-                  <span className="block text-[13px] font-medium leading-snug text-primary">
+                  <span className="block text-[17px] font-medium leading-snug text-primary">
                     {cert.title}
                   </span>
-                  <span className="mt-0.5 block text-[11.5px] text-secondary">
+                  <span className="mt-0.5 block text-[15px] text-secondary">
                     {cert.issuer} · {cert.date}
                   </span>
                 </span>
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border text-muted transition-colors group-hover:border-primary/20 group-hover:text-primary">
-                  <ArrowUpRight size={12} />
+                <span className="hover-arrow flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border text-muted group-hover:border-primary/25 group-hover:text-primary">
+                  <ArrowUpRight size={16} />
                 </span>
               </a>
             ))}

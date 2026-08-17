@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { Tag } from './Section';
+import { SheenGroup } from './SheenGroup';
 
 type Project = (typeof portfolioData.projects)[number];
 
@@ -39,23 +40,23 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </div>
         )}
         {badge && (
-          <span className="absolute left-2 top-2 rounded-md bg-black/70 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wide text-white backdrop-blur-sm">
+          <span className="absolute left-2 top-2 rounded-md bg-black/70 px-1.5 py-0.5 text-[12px] font-medium uppercase tracking-wide text-white backdrop-blur-sm">
             {badge}
           </span>
         )}
       </div>
 
       <div className="mt-2.5 flex items-start justify-between gap-2">
-        <h3 className="text-[13px] font-medium text-primary">{project.title}</h3>
+        <h3 className="text-[17px] font-medium text-primary">{project.title}</h3>
         {href && (
           <ArrowUpRight
-            size={13}
-            className="mt-0.5 shrink-0 text-muted transition-colors group-hover:text-primary"
+            size={17}
+            className="hover-arrow mt-0.5 shrink-0 text-muted group-hover:text-primary"
           />
         )}
       </div>
 
-      <p className="mt-1 line-clamp-2 text-[12px] leading-relaxed text-secondary">
+      <p className="mt-1 line-clamp-2 text-[16px] leading-relaxed text-secondary">
         {project.oneLiner}
       </p>
 
@@ -69,7 +70,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   );
 
   const shell =
-    'peek-item group block rounded-xl border border-border bg-background p-2.5 hover:border-primary/25 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/40';
+    'peek-item peek-card group block rounded-xl border border-border bg-background p-2.5 hover:border-primary/30 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/50';
 
   return href ? (
     <a href={href} target="_blank" rel="noopener noreferrer" className={shell}>
@@ -81,9 +82,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
 };
 
 export const WorkGrid = () => (
-  <div className="peek grid gap-3 sm:grid-cols-2">
+  <SheenGroup className="peek grid gap-3 sm:grid-cols-2">
     {portfolioData.projects.map((project) => (
       <ProjectCard key={project.title} project={project} />
     ))}
-  </div>
+  </SheenGroup>
 );

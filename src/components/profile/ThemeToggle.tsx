@@ -11,7 +11,8 @@ type ViewTransitionDocument = Document & {
   startViewTransition?: (cb: () => void) => { ready: Promise<void> };
 };
 
-const SWITCH_MS = 480;
+// Short enough to feel instant, long enough to read as a wipe.
+const SWITCH_MS = 420;
 
 const noopSubscribe = () => () => {};
 
@@ -36,14 +37,17 @@ export const ThemeToggle = () => {
     const root = document.documentElement;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Colors cross-fade for the duration of the swap, then go back to normal.
-    root.classList.add('theme-switching');
-    window.setTimeout(() => root.classList.remove('theme-switching'), SWITCH_MS + 60);
-
     const doc = document as ViewTransitionDocument;
     const button = buttonRef.current;
 
     if (reduced || !doc.startViewTransition || !button) {
+      // Fallback only. The per-element cross-fade touches ~1100 nodes, so it is
+      // reserved for browsers without View Transitions — running it alongside
+      // the clip-path reveal made the swap visibly janky and the two fought.
+      if (!reduced) {
+        root.classList.add('theme-switching');
+        window.setTimeout(() => root.classList.remove('theme-switching'), SWITCH_MS + 60);
+      }
       setTheme(next);
       return;
     }
@@ -56,6 +60,9 @@ export const ThemeToggle = () => {
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y)
     );
+
+    // Silence every per-element colour transition for the duration of the wipe.
+    root.classList.add('theme-instant');
 
     const transition = doc.startViewTransition(() => {
       // startViewTransition snapshots after this callback, so the DOM has to
@@ -71,10 +78,10 @@ export const ThemeToggle = () => {
       },
       {
         duration: SWITCH_MS,
-        easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
         pseudoElement: '::view-transition-new(root)',
       }
-    );
+    ).finished.finally(() => root.classList.remove('theme-instant'));
   }, [isDark, setTheme]);
 
   return (
@@ -83,7 +90,7 @@ export const ThemeToggle = () => {
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
-      className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg border border-border bg-background text-secondary transition-colors hover:border-primary/20 hover:text-primary active:scale-95"
+      className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg border border-border bg-background text-secondary transition-colors hover:border-primary/20 hover:text-primary active:scale-95"
     >
       {/* Rendered only after mount so the icon matches the resolved theme. */}
       <AnimatePresence initial={false} mode="wait">
@@ -93,10 +100,10 @@ export const ThemeToggle = () => {
             initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
             animate={{ rotate: 0, opacity: 1, scale: 1 }}
             exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 0.16, ease: 'easeOut' }}
             className="flex items-center justify-center"
           >
-            {isDark ? <Sun size={13} /> : <Moon size={13} />}
+            {isDark ? <Sun size={17} /> : <Moon size={17} />}
           </motion.span>
         )}
       </AnimatePresence>

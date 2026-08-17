@@ -4,17 +4,19 @@ import { ThemeToggle } from './ThemeToggle';
 
 export const TopBar = () => (
   <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md">
-    <div className="flex items-center justify-between px-5 py-2.5">
-      <a href="#top" className="font-display text-[15px] italic text-primary">
+    <div className="flex items-center justify-between px-7 py-3">
+      <a href="#top" className="font-display text-[20px] italic text-primary">
         {portfolioData.personal.initials}
       </a>
       <div className="flex items-center gap-2">
         <ThemeToggle />
+        {/* Points at the on-page form, not a mailto: — a mail client that
+            isn't configured fails silently and the visitor just sees nothing. */}
         <a
-          href={`mailto:${portfolioData.personal.contact.email}`}
-          className="rounded-lg border border-border bg-background px-2.5 py-1.5 text-[12px] font-medium text-primary transition-colors hover:bg-surface hover:border-primary/20"
+          href="#contact"
+          className="cta-solid hover-lift group relative overflow-hidden rounded-lg bg-accent px-3 py-1.5 text-[16px] font-medium text-background"
         >
-          Get in touch
+          <span className="relative z-10">Get in touch</span>
         </a>
       </div>
     </div>

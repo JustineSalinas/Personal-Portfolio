@@ -16,19 +16,19 @@ export const HackathonList = () => (
 
       const inner = (
         <>
-          <Trophy size={13} className="mt-[3px] shrink-0 text-muted" />
+          <Trophy size={17} className="mt-[3px] shrink-0 text-muted" />
           <span className="min-w-0 flex-1">
             <span className="flex flex-wrap items-baseline gap-x-2">
-              <span className="text-[13px] font-medium text-primary">{project.title}</span>
-              <span className="text-[11px] text-muted">
+              <span className="text-[17px] font-medium text-primary">{project.title}</span>
+              <span className="text-[14.5px] text-muted">
                 {/* Several badges already carry the year — don't print it twice */}
                 {badge?.includes(project.year) ? badge : `${badge} · ${project.year}`}
               </span>
             </span>
             {placement && (
-              <span className="mt-0.5 block text-[12px] font-medium text-primary">{placement}</span>
+              <span className="mt-0.5 block text-[16px] font-medium text-primary">{placement}</span>
             )}
-            <span className="mt-0.5 block text-[12px] leading-relaxed text-secondary">
+            <span className="mt-0.5 block text-[16px] leading-relaxed text-secondary">
               {project.role} — {project.oneLiner}
             </span>
 
@@ -54,8 +54,8 @@ export const HackathonList = () => (
             )}
           </span>
           {href && (
-            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border text-muted transition-colors group-hover:text-primary group-hover:border-primary/20">
-              <ArrowUpRight size={12} />
+            <span className="hover-arrow mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border text-muted group-hover:border-primary/25 group-hover:text-primary">
+              <ArrowUpRight size={16} />
             </span>
           )}
         </>

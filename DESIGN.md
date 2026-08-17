@@ -7,7 +7,7 @@ sections.
 ## 🎨 Visual Identity
 - **Vibe**: Quiet, dense, document-like. Reads as a profile page, not a landing page.
 - **Theme**: Dark by default (`defaultTheme="dark"`, system preference off), light available via the toggle in the top bar.
-- **Aesthetic**: Hairline borders, small type, tight rows. No glows, no drifting blobs, no full-viewport hero.
+- **Aesthetic**: Hairline borders, small type, tight rows. No drifting blobs, no full-viewport hero. The one lighting effect is the cover spotlight, and it only appears under the cursor.
 
 ## 🌈 Color Tokens
 
@@ -48,7 +48,12 @@ reserved for inline links inside prose.
 
 ## ✨ Motion & Interaction
 - **No scroll-reveal.** Content is present on load; the page is meant to be scanned.
-- **Hover**: border shifts to `primary/25` plus a soft shadow; surface fills on rows. Project thumbnails scale `1.03`.
+- **Hover system** — one idea applied consistently: *light follows the cursor, and the focused thing steps forward*. Composed from four classes:
+  - `.peek-card` — cursor-tracked sheen (`--cx`/`--cy` written by [SheenGroup.tsx](src/components/profile/SheenGroup.tsx), rendered by an `::after` radial gradient using the `--sheen` token), plus a `-3px` lift and a deeper shadow. Used on Proof of Work and Currently Building.
+  - `.peek-rows .peek-item` — a 2px accent bar scales in from the row's left edge, with a surface fill. Used on every list section.
+  - `.hover-arrow` — `ArrowUpRight` affordances translate `(2px, -2px)`, leaning out of the card.
+  - `.hover-lift` — pills and icon buttons rise `2px`.
+- Project thumbnails still scale `1.03`. All four collapse to a 1ms transition and no transform under `prefers-reduced-motion`.
 - **Peek hover** (the signature interaction): hovering anywhere in a collection dims every sibling so the focused item stands out. Put `.peek` on the container and `.peek-item` on each child; add `.peek-rows` for the harder dim. Cards fade to `0.55` over 300ms, list rows to `0.40` over 250ms. Built on `:has()` — no JS — and collapses to a 1ms transition under `prefers-reduced-motion`.
 - **Accordion**: height + opacity over 220ms, `[0.16, 1, 0.3, 1]`.
 - **Theme switch**: a circular `clipPath` wipe expands from the toggle button via the View Transitions API (480ms), while `.theme-switching` on `<html>` cross-fades colors for the same duration. Falls back to the cross-fade alone when the API is unavailable or `prefers-reduced-motion` is set. `disableTransitionOnChange` must stay **off** on `ThemeProvider` or it suppresses the fade.
@@ -65,5 +70,5 @@ primitives are in [Section.tsx](src/components/profile/Section.tsx):
 - **Card grid** — thumbnail, title with `ArrowUpRight`, one-line description, tag row. Used by Proof of Work and Currently Building.
 
 ## 🖼 Assets
-- The hero cover is CSS (a gradient plus a hatch overlay), not an image. To use a photo, drop it at `public/cover.jpg` and replace the gradient div in [ProfileHeader.tsx](src/components/profile/ProfileHeader.tsx).
+- The hero cover is [CoverBanner.tsx](src/components/profile/CoverBanner.tsx): a charcoal gradient, a dot matrix, and a spotlight that follows the cursor. Pointer position is written to `--mx` / `--my` custom properties on the element rather than React state, so mousemove never triggers a re-render; the `.cover-grid` / `.cover-glow` rules in [globals.css](src/app/globals.css) do the rest. Dial the intensity with the dot alpha in `.cover-grid` and the white alpha in `.cover-glow`. Devices without hover get a soft resting light instead of a dead panel.
 - Avatar is `public/portrait.png`, `objectPosition: center 22%`, and needs `relative z-10` to sit above the positioned cover.

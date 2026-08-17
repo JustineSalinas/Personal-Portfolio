@@ -16,17 +16,17 @@ export const EducationList = () => (
           <Image
             src={item.logo}
             alt={item.institution}
-            width={32}
-            height={32}
+            width={43}
+            height={43}
             unoptimized={isSvg(item.logo)}
-            className="h-8 w-8 shrink-0 rounded-lg border border-border bg-surface object-contain p-0.5"
+            className="h-11 w-11 shrink-0 rounded-lg border border-border bg-surface object-contain p-0.5"
           />
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-              <p className="text-[13px] font-medium text-primary">{item.institution}</p>
-              <span className="text-[11.5px] text-muted">{item.date}</span>
+              <p className="text-[17px] font-medium text-primary">{item.institution}</p>
+              <span className="text-[15px] text-muted">{item.date}</span>
             </div>
-            <p className="mt-0.5 text-[12px] text-secondary">
+            <p className="mt-0.5 text-[16px] text-secondary">
               {'degree' in item && item.degree ? item.degree : item.level}
             </p>
 
@@ -35,7 +35,7 @@ export const EducationList = () => (
                 {achievements.map((a) => (
                   <span
                     key={`${a.role}-${a.org}`}
-                    className="rounded-md border border-border bg-surface px-1.5 py-0.5 text-[10.5px] text-secondary"
+                    className="rounded-md border border-border bg-surface px-1.5 py-0.5 text-[14px] text-secondary"
                   >
                     {a.role} · {a.org}
                   </span>

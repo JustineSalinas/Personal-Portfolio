@@ -73,10 +73,10 @@ const renderInline = (line: string, keyPrefix: string) => {
 };
 
 const MessageBody = ({ content, role }: { content: string; role: ChatMessage['role'] }) => {
-  if (role === 'user') return <p className="text-[12.5px] leading-relaxed">{content}</p>;
+  if (role === 'user') return <p className="text-[16.5px] leading-relaxed">{content}</p>;
 
   return (
-    <div className="space-y-1.5 text-[12.5px] leading-relaxed">
+    <div className="space-y-1.5 text-[16.5px] leading-relaxed">
       {content.split('\n').map((line, i) => {
         const trimmed = line.trim();
         if (!trimmed) return null;
@@ -207,12 +207,12 @@ export const ChatbotWidget = () => {
             {/* Header */}
             <div className="flex shrink-0 items-center justify-between border-b border-border px-3.5 py-2.5">
               <div className="flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-surface text-primary">
-                  <ShadcnMark size={14} />
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface text-primary">
+                  <ShadcnMark size={18} />
                 </span>
                 <div>
-                  <p className="text-[12.5px] font-medium text-primary">Ask about Adrian</p>
-                  <p className="text-[10.5px] text-muted">
+                  <p className="text-[16.5px] font-medium text-primary">Ask about Adrian</p>
+                  <p className="text-[14px] text-muted">
                     Answers from the portfolio — or anything else
                   </p>
                 </div>
@@ -223,18 +223,18 @@ export const ChatbotWidget = () => {
                     type="button"
                     onClick={reset}
                     title="New conversation"
-                    className="flex h-6 w-6 items-center justify-center rounded-md text-muted transition-colors hover:bg-surface hover:text-primary"
+                    className="flex h-8 w-8 items-center justify-center rounded-md text-muted transition-colors hover:bg-surface hover:text-primary"
                   >
-                    <RefreshCw size={13} />
+                    <RefreshCw size={17} />
                   </button>
                 )}
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
                   aria-label="Close chat"
-                  className="flex h-6 w-6 items-center justify-center rounded-md text-muted transition-colors hover:bg-surface hover:text-primary"
+                  className="flex h-8 w-8 items-center justify-center rounded-md text-muted transition-colors hover:bg-surface hover:text-primary"
                 >
-                  <X size={14} />
+                  <X size={18} />
                 </button>
               </div>
             </div>
@@ -243,7 +243,7 @@ export const ChatbotWidget = () => {
             <div className="flex-1 space-y-3 overflow-y-auto px-3.5 py-3.5">
               {messages.length === 0 && (
                 <div className="py-4">
-                  <p className="text-[12.5px] leading-relaxed text-secondary">
+                  <p className="text-[16.5px] leading-relaxed text-secondary">
                     Ask about Adrian&apos;s projects, experience, or availability — or ask
                     anything else you&apos;re curious about.
                   </p>
@@ -253,7 +253,7 @@ export const ChatbotWidget = () => {
                         key={starter}
                         type="button"
                         onClick={() => send(starter)}
-                        className="rounded-lg border border-border bg-background px-2.5 py-2 text-left text-[12px] text-secondary transition-colors hover:border-primary/20 hover:bg-surface hover:text-primary"
+                        className="rounded-lg border border-border bg-background px-2.5 py-2 text-left text-[16px] text-secondary transition-colors hover:border-primary/20 hover:bg-surface hover:text-primary"
                       >
                         {starter}
                       </button>
@@ -282,15 +282,15 @@ export const ChatbotWidget = () => {
 
               {waiting && (
                 <div className="flex justify-start">
-                  <div className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 text-[12px] text-muted">
-                    <Loader2 size={13} className="animate-spin" />
+                  <div className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 text-[16px] text-muted">
+                    <Loader2 size={17} className="animate-spin" />
                     Thinking…
                   </div>
                 </div>
               )}
 
               {error && (
-                <p className="rounded-lg border border-border bg-surface px-3 py-2 text-[11.5px] text-secondary">
+                <p className="rounded-lg border border-border bg-surface px-3 py-2 text-[15px] text-secondary">
                   {error}
                 </p>
               )}
@@ -313,25 +313,25 @@ export const ChatbotWidget = () => {
                 placeholder="Ask anything…"
                 // outline-none with no replacement leaves keyboard users with
                 // no focus indication at all (WCAG 2.4.7), so ring it instead.
-                className="min-w-0 flex-1 rounded-md bg-transparent px-1 py-0.5 text-[12.5px] text-primary outline-none ring-primary/40 placeholder:text-muted focus-visible:ring-2"
+                className="min-w-0 flex-1 rounded-md bg-transparent px-1 py-0.5 text-[16.5px] text-primary outline-none ring-primary/40 placeholder:text-muted focus-visible:ring-2"
               />
               {isStreaming ? (
                 <button
                   type="button"
                   onClick={() => abortRef.current?.abort()}
                   aria-label="Stop generating"
-                  className="flex h-7 w-7 items-center justify-center rounded-lg border border-border text-secondary transition-colors hover:text-primary"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-secondary transition-colors hover:text-primary"
                 >
-                  <Square size={11} />
+                  <Square size={15} />
                 </button>
               ) : (
                 <button
                   type="submit"
                   disabled={!input.trim()}
                   aria-label="Send message"
-                  className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-background transition-opacity disabled:opacity-30"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-background transition-opacity disabled:opacity-30"
                 >
-                  <Send size={12} />
+                  <Send size={16} />
                 </button>
               )}
             </form>
@@ -342,9 +342,9 @@ export const ChatbotWidget = () => {
       <button
         type="button"
         onClick={() => setIsOpen((v) => !v)}
-        className="flex items-center gap-2 rounded-full bg-accent px-4 py-3 font-mono text-[11px] font-bold uppercase tracking-wide text-background shadow-xl transition-transform hover:scale-[1.03] active:scale-95"
+        className="flex items-center gap-2 rounded-full bg-accent px-4 py-3 font-mono text-[14.5px] font-bold uppercase tracking-wide text-background shadow-xl transition-transform hover:scale-[1.03] active:scale-95"
       >
-        {isOpen ? <X size={16} /> : <MessageSquare size={16} />}
+        {isOpen ? <X size={21} /> : <MessageSquare size={21} />}
         {isOpen ? 'Close chat' : 'Chat with AJ'}
       </button>
     </div>

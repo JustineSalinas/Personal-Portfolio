@@ -20,19 +20,19 @@ export const CredentialsList = () => (
         <Image
           src={cert.logo || cert.image}
           alt={cert.issuer}
-          width={32}
-          height={32}
+          width={43}
+          height={43}
           unoptimized={isSvg(cert.logo || cert.image)}
-          className="h-8 w-8 shrink-0 rounded-lg border border-border bg-surface object-contain p-1"
+          className="h-11 w-11 shrink-0 rounded-lg border border-border bg-surface object-contain p-1"
         />
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-[13px] font-medium text-primary">{cert.title}</span>
-          <span className="block text-[11.5px] text-secondary">
+          <span className="block truncate text-[17px] font-medium text-primary">{cert.title}</span>
+          <span className="block text-[15px] text-secondary">
             {cert.issuer} · {cert.date}
           </span>
         </span>
-        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border text-muted transition-colors group-hover:text-primary group-hover:border-primary/20">
-          <ArrowUpRight size={12} />
+        <span className="hover-arrow flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border text-muted group-hover:border-primary/25 group-hover:text-primary">
+          <ArrowUpRight size={16} />
         </span>
       </a>
     ))}

@@ -17,11 +17,11 @@ export default function Home() {
   return (
     // The hatched page acts as a rail; everything readable sits in one 660px column.
     <main className="min-h-screen rail-hatch">
-      <div className="mx-auto min-h-screen w-full max-w-[660px] border-x border-border bg-background">
+      <div className="mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
         <TopBar />
         <ProfileHeader />
 
-        <div className="px-5 pb-16">
+        <div className="px-7 pb-20">
           <Section id="experience" label="Professional Experience">
             <ExperienceList />
           </Section>
@@ -30,7 +30,7 @@ export default function Home() {
             id="work"
             label="Proof of Work"
             action={
-              <span className="text-[12px] text-secondary">
+              <span className="text-[16px] text-secondary">
                 <span className="font-medium text-primary">
                   {portfolioData.personal.projectsBuilt}
                 </span>{' '}
@@ -53,7 +53,7 @@ export default function Home() {
                 href="https://github.com/JustineSalinas"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[12px] font-medium text-secondary transition-colors hover:text-primary"
+                className="text-[16px] font-medium text-secondary transition-colors hover:text-primary"
               >
                 @JustineSalinas →
               </a>
@@ -80,7 +80,7 @@ export default function Home() {
             action={
               <Link
                 href="/certifications"
-                className="text-[12px] font-medium text-secondary transition-colors hover:text-primary"
+                className="text-[16px] font-medium text-secondary transition-colors hover:text-primary"
               >
                 View all →
               </Link>

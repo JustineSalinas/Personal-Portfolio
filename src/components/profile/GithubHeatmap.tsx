@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 interface Day {
   date: string;
@@ -21,9 +21,9 @@ interface Payload {
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const LEVEL_VAR = ['--gh-0', '--gh-1', '--gh-2', '--gh-3', '--gh-4'];
 
-// Sized so a full 53-week year fits the 660px reading column without scrolling.
-const CELL = 8;
-const GAP = 2;
+// Sized so a full 53-week year fits the 880px reading column without scrolling.
+const CELL = 11;
+const GAP = 3;
 
 /** Bucket the flat day list into Sunday-first week columns. */
 const toWeeks = (days: Day[]): (Day | null)[][] => {
@@ -55,12 +55,33 @@ interface Tip {
   day: Day;
   x: number;
   y: number;
+  /** False for cells near the top, where there is no room above the grid. */
+  above: boolean;
 }
+
+/** Tooltip height plus breathing room — below this, flip underneath. */
+const TIP_CLEARANCE = 30;
 
 export const GithubHeatmap = () => {
   const [data, setData] = useState<Payload | null>(null);
   const [failed, setFailed] = useState(false);
   const [tip, setTip] = useState<Tip | null>(null);
+  const tipRef = useRef<HTMLSpanElement>(null);
+
+  // Clamp horizontally against the tooltip's real width. Date strings vary a
+  // lot ("No contributions on July 19, 2026" vs "2 contributions on May 3,
+  // 2026"), so a fixed estimate let long ones hang off the edge and get
+  // clipped by the scroll container.
+  useLayoutEffect(() => {
+    const el = tipRef.current;
+    const track = el?.offsetParent as HTMLElement | null;
+    if (!el || !track || !tip) return;
+
+    const half = el.offsetWidth / 2;
+    const min = half;
+    const max = Math.max(track.offsetWidth - half, min);
+    el.style.left = `${Math.min(Math.max(tip.x, min), max)}px`;
+  }, [tip]);
 
   useEffect(() => {
     let active = true;
@@ -98,7 +119,7 @@ export const GithubHeatmap = () => {
   if (failed) {
     return (
       <div className="rounded-xl border border-border bg-background p-4">
-        <p className="text-[12px] text-secondary">
+        <p className="text-[16px] text-secondary">
           GitHub activity is unavailable right now.{' '}
           <a
             href="https://github.com/JustineSalinas"
@@ -117,7 +138,7 @@ export const GithubHeatmap = () => {
   if (!data) {
     return (
       <div className="rounded-xl border border-border bg-background p-4">
-        <div className="h-[104px] animate-pulse rounded-lg bg-surface" />
+        <div className="h-[140px] animate-pulse rounded-lg bg-surface" />
       </div>
     );
   }
@@ -125,11 +146,11 @@ export const GithubHeatmap = () => {
   return (
     <div className="rounded-xl border border-border bg-background p-4">
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <p className="text-[12.5px] text-primary">
+        <p className="text-[16.5px] text-primary">
           <span className="font-medium">{data.total.toLocaleString()}</span>{' '}
           <span className="text-secondary">contributions in the last year</span>
         </p>
-        <p className="text-[11px] text-muted">
+        <p className="text-[14.5px] text-muted">
           {data.currentStreak}-day current streak · {data.longestStreak}-day longest
         </p>
       </div>
@@ -150,11 +171,11 @@ export const GithubHeatmap = () => {
           aria-label={`GitHub contribution graph: ${data.total.toLocaleString()} contributions in the last year, a ${data.currentStreak}-day current streak and a ${data.longestStreak}-day longest streak.`}
         >
           {/* Month row */}
-          <div className="relative mb-1 ml-[26px] h-3">
+          <div className="relative mb-1 ml-[35px] h-4">
             {monthLabels.map(({ index, label }) => (
               <span
                 key={`${label}-${index}`}
-                className="absolute top-0 text-[9.5px] leading-3 text-muted"
+                className="absolute top-0 text-[12.5px] leading-3 text-muted"
                 style={{ left: index * (CELL + GAP) }}
               >
                 {label}
@@ -164,11 +185,11 @@ export const GithubHeatmap = () => {
 
           <div className="flex" style={{ gap: GAP }}>
             {/* Weekday gutter — only alternating labels, as GitHub does */}
-            <div className="mr-1 flex w-[22px] flex-col" style={{ gap: GAP }}>
+            <div className="mr-1 flex w-[29px] flex-col" style={{ gap: GAP }}>
               {['', 'Mon', '', 'Wed', '', 'Fri', ''].map((label, i) => (
                 <span
                   key={i}
-                  className="text-[9px] text-muted"
+                  className="text-[12px] text-muted"
                   style={{ height: CELL, lineHeight: `${CELL}px` }}
                 >
                   {label}
@@ -182,13 +203,15 @@ export const GithubHeatmap = () => {
                   day ? (
                     <span
                       key={day.date}
-                      onMouseEnter={(e) =>
+                      onMouseEnter={(e) => {
+                        const cell = e.currentTarget;
                         setTip({
                           day,
-                          x: e.currentTarget.offsetLeft + CELL / 2,
-                          y: e.currentTarget.offsetTop,
-                        })
-                      }
+                          x: cell.offsetLeft + CELL / 2,
+                          y: cell.offsetTop,
+                          above: cell.offsetTop >= TIP_CLEARANCE,
+                        });
+                      }}
                       className="cursor-pointer rounded-[2px] ring-1 ring-inset ring-black/[0.04] transition-[ring-color,transform] duration-150 hover:ring-primary/60 dark:ring-white/[0.04]"
                       style={{
                         width: CELL,
@@ -206,9 +229,14 @@ export const GithubHeatmap = () => {
 
           {tip && (
             <span
+              ref={tipRef}
               role="tooltip"
-              className="pointer-events-none absolute z-20 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-md border border-border bg-background px-2 py-1 text-[10.5px] leading-tight text-primary shadow-md"
-              style={{ left: tip.x, top: tip.y - 6 }}
+              className={`pointer-events-none absolute z-20 -translate-x-1/2 whitespace-nowrap rounded-md border border-border bg-background px-2 py-1 text-[14px] leading-tight text-primary shadow-md ${
+                tip.above ? '-translate-y-full' : ''
+              }`}
+              // Flips below the cell for the top rows, where sitting above
+              // would cover the month labels and the header.
+              style={{ left: tip.x, top: tip.above ? tip.y - 6 : tip.y + CELL + 6 }}
             >
               <span className="font-medium">
                 {tip.day.count === 0
@@ -221,7 +249,7 @@ export const GithubHeatmap = () => {
         </div>
       </div>
 
-      <div className="mt-3 flex items-center justify-end gap-1.5 text-[10px] text-muted">
+      <div className="mt-3 flex items-center justify-end gap-1.5 text-[13px] text-muted">
         <span>Less</span>
         {LEVEL_VAR.map((v) => (
           <span

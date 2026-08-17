@@ -69,10 +69,10 @@ export const ConnectFooter = () => {
   return (
     <div id="contact">
       <div className="border-t border-border pt-10">
-        <h2 className="text-[13px] font-medium text-muted tracking-tight">
+        <h2 className="text-[17px] font-medium text-muted tracking-tight">
           Get in touch
         </h2>
-        <p className="mt-1 text-[13px] text-secondary">
+        <p className="mt-1 text-[17px] text-secondary">
           If you&apos;ve read this far, we should probably build something.
         </p>
 
@@ -82,7 +82,7 @@ export const ConnectFooter = () => {
             // screen reader user gets no confirmation the send worked.
             role="status"
             aria-live="polite"
-            className="mt-5 rounded-xl border border-border bg-surface px-4 py-3 text-[13px] text-primary"
+            className="mt-5 rounded-xl border border-border bg-surface px-4 py-3 text-[17px] text-primary"
           >
             Message sent — I&apos;ll get back to you soon.
           </p>
@@ -90,7 +90,7 @@ export const ConnectFooter = () => {
           <form onSubmit={handleSubmit} className="relative mt-5 space-y-3">
             <div className="grid gap-3 sm:grid-cols-2">
               <label className="block">
-                <span className="mb-1 block text-[11px] text-muted">Name</span>
+                <span className="mb-1 block text-[14.5px] text-muted">Name</span>
                 <input
                   type="text"
                   name="name"
@@ -98,12 +98,12 @@ export const ConnectFooter = () => {
                   onChange={handleChange}
                   required
                   maxLength={100}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[17px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
                   placeholder="Your name"
                 />
               </label>
               <label className="block">
-                <span className="mb-1 block text-[11px] text-muted">Email</span>
+                <span className="mb-1 block text-[14.5px] text-muted">Email</span>
                 <input
                   type="email"
                   name="email"
@@ -111,13 +111,13 @@ export const ConnectFooter = () => {
                   onChange={handleChange}
                   required
                   maxLength={254}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[17px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
                   placeholder="you@example.com"
                 />
               </label>
             </div>
             <label className="block">
-              <span className="mb-1 block text-[11px] text-muted">Message</span>
+              <span className="mb-1 block text-[14.5px] text-muted">Message</span>
               <textarea
                 name="message"
                 value={form.message}
@@ -125,7 +125,7 @@ export const ConnectFooter = () => {
                 required
                 rows={4}
                 maxLength={5000}
-                className="w-full resize-none rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
+                className="w-full resize-none rounded-lg border border-border bg-background px-3 py-2 text-[17px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
                 placeholder="What are you building?"
               />
             </label>
@@ -143,7 +143,7 @@ export const ConnectFooter = () => {
             />
 
             {submitState === 'error' && errorMessage && (
-              <p role="alert" className="text-[12px] text-secondary">
+              <p role="alert" className="text-[16px] text-secondary">
                 {errorMessage}
               </p>
             )}
@@ -151,16 +151,16 @@ export const ConnectFooter = () => {
             <button
               type="submit"
               disabled={!isValid || submitState === 'loading'}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-[12px] font-medium text-primary transition-colors hover:bg-surface hover:border-primary/20 disabled:cursor-not-allowed disabled:opacity-40"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-[16px] font-medium text-primary transition-colors hover:bg-surface hover:border-primary/20 disabled:cursor-not-allowed disabled:opacity-40"
             >
               {submitState === 'loading' ? (
                 <>
-                  <Loader2 size={13} className="animate-spin" />
+                  <Loader2 size={17} className="animate-spin" />
                   Sending…
                 </>
               ) : (
                 <>
-                  <Send size={13} />
+                  <Send size={17} />
                   Send message
                 </>
               )}
@@ -170,23 +170,23 @@ export const ConnectFooter = () => {
       </div>
 
       <div className="mt-12">
-        <h2 className="text-[13px] font-medium text-muted tracking-tight">
+        <h2 className="text-[17px] font-medium text-muted tracking-tight">
           Let&apos;s connect
         </h2>
-        <p className="mt-1 text-[13px] text-secondary">
+        <p className="mt-1 text-[17px] text-secondary">
           Find me across code, work, and everything in between.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {links.map(({ href, label, Icon }) => (
             <PillLink key={label} href={href}>
-              <Icon size={13} className="text-secondary" />
+              <Icon size={17} className="text-secondary transition-colors group-hover:text-primary" />
               {label}
             </PillLink>
           ))}
         </div>
       </div>
 
-      <p className="mt-12 border-t border-border pt-5 text-center text-[11.5px] text-muted">
+      <p className="mt-12 border-t border-border pt-5 text-center text-[15px] text-muted">
         © {new Date().getFullYear()} {personal.name}.
       </p>
     </div>

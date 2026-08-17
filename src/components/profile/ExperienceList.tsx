@@ -24,18 +24,18 @@ const ExperienceRow = ({ item }: { item: (typeof portfolioData.experience)[numbe
         aria-expanded={open}
         className="group flex w-full items-center gap-3 py-3 text-left"
       >
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border bg-surface font-display text-[13px] font-semibold text-secondary">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface font-display text-[17px] font-semibold text-secondary">
           {name.charAt(0)}
         </span>
 
         <span className="min-w-0 flex-1">
-          <span className="block text-[13.5px] font-medium leading-snug text-primary">{name}</span>
-          <span className="block text-[12px] leading-snug text-secondary">{item.role}</span>
+          <span className="block text-[18px] font-medium leading-snug text-primary">{name}</span>
+          <span className="block text-[16px] leading-snug text-secondary">{item.role}</span>
         </span>
 
-        <span className="shrink-0 text-right text-[11.5px] text-muted">{item.date}</span>
+        <span className="shrink-0 text-right text-[15px] text-muted">{item.date}</span>
         <ChevronDown
-          size={14}
+          size={18}
           className={cn(
             'shrink-0 text-muted transition-transform duration-200 group-hover:text-secondary',
             open && 'rotate-180'
@@ -53,16 +53,16 @@ const ExperienceRow = ({ item }: { item: (typeof portfolioData.experience)[numbe
             className="overflow-hidden"
           >
             <div className="pb-4 pl-11 pr-1">
-              {sub && <p className="mb-2 text-[11.5px] text-muted">{sub}</p>}
+              {sub && <p className="mb-2 text-[15px] text-muted">{sub}</p>}
               <ul className="space-y-2">
                 {item.bullets.map((bullet, i) => (
-                  <li key={i} className="flex gap-2 text-[12.5px] leading-relaxed text-secondary">
+                  <li key={i} className="flex gap-2 text-[16.5px] leading-relaxed text-secondary">
                     <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-muted" />
                     <span>{bullet}</span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-2.5 text-[11.5px] text-muted">{item.location}</p>
+              <p className="mt-2.5 text-[15px] text-muted">{item.location}</p>
             </div>
           </motion.div>
         )}
