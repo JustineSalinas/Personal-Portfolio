@@ -1,21 +1,36 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowUpRight, Github } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { SheenGroup } from './SheenGroup';
+import { isSvg } from '@/lib/utils';
 
 export const BuildingNow = () => (
   <SheenGroup className="peek grid gap-3 sm:grid-cols-2">
     {portfolioData.building.map((item) => {
       const role = 'role' in item ? item.role : undefined;
+      const logo = 'logo' in item ? item.logo : undefined;
 
       return (
         <div
           key={item.name}
           className="peek-item peek-card group relative flex gap-2.5 rounded-xl border border-border bg-background p-3 hover:border-primary/30 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/50"
         >
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface font-display text-[17px] font-semibold text-secondary">
-            {item.name.charAt(0)}
-          </span>
+          {/* Real mark when we have one; initial tile is the fallback. */}
+          {logo ? (
+            <Image
+              src={logo}
+              alt={item.name}
+              width={44}
+              height={44}
+              unoptimized={isSvg(logo)}
+              className="h-11 w-11 shrink-0 rounded-lg border border-border bg-surface object-contain p-1.5"
+            />
+          ) : (
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface font-display text-[17px] font-semibold text-secondary">
+              {item.name.charAt(0)}
+            </span>
+          )}
 
           <div className="min-w-0 flex-1">
             <div className="flex items-start justify-between gap-2">

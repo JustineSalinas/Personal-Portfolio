@@ -4,12 +4,14 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { TopBar } from '@/components/profile/TopBar';
+import { CursorAura } from '@/components/profile/CursorAura';
 import { isSvg } from '@/lib/utils';
 
 export default function CertificationsPage() {
   return (
-    <main className="min-h-screen rail-hatch">
-      <div className="mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
+    <main className="relative min-h-screen rail-hatch">
+      <CursorAura />
+      <div className="relative z-10 mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
         <TopBar />
 
         <div className="px-7 py-10">

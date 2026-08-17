@@ -31,6 +31,7 @@ export const portfolioData = {
     {
       role: "Founder & AI Engineer",
       company: "Cascade Development Group (CDG)",
+      logo: "/logos/cdg-fire-logo.png",
       date: "2026 – Present",
       location: "Iloilo City, Philippines",
       bullets: [
@@ -43,6 +44,7 @@ export const portfolioData = {
     {
       role: "Project Manager & Lead Developer",
       company: "PharmaTrack — University of San Agustin, Pharmacy Department",
+      logo: "/logos/USALOGO.png",
       date: "2026",
       location: "Iloilo City, Philippines",
       bullets: [
@@ -54,6 +56,7 @@ export const portfolioData = {
     {
       role: "Full-Stack Developer · 1st Runner-Up",
       company: "Solmate / E-Ferry — Nexus Philippines Hackathon",
+      logo: "/logos/solmate.png",
       date: "May 21–23, 2026",
       location: "Philippines",
       bullets: [
@@ -65,6 +68,7 @@ export const portfolioData = {
     {
       role: "IT Assistant (Contract)",
       company: "Telus Corporation",
+      logo: "/logos/telus.png",
       date: "March 2025",
       location: "Iloilo City, Philippines",
       bullets: [
@@ -75,6 +79,7 @@ export const portfolioData = {
     {
       role: "IT Support Intern",
       company: "InnovaThink Corporation Philippines",
+      logo: "/logos/innovathink.png",
       date: "July 2024",
       location: "Iloilo City, Philippines",
       bullets: [
@@ -85,6 +90,7 @@ export const portfolioData = {
     {
       role: "Technical Support Intern",
       company: "University of San Agustin",
+      logo: "/logos/USALOGO.png",
       date: "January 2024",
       location: "Iloilo City, Philippines",
       bullets: [
@@ -126,7 +132,7 @@ export const portfolioData = {
       level: "Elementary - Grade 7",
       institution: "Philippine International School in Buraydah, Saudi Arabia",
       date: "July 2010 - May 2019",
-      logo: "/logos/pisb.jpg"
+      logo: "/logos/pisb.png"
     }
   ],
   certifications: [
@@ -192,7 +198,7 @@ export const portfolioData = {
       date: "2024",
       link: "/certs/it-operations.pdf",
       image: "/certs/it-operations.png",
-      logo: "/logos/innovathink.svg"
+      logo: "/logos/innovathink.png"
     }
   ],
   // Active work — mirrors the pinned/most-recently-pushed repos on
@@ -200,6 +206,7 @@ export const portfolioData = {
   building: [
     {
       name: "ITSA Website",
+      logo: "/logos/itsa.png",
       role: "Project Manager",
       blurb: "Official site for the IT Student Association of the University of San Agustin, built and shipped with the org's dev team.",
       demo: "https://itsa-website-psi.vercel.app",
@@ -207,6 +214,7 @@ export const portfolioData = {
     },
     {
       name: "Nan Builders",
+      logo: "/logos/nan-builders.png",
       blurb: "Construction company website for a builder based in Iloilo City — services, project gallery, and enquiry flow.",
       demo: "https://nan-builders.vercel.app",
       repo: "https://github.com/JustineSalinas/Nan-Builders"
@@ -220,6 +228,7 @@ export const portfolioData = {
     },
     {
       name: "Famly",
+      logo: "/logos/famly.svg",
       role: "Solo Developer",
       blurb: "Collaborative family financial tracker for tuition assessments, savings milestones, debt ledgers, and project proposals.",
       demo: "https://famly-app.vercel.app",

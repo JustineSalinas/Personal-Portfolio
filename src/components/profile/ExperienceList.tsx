@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { portfolioData } from '@/data';
-import { cn } from '@/lib/utils';
+import { cn, isSvg } from '@/lib/utils';
 
 /** "PharmaTrack — University of San Agustin, ..." → "PharmaTrack" */
 const shortName = (company: string) => company.split('—')[0].trim();
@@ -15,6 +16,7 @@ const ExperienceRow = ({ item }: { item: (typeof portfolioData.experience)[numbe
   const [open, setOpen] = useState(false);
   const name = shortName(item.company);
   const sub = qualifier(item.company);
+  const logo = 'logo' in item ? (item.logo as string) : undefined;
 
   return (
     <div className="peek-item rounded-lg border-b border-border px-2 last:border-b-0 hover:bg-surface">
@@ -24,9 +26,20 @@ const ExperienceRow = ({ item }: { item: (typeof portfolioData.experience)[numbe
         aria-expanded={open}
         className="group flex w-full items-center gap-3 py-3 text-left"
       >
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface font-display text-[17px] font-semibold text-secondary">
-          {name.charAt(0)}
-        </span>
+        {logo ? (
+          <Image
+            src={logo}
+            alt={name}
+            width={44}
+            height={44}
+            unoptimized={isSvg(logo)}
+            className="h-11 w-11 shrink-0 rounded-lg border border-border bg-surface object-contain p-1.5"
+          />
+        ) : (
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface font-display text-[17px] font-semibold text-secondary">
+            {name.charAt(0)}
+          </span>
+        )}
 
         <span className="min-w-0 flex-1">
           <span className="block text-[18px] font-medium leading-snug text-primary">{name}</span>

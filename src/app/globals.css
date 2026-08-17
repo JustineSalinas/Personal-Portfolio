@@ -18,6 +18,7 @@
     --rail: rgba(0, 0, 0, 0.035);
     /* Cursor sheen on cards — dark ink on light, light on dark. */
     --sheen: rgba(0, 0, 0, 0.05);
+    --aura: rgba(0, 0, 0, 0.055);
 
     /* GitHub's own contribution ramp, light theme */
     --gh-0: #ebedf0;
@@ -28,18 +29,26 @@
   }
 
   .dark {
-    --page: #09090b;
-    --background: #0f0f11;
-    --surface: #161618;
-    --primary: rgba(255, 255, 255, 0.93);
-    --secondary: rgba(255, 255, 255, 0.48);
-    --muted: rgba(255, 255, 255, 0.32);
+    /*
+      Pure black ground. Note that dropping the background alone *lowers*
+      contrast for semi-transparent text, because the text composites over a
+      darker base — so the alphas below are raised to match. Measured against
+      #000: primary 18.8:1, secondary 7.85:1, muted 4.92:1. The old muted
+      (0.32) sat at 2.86:1, under even the large-text threshold.
+    */
+    --page: #000000;
+    --background: #000000;
+    --surface: #0c0c0e;
+    --primary: rgba(255, 255, 255, 0.95);
+    --secondary: rgba(255, 255, 255, 0.62);
+    --muted: rgba(255, 255, 255, 0.48);
     --accent: #fafafa;
     --accent-hover: #ffffff;
-    --link: #7ea6ff;
-    --border: rgba(255, 255, 255, 0.09);
-    --rail: rgba(255, 255, 255, 0.028);
+    --link: #8fb2ff;
+    --border: rgba(255, 255, 255, 0.13);
+    --rail: rgba(255, 255, 255, 0.035);
     --sheen: rgba(255, 255, 255, 0.075);
+    --aura: rgba(255, 255, 255, 0.055);
 
     /* GitHub's own contribution ramp, dark theme */
     --gh-0: #161b22;
@@ -456,6 +465,22 @@
     .hover-lift:hover {
       transform: none;
     }
+  }
+
+  /* Cursor aura: fixed behind the reading column, so it only ever shows in
+     the rails. Trails the pointer via --ax/--ay written from JS. */
+  .cursor-aura {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--aura-opacity, 0);
+    transition: opacity 600ms ease-out;
+    background: radial-gradient(
+      520px circle at var(--ax, 50vw) var(--ay, 50vh),
+      var(--aura),
+      transparent 65%
+    );
   }
 
   /* Inline links inside prose copy */

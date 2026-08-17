@@ -12,12 +12,16 @@ import { StackGrid } from '@/components/profile/StackGrid';
 import { CredentialsList } from '@/components/profile/CredentialsList';
 import { EducationList } from '@/components/profile/EducationList';
 import { ConnectFooter } from '@/components/profile/ConnectFooter';
+import { CursorAura } from '@/components/profile/CursorAura';
 
 export default function Home() {
   return (
     // The hatched page acts as a rail; everything readable sits in one 660px column.
-    <main className="min-h-screen rail-hatch">
-      <div className="mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
+    <main className="relative min-h-screen rail-hatch">
+      <CursorAura />
+      {/* relative z-10: the column is opaque, so it occludes the aura and the
+          light is only ever visible in the rails beside it. */}
+      <div className="relative z-10 mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
         <TopBar />
         <ProfileHeader />
 
