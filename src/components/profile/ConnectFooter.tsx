@@ -77,7 +77,13 @@ export const ConnectFooter = () => {
         </p>
 
         {submitState === 'success' ? (
-          <p className="mt-5 rounded-xl border border-border bg-surface px-4 py-3 text-[13px] text-primary">
+          <p
+            // The form is replaced on success, so without a live region a
+            // screen reader user gets no confirmation the send worked.
+            role="status"
+            aria-live="polite"
+            className="mt-5 rounded-xl border border-border bg-surface px-4 py-3 text-[13px] text-primary"
+          >
             Message sent — I&apos;ll get back to you soon.
           </p>
         ) : (
@@ -92,7 +98,7 @@ export const ConnectFooter = () => {
                   onChange={handleChange}
                   required
                   maxLength={100}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none transition-colors placeholder:text-muted focus:border-primary/25"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
                   placeholder="Your name"
                 />
               </label>
@@ -105,7 +111,7 @@ export const ConnectFooter = () => {
                   onChange={handleChange}
                   required
                   maxLength={254}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none transition-colors placeholder:text-muted focus:border-primary/25"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
                   placeholder="you@example.com"
                 />
               </label>
@@ -119,7 +125,7 @@ export const ConnectFooter = () => {
                 required
                 rows={4}
                 maxLength={5000}
-                className="w-full resize-none rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none transition-colors placeholder:text-muted focus:border-primary/25"
+                className="w-full resize-none rounded-lg border border-border bg-background px-3 py-2 text-[13px] text-primary outline-none ring-primary/40 transition-colors placeholder:text-muted focus-visible:border-primary/40 focus-visible:ring-2"
                 placeholder="What are you building?"
               />
             </label>
@@ -137,7 +143,9 @@ export const ConnectFooter = () => {
             />
 
             {submitState === 'error' && errorMessage && (
-              <p className="text-[12px] text-secondary">{errorMessage}</p>
+              <p role="alert" className="text-[12px] text-secondary">
+                {errorMessage}
+              </p>
             )}
 
             <button

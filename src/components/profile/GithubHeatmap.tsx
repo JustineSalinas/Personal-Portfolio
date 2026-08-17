@@ -139,8 +139,16 @@ export const GithubHeatmap = () => {
           bar is pure clutter — swipe/drag still scrolls. */}
       <div className="scrollbar-none overflow-x-auto" onMouseLeave={() => setTip(null)}>
         {/* relative: cells are static, so this becomes their offsetParent and
-            the tooltip can be positioned from offsetLeft/offsetTop. */}
-        <div className="relative inline-block min-w-min">
+            the tooltip can be positioned from offsetLeft/offsetTop.
+
+            role="img" + a summary label: the cells carry no text, so without
+            this the whole graph is silent to screen readers. It also stops 365
+            meaningless spans being announced one by one. */}
+        <div
+          className="relative inline-block min-w-min"
+          role="img"
+          aria-label={`GitHub contribution graph: ${data.total.toLocaleString()} contributions in the last year, a ${data.currentStreak}-day current streak and a ${data.longestStreak}-day longest streak.`}
+        >
           {/* Month row */}
           <div className="relative mb-1 ml-[26px] h-3">
             {monthLabels.map(({ index, label }) => (

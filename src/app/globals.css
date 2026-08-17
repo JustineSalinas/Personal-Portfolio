@@ -221,17 +221,22 @@
       background-color 300ms ease-out;
   }
 
-  .peek:has(.peek-item:hover) .peek-item {
+  /* :focus-within mirrors :hover so keyboard users get the same emphasis
+     when tabbing through a collection. */
+  .peek:has(.peek-item:hover) .peek-item,
+  .peek:has(.peek-item:focus-within) .peek-item {
     opacity: 0.55;
   }
 
-  .peek-rows:has(.peek-item:hover) .peek-item {
+  .peek-rows:has(.peek-item:hover) .peek-item,
+  .peek-rows:has(.peek-item:focus-within) .peek-item {
     opacity: 0.4;
     transition-duration: 250ms;
   }
 
   /* Wins over the dim above via specificity, not source order. */
-  .peek:has(.peek-item:hover) .peek-item:hover {
+  .peek:has(.peek-item:hover) .peek-item:hover,
+  .peek:has(.peek-item:focus-within) .peek-item:focus-within {
     opacity: 1;
   }
 

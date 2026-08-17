@@ -311,7 +311,9 @@ export const ChatbotWidget = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask anything…"
-                className="min-w-0 flex-1 bg-transparent text-[12.5px] text-primary outline-none placeholder:text-muted"
+                // outline-none with no replacement leaves keyboard users with
+                // no focus indication at all (WCAG 2.4.7), so ring it instead.
+                className="min-w-0 flex-1 rounded-md bg-transparent px-1 py-0.5 text-[12.5px] text-primary outline-none ring-primary/40 placeholder:text-muted focus-visible:ring-2"
               />
               {isStreaming ? (
                 <button
