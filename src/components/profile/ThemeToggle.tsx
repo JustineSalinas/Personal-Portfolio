@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useSyncExternalStore } from 'react';
 import { flushSync } from 'react-dom';
 import { useTheme } from 'next-themes';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -13,12 +13,21 @@ type ViewTransitionDocument = Document & {
 
 const SWITCH_MS = 480;
 
+const noopSubscribe = () => () => {};
+
 export const ThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => setMounted(true), []);
+  // "Have we hydrated yet?" without setState-in-effect, which triggers a
+  // cascading render (react-hooks/set-state-in-effect). The server snapshot is
+  // false and the client snapshot true, so the icon only renders post-hydration
+  // and next-themes has resolved by then.
+  const mounted = useSyncExternalStore(
+    noopSubscribe,
+    () => true,
+    () => false
+  );
 
   const isDark = mounted && resolvedTheme === 'dark';
 

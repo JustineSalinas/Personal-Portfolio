@@ -1,16 +1,13 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import coreWebVitals from 'eslint-config-next/core-web-vitals';
+import typescript from 'eslint-config-next/typescript';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
+// eslint-config-next 16 ships native flat configs, so the old FlatCompat
+// bridge is unnecessary — and under ESLint 9 it crashed with a circular
+// structure error, meaning nothing was ever actually linted.
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  { ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts'] },
+  ...coreWebVitals,
+  ...typescript,
 ];
 
 export default eslintConfig;
