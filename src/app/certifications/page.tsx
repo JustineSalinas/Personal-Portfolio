@@ -1,8 +1,10 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { TopBar } from '@/components/profile/TopBar';
+import { isSvg } from '@/lib/utils';
 
 export default function CertificationsPage() {
   return (
@@ -36,10 +38,12 @@ export default function CertificationsPage() {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2.5 border-b border-border py-3 last:border-b-0"
               >
-                <img
+                <Image
                   src={cert.logo || cert.image}
                   alt={cert.issuer}
-                  loading="lazy"
+                  width={36}
+                  height={36}
+                  unoptimized={isSvg(cert.logo || cert.image)}
                   className="h-9 w-9 shrink-0 rounded-lg border border-border bg-surface object-contain p-1"
                 />
                 <span className="min-w-0 flex-1">

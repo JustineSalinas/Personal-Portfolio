@@ -1,6 +1,8 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
+import { isSvg } from '@/lib/utils';
 
 /** The four most recent; the rest live on /certifications. */
 const featured = portfolioData.certifications.slice(0, 4);
@@ -15,10 +17,12 @@ export const CredentialsList = () => (
         rel="noopener noreferrer"
         className="peek-item group flex items-center gap-2.5 rounded-lg border-b border-border px-2 py-3 last:border-b-0 hover:bg-surface"
       >
-        <img
+        <Image
           src={cert.logo || cert.image}
           alt={cert.issuer}
-          loading="lazy"
+          width={32}
+          height={32}
+          unoptimized={isSvg(cert.logo || cert.image)}
           className="h-8 w-8 shrink-0 rounded-lg border border-border bg-surface object-contain p-1"
         />
         <span className="min-w-0 flex-1">

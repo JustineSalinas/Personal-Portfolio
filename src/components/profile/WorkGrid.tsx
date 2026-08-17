@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { Tag } from './Section';
@@ -21,11 +22,16 @@ const ProjectCard = ({ project }: { project: Project }) => {
     <>
       <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-border bg-surface">
         {cover ? (
-          <img
+          <Image
             src={cover}
             alt={project.title}
-            loading="lazy"
-            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            fill
+            // Cards render ~300px wide (two-up in a 660px column). Asking for
+            // 640px supersamples that: crisp on 1x and 2x alike, and still ~89%
+            // smaller than the source PNG. These are dashboard screenshots, so
+            // fine text has to stay legible.
+            sizes="(max-width: 640px) 100vw, 640px"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center font-display text-2xl italic text-muted">

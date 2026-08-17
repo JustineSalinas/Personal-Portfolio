@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowUpRight, Trophy } from 'lucide-react';
 import { portfolioData } from '@/data';
 
@@ -36,13 +37,16 @@ export const HackathonList = () => (
                 {photos.map((src) => (
                   <span
                     key={src}
-                    className="block aspect-[16/10] overflow-hidden rounded-lg border border-border bg-surface"
+                    // relative so the fill image has a positioned ancestor
+                    className="relative block aspect-[16/10] overflow-hidden rounded-lg border border-border bg-surface"
                   >
-                    <img
+                    <Image
                       src={src}
                       alt={`${project.title} — ${badge}`}
-                      loading="lazy"
-                      className="h-full w-full object-cover"
+                      fill
+                      // Supersampled for the same reason as the work grid.
+                      sizes="(max-width: 640px) 50vw, 600px"
+                      className="object-cover"
                     />
                   </span>
                 ))}

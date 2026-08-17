@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Github, Linkedin, Mail, FileText, MapPin } from 'lucide-react';
 import { portfolioData } from '@/data';
 
@@ -30,9 +31,13 @@ export const ProfileHeader = () => (
       {/* Avatar overlaps the cover. Needs its own stacking context, or the
           positioned cover above paints over the top half of the face. */}
       <div className="relative z-10 -mt-9 mb-3">
-        <img
+        <Image
           src="/portrait.png"
           alt={personal.name}
+          width={70}
+          height={70}
+          // Above the fold and the likely LCP element, so skip lazy loading.
+          priority
           className="h-[70px] w-[70px] rounded-full border-4 border-background object-cover shadow-sm"
           style={{ objectPosition: 'center 22%' }}
         />

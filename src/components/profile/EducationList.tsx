@@ -1,5 +1,7 @@
 import React from 'react';
+import Image from 'next/image';
 import { portfolioData } from '@/data';
+import { isSvg } from '@/lib/utils';
 
 export const EducationList = () => (
   <div className="peek peek-rows rounded-xl border border-border bg-background px-1.5">
@@ -11,10 +13,12 @@ export const EducationList = () => (
           key={`${item.institution}-${item.date}`}
           className="peek-item flex gap-2.5 rounded-lg border-b border-border px-2 py-3 last:border-b-0 hover:bg-surface"
         >
-          <img
+          <Image
             src={item.logo}
             alt={item.institution}
-            loading="lazy"
+            width={32}
+            height={32}
+            unoptimized={isSvg(item.logo)}
             className="h-8 w-8 shrink-0 rounded-lg border border-border bg-surface object-contain p-0.5"
           />
           <div className="min-w-0 flex-1">
