@@ -105,10 +105,13 @@ const buildCorpus = (): Chunk[] => {
     section: 'Profile',
     title: personal.name,
     text: [
-      `${personal.name} — ${personal.titles.join(', ')}.`,
+      `${personal.name} — ${personal.title}.`,
       `Based in ${personal.location}.`,
       personal.bio,
       `Adrian has built ${personal.projectsBuilt} projects in total; the portfolio features a selection of them.`,
+      `Competition record — ${personal.awards.summary}. Award-winning problem solver.`,
+      `National awards: ${personal.awards.national.join(' ')}`,
+      `Regional experience: ${personal.awards.regional.join(' ')}`,
       `Current status: ${personal.quickFacts.status}. Focus: ${personal.quickFacts.focus}.`,
       `Looking for: ${personal.quickFacts.lookingFor}. Availability: ${personal.quickFacts.available}.`,
       `Contact — email ${personal.contact.email}, GitHub ${personal.contact.github}, LinkedIn ${personal.contact.linkedin}.`,
@@ -126,11 +129,19 @@ const buildCorpus = (): Chunk[] => {
 
   building.forEach((item, i) => {
     const role = 'role' in item ? ` Adrian's role: ${item.role}.` : '';
+    const cs = 'caseStudy' in item ? item.caseStudy : undefined;
+    const slug = 'slug' in item ? item.slug : undefined;
+    const study =
+      cs && slug
+        ? ` Full case study at /work/${slug}: ${cs.summary} ${cs.sections
+            .map((sec) => `${sec.heading}: ${sec.body.join(' ')}`)
+            .join(' ')}`
+        : '';
     chunks.push({
       id: `building-${i}`,
       section: 'Currently building',
       title: item.name,
-      text: `${item.name} is a project Adrian is actively building right now.${role} ${item.blurb} Live at ${item.demo}. Source at ${item.repo}.`,
+      text: `${item.name} is a project Adrian is actively building right now.${role} ${item.blurb} Live at ${item.demo}. Source at ${item.repo}.${study}`,
     });
   });
 
@@ -138,11 +149,21 @@ const buildCorpus = (): Chunk[] => {
     const placement = 'placement' in project ? ` Result: ${project.placement}.` : '';
     const badge = 'badge' in project ? ` Competition: ${project.badge}.` : '';
     const demo = 'demo' in project ? ` Live demo: ${project.demo}.` : '';
+    // Narrow to a local before use: `'caseStudy' in project` doesn't tell
+    // TypeScript the optional property is actually defined.
+    const cs = 'caseStudy' in project ? project.caseStudy : undefined;
+    const slug = 'slug' in project ? project.slug : undefined;
+    const study =
+      cs && slug
+        ? ` Full case study at /work/${slug}: ${cs.summary} ${cs.sections
+            .map((sec) => `${sec.heading}: ${sec.body.join(' ')}`)
+            .join(' ')}`
+        : '';
     chunks.push({
       id: `project-${i}`,
       section: 'Project',
       title: project.title,
-      text: `${project.title} (${project.year}) — ${project.oneLiner}. Role: ${project.role}.${badge}${placement} ${project.description} Built with ${project.techStack.join(', ')}.${demo}`,
+      text: `${project.title} (${project.year}) — ${project.oneLiner}. Role: ${project.role}.${badge}${placement} ${project.description} Built with ${project.techStack.join(', ')}.${demo}${study}`,
     });
   });
 

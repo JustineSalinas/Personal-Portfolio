@@ -38,14 +38,15 @@ export const ProfileHeader = () => (
           <h1 className="font-display text-[35px] font-semibold leading-tight tracking-tight text-primary">
             {personal.name}
           </h1>
-          <p className="mt-0.5 flex flex-wrap items-center gap-x-1.5 text-[17px] text-secondary">
+          {/* Role line carries the professional identity; status and location
+              sit under it so the hierarchy reads name → what → where. */}
+          <p className="mt-1 text-[17px] font-medium text-secondary">{personal.title}</p>
+          <p className="mt-1 flex flex-wrap items-center gap-x-1.5 text-[15px] text-muted">
             <span>{personal.quickFacts.status}</span>
-            <span className="text-muted">•</span>
-            <span>Founder of CDG</span>
-            <span className="text-muted">•</span>
+            <span>•</span>
             {/* icon and place stay on one line so the pin never dangles at a wrap */}
             <span className="inline-flex items-center gap-1">
-              <MapPin size={15} className="shrink-0" />
+              <MapPin size={14} className="shrink-0" />
               {personal.location}
             </span>
           </p>

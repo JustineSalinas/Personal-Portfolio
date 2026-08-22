@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: "Adrian Salinas",
     initials: "AJ",
-    titles: ["Student Founder", "AI-First Software Engineer", "1st Runner-Up · Nexus PH Hackathon 2026"],
+    title: "Full-Stack Developer · AI/ML Specialization · Technical Founder",
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
     bio: "Full-Stack Developer and IT Solutions Founder from Iloilo. I ship real systems — a QR attendance platform for 700+ users, a hackathon-winning IoT dashboard, and a functioning startup (CDG). I build with Next.js, TypeScript, Supabase, and Python. I prefer shipping over collecting buzzwords.",
@@ -12,6 +12,17 @@ export const portfolioData = {
     ],
     tags: ["NEXT.JS", "TYPESCRIPT", "AI / ML", "FULL-STACK", "IOT", "STARTUP FOUNDER", "DISTRIBUTED SYSTEMS"],
     projectsBuilt: "17+",
+    // Competition record, stated once so the page and the chatbot agree.
+    awards: {
+      summary: "2x national hackathon awardee, plus regional (APAC) competition experience",
+      national: [
+        "2nd Place out of 24 teams — National AI Hackathon 2026, National Open Professional Category (Marine-AI, Team SOLMATE, AI Lead)",
+        "1st Runner-Up out of 17 teams — Nexus PH Hackathon 2026, built a high-performing IoT telemetry dashboard under a 3-day deadline (Solmate / E-Ferry)",
+      ],
+      regional: [
+        "Stellar APAC Hackathon 2026 — Project Manager & Smart Contract Developer on SplitRails, a collaborative expense-splitting and Stellar escrow platform",
+      ],
+    },
     quickFacts: {
       status: "IT 3rd Year Level",
       focus: "Full-Stack Dev, AI Engineering, IoT",
@@ -215,9 +226,48 @@ export const portfolioData = {
     {
       name: "Nan Builders",
       logo: "/logos/nan-builders.png",
-      blurb: "Construction company website for a builder based in Iloilo City — services, project gallery, and enquiry flow.",
+      blurb: "Supply chain and procurement portal for a construction materials distributor in Iloilo City — contractor quotations, live inventory, and site logistics.",
       demo: "https://nan-builders.vercel.app",
-      repo: "https://github.com/JustineSalinas/Nan-Builders"
+      repo: "https://github.com/JustineSalinas/Nan-Builders",
+      slug: "nan-builders",
+      year: "2026",
+      role: "CDG · Full-Stack Developer",
+      // Not a conventional stack list: these are the portal's capability
+      // modules, which is how the client-facing case study frames them.
+      capabilities: ["Next.js", "Quotation Engine", "Logistics Engine", "Inventory Management"],
+      caseStudy: {
+        summary:
+          "A construction materials distributor was running contractor quotes over the phone and tracking stock on paper. The portal turns that into multi-item requests, instant bulk pricing, and live warehouse inventory.",
+        sections: [
+          {
+            heading: "The problem",
+            body: [
+              "A major construction material distributor in Iloilo City relied on manual contractor quotations, phone order calls, and paper inventory tracking.",
+              "The cost was not just admin time. Quotes moving at phone speed and stock levels living on paper meant material delivery delays across active job sites and stock that was uncoordinated between the warehouse and the crews depending on it.",
+            ],
+          },
+          {
+            heading: "What we built",
+            body: [
+              "An integrated supply chain portal. Contractors submit multi-item material requests and get instant bulk pricing estimates back, rather than waiting on a callback.",
+              "From there they can track delivery fulfilment status and view real-time warehouse inventory, so the question \"is it in stock and when does it land on site\" is answered without a phone call.",
+            ],
+          },
+          {
+            heading: "Architecture",
+            body: [
+              "Built on Next.js, organised around three capability modules: a quotation engine for bulk pricing, a logistics engine for fulfilment tracking, and inventory management backing both with live warehouse levels.",
+              "Pricing and stock share the same source of truth, which is what makes an instant quote trustworthy — a quote generated against stale inventory is worse than no quote at all.",
+            ],
+          },
+          {
+            heading: "Measurable impact",
+            body: [
+              "Bulk contractor quotation turnarounds are automated, job sites have live inventory visibility, and the manual order coordination bottleneck is gone.",
+            ],
+          },
+        ],
+      }
     },
     {
       name: "Commit",
@@ -245,6 +295,40 @@ export const portfolioData = {
       techStack: ["Python", "ONNX", "XGBoost", "NumPy", "Next.js", "TypeScript", "FastAPI", "IoT"],
       demo: "https://solmate-marine-ai.vercel.app",
       images: ["/projects/national-team.png", "/projects/national-award.jpg"],
+      slug: "marine-ai",
+      caseStudy: {
+        summary:
+          "Traditional diesel passenger boats in the Philippines run on the skipper's judgement alone. Marine-AI retrofits them with sensors and three AI models that turn that judgement into measurable advice — without replacing the boat.",
+        sections: [
+          {
+            heading: "The problem",
+            body: [
+              "Fiberglass passenger boats are the backbone of inter-island transport in the Philippines, and almost none of them are instrumented. Fuel burn, engine health, and route choice are decided by feel. The efficient answer is usually a new vessel, which is not an answer at all for an operator running a twenty-year-old hull.",
+              "So the constraint was retrofit-only: whatever we built had to bolt onto boats that already exist.",
+            ],
+          },
+          {
+            heading: "Approach",
+            body: [
+              "Three sensor systems feed three AI modules running in parallel, each answering a different question, and all three converge on one bridge display so the skipper reads a single screen rather than three dashboards.",
+              "Speed Optimization uses XGBoost exported to ONNX for optimal throttle settings. Route Optimization uses gradient-boosted models over live track data. Predictive Maintenance uses a PCA autoencoder to flag anomalies before they become failures.",
+            ],
+          },
+          {
+            heading: "The three modules",
+            body: [
+              "Speed Optimization runs XGBoost exported to ONNX, producing optimal throttle settings. Route Optimization uses gradient-boosted models over live track data. Predictive Maintenance uses a PCA autoencoder — framed as anomaly detection rather than classification, since a retrofit fleet has no labelled failure history to train against.",
+              "All three converge on one bridge display: live route tracks, throttle guidance, and an auditable CO₂ emissions layer, so the skipper reads a single screen instead of three dashboards.",
+            ],
+          },
+          {
+            heading: "Outcome",
+            body: [
+              "2nd Place out of 24 teams in the National Open Professional Category at the National AI Hackathon 2026, competing as AI Lead for Team SOLMATE. The system also produces an auditable CO₂ emissions layer, so efficiency gains can be reported rather than merely claimed.",
+            ],
+          },
+        ],
+      },
       badge: "NATIONAL AI HACKATHON 2026",
       placement: "2nd Place out of 24 teams — National Open Professional Category",
       // Team/award photos surfaced in the Hackathons & Awards section
@@ -269,7 +353,48 @@ export const portfolioData = {
       role: "Project Manager & Lead Developer",
       description: "A QR-based attendance tracking system deployed for the University of San Agustin Pharmacy Department. Supports 700+ students with role-based access (Student/Faculty/Admin), real-time analytics dashboards, and zero physical hardware dependencies.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
-      image: "/projects/pharmatrack.png"
+      image: "/projects/pharmatrack.png",
+      slug: "pharmatrack",
+      caseStudy: {
+        summary:
+          "A university department was running attendance for 700+ Pharmacy students on paper. I replaced it with a QR system that needs no scanners, derives attendance status automatically, and keeps working when the Wi-Fi does not.",
+        sections: [
+          {
+            heading: "The problem",
+            body: [
+              "The University of San Agustin College of Pharmacy needed a secure, hardware-free way to monitor event and class attendance across 700+ students. Manual paper rollcalls were slow, prone to cutoff errors at the boundary between late and absent, and gave faculty administrators zero real-time visibility.",
+              "A scanner-based system means procurement, budget, and hardware that eventually breaks. The constraint that shaped the whole build: it had to run on devices the department already owned.",
+            ],
+          },
+          {
+            heading: "Automatic status derivation",
+            body: [
+              "The interesting part is not the scanning — it is what happens after. Rather than a facilitator deciding whether someone counts as late, the platform derives status (Present, Late, Absent, Incomplete) from the event time window itself.",
+              "That single decision removes the cutoff errors that made the paper process unreliable, because the rule is applied identically to every scan instead of being re-judged by whoever holds the sheet.",
+            ],
+          },
+          {
+            heading: "Designing for a room with no Wi-Fi",
+            body: [
+              "Campus events happen in halls with unreliable connectivity, and an attendance system that fails offline fails exactly when it is needed. Scans are buffered locally in IndexedDB and synced when the connection returns, so a facilitator can keep scanning through a dead spot.",
+              "This is the decision I would defend hardest. Everything else has a workaround; an offline failure during a live event does not.",
+            ],
+          },
+          {
+            heading: "Architecture",
+            body: [
+              "Next.js 15 and TypeScript on Supabase, with Zod validating input at the boundary, Upstash Redis for rate limiting, and Nodemailer driving email alerts. Access control is enforced with PostgreSQL row-level security rather than in application code, so a client-side bypass still cannot read another cohort's data.",
+              "Three role-based portals — Student, Faculty, and Admin — plus admin approval workflows, real-time faculty dashboards, and PDF/Excel report exports for department leadership.",
+            ],
+          },
+          {
+            heading: "Measurable impact",
+            body: [
+              "700+ Pharmacy students onboarded at zero hardware cost. Attendance status derivation is 100% automated, replacing manual paper rollcalls entirely and giving faculty immediate roster visibility that did not previously exist.",
+            ],
+          },
+        ],
+      }
     },
     {
       title: "Solmate",

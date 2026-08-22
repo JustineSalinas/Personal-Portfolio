@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useRef, useSyncExternalStore } from 'react';
+import React, { useCallback, useSyncExternalStore } from 'react';
 import { flushSync } from 'react-dom';
 import { useTheme } from 'next-themes';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -8,17 +8,16 @@ import { Moon, Sun } from 'lucide-react';
 
 /** Not in lib.dom yet — Chromium-only, feature-detected below. */
 type ViewTransitionDocument = Document & {
-  startViewTransition?: (cb: () => void) => { ready: Promise<void> };
+  startViewTransition?: (cb: () => void) => { ready: Promise<void>; finished: Promise<void> };
 };
 
-// Short enough to feel instant, long enough to read as a wipe.
-const SWITCH_MS = 420;
+// Only used by the no-View-Transitions fallback below.
+const SWITCH_MS = 260;
 
 const noopSubscribe = () => () => {};
 
 export const ThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // "Have we hydrated yet?" without setState-in-effect, which triggers a
   // cascading render (react-hooks/set-state-in-effect). The server snapshot is
@@ -38,12 +37,10 @@ export const ThemeToggle = () => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const doc = document as ViewTransitionDocument;
-    const button = buttonRef.current;
 
-    if (reduced || !doc.startViewTransition || !button) {
-      // Fallback only. The per-element cross-fade touches ~1100 nodes, so it is
-      // reserved for browsers without View Transitions — running it alongside
-      // the clip-path reveal made the swap visibly janky and the two fought.
+    if (reduced || !doc.startViewTransition) {
+      // Fallback only. The per-element cross-fade touches ~1100 nodes, so it
+      // is reserved for browsers without View Transitions.
       if (!reduced) {
         root.classList.add('theme-switching');
         window.setTimeout(() => root.classList.remove('theme-switching'), SWITCH_MS + 60);
@@ -52,16 +49,8 @@ export const ThemeToggle = () => {
       return;
     }
 
-    // Expand the new theme out of the button itself.
-    const { left, top, width, height } = button.getBoundingClientRect();
-    const x = left + width / 2;
-    const y = top + height / 2;
-    const radius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
-
-    // Silence every per-element colour transition for the duration of the wipe.
+    // Silence every per-element colour transition; the snapshot cross-fade
+    // already carries the change, so those ~500 animations are invisible work.
     root.classList.add('theme-instant');
 
     const transition = doc.startViewTransition(() => {
@@ -70,23 +59,13 @@ export const ThemeToggle = () => {
       flushSync(() => setTheme(next));
     });
 
-    await transition.ready;
-
-    root.animate(
-      {
-        clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`],
-      },
-      {
-        duration: SWITCH_MS,
-        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-        pseudoElement: '::view-transition-new(root)',
-      }
-    ).finished.finally(() => root.classList.remove('theme-instant'));
+    // No custom reveal: the browser's default cross-fade between the two
+    // snapshots is the whole animation, tuned to 260ms in globals.css.
+    transition.finished.finally(() => root.classList.remove('theme-instant'));
   }, [isDark, setTheme]);
 
   return (
     <button
-      ref={buttonRef}
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}

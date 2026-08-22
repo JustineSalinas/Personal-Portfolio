@@ -127,18 +127,14 @@
   }
 }
 
-/* The circular theme wipe. Both snapshots are held still and the incoming one
-   is clipped open by a JS animation, so the old theme stays put underneath. */
+/* Theme swap: a plain cross-fade. The browser's default view-transition
+   animation already does exactly this — old fades out, new fades in — so we
+   only tune the timing rather than replacing it with a custom reveal. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: none;
+  animation-duration: 260ms;
+  animation-timing-function: ease;
   mix-blend-mode: normal;
-}
-::view-transition-old(root) {
-  z-index: 1;
-}
-::view-transition-new(root) {
-  z-index: 2147483646;
 }
 
 @layer base {

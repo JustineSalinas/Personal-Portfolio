@@ -158,7 +158,11 @@ export const GithubHeatmap = () => {
       {/* Wide content scrolls inside its own container, never the page */}
       {/* scrollbar-none: the year fits at full width, and on narrow screens the
           bar is pure clutter — swipe/drag still scrolls. */}
-      <div className="scrollbar-none overflow-x-auto" onMouseLeave={() => setTip(null)}>
+      <div
+        data-lenis-prevent
+        className="scrollbar-none overflow-x-auto"
+        onMouseLeave={() => setTip(null)}
+      >
         {/* relative: cells are static, so this becomes their offsetParent and
             the tooltip can be positioned from offsetLeft/offsetTop.
 

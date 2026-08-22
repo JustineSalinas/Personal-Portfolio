@@ -15,7 +15,10 @@ const VISIBLE_TAGS = 3;
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const cover = coverOf(project);
-  const href = 'demo' in project ? project.demo : undefined;
+  const study = 'slug' in project && 'caseStudy' in project ? `/work/${project.slug}` : undefined;
+  // A case study outranks the live demo: it is the thing that shows judgement.
+  const href = study ?? ('demo' in project ? project.demo : undefined);
+  const external = !study;
   const badge = 'badge' in project ? project.badge : undefined;
   const overflow = project.techStack.length - VISIBLE_TAGS;
 
@@ -47,7 +50,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       <div className="mt-2.5 flex items-start justify-between gap-2">
-        <h3 className="text-[17px] font-medium text-primary">{project.title}</h3>
+        <h3 className="text-[17px] font-medium text-primary">
+          {project.title}
+          {study && (
+            <span className="ml-2 align-middle text-[13px] font-normal text-muted">
+              Case study
+            </span>
+          )}
+        </h3>
         {href && (
           <ArrowUpRight
             size={17}
@@ -73,7 +83,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
     'peek-item peek-card group block rounded-xl border border-border bg-background p-2.5 hover:border-primary/30 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/50';
 
   return href ? (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={shell}>
+    <a
+      href={href}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className={shell}
+    >
       {body}
     </a>
   ) : (

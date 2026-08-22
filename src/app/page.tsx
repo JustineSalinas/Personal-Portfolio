@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { TopBar } from '@/components/profile/TopBar';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
@@ -9,7 +10,6 @@ import { BuildingNow } from '@/components/profile/BuildingNow';
 import { GithubHeatmap } from '@/components/profile/GithubHeatmap';
 import { HackathonList } from '@/components/profile/HackathonList';
 import { StackGrid } from '@/components/profile/StackGrid';
-import { CredentialsList } from '@/components/profile/CredentialsList';
 import { EducationList } from '@/components/profile/EducationList';
 import { ConnectFooter } from '@/components/profile/ConnectFooter';
 import { CursorAura } from '@/components/profile/CursorAura';
@@ -66,7 +66,11 @@ export default function Home() {
             <GithubHeatmap />
           </Section>
 
-          <Section id="hackathons" label="Hackathons & Awards">
+          <Section
+            id="hackathons"
+            label="Hackathons & Awards"
+            intro={portfolioData.personal.awards.summary}
+          >
             <HackathonList />
           </Section>
 
@@ -78,19 +82,19 @@ export default function Home() {
             <StackGrid />
           </Section>
 
-          <Section
-            id="certifications"
-            label="Certifications"
-            action={
-              <Link
-                href="/certifications"
-                className="text-[16px] font-medium text-secondary transition-colors hover:text-primary"
-              >
-                View all →
-              </Link>
-            }
-          >
-            <CredentialsList />
+          {/* Demoted from a full section: eight self-paced certificates carried
+              more visual weight than two national hackathon placements. */}
+          <Section id="certifications" label="Certifications">
+            <Link
+              href="/certifications"
+              className="hover-lift group inline-flex items-center gap-2 rounded-xl border border-border bg-background px-4 py-3 text-[16px] text-secondary hover:border-primary/30 hover:bg-surface"
+            >
+              <span className="font-medium text-primary">
+                {portfolioData.certifications.length} certifications
+              </span>
+              <span>in AI, cloud, agile, and project management</span>
+              <ArrowUpRight size={16} className="hover-arrow text-muted" />
+            </Link>
           </Section>
 
           <Section id="education" label="Education">

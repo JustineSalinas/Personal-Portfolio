@@ -10,7 +10,7 @@ const STARTERS = [
   'Tell me about his hackathon results',
   'What is his tech stack?',
   'Is he available for internships?',
-  'Explain RAG in simple terms',
+  'Why should we hire him?',
 ];
 
 interface ChatMessage {
@@ -240,7 +240,12 @@ export const ChatbotWidget = () => {
             </div>
 
             {/* Transcript */}
-            <div className="flex-1 space-y-3 overflow-y-auto px-3.5 py-3.5">
+            {/* data-lenis-prevent: smooth scrolling hijacks the wheel at the
+                document level, which otherwise makes this panel unscrollable. */}
+            <div
+              data-lenis-prevent
+              className="flex-1 space-y-3 overflow-y-auto overscroll-contain px-3.5 py-3.5"
+            >
               {messages.length === 0 && (
                 <div className="py-4">
                   <p className="text-[16.5px] leading-relaxed text-secondary">
@@ -262,7 +267,10 @@ export const ChatbotWidget = () => {
                 </div>
               )}
 
-              {messages.map((m) => (
+              {/* The assistant message is created empty while the stream opens;
+                  rendering it draws a blank bubble above the "Thinking…" pill. */}
+              {messages.map((m) =>
+                m.role === 'assistant' && !m.content ? null : (
                 <div
                   key={m.id}
                   className={cn('flex', m.role === 'user' ? 'justify-end' : 'justify-start')}
@@ -278,7 +286,8 @@ export const ChatbotWidget = () => {
                     <MessageBody content={m.content} role={m.role} />
                   </div>
                 </div>
-              ))}
+                )
+              )}
 
               {waiting && (
                 <div className="flex justify-start">

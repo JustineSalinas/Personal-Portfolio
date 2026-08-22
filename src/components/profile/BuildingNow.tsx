@@ -10,6 +10,7 @@ export const BuildingNow = () => (
     {portfolioData.building.map((item) => {
       const role = 'role' in item ? item.role : undefined;
       const logo = 'logo' in item ? item.logo : undefined;
+      const study = 'slug' in item && 'caseStudy' in item ? `/work/${item.slug}` : undefined;
 
       return (
         <div
@@ -35,13 +36,18 @@ export const BuildingNow = () => (
           <div className="min-w-0 flex-1">
             <div className="flex items-start justify-between gap-2">
               {/* Stretched link keeps the whole card clickable without nesting anchors */}
+              {/* A written case study outranks the live site as the primary link. */}
               <a
-                href={item.demo}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={study ?? item.demo}
+                {...(study ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
                 className="text-[17px] font-medium text-primary before:absolute before:inset-0 before:content-['']"
               >
                 {item.name}
+                {study && (
+                  <span className="ml-2 align-middle text-[13px] font-normal text-muted">
+                    Case study
+                  </span>
+                )}
               </a>
               <ArrowUpRight
                 size={17}

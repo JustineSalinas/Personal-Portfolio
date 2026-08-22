@@ -14,6 +14,8 @@ const google = createGoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY });
  */
 const MODEL = 'gemini-3.6-flash';
 
+const CONTACT_EMAIL = portfolioData.personal.contact.email;
+
 interface IncomingMessage {
   role: 'user' | 'assistant';
   content: string;
@@ -68,13 +70,52 @@ export async function POST(req: Request) {
 
   const context = formatContext(retrieve(query));
 
+  let failure: string | null = null;
+
   const result = streamText({
     model: google(MODEL),
     system: buildSystemPrompt(context),
     messages: messages.map((m) => ({ role: m.role, content: m.content })),
-    // toTextStreamResponse() swallows failures into an empty 200, so log them.
-    onError: ({ error }) => console.error('[api/chat] stream failed:', error),
+    onError: ({ error }) => {
+      console.error('[api/chat] stream failed:', error);
+      const text = String(error);
+      // Free-tier exhaustion is the likeliest failure once the site gets shared,
+      // and it must not read as "the site is broken".
+      failure = /quota|rate.?limit|429/i.test(text)
+        ? `The assistant has hit its daily limit. Everything else on this page still works — ` +
+          `for anything urgent, email ${CONTACT_EMAIL}.`
+        : `The assistant is unavailable right now. You can reach Adrian directly at ${CONTACT_EMAIL}.`;
+    },
   });
 
-  return result.toTextStreamResponse();
+  // toTextStreamResponse() turns a failed stream into a silent, empty 200. Wrap
+  // it so an empty result is replaced by an explanation the visitor can act on.
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const encoder = new TextEncoder();
+      let emitted = false;
+
+      try {
+        for await (const chunk of result.textStream) {
+          if (chunk) emitted = true;
+          controller.enqueue(encoder.encode(chunk));
+        }
+      } catch (error) {
+        console.error('[api/chat] stream aborted:', error);
+      }
+
+      if (!emitted) {
+        controller.enqueue(
+          encoder.encode(
+            failure ?? `The assistant did not return anything. You can reach Adrian at ${CONTACT_EMAIL}.`
+          )
+        );
+      }
+      controller.close();
+    },
+  });
+
+  return new Response(stream, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
 }
