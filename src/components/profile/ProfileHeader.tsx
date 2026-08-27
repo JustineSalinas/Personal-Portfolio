@@ -71,8 +71,8 @@ export const ProfileHeader = () => (
 
       <p className="mt-5 text-[18px] leading-[1.75] text-secondary">
         I build full-stack systems —{' '}
-        <span className="font-medium text-primary">{personal.projectsBuilt} projects built</span> —
-        and run{' '}
+        <span className="font-medium text-primary">{personal.projectsBuilt} projects built</span>,{' '}
+        <span className="font-medium text-primary">2x National Hackathon Winner Awardee</span> — and run{' '}
         <a
           href="https://cdg-official.vercel.app"
           target="_blank"
@@ -83,8 +83,7 @@ export const ProfileHeader = () => (
         </a>
         , an IT solutions startup in Iloilo. I work across{' '}
         <span className="font-medium text-primary">Next.js, TypeScript, Supabase, and Python</span>
-        , and integrate AI where it earns its place. Open to internships, part-time,
-        and remote roles.
+        , bringing a strong niche in <span className="font-medium text-primary">technical project management</span> alongside a focused path in <span className="font-medium text-primary">AI systems</span>. Open to internships, part-time, and remote roles.
       </p>
     </div>
   </div>

@@ -5,7 +5,7 @@ export const portfolioData = {
     title: "Full-Stack Developer · AI/ML Specialization · Technical Founder",
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
-    bio: "Full-Stack Developer and IT Solutions Founder from Iloilo. I ship real systems — a QR attendance platform for 700+ users, a hackathon-winning IoT dashboard, and a functioning startup (CDG). I build with Next.js, TypeScript, Supabase, and Python. I prefer shipping over collecting buzzwords.",
+    bio: "Full-Stack Developer, 2x National Hackathon Winner Awardee, and IT Solutions Founder from Iloilo with a niche in technical project management and AI systems. I build with Next.js, TypeScript, Supabase, and Python.",
     longBio: [
       "I design and build <strong class=\"text-primary font-bold\">full-stack web applications</strong> end-to-end — from database architecture and system design to polished, production-ready interfaces. I work across the stack with <span class=\"text-primary font-semibold\">Next.js, TypeScript, and Supabase</span>, and integrate <span class=\"text-primary font-semibold\">AI</span> to build smarter, more capable products. My focus is on delivering work that is both technically solid and visually refined.",
       "Through <strong class=\"text-primary font-bold\">CDG (Cascade Development Group)</strong>, I provide IT solutions built on clean, thoughtful engineering. I care as much about the experience users feel as the code running behind it. Open to internships, part-time, or full-time opportunities with companies that welcome <em class=\"text-primary not-italic font-semibold\">student status</em>."
@@ -14,7 +14,7 @@ export const portfolioData = {
     projectsBuilt: "17+",
     // Competition record, stated once so the page and the chatbot agree.
     awards: {
-      summary: "2x national hackathon awardee, plus regional (APAC) competition experience",
+      summary: "2x National Hackathon Awardee, Plus Regional (APAC) Competition Experience",
       national: [
         "2nd Place out of 24 teams — National AI Hackathon 2026, National Open Professional Category (Marine-AI, Team SOLMATE, AI Lead)",
         "1st Runner-Up out of 17 teams — Nexus PH Hackathon 2026, built a high-performing IoT telemetry dashboard under a 3-day deadline (Solmate / E-Ferry)",
