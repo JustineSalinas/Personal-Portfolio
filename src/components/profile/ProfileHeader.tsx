@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Github, Linkedin, Mail, FileText, MapPin } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { CoverBanner } from './CoverBanner';
+import { LiveStatusBadge } from './LiveStatusBadge';
 
 const { personal } = portfolioData;
 
@@ -50,6 +51,7 @@ export const ProfileHeader = () => (
               {personal.location}
             </span>
           </p>
+          <LiveStatusBadge />
         </div>
 
         <div className="flex items-center gap-1.5">
