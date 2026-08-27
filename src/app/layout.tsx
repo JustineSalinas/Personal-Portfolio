@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
 import { SmoothScroll } from "@/components/profile/SmoothScroll";
+import { portfolioData } from "@/data";
 
 const fraunces = Fraunces({ 
   subsets: ["latin"],
@@ -62,6 +63,28 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: portfolioData.personal.name,
+  url: 'https://ajsalinas.vercel.app',
+  jobTitle: portfolioData.personal.title,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: portfolioData.personal.location,
+  },
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Cascade Development Group',
+    url: 'https://cdg-official.vercel.app',
+  },
+  sameAs: [
+    portfolioData.personal.contact.github,
+    portfolioData.personal.contact.linkedin,
+  ],
+  knowsAbout: portfolioData.personal.tags,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -70,6 +93,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${outfit.variable} ${fraunces.variable} ${dmMono.variable} font-sans`} suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <SmoothScroll />
           {children}
