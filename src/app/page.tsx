@@ -4,6 +4,7 @@ import { portfolioData } from '@/data';
 import { TopBar } from '@/components/profile/TopBar';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
 import { Section } from '@/components/profile/Section';
+import { LeadershipList } from '@/components/profile/LeadershipList';
 import { ExperienceList } from '@/components/profile/ExperienceList';
 import { WorkGrid } from '@/components/profile/WorkGrid';
 import { BuildingNow } from '@/components/profile/BuildingNow';
@@ -11,6 +12,7 @@ import { GithubHeatmap } from '@/components/profile/GithubHeatmap';
 import { HackathonList } from '@/components/profile/HackathonList';
 import { StackGrid } from '@/components/profile/StackGrid';
 import { EducationList } from '@/components/profile/EducationList';
+import { Testimonials } from '@/components/profile/Testimonials';
 import { ConnectFooter } from '@/components/profile/ConnectFooter';
 import { CursorAura } from '@/components/profile/CursorAura';
 
@@ -26,6 +28,10 @@ export default function Home() {
         <ProfileHeader />
 
         <div className="px-7 pb-20">
+          <Section id="leadership" label="Leadership & Community">
+            <LeadershipList />
+          </Section>
+
           <Section id="experience" label="Professional Experience">
             <ExperienceList />
           </Section>
@@ -100,6 +106,14 @@ export default function Home() {
           <Section id="education" label="Education">
             <EducationList />
           </Section>
+
+          {/* Social proof immediately before the ask. Renders nothing while
+              portfolioData.testimonials is empty. */}
+          {portfolioData.testimonials.length > 0 && (
+            <Section id="testimonials" label="What people say">
+              <Testimonials />
+            </Section>
+          )}
 
           <div className="pt-16">
             <ConnectFooter />

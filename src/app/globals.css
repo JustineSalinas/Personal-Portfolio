@@ -225,36 +225,16 @@
   }
 
   /*
-    "Peek" hover: hovering anywhere in a collection dims every item except the
-    one under the cursor, pulling focus to it. Put `.peek` on the container and
-    `.peek-item` on each child; add `.peek-rows` for the harder dim used on
-    list rows. Implemented with :has() so it works without JS.
+    Hover emphasis. An earlier version dimmed every sibling to 0.4-0.55 when
+    one item was hovered; it made the rest of the page look washed out, so the
+    emphasis now comes only from the hovered item stepping forward — never from
+    pushing everything else back.
   */
   .peek-item {
     transition:
-      opacity 300ms ease-out,
       border-color 300ms ease-out,
       box-shadow 300ms ease-out,
       background-color 300ms ease-out;
-  }
-
-  /* :focus-within mirrors :hover so keyboard users get the same emphasis
-     when tabbing through a collection. */
-  .peek:has(.peek-item:hover) .peek-item,
-  .peek:has(.peek-item:focus-within) .peek-item {
-    opacity: 0.55;
-  }
-
-  .peek-rows:has(.peek-item:hover) .peek-item,
-  .peek-rows:has(.peek-item:focus-within) .peek-item {
-    opacity: 0.4;
-    transition-duration: 250ms;
-  }
-
-  /* Wins over the dim above via specificity, not source order. */
-  .peek:has(.peek-item:hover) .peek-item:hover,
-  .peek:has(.peek-item:focus-within) .peek-item:focus-within {
-    opacity: 1;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -325,7 +305,6 @@
     position: relative;
     transform: translateZ(0);
     transition:
-      opacity 300ms ease-out,
       border-color 300ms ease-out,
       box-shadow 300ms ease-out,
       transform 300ms cubic-bezier(0.22, 1, 0.36, 1);

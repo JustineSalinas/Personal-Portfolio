@@ -96,7 +96,7 @@ const expand = (terms: string[]): string[] => {
 
 /** Flatten the portfolio into retrievable chunks, one per meaningful record. */
 const buildCorpus = (): Chunk[] => {
-  const { personal, experience, projects, certifications, education, techStack, building } =
+  const { personal, experience, projects, certifications, education, techStack, building, leadership, testimonials } =
     portfolioData;
   const chunks: Chunk[] = [];
 
@@ -117,6 +117,26 @@ const buildCorpus = (): Chunk[] => {
       `Contact — email ${personal.contact.email}, GitHub ${personal.contact.github}, LinkedIn ${personal.contact.linkedin}.`,
     ].join(' '),
   });
+
+  chunks.push({
+    id: 'leadership',
+    section: 'Leadership',
+    title: 'Leadership and community roles',
+    text: `Leadership and community roles Adrian holds: ${leadership
+      .map((l) => `${l.role} at ${l.org} (${l.note})`)
+      .join('; ')}.`,
+  });
+
+  if (testimonials.length > 0) {
+    chunks.push({
+      id: 'testimonials',
+      section: 'Testimonials',
+      title: 'What people say about Adrian',
+      text: testimonials
+        .map((t) => `"${t.quote}" — ${t.name}, ${t.role}${t.org ? `, ${t.org}` : ''}.`)
+        .join(' '),
+    });
+  }
 
   experience.forEach((role, i) => {
     chunks.push({

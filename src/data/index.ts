@@ -38,6 +38,47 @@ export const portfolioData = {
       resume: "/ajsalinas-resume.pdf"
     }
   },
+  // Community and organisational roles, shown between the bio and experience.
+  leadership: [
+    {
+      role: "Deputy Director for Technology",
+      org: "AWS User Group Iloilo",
+      note: "Regional AWS community chapter",
+    },
+    {
+      role: "Web Development Lead",
+      org: "ITSA",
+      note: "IT School Organization, University of San Agustin",
+    },
+    {
+      role: "Developer",
+      org: "ADS",
+      note: "Augustinian Developer Society",
+    },
+  ],
+  /**
+   * Real quotes only. The section renders nothing while this is empty, so the
+   * page never ships a half-finished "testimonials" block.
+   *
+   * Shape:
+   *   {
+   *     quote: "He shipped the whole attendance platform in six weeks and it
+   *             has not gone down since.",
+   *     name: "Full Name",
+   *     role: "Department Head",
+   *     org: "College of Pharmacy, University of San Agustin",
+   *   }
+   *
+   * Good people to ask: the Pharmacy Department contact who signed off on
+   * PharmaTrack, the Nan Builders client, an ITSA officer, or a hackathon
+   * teammate who can speak to how you work under a deadline.
+   */
+  testimonials: [] as {
+    quote: string;
+    name: string;
+    role: string;
+    org?: string;
+  }[],
   experience: [
     {
       role: "Founder & AI Engineer",
