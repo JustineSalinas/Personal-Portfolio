@@ -41,6 +41,11 @@ export const portfolioData = {
   // Community and organisational roles, shown between the bio and experience.
   leadership: [
     {
+      role: "Founder & AI Engineer",
+      org: "Cascade Development Group (CDG)",
+      note: "IT solutions startup",
+    },
+    {
       role: "Deputy Director for Technology",
       org: "AWS User Group Iloilo",
       note: "Regional AWS community chapter",
@@ -189,9 +194,55 @@ export const portfolioData = {
   ],
   certifications: [
     {
+      title: "AWS Foundations: Machine Learning Basics",
+      issuer: "AWS Training & Certification",
+      date: "2026",
+      categories: ["AI & ML", "Cloud & AWS", "Microcredential"],
+      link: "/certs/aws-ml-basics.png",
+      image: "/certs/aws-ml-basics.png",
+      logo: "/certs/aws-ml-basics.png"
+    },
+    {
+      title: "2nd Place (National) — National AI Hackathon 2026",
+      issuer: "National AI Hackathon PH (Team SOLMATE / Marine-AI)",
+      date: "2026",
+      categories: ["Hackathon Wins", "AI & ML"],
+      link: "/work/marine-ai",
+      image: "/projects/national-award.jpg",
+      logo: "/projects/national-award.jpg"
+    },
+    {
+      title: "1st Runner-Up (National) — Nexus PH Hackathon 2026",
+      issuer: "Nexus Philippines & DOST (Solmate / E-Ferry)",
+      date: "2026",
+      categories: ["Hackathon Wins", "Cloud & AWS"],
+      link: "/projects/solmate-award.png",
+      image: "/projects/solmate-award.png",
+      logo: "/logos/solmate.png"
+    },
+    {
+      title: "Founder & AI Engineer",
+      issuer: "Cascade Development Group (CDG)",
+      date: "2026 – Present",
+      categories: ["Community Leadership", "Project Management"],
+      link: "https://cdg-official.vercel.app",
+      image: "/logos/cdg-fire-logo.png",
+      logo: "/logos/cdg-fire-logo.png"
+    },
+    {
+      title: "Deputy Director for Technology",
+      issuer: "AWS User Group Iloilo",
+      date: "2026 – Present",
+      categories: ["Community Leadership", "Cloud & AWS"],
+      link: "https://www.linkedin.com/in/adrian-justin-salinas-a4768b226/",
+      image: "/certs/aws-ml-basics.png",
+      logo: "/certs/aws-ml-basics.png"
+    },
+    {
       title: "RAG Strategy & Execution: Build Enterprise Knowledge Systems",
       issuer: "Udemy",
       date: "2026",
+      categories: ["AI & ML", "Course Certificate"],
       link: "https://www.udemy.com/certificate/UC-f36bc933-c6e4-4b2a-a3a3-0058504688ea/",
       image: "/certs/ragcert.png",
       logo: "/logos/udemy.svg"
@@ -200,6 +251,7 @@ export const portfolioData = {
       title: "Advanced Scrum Master",
       issuer: "Agile Enterprise",
       date: "2026",
+      categories: ["Agile & Scrum", "Project Management", "Course Certificate"],
       link: "/certs/advanced-scrum.png",
       image: "/certs/advanced-scrum.png",
       logo: "/certs/advanced-scrum.png"
@@ -208,14 +260,25 @@ export const portfolioData = {
       title: "AWS AI Practitioner",
       issuer: "Udacity - Accenture",
       date: "2026",
+      categories: ["AI & ML", "Cloud & AWS", "Microcredential"],
       link: "/certs/aws-ai-practitioner.png",
       image: "/certs/aws-ai-practitioner.png",
       logo: "/certs/aws-ai-practitioner.png"
     },
     {
+      title: "Web Development Lead",
+      issuer: "ITSA — University of San Agustin",
+      date: "2024 – Present",
+      categories: ["Community Leadership", "Project Management"],
+      link: "https://itsa-website-psi.vercel.app",
+      image: "/logos/itsa.png",
+      logo: "/logos/itsa.png"
+    },
+    {
       title: "Project Management - Waterfall & Agile",
       issuer: "Udemy",
       date: "2026",
+      categories: ["Project Management", "Agile & Scrum", "Course Certificate"],
       link: "https://www.udemy.com/certificate/UC-8d5096f4-77eb-4ad9-9efc-e24adaeb3ae3/",
       image: "/certs/pm-waterfall-agile.png",
       logo: "/logos/udemy.svg"
@@ -224,6 +287,7 @@ export const portfolioData = {
       title: "Introduction to Large Language Models",
       issuer: "IBM SkillsBuild",
       date: "2025",
+      categories: ["AI & ML", "Microcredential"],
       link: "/certs/ibm-llm.png",
       image: "/certs/ibm-llm.png",
       logo: "/certs/ibm-llm.png"
@@ -232,6 +296,7 @@ export const portfolioData = {
       title: "Design Thinking Guide for Successful Professionals",
       issuer: "Udemy",
       date: "2025",
+      categories: ["Project Management", "Course Certificate"],
       link: "https://www.udemy.com/certificate/UC-cca1f8fe-aa32-49c9-86ca-9f3e8bb7f8ab/",
       image: "/certs/design-thinking.png",
       logo: "/logos/udemy.svg"
@@ -240,6 +305,7 @@ export const portfolioData = {
       title: "Project Management 101 - Dual Certificate",
       issuer: "Udemy",
       date: "2025",
+      categories: ["Project Management", "Agile & Scrum", "Course Certificate"],
       link: "https://www.udemy.com/certificate/UC-973a419c-1ea4-45ef-b8a2-028d7f847d9e/",
       image: "/certs/pm-dual.png",
       logo: "/logos/udemy.svg"
@@ -248,6 +314,7 @@ export const portfolioData = {
       title: "Certificate of Completion in IT Operations",
       issuer: "InnovaThink Corporation",
       date: "2024",
+      categories: ["IT Operations", "Course Certificate"],
       link: "/certs/it-operations.pdf",
       image: "/certs/it-operations.png",
       logo: "/logos/innovathink.png"
@@ -311,11 +378,11 @@ export const portfolioData = {
       }
     },
     {
-      name: "Commit",
+      name: "Tuon",
       role: "Solo Developer",
-      blurb: "The missing personal workspace for beginner developers and CS/IT students — code journal, focus sessions, and sprint tasks.",
-      demo: "https://commit-project-web-app-otl9.vercel.app",
-      repo: "https://github.com/JustineSalinas/Commit-Project-Web-App"
+      blurb: "AI study app for Philippine Senior High School and college students — generates flashcards and quizzes from notes with SM-2 spaced repetition.",
+      demo: "https://github.com/JustineSalinas/Tuon",
+      repo: "https://github.com/JustineSalinas/Tuon"
     },
     {
       name: "Famly",
@@ -471,13 +538,13 @@ export const portfolioData = {
       image: "/projects/famly.png"
     },
     {
-      title: "SignSync",
-      oneLiner: "Real-time sign language translation",
+      title: "Tuon",
+      oneLiner: "AI study companion with spaced repetition",
       year: "2026",
       role: "Solo Developer",
-      description: "An innovative tool that translates sign language into text/speech in real-time using computer vision and AI models — making communication accessible without specialized hardware.",
-      techStack: ["React.js", "Python 3", "FastAPI", "MediaPipe", "Gemini API"],
-      image: "/projects/signsync.png"
+      description: "An AI study app for Philippine Senior High School and college students. Generates flashcards and practice quizzes from class notes via Anthropic Claude, powered by an SM-2 spaced-repetition algorithm and Firebase backend.",
+      techStack: ["Next.js 16", "TypeScript", "Tailwind CSS", "Firebase", "Anthropic Claude API", "Motion"],
+      demo: "https://github.com/JustineSalinas/Tuon"
     },
     {
       title: "BinSense",
@@ -494,6 +561,16 @@ export const portfolioData = {
     "Backend": ["Node.js", "Express", "Python", "Java", "FastAPI", "PHP"],
     "Database": ["Supabase", "PostgreSQL", "MySQL", "Firebase"],
     "Auth & BaaS": ["Clerk", "Supabase Auth"],
+    "AI & Automation": [
+      "Cursor IDE",
+      "Antigravity (Agentic IDE)",
+      "Claude Code (AI-Assisted Architecture)",
+      "Gemini/Claude API",
+      "Prompt Engineering",
+      "RAG (Retrieval-Augmented Generation)",
+      "ONNX",
+      "XGBoost"
+    ],
     "Developer Tools": ["Git", "GitHub", "Figma", "Notion", "Vercel"]
   }
 };

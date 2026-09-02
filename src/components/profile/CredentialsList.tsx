@@ -27,8 +27,18 @@ export const CredentialsList = () => (
         />
         <span className="min-w-0 flex-1">
           <span className="block truncate text-[17px] font-medium text-primary">{cert.title}</span>
-          <span className="block text-[15px] text-secondary">
-            {cert.issuer} · {cert.date}
+          <span className="mt-0.5 flex flex-wrap items-center gap-1.5 text-[14.5px] text-secondary">
+            <span>{cert.issuer} · {cert.date}</span>
+            {'categories' in cert &&
+              Array.isArray(cert.categories) &&
+              cert.categories.map((cat) => (
+                <span
+                  key={cat}
+                  className="rounded-md border border-border/80 bg-surface px-1.5 py-0.5 text-[11px] font-medium leading-none text-muted transition-colors group-hover:border-primary/20 group-hover:text-secondary"
+                >
+                  {cat}
+                </span>
+              ))}
           </span>
         </span>
         <span className="hover-arrow flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border text-muted group-hover:border-primary/25 group-hover:text-primary">

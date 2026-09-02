@@ -28,7 +28,7 @@ export default function Home() {
         <ProfileHeader />
 
         <div className="px-7 pb-20">
-          <Section id="leadership" label="Leadership & Community">
+          <Section id="leadership" label="Current Leadership & Community">
             <LeadershipList />
           </Section>
 

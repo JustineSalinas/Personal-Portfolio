@@ -62,6 +62,26 @@ interface Tip {
 /** Tooltip height plus breathing room — below this, flip underneath. */
 const TIP_CLEARANCE = 30;
 
+/** A week belongs to the month that contains the majority of its days. */
+const getWeekMonth = (week: (Day | null)[]): number => {
+  const counts: Record<number, number> = {};
+  for (const day of week) {
+    if (day) {
+      const m = new Date(day.date + 'T00:00:00Z').getUTCMonth();
+      counts[m] = (counts[m] || 0) + 1;
+    }
+  }
+  let dominantMonth = -1;
+  let maxCount = 0;
+  for (const [m, count] of Object.entries(counts)) {
+    if (count > maxCount) {
+      maxCount = count;
+      dominantMonth = Number(m);
+    }
+  }
+  return dominantMonth;
+};
+
 export const GithubHeatmap = () => {
   const [data, setData] = useState<Payload | null>(null);
   const [failed, setFailed] = useState(false);
@@ -100,17 +120,23 @@ export const GithubHeatmap = () => {
 
   const weeks = useMemo(() => toWeeks(data?.days ?? []), [data]);
 
-  // One label per month, positioned at the week where that month first appears.
+  // One label per month, positioned at the week where that month first dominates.
+  // Requires at least 3 weeks gap between labels and 2 weeks from the end to avoid overlapping.
   const monthLabels = useMemo(() => {
     const labels: { index: number; label: string }[] = [];
-    let last = -1;
+    let lastMonth = -1;
+    let lastIndex = -10;
+
     weeks.forEach((week, i) => {
-      const first = week.find(Boolean);
-      if (!first) return;
-      const month = new Date(first.date + 'T00:00:00Z').getUTCMonth();
-      if (month !== last) {
-        labels.push({ index: i, label: MONTHS[month] });
-        last = month;
+      const month = getWeekMonth(week);
+      if (month === -1) return;
+
+      if (month !== lastMonth) {
+        if (i - lastIndex >= 3 && weeks.length - i >= 2) {
+          labels.push({ index: i, label: MONTHS[month] });
+          lastIndex = i;
+        }
+        lastMonth = month;
       }
     });
     return labels;

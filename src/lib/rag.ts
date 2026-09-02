@@ -188,11 +188,14 @@ const buildCorpus = (): Chunk[] => {
   });
 
   certifications.forEach((cert, i) => {
+    const cats = 'categories' in cert && Array.isArray(cert.categories) && cert.categories.length > 0
+      ? ` Categories: ${cert.categories.join(', ')}.`
+      : '';
     chunks.push({
       id: `certification-${i}`,
       section: 'Certification',
       title: cert.title,
-      text: `Certification: ${cert.title}, issued by ${cert.issuer} in ${cert.date}.`,
+      text: `Certification: ${cert.title}, issued by ${cert.issuer} in ${cert.date}.${cats}`,
     });
   });
 
