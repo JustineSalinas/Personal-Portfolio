@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: "Adrian Salinas",
     initials: "AJ",
-    title: "Full-Stack Developer · AI/ML Specialization · Technical Founder",
+    title: "Software & AI Engineer · Student Founder",
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
     bio: "Full-Stack Developer, 2x National Hackathon Winner Awardee, and IT Solutions Founder from Iloilo with a niche in technical project management and AI systems. I build with Next.js, TypeScript, Supabase, and Python.",
@@ -12,6 +12,32 @@ export const portfolioData = {
     ],
     tags: ["NEXT.JS", "TYPESCRIPT", "AI / ML", "FULL-STACK", "IOT", "STARTUP FOUNDER", "DISTRIBUTED SYSTEMS"],
     projectsBuilt: "17+",
+    metrics: [
+      {
+        value: 17,
+        suffix: "+",
+        label: "Projects Built",
+        description: "Full-stack apps, AI systems & IoT solutions",
+      },
+      {
+        value: 2,
+        suffix: "x",
+        label: "National Hackathon Wins",
+        description: "2nd Place AI Hackathon & 1st Runner-Up Nexus",
+      },
+      {
+        value: 8,
+        suffix: "+",
+        label: "Certifications",
+        description: "AWS, Cloud, Agile PM & AI credentials",
+      },
+      {
+        value: 4,
+        suffix: "+",
+        label: "Leadership Roles",
+        description: "CDG Founder & AWS UG Iloilo Deputy Director",
+      },
+    ],
     // Competition record, stated once so the page and the chatbot agree.
     awards: {
       summary: "2x National Hackathon Awardee, Plus Regional (APAC) Competition Experience",
@@ -35,7 +61,8 @@ export const portfolioData = {
       github: "https://github.com/JustineSalinas",
       facebook: "https://www.facebook.com/profile.php?id=100067117067492",
       instagram: "https://www.instagram.com/a.jsalinas/",
-      resume: "/ajsalinas-resume.pdf"
+      resume: "/ajsalinas-resume.pdf",
+      calLink: "https://cal.com/adriansalinas/15min"
     }
   },
   // Community and organisational roles, shown between the bio and experience.

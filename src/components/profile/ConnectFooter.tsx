@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, FileText, Building2, Send, Loader2 } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText, Building2, Send, Loader2, Calendar } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { PillLink } from './Section';
+import { BookingModal } from './BookingModal';
 
 const { personal } = portfolioData;
 
@@ -19,6 +20,7 @@ type FormState = { name: string; email: string; message: string; company: string
 type SubmitState = 'idle' | 'loading' | 'success' | 'error';
 
 export const ConnectFooter = () => {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [form, setForm] = useState<FormState>({ name: '', email: '', message: '', company: '' });
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -75,6 +77,35 @@ export const ConnectFooter = () => {
         <p className="mt-1 text-[17px] text-secondary">
           If you&apos;ve read this far, we should probably build something.
         </p>
+
+        <div className="mt-4 flex flex-col gap-3 rounded-xl border border-border bg-surface/50 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <h3 className="text-[14.5px] font-semibold text-primary">Fast Track: Book a 15-Min Intro Call</h3>
+            </div>
+            <p className="mt-0.5 text-[12.5px] text-muted">
+              Skip the email queue and pick a time directly on my calendar.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsBookingOpen(true)}
+            className="hover-lift flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-primary/25 bg-background px-3.5 py-2 text-[13.5px] font-medium text-primary shadow-xs transition-colors hover:border-primary/40 hover:bg-surface"
+          >
+            <Calendar size={15} />
+            <span>Schedule time</span>
+          </button>
+        </div>
+
+        <div className="relative my-6 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-border" />
+          </div>
+          <span className="relative bg-background px-3 text-[12px] font-medium uppercase tracking-wider text-muted">
+            Or drop a message
+          </span>
+        </div>
 
         {submitState === 'success' ? (
           <p
@@ -189,6 +220,8 @@ export const ConnectFooter = () => {
       <p className="mt-12 border-t border-border pt-5 text-center text-[15px] text-muted">
         © {new Date().getFullYear()} {personal.name}.
       </p>
+
+      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
     </div>
   );
 };

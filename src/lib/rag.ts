@@ -114,7 +114,7 @@ const buildCorpus = (): Chunk[] => {
       `Regional experience: ${personal.awards.regional.join(' ')}`,
       `Current status: ${personal.quickFacts.status}. Focus: ${personal.quickFacts.focus}.`,
       `Looking for: ${personal.quickFacts.lookingFor}. Availability: ${personal.quickFacts.available}.`,
-      `Contact — email ${personal.contact.email}, GitHub ${personal.contact.github}, LinkedIn ${personal.contact.linkedin}.`,
+      `Contact — email ${personal.contact.email}, GitHub ${personal.contact.github}, LinkedIn ${personal.contact.linkedin}, Schedule a meeting / call via ${personal.contact.calLink ?? 'Cal.com'}.`,
     ].join(' '),
   });
 

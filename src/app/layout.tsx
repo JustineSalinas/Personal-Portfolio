@@ -30,14 +30,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://ajsalinas.vercel.app"),
   title: {
-    default: "Adrian Salinas — Full-Stack Developer & Technical Founder",
+    default: "Adrian Salinas — Software & AI Engineer · Student Founder",
     template: "%s | Adrian Salinas",
   },
   description:
     "Full-stack developer and technical founder in Iloilo. 17+ projects shipped, including a QR attendance platform serving 700+ students, a 2nd-place national AI hackathon build, and Cascade Development Group.",
   keywords: [
-    "Adrian Salinas", "full-stack developer", "Next.js", "TypeScript", "Supabase",
-    "AI engineer", "Iloilo", "Philippines", "Cascade Development Group",
+    "Adrian Salinas", "software engineer", "AI engineer", "Next.js", "TypeScript", "Supabase",
+    "Iloilo", "Philippines", "Cascade Development Group", "student founder",
   ],
   authors: [{ name: "Adrian Salinas", url: "https://github.com/JustineSalinas" }],
   creator: "Adrian Salinas",
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
     locale: "en_PH",
     url: "https://ajsalinas.vercel.app",
     siteName: "Adrian Salinas",
-    title: "Adrian Salinas — Full-Stack Developer & Technical Founder",
+    title: "Adrian Salinas — Software & AI Engineer · Student Founder",
     description:
       "17+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adrian Salinas — Full-Stack Developer & Technical Founder",
+    title: "Adrian Salinas — Software & AI Engineer · Student Founder",
     description:
       "17+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
   },
