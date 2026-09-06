@@ -35,12 +35,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     };
   }, [isOpen, onClose]);
 
-  // Reset loading state when opened
-  useEffect(() => {
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
     if (isOpen) {
       setIframeLoading(true);
     }
-  }, [isOpen]);
+  }
 
   const copyBookingLink = async () => {
     try {

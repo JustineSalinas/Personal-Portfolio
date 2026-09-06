@@ -61,7 +61,9 @@ export const portfolioData = {
       github: "https://github.com/JustineSalinas",
       facebook: "https://www.facebook.com/profile.php?id=100067117067492",
       instagram: "https://www.instagram.com/a.jsalinas/",
-      resume: "/ajsalinas-resume.pdf",
+      // `resume` points at the in-site viewer; `resumeFile` is the raw PDF.
+      resume: "/resume",
+      resumeFile: "/ajsalinas-resume.pdf",
       calLink: "https://cal.com/adriansalinas/15min"
     }
   },

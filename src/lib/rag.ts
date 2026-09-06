@@ -119,6 +119,13 @@ const buildCorpus = (): Chunk[] => {
   });
 
   chunks.push({
+    id: 'resume',
+    section: 'Resume',
+    title: 'Resume & CV',
+    text: `Adrian Salinas's resume and CV can be viewed online at /resume or downloaded as a PDF from ${personal.contact.resumeFile ?? '/ajsalinas-resume.pdf'}. It summarizes his software engineering and founder experience, skills, education, and credentials.`,
+  });
+
+  chunks.push({
     id: 'leadership',
     section: 'Leadership',
     title: 'Leadership and community roles',
