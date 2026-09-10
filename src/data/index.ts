@@ -480,6 +480,112 @@ export const portfolioData = {
   ],
   projects: [
     {
+      title: "Usage Metering & Billing Engine",
+      oneLiner: "Multi-tenant usage metering, quota enforcement, and Stripe billing — safe under retries and replayed webhooks",
+      year: "2026",
+      role: "FlyRank AI Capstone · Back-End AI Engineering Intern",
+      description: "A backend service answering the three questions every SaaS must answer per tenant, per month: how much have they used, what should they pay, and have they hit their limit. Exactly-once metering enforced by database constraints, integer micro-cent token pricing, hard quota boundaries, and signature-verified, deduplicated Stripe webhooks. 20 passing tests, plus end-to-end verification against a real Stripe test-mode account.",
+      techStack: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "Stripe", "Pytest", "Docker"],
+      repo: "https://github.com/JustineSalinas/flyrank-capstone-metering-billing",
+      certificate: "/certs/flyrank/certificate-of-completion.pdf",
+      slug: "usage-metering-billing",
+      badge: "FLYRANK CAPSTONE",
+      caseStudy: {
+        summary:
+          "Billing code fails in one of two directions: it overcharges a real customer, or it gives service away for free. Both are caused by the same thing — a retry, a replayed webhook, or an off-by-one at the quota boundary. This service treats those three as the actual product and makes the database, not application logic, the thing that guarantees correctness.",
+        sections: [
+          {
+            heading: "The problem",
+            body: [
+              "Every SaaS has to answer three questions for every tenant, every month: how much have they used, what should they pay, and have they hit their plan limit. They look like three separate features. They are really one correctness problem, because every one of them breaks under the same conditions — a client retrying a request it already sent, Stripe redelivering an event it already delivered, or a request landing exactly on the quota line.",
+              "A bug in any of those either bills a real customer for work they did not do, or hands out service nobody paid for. So the design started from the failure modes rather than the endpoints.",
+            ],
+          },
+          {
+            heading: "Exactly-once metering, enforced by the database",
+            body: [
+              "Every billable call carries an Idempotency-Key header, and the usage_events table holds a UNIQUE constraint on (tenant_id, idempotency_key). That constraint — not an in-memory check, not application logic — is the exactly-once guarantee, which means it still holds when two identical retries race each other concurrently.",
+              "The lookup path returns the original response for a duplicate key, with no second quota check and no new row. The race path matters more: if two concurrent retries both get past the lookup, one loses on the unique constraint at insert time. That violation is caught and treated as a replay rather than an error, so the loser of the race still receives a correct and consistent answer instead of a 500.",
+              "Stripe webhook dedup works on the same principle — a UNIQUE constraint on stripe_event_id in a webhook_events table. Verified under a genuine replay, not a simulated one: a stripe events resend delivered the same real event twice through the live CLI forward, and it was processed once and ignored the second time.",
+            ],
+          },
+          {
+            heading: "Money math in integers",
+            body: [
+              "AI token prices are fractions of a cent, which is exactly where floating point quietly corrupts a ledger. Prices are pinned as integer micro-cents per token — 1 cent = 1,000,000 micro-cents — so fractional-cent-per-token rates stay exact integers all the way through the rollup with no rounding drift.",
+              "Cached input tokens bill at 5 micro-cents against 20 for fresh input, and reasoning tokens bill at the output rate rather than becoming a fourth pricing category — a deliberate choice to keep the pricing table small enough to reason about.",
+            ],
+          },
+          {
+            heading: "Drawing the quota boundary once",
+            body: [
+              "The boundary rule is stated exactly once in the design and never restated: a request that brings usage to precisely the limit is allowed; the next one is rejected. On a 1,000-call plan, the 1,000th call passes and the 1,001st is refused.",
+              "Writing it down once, rather than re-deriving it at each call site, is what makes it testable. Three of the 20 tests exist purely to pin that boundary in place.",
+            ],
+          },
+          {
+            heading: "Scope discipline",
+            body: [
+              "Overage billing, proration, and invoicing were cut on purpose. Usage past quota is rejected, not billed extra. That keeps the money math to one thing — metered token pricing — done correctly, rather than three things done approximately.",
+              "The same honesty applies to what is missing. There is no reconciliation job to catch a webhook Stripe tried to deliver and failed to, and the background alert worker logs structured text where a real deployment would want JSON lines going to an aggregator. Both are written down in the repo as known gaps rather than quietly omitted.",
+            ],
+          },
+          {
+            heading: "Outcome",
+            body: [
+              "Accepted by the lead track mentor as the culminating project of the FlyRank AI Backend Engineering internship. 20 passing tests cover idempotent metering, the exact quota boundary, eight token-pricing cases, and webhook signature verification including forged-signature rejection.",
+              "Beyond the test suite, every requirement was run once end to end against a real Stripe test-mode account: a real Checkout session paid with a test card, a real webhook flipping the tenant from Free to Pro, a forged signature header rejected by the live server, and a genuine Stripe event replay processed exactly once.",
+            ],
+          },
+        ],
+        // The assignment track that led up to the capstone. Each one is a
+        // separate repo, so they link out rather than being described twice.
+        relatedRepos: {
+          heading: "The track behind it",
+          intro:
+            "Six assignments preceded the capstone, each one a standalone repo. They move from a plain CRUD API to durable AI workflows, and the reasoning in each README is the part worth reading.",
+          items: [
+            {
+              name: "todo-api",
+              url: "https://github.com/JustineSalinas/todo-api",
+              blurb:
+                "A CRUD task API in Node and Express whose storage layer was swapped twice — in-memory, then SQLite, then Postgres in Docker — without the endpoint contract changing.",
+            },
+            {
+              name: "auth-api",
+              url: "https://github.com/JustineSalinas/auth-api",
+              blurb:
+                "Authentication delegated to Supabase as the identity provider rather than rolling its own password hashing or token signing. No secrets, hashes, or session state live in the codebase.",
+            },
+            {
+              name: "auth-api-ai-version",
+              url: "https://github.com/JustineSalinas/auth-api-ai-version",
+              blurb:
+                "The same API regenerated from a written-from-memory prompt, then tested against the same Supabase project. The generated version authenticated a request sent with the wrong Authorization scheme, and leaked a stack trace on an empty body instead of returning a 400 — both found by testing it, not by reading it.",
+            },
+            {
+              name: "polite-scraper",
+              url: "https://github.com/JustineSalinas/polite-scraper",
+              blurb:
+                "Scrapes and schema-validates 60 records, caches every page so a rerun needs no network, and ships a flag that injects a deliberately broken URL to prove the run finishes with the good records intact and the failure logged.",
+            },
+            {
+              name: "llm-enrich-api",
+              url: "https://github.com/JustineSalinas/llm-enrich-api",
+              blurb:
+                "Validates a model's answer against a strict schema and gives it exactly one chance to repair its own invalid output before failing cleanly — rather than passing broken data downstream.",
+            },
+            {
+              name: "ai-workflow-builder",
+              url: "https://github.com/JustineSalinas/ai-workflow-builder",
+              blurb:
+                "A visual editor for AI decision graphs, one durable Inngest step per node. With no API key set it falls back to a deterministic stub, so branching, execution, and history stay fully testable at zero cost.",
+            },
+          ],
+        },
+      },
+    },
+    {
       title: "Marine-AI",
       oneLiner: "Retrofittable IoT & AI advisory system for passenger boats",
       year: "2026",

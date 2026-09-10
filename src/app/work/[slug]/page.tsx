@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Award, Github } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { TopBar } from '@/components/profile/TopBar';
 import { CursorAura } from '@/components/profile/CursorAura';
@@ -23,8 +23,17 @@ interface Study {
   cover: string | null;
   demo?: string;
   repo?: string;
+  certificate?: string;
   placement?: string;
-  caseStudy: { summary: string; sections: { heading: string; body: string[] }[] };
+  caseStudy: {
+    summary: string;
+    sections: { heading: string; body: string[] }[];
+    relatedRepos?: {
+      heading: string;
+      intro: string;
+      items: { name: string; url: string; blurb: string }[];
+    };
+  };
 }
 
 const fromProjects: Study[] = portfolioData.projects.flatMap((p) =>
@@ -37,6 +46,8 @@ const fromProjects: Study[] = portfolioData.projects.flatMap((p) =>
         tech: p.techStack,
         cover: ('image' in p && p.image) || ('images' in p && p.images?.[0]) || null,
         demo: 'demo' in p ? p.demo : undefined,
+        repo: 'repo' in p ? (p.repo as string) : undefined,
+        certificate: 'certificate' in p ? (p.certificate as string) : undefined,
         placement: 'placement' in p ? p.placement : undefined,
         caseStudy: p.caseStudy,
       }]
@@ -85,7 +96,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const project = studies.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const { cover, demo, placement } = project;
+  const { cover, demo, repo, certificate, placement } = project;
 
   return (
     <main className="relative min-h-screen rail-hatch">
@@ -123,16 +134,44 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               ))}
             </div>
 
-            {demo && (
-              <a
-                href={demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover-lift group mt-5 inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-[16px] font-medium text-primary hover:border-primary/30 hover:bg-surface"
-              >
-                Visit the live site
-                <ArrowUpRight size={16} className="hover-arrow text-muted" />
-              </a>
+            {(demo || repo || certificate) && (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {demo && (
+                  <a
+                    href={demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover-lift group inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-[16px] font-medium text-primary hover:border-primary/30 hover:bg-surface"
+                  >
+                    Visit the live site
+                    <ArrowUpRight size={16} className="hover-arrow text-muted" />
+                  </a>
+                )}
+                {repo && (
+                  <a
+                    href={repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover-lift group inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-[16px] font-medium text-primary hover:border-primary/30 hover:bg-surface"
+                  >
+                    <Github size={16} className="text-secondary" />
+                    Read the source
+                    <ArrowUpRight size={16} className="hover-arrow text-muted" />
+                  </a>
+                )}
+                {certificate && (
+                  <a
+                    href={certificate}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover-lift group inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-[16px] font-medium text-primary hover:border-primary/30 hover:bg-surface"
+                  >
+                    <Award size={16} className="text-secondary" />
+                    View the certificate
+                    <ArrowUpRight size={16} className="hover-arrow text-muted" />
+                  </a>
+                )}
+              </div>
             )}
           </header>
 
@@ -165,6 +204,42 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               </section>
             ))}
           </div>
+
+          {project.caseStudy.relatedRepos && (
+            <section className="mt-12">
+              <h2 className="font-display text-[22px] font-semibold tracking-tight text-primary">
+                {project.caseStudy.relatedRepos.heading}
+              </h2>
+              <p className="mt-3 text-[17px] leading-[1.8] text-secondary">
+                {project.caseStudy.relatedRepos.intro}
+              </p>
+              <div className="peek peek-rows mt-5 rounded-xl border border-border bg-background px-1.5">
+                {project.caseStudy.relatedRepos.items.map((item) => (
+                  <a
+                    key={item.url}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="peek-item group flex items-start gap-3 rounded-lg border-b border-border px-3 py-4 last:border-b-0 hover:bg-surface"
+                  >
+                    <Github size={17} className="mt-1 shrink-0 text-muted group-hover:text-primary" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-mono text-[15px] font-medium text-primary">
+                        {item.name}
+                      </span>
+                      <span className="mt-1 block text-[16px] leading-relaxed text-secondary">
+                        {item.blurb}
+                      </span>
+                    </span>
+                    <ArrowUpRight
+                      size={16}
+                      className="hover-arrow mt-1 shrink-0 text-muted group-hover:text-primary"
+                    />
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
 
           <div className="mt-14 border-t border-border pt-6">
             <Link
