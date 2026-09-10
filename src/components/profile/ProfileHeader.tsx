@@ -8,6 +8,7 @@ import { CoverBanner } from './CoverBanner';
 import { LiveStatusBadge } from './LiveStatusBadge';
 import { ImpactMetrics } from './ImpactMetrics';
 import { BookingModal } from './BookingModal';
+import { ResumeModal } from './ResumeModal';
 
 const { personal } = portfolioData;
 
@@ -15,11 +16,11 @@ const socials = [
   { href: personal.contact.github, label: 'GitHub', Icon: Github },
   { href: personal.contact.linkedin, label: 'LinkedIn', Icon: Linkedin },
   { href: `mailto:${personal.contact.email}`, label: 'Email', Icon: Mail },
-  { href: personal.contact.resume, label: 'Resume', Icon: FileText },
 ];
 
 export const ProfileHeader = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
     <div id="top">
@@ -83,6 +84,15 @@ export const ProfileHeader = () => {
                 <Icon size={17} />
               </a>
             ))}
+            {/* Opens in place — navigating away to read a resume is friction. */}
+            <button
+              onClick={() => setIsResumeOpen(true)}
+              aria-label="View resume"
+              title="View resume"
+              className="hover-lift flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-secondary hover:border-primary/30 hover:text-primary"
+            >
+              <FileText size={17} />
+            </button>
           </div>
         </div>
 
@@ -108,6 +118,7 @@ export const ProfileHeader = () => {
       </div>
 
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </div>
   );
 };

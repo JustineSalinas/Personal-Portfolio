@@ -193,15 +193,9 @@
     color: color-mix(in srgb, var(--accent), transparent 30%);
   }
 
-  /* Diagonal hatch on the rails flanking the reading column */
+  /* Diagonal hatch on the rails flanking the reading column - disabled for clean solid background */
   .rail-hatch {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      var(--rail) 0px,
-      var(--rail) 1px,
-      transparent 1px,
-      transparent 7px
-    );
+    background-image: none;
   }
 
   /* Fallback path only (no View Transitions): cross-fade every element's
@@ -442,20 +436,9 @@
     }
   }
 
-  /* Cursor aura: fixed behind the reading column, so it only ever shows in
-     the rails. Trails the pointer via --ax/--ay written from JS. */
+  /* Cursor aura: hidden so the background remains solid black */
   .cursor-aura {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: var(--aura-opacity, 0);
-    transition: opacity 600ms ease-out;
-    background: radial-gradient(
-      520px circle at var(--ax, 50vw) var(--ay, 50vh),
-      var(--aura),
-      transparent 65%
-    );
+    display: none;
   }
 
   /* Inline links inside prose copy */

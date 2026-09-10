@@ -12,8 +12,14 @@ const shortName = (company: string) => company.split('—')[0].trim();
 /** Everything after the dash becomes the quiet second line. */
 const qualifier = (company: string) => company.split('—').slice(1).join('—').trim();
 
-const ExperienceRow = ({ item }: { item: (typeof portfolioData.experience)[number] }) => {
-  const [open, setOpen] = useState(false);
+const ExperienceRow = ({
+  item,
+  defaultOpen = false,
+}: {
+  item: (typeof portfolioData.experience)[number];
+  defaultOpen?: boolean;
+}) => {
+  const [open, setOpen] = useState(defaultOpen);
   const name = shortName(item.company);
   const sub = qualifier(item.company);
   const logo = 'logo' in item ? (item.logo as string) : undefined;
@@ -86,8 +92,9 @@ const ExperienceRow = ({ item }: { item: (typeof portfolioData.experience)[numbe
 
 export const ExperienceList = () => (
   <div className="peek peek-rows rounded-xl border border-border bg-background px-1.5">
-    {portfolioData.experience.map((item) => (
-      <ExperienceRow key={`${item.company}-${item.date}`} item={item} />
+    {portfolioData.experience.map((item, i) => (
+      // Newest role reads without a click; the rest stay collapsed.
+      <ExperienceRow key={`${item.company}-${item.date}`} item={item} defaultOpen={i === 0} />
     ))}
   </div>
 );

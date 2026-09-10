@@ -61,8 +61,8 @@ export const portfolioData = {
       github: "https://github.com/JustineSalinas",
       facebook: "https://www.facebook.com/profile.php?id=100067117067492",
       instagram: "https://www.instagram.com/a.jsalinas/",
-      // `resume` points at the in-site viewer; `resumeFile` is the raw PDF.
-      resume: "/resume",
+      // Viewing happens in the ResumeModal; both fields are the raw PDF.
+      resume: "/ajsalinas-resume.pdf",
       resumeFile: "/ajsalinas-resume.pdf",
       calLink: "https://cal.com/adriansalinas/15min"
     }
@@ -107,13 +107,33 @@ export const portfolioData = {
    * PharmaTrack, the Nan Builders client, an ITSA officer, or a hackathon
    * teammate who can speak to how you work under a deadline.
    */
-  testimonials: [] as {
+  testimonials: [
+    {
+      quote:
+        "Based on this verified completion record, I recommend Adrian for opportunities aligned with back-end engineering and applied AI systems.",
+      name: "Alen Malkoc",
+      role: "Founder & CEO",
+      org: "FlyRank Corp. — internship recommendation letter, September 2026",
+    },
+  ] as {
     quote: string;
     name: string;
     role: string;
     org?: string;
   }[],
   experience: [
+    {
+      role: "Back-End AI Engineering Intern",
+      company: "FlyRank AI",
+      logo: "/logos/flyrank.svg",
+      date: "July – September 2026",
+      location: "Remote",
+      bullets: [
+        "Built and shipped \"LLM Usage Metering & Billing Service\" as the capstone project — a backend service that meters large-language-model consumption and turns it into billable usage. Reviewed and accepted by the lead track mentor.",
+        "Completed 7 of 5 required assignments across API contract design, task design and prompting, retrieval and grounding, and evaluation and operations — 61 hours of assessed work in total.",
+        "Graduated the Backend AI Engineering track with a Certificate of Completion, a supervisor-approved final evaluation, and a written recommendation from FlyRank's Founder & CEO."
+      ]
+    },
     {
       role: "Founder & AI Engineer",
       company: "Cascade Development Group (CDG)",
@@ -223,6 +243,42 @@ export const portfolioData = {
   ],
   certifications: [
     {
+      title: "Certificate of Completion — Backend AI Engineering",
+      issuer: "FlyRank AI",
+      date: "2026",
+      categories: ["Internship", "AI & ML"],
+      link: "/certs/flyrank/certificate-of-completion.pdf",
+      image: "/logos/flyrank.svg",
+      logo: "/logos/flyrank.svg"
+    },
+    {
+      title: "Recommendation Letter — Backend AI Engineering Internship",
+      issuer: "FlyRank AI",
+      date: "2026",
+      categories: ["Internship"],
+      link: "/certs/flyrank/recommendation-letter.pdf",
+      image: "/logos/flyrank.svg",
+      logo: "/logos/flyrank.svg"
+    },
+    {
+      title: "Final Internship Report & Evaluation",
+      issuer: "FlyRank AI",
+      date: "2026",
+      categories: ["Internship"],
+      link: "/certs/flyrank/final-report-evaluation.pdf",
+      image: "/logos/flyrank.svg",
+      logo: "/logos/flyrank.svg"
+    },
+    {
+      title: "Internship Confirmation Letter",
+      issuer: "FlyRank AI",
+      date: "2026",
+      categories: ["Internship"],
+      link: "/certs/flyrank/confirmation-letter.pdf",
+      image: "/logos/flyrank.svg",
+      logo: "/logos/flyrank.svg"
+    },
+    {
       title: "AWS Foundations: Machine Learning Basics",
       issuer: "AWS Training & Certification",
       date: "2026",
@@ -235,7 +291,7 @@ export const portfolioData = {
       title: "2nd Place (National) — National AI Hackathon 2026",
       issuer: "National AI Hackathon PH (Team SOLMATE / Marine-AI)",
       date: "2026",
-      categories: ["Hackathon Wins", "AI & ML"],
+      categories: ["Hackathons"],
       link: "/work/marine-ai",
       image: "/projects/national-award.jpg",
       logo: "/projects/national-award.jpg"
@@ -244,7 +300,7 @@ export const portfolioData = {
       title: "1st Runner-Up (National) — Nexus PH Hackathon 2026",
       issuer: "Nexus Philippines & DOST (Solmate / E-Ferry)",
       date: "2026",
-      categories: ["Hackathon Wins", "Cloud & AWS"],
+      categories: ["Hackathons"],
       link: "/projects/solmate-award.png",
       image: "/projects/solmate-award.png",
       logo: "/logos/solmate.png"
@@ -343,7 +399,7 @@ export const portfolioData = {
       title: "Certificate of Completion in IT Operations",
       issuer: "InnovaThink Corporation",
       date: "2024",
-      categories: ["IT Operations", "Course Certificate"],
+      categories: ["Internship", "IT Operations"],
       link: "/certs/it-operations.pdf",
       image: "/certs/it-operations.png",
       logo: "/logos/innovathink.png"

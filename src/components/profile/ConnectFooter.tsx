@@ -5,6 +5,7 @@ import { Github, Linkedin, Mail, FileText, Building2, Send, Loader2, Calendar } 
 import { portfolioData } from '@/data';
 import { PillLink } from './Section';
 import { BookingModal } from './BookingModal';
+import { ResumeModal } from './ResumeModal';
 
 const { personal } = portfolioData;
 
@@ -12,7 +13,6 @@ const links = [
   { href: personal.contact.github, label: 'GitHub', Icon: Github },
   { href: personal.contact.linkedin, label: 'LinkedIn', Icon: Linkedin },
   { href: `mailto:${personal.contact.email}`, label: 'Mail', Icon: Mail },
-  { href: personal.contact.resume, label: 'Resume', Icon: FileText },
   { href: 'https://cdg-official.vercel.app', label: 'CDG', Icon: Building2 },
 ];
 
@@ -21,6 +21,7 @@ type SubmitState = 'idle' | 'loading' | 'success' | 'error';
 
 export const ConnectFooter = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [form, setForm] = useState<FormState>({ name: '', email: '', message: '', company: '' });
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -214,6 +215,17 @@ export const ConnectFooter = () => {
               {label}
             </PillLink>
           ))}
+          {/* Resume opens in place rather than navigating to /resume. */}
+          <button
+            type="button"
+            onClick={() => setIsResumeOpen(true)}
+            className="pill-sweep hover-lift group relative inline-flex items-center gap-1.5 overflow-hidden rounded-lg border border-border bg-background px-3 py-2 text-[16px] font-medium text-primary hover:border-primary/40 hover:bg-surface hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/40"
+          >
+            <span className="relative z-10 inline-flex items-center gap-1.5">
+              <FileText size={17} className="text-secondary transition-colors group-hover:text-primary" />
+              Resume
+            </span>
+          </button>
         </div>
       </div>
 
@@ -222,6 +234,7 @@ export const ConnectFooter = () => {
       </p>
 
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </div>
   );
 };
