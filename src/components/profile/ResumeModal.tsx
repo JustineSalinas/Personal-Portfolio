@@ -34,6 +34,9 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   // zoom step is the same proportional change on a phone as on a desktop.
   const [baseWidth, setBaseWidth] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
   const didFit = useRef(false);
 
   const clamp = (v: number) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, v));
@@ -62,18 +65,45 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
     return () => window.removeEventListener('resize', measure);
   }, [isOpen]);
 
-  // Escape to close, and lock the page behind the dialog while it is open.
+  // Escape to close, trap Tab inside the dialog, and lock the page behind it.
   useEffect(() => {
+    if (!isOpen) return;
+
+    // Nothing moves focus into the dialog on its own — without this a
+    // keyboard user tabbing after opening it just keeps walking the (visually
+    // covered) page behind it and can never reach the dialog's own controls.
+    triggerRef.current = document.activeElement as HTMLElement;
+    closeButtonRef.current?.focus();
+    document.body.style.overflow = 'hidden';
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !panelRef.current) return;
+
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', onKey);
-    }
+    window.addEventListener('keydown', onKey);
+
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', onKey);
+      triggerRef.current?.focus();
     };
   }, [isOpen, onClose]);
 
@@ -88,7 +118,10 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
     >
       <div onClick={onClose} className="fixed inset-0 bg-black/70 backdrop-blur-sm" />
 
-      <div className="relative z-10 flex h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl">
+      <div
+        ref={panelRef}
+        className="relative z-10 flex h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl"
+      >
         <div className="flex items-center justify-between gap-3 border-b border-border bg-surface/50 px-5 py-3.5">
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-primary">
@@ -152,6 +185,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <span className="hidden sm:inline">Download</span>
             </a>
             <button
+              ref={closeButtonRef}
               onClick={onClose}
               title="Close"
               className="hover-lift flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-secondary hover:text-primary"

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { X, Trophy, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
@@ -23,17 +23,52 @@ export const HackathonOverviewModal: React.FC<HackathonOverviewModalProps> = ({
   project,
   onClose,
 }) => {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
+    if (!project) return;
+
+    // Keyboard focus never moves on its own when a fixed overlay appears, so
+    // without this a keyboard user has no way to reach the dialog at all —
+    // Tab just keeps walking the (visually hidden) page behind it.
+    triggerRef.current = document.activeElement as HTMLElement;
+    closeButtonRef.current?.focus();
+    document.body.style.overflow = 'hidden';
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !panelRef.current) return;
+
+      // Trap Tab/Shift+Tab inside the dialog so it can't leak focus onto the
+      // covered page — the WCAG 2.1.2 requirement for a modal dialog.
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
-    if (project) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', onKey);
-    }
+    window.addEventListener('keydown', onKey);
+
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', onKey);
+      // Hand focus back to whatever opened the dialog — otherwise it resets
+      // to <body> and a keyboard user loses their place on the page.
+      triggerRef.current?.focus();
     };
   }, [project, onClose]);
 
@@ -55,7 +90,10 @@ export const HackathonOverviewModal: React.FC<HackathonOverviewModalProps> = ({
     >
       <div onClick={onClose} className="fixed inset-0 bg-black/70 backdrop-blur-sm" />
 
-      <div className="relative z-10 flex max-h-[88vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl">
+      <div
+        ref={panelRef}
+        className="relative z-10 flex max-h-[88vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl"
+      >
         <div className="flex items-start justify-between gap-3 border-b border-border bg-surface/50 px-5 py-4">
           <div className="min-w-0">
             {badge && (
@@ -75,6 +113,7 @@ export const HackathonOverviewModal: React.FC<HackathonOverviewModalProps> = ({
             )}
           </div>
           <button
+            ref={closeButtonRef}
             onClick={onClose}
             title="Close"
             className="hover-lift flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-secondary hover:text-primary"

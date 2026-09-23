@@ -63,8 +63,7 @@ export const portfolioData = {
       instagram: "https://www.instagram.com/a.jsalinas/",
       // Viewing happens in the ResumeModal; both fields are the raw PDF.
       resume: "/ajsalinas-resume.pdf",
-      resumeFile: "/ajsalinas-resume.pdf",
-      calLink: "https://cal.com/adriansalinas/15min"
+      resumeFile: "/ajsalinas-resume.pdf"
     }
   },
   // Community and organisational roles, shown between the bio and experience.

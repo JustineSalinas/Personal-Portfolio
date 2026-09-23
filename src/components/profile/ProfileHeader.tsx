@@ -2,12 +2,11 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Github, Linkedin, Mail, FileText, MapPin, Calendar } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText, MapPin } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { CoverBanner } from './CoverBanner';
 import { LiveStatusBadge } from './LiveStatusBadge';
 import { ImpactMetrics } from './ImpactMetrics';
-import { BookingModal } from './BookingModal';
 import { ResumeModal } from './ResumeModal';
 
 const { personal } = portfolioData;
@@ -19,7 +18,6 @@ const socials = [
 ];
 
 export const ProfileHeader = () => {
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
@@ -63,14 +61,6 @@ export const ProfileHeader = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-1.5">
-            <button
-              onClick={() => setIsBookingOpen(true)}
-              className="hover-lift flex h-9 items-center gap-1.5 rounded-lg border border-primary/20 bg-surface px-3 text-[14px] font-medium text-primary hover:border-primary/40 hover:bg-surface/80"
-              title="Schedule a 15-min call"
-            >
-              <Calendar size={15} className="text-primary" />
-              <span>Book Call</span>
-            </button>
             {socials.map(({ href, label, Icon }) => (
               <a
                 key={label}
@@ -117,7 +107,6 @@ export const ProfileHeader = () => {
         <ImpactMetrics />
       </div>
 
-      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </div>
   );
