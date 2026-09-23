@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
 import { FloatingDock } from "@/components/profile/FloatingDock";
 import { Preloader } from "@/components/profile/Preloader";
-import { SmoothScroll } from "@/components/profile/SmoothScroll";
 import { portfolioData } from "@/data";
 
 const fraunces = Fraunces({ 
@@ -32,7 +31,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://ajsalinas.vercel.app"),
   title: {
-    default: "Adrian Salinas — Software & AI Engineer · Student Founder",
+    default: "Adrian Salinas — AI & Data Engineer · Student Founder",
     template: "%s | Adrian Salinas",
   },
   description:
@@ -48,13 +47,13 @@ export const metadata: Metadata = {
     locale: "en_PH",
     url: "https://ajsalinas.vercel.app",
     siteName: "Adrian Salinas",
-    title: "Adrian Salinas — Software & AI Engineer · Student Founder",
+    title: "Adrian Salinas — AI & Data Engineer · Student Founder",
     description:
       "17+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adrian Salinas — Software & AI Engineer · Student Founder",
+    title: "Adrian Salinas — AI & Data Engineer · Student Founder",
     description:
       "17+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
   },
@@ -101,7 +100,6 @@ export default function RootLayout({
         />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <Preloader />
-          <SmoothScroll />
           {children}
           <FloatingDock />
           <ChatbotWidget />

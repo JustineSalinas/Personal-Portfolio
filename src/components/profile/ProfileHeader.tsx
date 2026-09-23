@@ -4,9 +4,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Github, Linkedin, Mail, FileText, MapPin } from 'lucide-react';
 import { portfolioData } from '@/data';
-import { CoverBanner } from './CoverBanner';
 import { LiveStatusBadge } from './LiveStatusBadge';
-import { ImpactMetrics } from './ImpactMetrics';
+import { Highlights } from './Highlights';
 import { ResumeModal } from './ResumeModal';
 
 const { personal } = portfolioData;
@@ -21,46 +20,47 @@ export const ProfileHeader = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
-    <div id="top">
-      <CoverBanner>Student by day. Founder the rest of it.</CoverBanner>
-
-      <div className="px-7">
-        {/* Avatar overlaps the cover. Needs its own stacking context, or the
-            positioned cover above paints over the top half of the face. */}
-        <div className="relative z-10 -mt-12 mb-4">
+    <div id="top" className="px-7 pt-8">
+      {/* Side-by-side, not a full-width banner: a square photo beside the
+          name and bio, matching bryllim.com's hero. Sized to roughly match
+          the text column's height rather than leaving the photo small and
+          the right side visually empty. */}
+      <div className="flex gap-5 sm:gap-7">
+        <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-xl border border-border bg-surface sm:h-52 sm:w-52">
           <Image
             src="/portrait.png"
             alt={personal.name}
-            width={93}
-            height={93}
+            fill
             // Above the fold and the likely LCP element, so skip lazy loading.
             priority
-            className="h-[93px] w-[93px] rounded-full border-4 border-background object-cover shadow-sm"
-            style={{ objectPosition: 'center 22%' }}
+            sizes="208px"
+            className="object-cover"
+            style={{ objectPosition: 'center 20%' }}
           />
         </div>
 
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <h1 className="font-display text-[35px] font-semibold leading-tight tracking-tight text-primary">
-              {personal.name}
-            </h1>
-            {/* Role line carries the professional identity; status and location
-                sit under it so the hierarchy reads name → what → where. */}
-            <p className="mt-1 text-[17px] font-medium text-secondary">{personal.title}</p>
-            <p className="mt-1 flex flex-wrap items-center gap-x-1.5 text-[15px] text-muted">
-              <span>{personal.quickFacts.status}</span>
-              <span>•</span>
-              {/* icon and place stay on one line so the pin never dangles at a wrap */}
-              <span className="inline-flex items-center gap-1">
-                <MapPin size={14} className="shrink-0" />
-                {personal.location}
-              </span>
-            </p>
-            <LiveStatusBadge />
-          </div>
+        <div className="min-w-0 flex-1">
+          <h1 className="font-display text-[28px] font-semibold leading-tight tracking-tight text-primary sm:text-[35px]">
+            {personal.name}
+          </h1>
+          {/* Role line carries the professional identity; status and location
+              sit under it so the hierarchy reads name → what → where. */}
+          <p className="mt-1 text-[17px] font-medium text-secondary">{personal.title}</p>
+          <p className="mt-1 font-display text-[16px] italic text-muted">
+            Student by day. Founder the rest of it.
+          </p>
+          <p className="mt-1.5 flex flex-wrap items-center gap-x-1.5 text-[15px] text-muted">
+            <span>{personal.quickFacts.status}</span>
+            <span>•</span>
+            {/* icon and place stay on one line so the pin never dangles at a wrap */}
+            <span className="inline-flex items-center gap-1">
+              <MapPin size={14} className="shrink-0" />
+              {personal.location}
+            </span>
+          </p>
+          <LiveStatusBadge />
 
-          <div className="flex flex-wrap items-center gap-1.5">
+          <div className="mt-3 flex flex-wrap items-center gap-1.5">
             {socials.map(({ href, label, Icon }) => (
               <a
                 key={label}
@@ -85,27 +85,26 @@ export const ProfileHeader = () => {
             </button>
           </div>
         </div>
-
-        <p className="mt-5 text-[18px] leading-[1.75] text-secondary">
-          I build full-stack systems —{' '}
-          <span className="font-medium text-primary">{personal.projectsBuilt} projects built</span>,{' '}
-          <span className="font-medium text-primary">2x National Hackathon Winner Awardee</span> — and run{' '}
-          <a
-            href="https://cdg-official.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="prose-link font-medium"
-          >
-            Cascade Development Group
-          </a>
-          , an IT solutions startup in Iloilo. I work across{' '}
-          <span className="font-medium text-primary">Next.js, TypeScript, Supabase, and Python</span>
-          , bringing a strong niche in <span className="font-medium text-primary">technical project management</span> alongside a focused path in <span className="font-medium text-primary">AI systems</span>. Open to internships, part-time, and remote roles.
-        </p>
-
-        {/* Dynamic Impact & Metrics Bar */}
-        <ImpactMetrics />
       </div>
+
+      <p className="mt-5 text-[18px] leading-[1.75] text-secondary">
+        I build full-stack systems and data-driven AI platforms, with{' '}
+        <span className="font-medium text-primary">{personal.projectsBuilt} projects built</span> and a{' '}
+        <span className="font-medium text-primary">2x National Hackathon Winner Awardee</span> record. I run{' '}
+        <a
+          href="https://cdg-official.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="prose-link font-medium"
+        >
+          Cascade Development Group
+        </a>
+        , an IT solutions startup in Iloilo, with a strong niche in{' '}
+        <span className="font-medium text-primary">technical project management</span> and a focused path in{' '}
+        <span className="font-medium text-primary">data engineering and applied AI</span>, from building data pipelines to shipping production AI systems. Open to internships, part-time, and remote roles.
+      </p>
+
+      <Highlights />
 
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </div>

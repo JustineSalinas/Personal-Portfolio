@@ -1,108 +1,50 @@
-import { portfolioData } from '@/data';
 import { TopBar } from '@/components/profile/TopBar';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
 import { Section } from '@/components/profile/Section';
-import { LeadershipList } from '@/components/profile/LeadershipList';
-import { ExperienceList } from '@/components/profile/ExperienceList';
-import { WorkGrid } from '@/components/profile/WorkGrid';
+import { Sidebar } from '@/components/profile/Sidebar';
 import { BuildingNow } from '@/components/profile/BuildingNow';
 import { GithubHeatmap } from '@/components/profile/GithubHeatmap';
-import { HackathonList } from '@/components/profile/HackathonList';
-import { StackGrid } from '@/components/profile/StackGrid';
-import { CertificationsList } from '@/components/profile/CertificationsList';
-import { EducationList } from '@/components/profile/EducationList';
-import { Testimonials } from '@/components/profile/Testimonials';
 import { ConnectFooter } from '@/components/profile/ConnectFooter';
+
+// Home stays minimal — every category with real content (Projects,
+// Experience, Stack, Certifications, Recommendations, Affiliations,
+// Resources) already has its own page linked from the sidebar. Repeating a
+// preview of each here was what made the page feel cluttered.
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-page">
-      <div className="relative z-10 mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
-        <TopBar />
-        <ProfileHeader />
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1160px] justify-center gap-6 px-0 lg:px-6">
+        <Sidebar />
 
-        <div className="px-7 pb-20">
-          <Section id="leadership" label="Current Leadership & Community">
-            <LeadershipList />
-          </Section>
+        <div className="w-full max-w-[880px] border-x border-border bg-background">
+          <TopBar />
+          <ProfileHeader />
 
-          <Section id="experience" label="Professional Experience">
-            <ExperienceList />
-          </Section>
-
-          <Section
-            id="work"
-            label="Proof of Work"
-            action={
-              <span className="text-[16px] text-secondary">
-                <span className="font-medium text-primary">
-                  {portfolioData.personal.projectsBuilt}
-                </span>{' '}
-                projects built
-              </span>
-            }
-          >
-            <WorkGrid />
-          </Section>
-
-          <Section id="building" label="Currently Building">
-            <BuildingNow />
-          </Section>
-
-          <Section
-            id="github"
-            label="GitHub Contributions"
-            action={
-              <a
-                href="https://github.com/JustineSalinas"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[16px] font-medium text-secondary transition-colors hover:text-primary"
-              >
-                @JustineSalinas →
-              </a>
-            }
-          >
-            <GithubHeatmap />
-          </Section>
-
-          <Section
-            id="hackathons"
-            label="Hackathons & Awards"
-            intro={portfolioData.personal.awards.summary}
-          >
-            <HackathonList />
-          </Section>
-
-          <Section
-            id="stack"
-            label="Stack I use"
-            intro="Technologies I work with to build products that solve real problems."
-          >
-            <StackGrid />
-          </Section>
-
-          <Section
-            id="certifications"
-            label="Certifications & Credentials"
-            intro={`${portfolioData.certifications.length} credentials, grouped by category.`}
-          >
-            <CertificationsList />
-          </Section>
-
-          <Section id="education" label="Education">
-            <EducationList />
-          </Section>
-
-          {/* Social proof immediately before the ask. Renders nothing while
-              portfolioData.testimonials is empty. */}
-          {portfolioData.testimonials.length > 0 && (
-            <Section id="testimonials" label="What people say">
-              <Testimonials />
+          <div className="px-7 pb-20">
+            <Section id="building" label="Currently Building">
+              <BuildingNow />
             </Section>
-          )}
 
-          <div className="pt-16">
-            <ConnectFooter />
+            <Section
+              id="github"
+              label="GitHub Contributions"
+              action={
+                <a
+                  href="https://github.com/JustineSalinas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[16px] font-medium text-secondary transition-colors hover:text-primary"
+                >
+                  @JustineSalinas →
+                </a>
+              }
+            >
+              <GithubHeatmap />
+            </Section>
+
+            <div className="pt-16">
+              <ConnectFooter />
+            </div>
           </div>
         </div>
       </div>

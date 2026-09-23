@@ -185,7 +185,6 @@ export const GithubHeatmap = () => {
       {/* scrollbar-none: the year fits at full width, and on narrow screens the
           bar is pure clutter — swipe/drag still scrolls. */}
       <div
-        data-lenis-prevent
         className="scrollbar-none overflow-x-auto"
         onMouseLeave={() => setTip(null)}
       >

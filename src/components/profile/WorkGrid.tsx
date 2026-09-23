@@ -50,14 +50,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       <div className="mt-2.5 flex items-start justify-between gap-2">
-        <h3 className="text-[17px] font-medium text-primary">
+        <h2 className="text-[17px] font-medium text-primary">
           {project.title}
           {study && (
             <span className="ml-2 align-middle text-[13px] font-normal text-muted">
               Case study
             </span>
           )}
-        </h3>
+        </h2>
         {href && (
           <ArrowUpRight
             size={17}
@@ -95,10 +95,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
   );
 };
 
-export const WorkGrid = () => (
-  <SheenGroup className="peek grid gap-3 sm:grid-cols-2">
-    {portfolioData.projects.map((project) => (
-      <ProjectCard key={project.title} project={project} />
-    ))}
-  </SheenGroup>
-);
+export const WorkGrid = ({ limit }: { limit?: number } = {}) => {
+  const projects = limit ? portfolioData.projects.slice(0, limit) : portfolioData.projects;
+  return (
+    <SheenGroup className="peek grid gap-3 sm:grid-cols-2">
+      {projects.map((project) => (
+        <ProjectCard key={project.title} project={project} />
+      ))}
+    </SheenGroup>
+  );
+};

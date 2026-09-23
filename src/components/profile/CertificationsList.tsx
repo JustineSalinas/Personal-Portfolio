@@ -42,10 +42,10 @@ export const CertificationsList = () => (
   <div className="space-y-6">
     {groups.map((group) => (
       <div key={group.name}>
-        <h3 className="mb-2 text-[13.5px] font-medium uppercase tracking-wide text-muted">
+        <h2 className="mb-2 text-[13.5px] font-medium uppercase tracking-wide text-muted">
           {group.name}
           <span className="ml-1.5 text-muted/70">{group.items.length}</span>
-        </h3>
+        </h2>
         <div className="rounded-xl border border-border bg-background px-3">
           {group.items.map((cert) => (
             <a

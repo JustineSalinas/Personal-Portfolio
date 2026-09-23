@@ -240,10 +240,7 @@ export const ChatbotWidget = () => {
             </div>
 
             {/* Transcript */}
-            {/* data-lenis-prevent: smooth scrolling hijacks the wheel at the
-                document level, which otherwise makes this panel unscrollable. */}
             <div
-              data-lenis-prevent
               className="flex-1 space-y-3 overflow-y-auto overscroll-contain px-3.5 py-3.5"
             >
               {messages.length === 0 && (

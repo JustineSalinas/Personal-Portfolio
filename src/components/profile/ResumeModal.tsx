@@ -195,11 +195,8 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           </div>
         </div>
 
-        {/* Scrollable document body. data-lenis-prevent: smooth scrolling hijacks
-            the wheel at document level and would otherwise freeze this panel. */}
         <div
           ref={scrollRef}
-          data-lenis-prevent
           className="flex-1 overflow-auto overscroll-contain bg-surface px-4 py-5 sm:px-6"
         >
           {/* Zooming past the panel width overflows right and pans horizontally;

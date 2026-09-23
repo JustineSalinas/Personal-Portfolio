@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: "Adrian Salinas",
     initials: "AJ",
-    title: "Software & AI Engineer · Student Founder",
+    title: "AI & Data Engineer · Student Founder",
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
     bio: "Full-Stack Developer, 2x National Hackathon Winner Awardee, and IT Solutions Founder from Iloilo with a niche in technical project management and AI systems. I build with Next.js, TypeScript, Supabase, and Python.",
@@ -119,6 +119,54 @@ export const portfolioData = {
     name: string;
     role: string;
     org?: string;
+  }[],
+  /**
+   * Real tools only — hardware, software, and services actually in daily use.
+   * The section renders nothing while this is empty.
+   *
+   * Shape:
+   *   { name: "MacBook Pro 14\" M3", category: "Hardware", note: "Daily driver" }
+   */
+  gear: [
+    { name: "ASUS TUF A15", category: "Computer", note: "Daily driver", image: "/gear/asus-tuf-a15.png" },
+    { name: "Attack Shark X11", category: "Input", note: "Main mouse", image: "/gear/attack-shark-x11-black.png" },
+    { name: "Razer DeathAdder Essential White", category: "Input", note: "Second mouse", image: "/gear/deathadder-essential-white.png" },
+    { name: "Gamakay MK61", category: "Input", note: "Keyboard", image: "/gear/gamakay-mk61.jpg" },
+    { name: "AOC 24G42E", category: "Display", note: "23.8-inch Full HD, 180Hz", image: "/gear/aoc-24g42e.png" },
+    { name: "Xiaomi 13T Pro", category: "Mobile", image: "/gear/xiaomi-13t-pro.png" },
+    { name: "Razer BlackShark V2 X", category: "Audio", image: "/gear/blackshark-v2x.png" },
+  ] as {
+    name: string;
+    category: string;
+    note?: string;
+    image: string;
+  }[],
+  /**
+   * Where I actually learn from — courses, practice sites, and references
+   * for building software, getting into AI/data engineering, and staying
+   * current. Real sources only, categorized by what they're for.
+   */
+  resources: [
+    { name: "freeCodeCamp", url: "https://www.freecodecamp.org", category: "Foundations" },
+    { name: "The Odin Project", url: "https://www.theodinproject.com", category: "Foundations" },
+    { name: "roadmap.sh", url: "https://roadmap.sh", category: "Foundations" },
+    { name: "Hugging Face", url: "https://huggingface.co", category: "AI & ML" },
+    { name: "LeetCode", url: "https://leetcode.com", category: "DSA & Practice" },
+    { name: "NeetCode", url: "https://neetcode.io", category: "DSA & Practice" },
+    { name: "Codewars", url: "https://www.codewars.com", category: "DSA & Practice" },
+    { name: "HackerRank", url: "https://www.hackerrank.com", category: "DSA & Practice" },
+    { name: "TIRA — Data Structures & Algorithms", url: "https://tira.mooc.fi/spring-2025/", category: "DSA & Practice" },
+    { name: "Dribbble", url: "https://dribbble.com", category: "Design Inspiration" },
+    { name: "Mobbin", url: "https://mobbin.com", category: "Design Inspiration" },
+    { name: "Motion (Framer Motion)", url: "https://motion.dev", category: "Animation" },
+    { name: "GSAP", url: "https://gsap.com", category: "Animation" },
+    { name: "NextWork", url: "https://nextwork.ai", category: "Cloud & Certifications" },
+    { name: "Oracle for Developers", url: "https://www.oracle.com/developer/", category: "Cloud & Certifications" },
+    { name: "IBM SkillsBuild", url: "https://skillsbuild.org", category: "Cloud & Certifications" },
+  ] as {
+    name: string;
+    url: string;
+    category: string;
   }[],
   experience: [
     {
