@@ -3,6 +3,8 @@ import { Fraunces, Outfit, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
+import { FloatingDock } from "@/components/profile/FloatingDock";
+import { Preloader } from "@/components/profile/Preloader";
 import { SmoothScroll } from "@/components/profile/SmoothScroll";
 import { portfolioData } from "@/data";
 
@@ -98,8 +100,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <Preloader />
           <SmoothScroll />
           {children}
+          <FloatingDock />
           <ChatbotWidget />
         </ThemeProvider>
       </body>

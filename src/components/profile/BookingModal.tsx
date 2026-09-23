@@ -134,7 +134,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
         {/* Footer fallback info */}
         <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border bg-background px-5 py-2.5 text-[12px] text-muted">
-          <span>Powered by Cal.com / Calendly</span>
+          <span>Powered by Cal.com</span>
           <span className="flex items-center gap-1.5">
             Having trouble?{' '}
             <a

@@ -46,7 +46,7 @@ export const portfolioData = {
         "1st Runner-Up out of 17 teams — Nexus PH Hackathon 2026, built a high-performing IoT telemetry dashboard under a 3-day deadline (Solmate / E-Ferry)",
       ],
       regional: [
-        "Stellar APAC Hackathon 2026 — Project Manager & Smart Contract Developer on SplitRails, a collaborative expense-splitting and Stellar escrow platform",
+        "Top 70 — Stellar APAC Hackathon 2026, Project Manager & Smart Contract Developer on SplitRails, a collaborative expense-splitting and Stellar escrow platform",
       ],
     },
     quickFacts: {
@@ -123,7 +123,7 @@ export const portfolioData = {
   }[],
   experience: [
     {
-      role: "Back-End AI Engineering Intern",
+      role: "Back-End AI Engineering Intern (71 days)",
       company: "FlyRank AI",
       logo: "/logos/flyrank.svg",
       date: "July – September 2026",
@@ -243,38 +243,11 @@ export const portfolioData = {
   ],
   certifications: [
     {
-      title: "Certificate of Completion — Backend AI Engineering",
+      title: "Certificate of Completion — Backend AI Engineering (2 months)",
       issuer: "FlyRank AI",
-      date: "2026",
+      date: "Jul–Sep 2026",
       categories: ["Internship", "AI & ML"],
       link: "/certs/flyrank/certificate-of-completion.pdf",
-      image: "/logos/flyrank.svg",
-      logo: "/logos/flyrank.svg"
-    },
-    {
-      title: "Recommendation Letter — Backend AI Engineering Internship",
-      issuer: "FlyRank AI",
-      date: "2026",
-      categories: ["Internship"],
-      link: "/certs/flyrank/recommendation-letter.pdf",
-      image: "/logos/flyrank.svg",
-      logo: "/logos/flyrank.svg"
-    },
-    {
-      title: "Final Internship Report & Evaluation",
-      issuer: "FlyRank AI",
-      date: "2026",
-      categories: ["Internship"],
-      link: "/certs/flyrank/final-report-evaluation.pdf",
-      image: "/logos/flyrank.svg",
-      logo: "/logos/flyrank.svg"
-    },
-    {
-      title: "Internship Confirmation Letter",
-      issuer: "FlyRank AI",
-      date: "2026",
-      categories: ["Internship"],
-      link: "/certs/flyrank/confirmation-letter.pdf",
       image: "/logos/flyrank.svg",
       logo: "/logos/flyrank.svg"
     },
@@ -306,22 +279,13 @@ export const portfolioData = {
       logo: "/logos/solmate.png"
     },
     {
-      title: "Founder & AI Engineer",
-      issuer: "Cascade Development Group (CDG)",
-      date: "2026 – Present",
-      categories: ["Community Leadership", "Project Management"],
-      link: "https://cdg-official.vercel.app",
-      image: "/logos/cdg-fire-logo.png",
-      logo: "/logos/cdg-fire-logo.png"
-    },
-    {
-      title: "Deputy Director for Technology",
-      issuer: "AWS User Group Iloilo",
-      date: "2026 – Present",
-      categories: ["Community Leadership", "Cloud & AWS"],
-      link: "https://www.linkedin.com/in/adrian-justin-salinas-a4768b226/",
-      image: "/certs/aws-ml-basics.png",
-      logo: "/certs/aws-ml-basics.png"
+      title: "Top 70 — Stellar APAC Hackathon 2026",
+      issuer: "Stellar APAC (SplitRails)",
+      date: "2026",
+      categories: ["Hackathons"],
+      link: "https://split-rails.vercel.app",
+      image: "/projects/stellar-team.jpg",
+      logo: "/projects/stellar-team.jpg"
     },
     {
       title: "RAG Strategy & Execution: Build Enterprise Knowledge Systems",
@@ -336,7 +300,7 @@ export const portfolioData = {
       title: "Advanced Scrum Master",
       issuer: "Agile Enterprise",
       date: "2026",
-      categories: ["Agile & Scrum", "Project Management", "Course Certificate"],
+      categories: ["Project Management", "Agile & Scrum", "Course Certificate"],
       link: "/certs/advanced-scrum.png",
       image: "/certs/advanced-scrum.png",
       logo: "/certs/advanced-scrum.png"
@@ -349,15 +313,6 @@ export const portfolioData = {
       link: "/certs/aws-ai-practitioner.png",
       image: "/certs/aws-ai-practitioner.png",
       logo: "/certs/aws-ai-practitioner.png"
-    },
-    {
-      title: "Web Development Lead",
-      issuer: "ITSA — University of San Agustin",
-      date: "2024 – Present",
-      categories: ["Community Leadership", "Project Management"],
-      link: "https://itsa-website-psi.vercel.app",
-      image: "/logos/itsa.png",
-      logo: "/logos/itsa.png"
     },
     {
       title: "Project Management - Waterfall & Agile",
@@ -378,6 +333,24 @@ export const portfolioData = {
       logo: "/certs/ibm-llm.png"
     },
     {
+      title: "Model Context Protocol: Advanced Topics",
+      issuer: "Anthropic",
+      date: "2026",
+      categories: ["AI & ML"],
+      link: "/certs/flyrank/mcp.pdf",
+      image: "/logos/stack/claude.svg",
+      logo: "/logos/stack/claude.svg"
+    },
+    {
+      title: "Data Streaming Engineer Foundations",
+      issuer: "Confluent",
+      date: "September 22, 2026",
+      categories: ["Cloud & AWS", "Microcredential"],
+      link: "/certs/confluent-data-streaming-engineer.pdf",
+      image: "/logos/confluent.png",
+      logo: "/logos/confluent.png"
+    },
+    {
       title: "Design Thinking Guide for Successful Professionals",
       issuer: "Udemy",
       date: "2025",
@@ -396,13 +369,22 @@ export const portfolioData = {
       logo: "/logos/udemy.svg"
     },
     {
-      title: "Certificate of Completion in IT Operations",
+      title: "Certificate of Completion in IT Operations (200 Hours)",
       issuer: "InnovaThink Corporation",
       date: "2024",
       categories: ["Internship", "IT Operations"],
       link: "/certs/it-operations.pdf",
       image: "/certs/it-operations.png",
       logo: "/logos/innovathink.png"
+    },
+    {
+      title: "Technical Support Intern (72 Hours)",
+      issuer: "University of San Agustin",
+      date: "January 2024",
+      categories: ["Internship"],
+      link: "https://www.linkedin.com/in/adrian-justin-salinas-a4768b226/",
+      image: "/logos/USALOGO.png",
+      logo: "/logos/USALOGO.png"
     }
   ],
   // Active work — mirrors the pinned/most-recently-pushed repos on
@@ -485,6 +467,8 @@ export const portfolioData = {
       year: "2026",
       role: "FlyRank AI Capstone · Back-End AI Engineering Intern",
       description: "A backend service answering the three questions every SaaS must answer per tenant, per month: how much have they used, what should they pay, and have they hit their limit. Exactly-once metering enforced by database constraints, integer micro-cent token pricing, hard quota boundaries, and signature-verified, deduplicated Stripe webhooks. 20 passing tests, plus end-to-end verification against a real Stripe test-mode account.",
+      problem: "Metering, billing, and quota enforcement all break the same way — under a retried request, a replayed webhook, or a request landing exactly on the quota boundary — and a bug in any of them either overcharges a customer or gives away service for free.",
+      solution: "Exactly-once metering enforced by a database constraint rather than application logic, integer micro-cent token pricing, and Stripe billing verified end-to-end against a real test-mode account — 20 passing tests plus a live Checkout-to-webhook run.",
       techStack: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "Stripe", "Pytest", "Docker"],
       repo: "https://github.com/JustineSalinas/flyrank-capstone-metering-billing",
       certificate: "/certs/flyrank/certificate-of-completion.pdf",
@@ -591,6 +575,8 @@ export const portfolioData = {
       year: "2026",
       role: "Team SOLMATE · AI Lead",
       description: "A retrofittable IoT and AI advisory system for traditional diesel fiberglass passenger boats in the Philippines. Three sensor systems feed parallel AI modules — Speed Optimization (XGBoost/ONNX), Route Optimization (gradient-boosted models), and Predictive Maintenance (PCA autoencoder) — converging on a single bridge display showing live route tracks, optimal throttle settings, and an auditable CO₂ emissions layer.",
+      problem: "Fiberglass passenger boats carry inter-island transport across the Philippines and are almost entirely uninstrumented — fuel burn, engine health, and route choice are decided by feel. Replacing the fleet wasn't realistic, so the fix had to retrofit onto boats that already exist.",
+      solution: "Three sensor systems feed three parallel AI modules — XGBoost/ONNX speed optimization, gradient-boosted route optimization, and PCA-autoencoder predictive maintenance — converging on one bridge display with live route tracks, throttle guidance, and an auditable CO₂ emissions layer.",
       techStack: ["Python", "ONNX", "XGBoost", "NumPy", "Next.js", "TypeScript", "FastAPI", "IoT"],
       demo: "https://solmate-marine-ai.vercel.app",
       images: ["/projects/national-team.png", "/projects/national-award.jpg"],
@@ -639,10 +625,13 @@ export const portfolioData = {
       year: "2026",
       role: "Project Manager & Smart Contract Developer",
       description: "A collaborative expense-splitting and invoice management platform integrated with smart-contract escrows. Built for the Stellar APAC Hackathon, utilizing the Stellar testnet and USDC. Features transparent on-chain verification, a general ledger (GL) export system for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
+      problem: "Group expenses and shared invoices are usually settled on trust — no audit trail, and no guarantee the money set aside for a shared bill actually gets paid out.",
+      solution: "A collaborative expense-splitting and invoice platform with smart-contract escrows on the Stellar testnet — transparent on-chain verification, a GL export for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Stellar SDK", "Recharts"],
       demo: "https://split-rails.vercel.app",
       image: "/projects/splitrails.png",
       badge: "STELLAR APAC HACKATHON",
+      placement: "Top 70 — Stellar APAC Hackathon 2026",
       awardImages: ["/projects/stellar-team.jpg"]
     },
     {
@@ -701,6 +690,8 @@ export const portfolioData = {
       year: "2026",
       role: "Solo Developer",
       description: "A web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka. Built in under 3 days for the Nexus Philippines Hackathon 2026, integrating real-time IoT feeds and geospatial mapping to bridge hardware data with capital planning.",
+      problem: "The E-Bangka's IoT telemetry lived apart from the financial and capital-planning side, with no single view bridging live hardware data and cost decisions.",
+      solution: "A web-based financial and telemetry dashboard built in under 3 days for the Nexus Philippines Hackathon, integrating real-time IoT feeds and geospatial mapping into one operating view.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
       demo: "https://e-ferry.vercel.app",
       images: ["/projects/solmate.png", "/projects/solmate-team.png", "/projects/solmate-award.png"],
@@ -749,7 +740,7 @@ export const portfolioData = {
   ],
   techStack: {
     "Frontend": ["HTML5", "CSS3", "TypeScript", "React", "Next.js", "Tailwind CSS"],
-    "Backend": ["Node.js", "Express", "Python", "Java", "FastAPI", "PHP"],
+    "Backend": ["Node.js", "Express", "Python", "Java"],
     "Database": ["Supabase", "PostgreSQL", "MySQL", "Firebase"],
     "Auth & BaaS": ["Clerk", "Supabase Auth"],
     "AI & Automation": [

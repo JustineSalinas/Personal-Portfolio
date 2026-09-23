@@ -85,9 +85,9 @@ export const ImpactMetrics = () => {
               </div>
 
               <div className="mt-2.5">
-                <h4 className="text-[13px] font-medium leading-tight text-primary">
+                <h2 className="text-[13px] font-medium leading-tight text-primary">
                   {metric.label}
-                </h4>
+                </h2>
                 <p className="mt-1 text-[11px] leading-snug text-muted line-clamp-2">
                   {metric.description}
                 </p>

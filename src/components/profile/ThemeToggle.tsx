@@ -16,7 +16,12 @@ const SWITCH_MS = 260;
 
 const noopSubscribe = () => () => {};
 
-export const ThemeToggle = () => {
+/**
+ * Shared by every theme-toggle control on the site (TopBar, FloatingDock, …)
+ * so the View Transitions cross-fade behaves identically everywhere instead
+ * of drifting between hand-rolled copies.
+ */
+export const useThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
 
   // "Have we hydrated yet?" without setState-in-effect, which triggers a
@@ -63,6 +68,12 @@ export const ThemeToggle = () => {
     // snapshots is the whole animation, tuned to 260ms in globals.css.
     transition.finished.finally(() => root.classList.remove('theme-instant'));
   }, [isDark, setTheme]);
+
+  return { isDark, mounted, toggle };
+};
+
+export const ThemeToggle = () => {
+  const { isDark, mounted, toggle } = useThemeToggle();
 
   return (
     <button

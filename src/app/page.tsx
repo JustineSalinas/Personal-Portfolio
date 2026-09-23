@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { TopBar } from '@/components/profile/TopBar';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
@@ -11,6 +9,7 @@ import { BuildingNow } from '@/components/profile/BuildingNow';
 import { GithubHeatmap } from '@/components/profile/GithubHeatmap';
 import { HackathonList } from '@/components/profile/HackathonList';
 import { StackGrid } from '@/components/profile/StackGrid';
+import { CertificationsList } from '@/components/profile/CertificationsList';
 import { EducationList } from '@/components/profile/EducationList';
 import { Testimonials } from '@/components/profile/Testimonials';
 import { ConnectFooter } from '@/components/profile/ConnectFooter';
@@ -82,19 +81,12 @@ export default function Home() {
             <StackGrid />
           </Section>
 
-          {/* Demoted from a full section: eight self-paced certificates carried
-              more visual weight than two national hackathon placements. */}
-          <Section id="certifications" label="Certifications">
-            <Link
-              href="/certifications"
-              className="hover-lift group inline-flex items-center gap-2 rounded-xl border border-border bg-background px-4 py-3 text-[16px] text-secondary hover:border-primary/30 hover:bg-surface"
-            >
-              <span className="font-medium text-primary">
-                {portfolioData.certifications.length} certifications
-              </span>
-              <span>in AI, cloud, agile, and project management</span>
-              <ArrowUpRight size={16} className="hover-arrow text-muted" />
-            </Link>
+          <Section
+            id="certifications"
+            label="Certifications & Credentials"
+            intro={`${portfolioData.certifications.length} credentials, grouped by category.`}
+          >
+            <CertificationsList />
           </Section>
 
           <Section id="education" label="Education">
