@@ -1,9 +1,17 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { ArrowUpRight, Link as LinkIcon } from 'lucide-react';
-import { FaFacebookF, FaFilePdf, FaGithub, FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
-import { SiGmail } from 'react-icons/si';
+import {
+  ArrowUpRight,
+  Facebook,
+  FileText,
+  Github,
+  Instagram,
+  Link as LinkIcon,
+  Linkedin,
+  Mail,
+  MessageCircle,
+} from 'lucide-react';
 import { SubPageShell } from '@/components/profile/SubPageShell';
 import { portfolioData } from '@/data';
 
@@ -19,17 +27,17 @@ interface Brand {
 }
 
 const BRANDS: Record<string, Brand> = {
-  GitHub: { Icon: FaGithub, background: '#181717' },
-  LinkedIn: { Icon: FaLinkedinIn, background: '#0A66C2' },
-  Facebook: { Icon: FaFacebookF, background: '#1877F2' },
+  GitHub: { Icon: Github, background: '#181717' },
+  LinkedIn: { Icon: Linkedin, background: '#0A66C2' },
+  Facebook: { Icon: Facebook, background: '#1877F2' },
   Instagram: {
-    Icon: FaInstagram,
+    Icon: Instagram,
     background:
       'linear-gradient(45deg, #FEDA75 0%, #FA7E1E 25%, #D62976 50%, #962FBF 75%, #4F5BD5 100%)',
   },
-  WhatsApp: { Icon: FaWhatsapp, background: '#25D366' },
-  Email: { Icon: SiGmail, background: '#EA4335' },
-  'Resume (PDF)': { Icon: FaFilePdf, background: '#E5252A' },
+  WhatsApp: { Icon: MessageCircle, background: '#25D366' },
+  Email: { Icon: Mail, background: '#EA4335' },
+  'Resume (PDF)': { Icon: FileText, background: '#E5252A' },
 };
 
 // Links that have a real logo file get the image instead of a glyph.
@@ -54,7 +62,7 @@ const LogoTile = ({ name }: { name: string }) => {
       className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]"
       style={{ background: brand?.background ?? '#6E6E73' }}
     >
-      <Icon size={20} aria-hidden="true" />
+      <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
     </span>
   );
 };

@@ -732,6 +732,7 @@ export const portfolioData = {
         ],
       },
       dates: "Aug 3–5, 2026",
+      award: "2nd Place",
       startDate: "2026-08-03",
       badge: "NATIONAL AI HACKATHON 2026",
       placement: "2nd Place out of 24 teams, National Open Professional Category",
@@ -817,6 +818,7 @@ export const portfolioData = {
       demo: "https://e-ferry.vercel.app",
       images: ["/projects/solmate.png", "/projects/solmate-team.png", "/projects/solmate-award.png"],
       dates: "May 21–23, 2026",
+      award: "1st Runner-Up",
       startDate: "2026-05-21",
       badge: "NEXUS PH HACKATHON 2026",
       placement: "1st Runner-Up (National) out of 17 teams",
@@ -862,7 +864,7 @@ export const portfolioData = {
     }
   ],
   tools: [
-    { name: "Claude Pro Plan", description: "AI assistant" },
+    { name: "Claude Pro Plan", description: "AI assistant, 5 months on Pro" },
     { name: "Cursor IDE", description: "AI code editor" },
     { name: "Antigravity (Agentic IDE)", description: "Agentic IDE" },
   ] as { name: string; description: string }[],

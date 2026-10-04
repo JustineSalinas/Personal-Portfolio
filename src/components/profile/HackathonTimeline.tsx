@@ -1,5 +1,6 @@
 import React from 'react';
 import { hackathons } from '@/lib/hackathons';
+import { AwardPill } from './AwardPill';
 
 /**
  * Newest first. Events with a known start date are ordered by it; events that
@@ -28,6 +29,7 @@ export const HackathonTimeline = () => (
         const badge = 'badge' in project ? project.badge : undefined;
         const placement = 'placement' in project ? project.placement : undefined;
         const when = 'dates' in project ? project.dates : project.year;
+        const award = 'award' in project ? project.award : undefined;
 
         return (
           <li key={project.title} className="relative pl-8">
@@ -38,7 +40,10 @@ export const HackathonTimeline = () => (
               }`}
             />
             <p className="text-[13px] font-medium text-muted">{when}</p>
-            <p className="mt-0.5 text-[16px] font-medium text-primary">{project.title}</p>
+            <p className="mt-0.5 flex flex-wrap items-center gap-2 text-[16px] font-medium text-primary">
+              {project.title}
+              {award && <AwardPill label={award} />}
+            </p>
             {badge && <p className="text-[13px] uppercase tracking-wide text-muted-2">{badge}</p>}
             {placement && <p className="mt-1 text-[14.5px] text-secondary">{placement}</p>}
           </li>

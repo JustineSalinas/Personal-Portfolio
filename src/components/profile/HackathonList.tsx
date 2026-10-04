@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Trophy } from 'lucide-react';
 import { hackathons, type Project } from '@/lib/hackathons';
+import { AwardPill } from './AwardPill';
 import { HackathonOverviewModal } from './HackathonOverviewModal';
 
 export const HackathonList = () => {
@@ -14,6 +15,7 @@ export const HackathonList = () => {
       {hackathons.map((project) => {
         const badge = 'badge' in project ? project.badge : undefined;
         const dates = 'dates' in project ? project.dates : undefined;
+        const award = 'award' in project ? project.award : undefined;
         const placement = 'placement' in project ? project.placement : undefined;
         const photos = 'awardImages' in project ? project.awardImages : undefined;
 
@@ -24,10 +26,14 @@ export const HackathonList = () => {
             onClick={() => setSelected(project)}
             className="peek-item group flex w-full gap-2.5 rounded-lg border-b border-border px-2 py-3 text-left last:border-b-0 hover:bg-surface"
           >
-            <Trophy size={17} className="mt-[3px] shrink-0 text-muted" />
+            <Trophy
+              size={17}
+              className={`mt-[3px] shrink-0 ${award ? 'text-amber-500' : 'text-muted'}`}
+            />
             <span className="min-w-0 flex-1">
               <span className="flex flex-wrap items-baseline gap-x-2">
                 <span className="text-[17px] font-medium text-primary">{project.title}</span>
+                {award && <AwardPill label={award} />}
                 <span className="text-[14.5px] text-muted">
                   {/* Exact dates when known; otherwise the year, unless the badge already carries it */}
                   {dates
