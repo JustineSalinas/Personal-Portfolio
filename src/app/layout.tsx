@@ -1,23 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Outfit, DM_Mono } from "next/font/google";
+import { Figtree, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { ChatbotWidget } from "@/components/ChatbotWidget";
-import { FloatingDock } from "@/components/profile/FloatingDock";
-import { Preloader } from "@/components/profile/Preloader";
+import { SmoothScroll } from "@/components/profile/SmoothScroll";
 import { portfolioData } from "@/data";
 
-const fraunces = Fraunces({ 
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: '--font-fraunces'
+  variable: '--font-figtree',
 });
 
-const outfit = Outfit({ 
-  subsets: ["latin"],
-  variable: '--font-outfit'
-});
-
-const dmMono = DM_Mono({ 
+const dmMono = DM_Mono({
   weight: ['400', '500'],
   subsets: ["latin"],
   variable: '--font-dm-mono'
@@ -31,14 +24,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://ajsalinas.vercel.app"),
   title: {
-    default: "Adrian Salinas — AI & Data Engineer · Student Founder",
+    default: "Adrian Salinas | AI & Data Engineer",
     template: "%s | Adrian Salinas",
   },
   description:
-    "Full-stack developer and technical founder in Iloilo. 17+ projects shipped, including a QR attendance platform serving 700+ students, a 2nd-place national AI hackathon build, and Cascade Development Group.",
+    "Full-stack developer and technical founder in Iloilo. 20+ projects shipped, including a QR attendance platform serving 700+ students, a 2nd-place national AI hackathon build, and Cascade Development Group.",
   keywords: [
     "Adrian Salinas", "software engineer", "AI engineer", "Next.js", "TypeScript", "Supabase",
-    "Iloilo", "Philippines", "Cascade Development Group", "student founder",
+    "Iloilo", "Philippines", "Cascade Development Group",
   ],
   authors: [{ name: "Adrian Salinas", url: "https://github.com/JustineSalinas" }],
   creator: "Adrian Salinas",
@@ -47,15 +40,15 @@ export const metadata: Metadata = {
     locale: "en_PH",
     url: "https://ajsalinas.vercel.app",
     siteName: "Adrian Salinas",
-    title: "Adrian Salinas — AI & Data Engineer · Student Founder",
+    title: "Adrian Salinas | AI & Data Engineer",
     description:
-      "17+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
+      "20+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adrian Salinas — AI & Data Engineer · Student Founder",
+    title: "Adrian Salinas | AI & Data Engineer",
     description:
-      "17+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
+      "20+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
   },
   robots: {
     index: true,
@@ -93,16 +86,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${fraunces.variable} ${dmMono.variable} font-sans`} suppressHydrationWarning>
+      <body className={`${figtree.variable} ${dmMono.variable} font-sans`} suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <Preloader />
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <SmoothScroll />
           {children}
-          <FloatingDock />
-          <ChatbotWidget />
         </ThemeProvider>
       </body>
     </html>

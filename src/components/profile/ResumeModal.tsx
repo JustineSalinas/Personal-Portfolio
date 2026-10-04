@@ -19,8 +19,8 @@ const LEGIBLE_WIDTH = 780;
 const FIT_ON_OPEN_BELOW = 600;
 
 const PAGES = [
-  { src: '/resume-page-1.webp', label: 'Page 1 — Summary, Education & Experience' },
-  { src: '/resume-page-2.webp', label: 'Page 2 — Projects, Skills & Certifications' },
+  { src: '/resume-page-1.webp', label: 'Page 1: Summary, Education & Experience' },
+  { src: '/resume-page-2.webp', label: 'Page 2: Projects, Skills & Certifications' },
 ];
 
 interface ResumeModalProps {
@@ -197,6 +197,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
         <div
           ref={scrollRef}
+          data-lenis-prevent
           className="flex-1 overflow-auto overscroll-contain bg-surface px-4 py-5 sm:px-6"
         >
           {/* Zooming past the panel width overflows right and pans horizontally;
@@ -213,7 +214,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 <div className="overflow-hidden rounded-xl border border-border bg-white shadow-lg shadow-black/10 dark:shadow-black/50">
                   <Image
                     src={page.src}
-                    alt={`${personal.name} resume — ${page.label}`}
+                    alt={`${personal.name} resume, ${page.label}`}
                     width={2125}
                     height={2750}
                     priority={i === 0}

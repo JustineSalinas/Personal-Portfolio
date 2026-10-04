@@ -2,19 +2,63 @@ export const portfolioData = {
   personal: {
     name: "Adrian Salinas",
     initials: "AJ",
-    title: "AI & Data Engineer · Student Founder",
+    title: "AI & Data Engineer",
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
     bio: "Full-Stack Developer, 2x National Hackathon Winner Awardee, and IT Solutions Founder from Iloilo with a niche in technical project management and AI systems. I build with Next.js, TypeScript, Supabase, and Python.",
     longBio: [
-      "I design and build <strong class=\"text-primary font-bold\">full-stack web applications</strong> end-to-end — from database architecture and system design to polished, production-ready interfaces. I work across the stack with <span class=\"text-primary font-semibold\">Next.js, TypeScript, and Supabase</span>, and integrate <span class=\"text-primary font-semibold\">AI</span> to build smarter, more capable products. My focus is on delivering work that is both technically solid and visually refined.",
+      "I design and build <strong class=\"text-primary font-bold\">full-stack web applications</strong> end-to-end, from database architecture and system design to polished, production-ready interfaces. I work across the stack with <span class=\"text-primary font-semibold\">Next.js, TypeScript, and Supabase</span>, and integrate <span class=\"text-primary font-semibold\">AI</span> to build smarter, more capable products. My focus is on delivering work that is both technically solid and visually refined.",
       "Through <strong class=\"text-primary font-bold\">CDG (Cascade Development Group)</strong>, I provide IT solutions built on clean, thoughtful engineering. I care as much about the experience users feel as the code running behind it. Open to internships, part-time, or full-time opportunities with companies that welcome <em class=\"text-primary not-italic font-semibold\">student status</em>."
     ],
     tags: ["NEXT.JS", "TYPESCRIPT", "AI / ML", "FULL-STACK", "IOT", "STARTUP FOUNDER", "DISTRIBUTED SYSTEMS"],
-    projectsBuilt: "17+",
+    projectsBuilt: "20+",
+    services: [
+      {
+        name: "Web Platforms",
+        description: "Full-stack products with auth, databases, dashboards, and admin tooling, not just a marketing page.",
+      },
+      {
+        name: "Mobile Apps",
+        description: "Cross-platform mobile builds that share a backend with your web product instead of forking it.",
+      },
+      {
+        name: "Websites",
+        description: "Fast, polished marketing and portfolio sites with CMS wiring and real analytics.",
+      },
+      {
+        name: "AI Agents",
+        description: "Task-focused agents that can call tools, follow business rules, and hand off cleanly to a human.",
+      },
+      {
+        name: "Voice",
+        description: "Voice-driven interfaces and voice-to-action pipelines: transcription, intent routing, response generation.",
+      },
+      {
+        name: "RAG",
+        description: "Retrieval-Augmented Generation over your own documents, with grounded answers and source citations.",
+      },
+      {
+        name: "Automated Reporting",
+        description: "Scheduled pipelines that pull from your data sources and drop clean reports into email, Slack, or Sheets.",
+      },
+      {
+        name: "Attendance Systems",
+        description: "QR and role-based attendance platforms, like the one deployed for 700+ Pharmacy students at USA.",
+      },
+    ],
+    links: [
+      { name: "GitHub", url: "https://github.com/JustineSalinas" },
+      { name: "LinkedIn", url: "https://www.linkedin.com/in/adrian-justin-salinas-a4768b226/" },
+      { name: "Facebook", url: "https://www.facebook.com/profile.php?id=100067117067492" },
+      { name: "Instagram", url: "https://www.instagram.com/a.jsalinas/" },
+      { name: "Cascade Development Group", url: "https://cdg-official.vercel.app" },
+      { name: "WhatsApp", url: "https://wa.me/639612547821" },
+      { name: "Email", url: "mailto:ajsalinas005@gmail.com" },
+      { name: "Resume (PDF)", url: "/ajsalinas-resume.pdf" }
+    ],
     metrics: [
       {
-        value: 17,
+        value: 20,
         suffix: "+",
         label: "Projects Built",
         description: "Full-stack apps, AI systems & IoT solutions",
@@ -40,13 +84,16 @@ export const portfolioData = {
     ],
     // Competition record, stated once so the page and the chatbot agree.
     awards: {
-      summary: "2x National Hackathon Awardee, Plus Regional (APAC) Competition Experience",
+      summary: "2x National Hackathon Awardee, Plus Regional (APAC) and Worldwide Competition Experience",
       national: [
-        "2nd Place out of 24 teams — National AI Hackathon 2026, National Open Professional Category (Marine-AI, Team SOLMATE, AI Lead)",
-        "1st Runner-Up out of 17 teams — Nexus PH Hackathon 2026, built a high-performing IoT telemetry dashboard under a 3-day deadline (Solmate / E-Ferry)",
+        "2nd Place out of 24 teams, National AI Hackathon 2026, National Open Professional Category (Marine-AI, Team SOLMATE, AI Engineer / Full Stack)",
+        "1st Runner-Up out of 17 teams, Nexus PH Hackathon 2026, built a high-performing IoT telemetry dashboard under a 3-day deadline (Solmate / E-Ferry)",
       ],
       regional: [
-        "Top 70 — Stellar APAC Hackathon 2026, Project Manager & Smart Contract Developer on SplitRails, a collaborative expense-splitting and Stellar escrow platform",
+        "Top 70, Stellar APAC Hackathon 2026, Project Manager & Smart Contract Developer on SplitRails, a collaborative expense-splitting and Stellar escrow platform",
+      ],
+      worldwide: [
+        "IBM Bob 2.0 Global Online Hackathon, Sep 25–27, 2026, built Repo Autopsy, a tool that scores public GitHub repositories for new-contributor onboarding",
       ],
     },
     quickFacts: {
@@ -72,23 +119,29 @@ export const portfolioData = {
       role: "Founder & AI Engineer",
       org: "Cascade Development Group (CDG)",
       note: "IT solutions startup",
+      logo: "/logos/cdg-fire-logo.png",
     },
     {
       role: "Deputy Director for Technology",
       org: "AWS User Group Iloilo",
       note: "Regional AWS community chapter",
+      logo: "/logos/aws-ug-iloilo.jpg",
     },
     {
       role: "Web Development Lead",
       org: "ITSA",
       note: "IT School Organization, University of San Agustin",
+      logo: "/logos/itsa.jpg",
     },
     {
       role: "Developer",
-      org: "ADS",
-      note: "Augustinian Developer Society",
+      org: "Augustinian Developer Society (ADS)",
+      note: "University-wide school organization, University of San Agustin",
+      logo: "/logos/ads.jpg",
     },
-  ],
+    // `logo` is optional: drop a file in /public/logos and set e.g.
+    // logo: "/logos/itsa.png". Until then the row shows a placeholder tile.
+  ] as { role: string; org: string; note: string; logo?: string }[],
   /**
    * Real quotes only. The section renders nothing while this is empty, so the
    * page never ships a half-finished "testimonials" block.
@@ -112,7 +165,7 @@ export const portfolioData = {
         "Based on this verified completion record, I recommend Adrian for opportunities aligned with back-end engineering and applied AI systems.",
       name: "Alen Malkoc",
       role: "Founder & CEO",
-      org: "FlyRank Corp. — internship recommendation letter, September 2026",
+      org: "FlyRank Corp., internship recommendation letter, September 2026",
     },
   ] as {
     quote: string;
@@ -121,7 +174,7 @@ export const portfolioData = {
     org?: string;
   }[],
   /**
-   * Real tools only — hardware, software, and services actually in daily use.
+   * Real tools only, hardware, software, and services actually in daily use.
    * The section renders nothing while this is empty.
    *
    * Shape:
@@ -142,7 +195,7 @@ export const portfolioData = {
     image: string;
   }[],
   /**
-   * Where I actually learn from — courses, practice sites, and references
+   * Where I actually learn from, courses, practice sites, and references
    * for building software, getting into AI/data engineering, and staying
    * current. Real sources only, categorized by what they're for.
    */
@@ -155,7 +208,7 @@ export const portfolioData = {
     { name: "NeetCode", url: "https://neetcode.io", category: "DSA & Practice" },
     { name: "Codewars", url: "https://www.codewars.com", category: "DSA & Practice" },
     { name: "HackerRank", url: "https://www.hackerrank.com", category: "DSA & Practice" },
-    { name: "TIRA — Data Structures & Algorithms", url: "https://tira.mooc.fi/spring-2025/", category: "DSA & Practice" },
+    { name: "TIRA: Data Structures & Algorithms", url: "https://tira.mooc.fi/spring-2025/", category: "DSA & Practice" },
     { name: "Dribbble", url: "https://dribbble.com", category: "Design Inspiration" },
     { name: "Mobbin", url: "https://mobbin.com", category: "Design Inspiration" },
     { name: "Motion (Framer Motion)", url: "https://motion.dev", category: "Animation" },
@@ -176,8 +229,8 @@ export const portfolioData = {
       date: "July – September 2026",
       location: "Remote",
       bullets: [
-        "Built and shipped \"LLM Usage Metering & Billing Service\" as the capstone project — a backend service that meters large-language-model consumption and turns it into billable usage. Reviewed and accepted by the lead track mentor.",
-        "Completed 7 of 5 required assignments across API contract design, task design and prompting, retrieval and grounding, and evaluation and operations — 61 hours of assessed work in total.",
+        "Built and shipped \"LLM Usage Metering & Billing Service\" as the capstone project, a backend service that meters large-language-model consumption and turns it into billable usage. Reviewed and accepted by the lead track mentor.",
+        "Completed 7 of 5 required assignments across API contract design, task design and prompting, retrieval and grounding, and evaluation and operations, 61 hours of assessed work in total.",
         "Graduated the Backend AI Engineering track with a Certificate of Completion, a supervisor-approved final evaluation, and a written recommendation from FlyRank's Founder & CEO."
       ]
     },
@@ -188,32 +241,32 @@ export const portfolioData = {
       date: "2026 – Present",
       location: "Iloilo City, Philippines",
       bullets: [
-        "IT solutions startup delivering web development, database architecture, and technical consulting to clients across the Visayas — collaborating with a team across the full business lifecycle from scoping to deployment.",
-        "Architected and shipped end-to-end client solutions using Next.js, TypeScript, Supabase, and Vercel — owning the complete stack from schema design and REST API development to polished front-end interfaces.",
+        "IT solutions startup delivering web development, database architecture, and technical consulting to clients across the Visayas, collaborating with a team across the full business lifecycle from scoping to deployment.",
+        "Architected and shipped end-to-end client solutions using Next.js, TypeScript, Supabase, and Vercel, owning the complete stack from schema design and REST API development to polished front-end interfaces.",
         "Designed and maintained the official CDG platform (cdg-official.vercel.app) serving as a live product portfolio and active client acquisition channel.",
         "Established structured project management workflows using Notion and GitHub enabling sprint-based delivery cycles and transparent timelines across client engagements."
       ]
     },
     {
       role: "Project Manager & Lead Developer",
-      company: "PharmaTrack — University of San Agustin, Pharmacy Department",
+      company: "PharmaTrack | University of San Agustin, Pharmacy Department",
       logo: "/logos/USALOGO.png",
       date: "2026",
       location: "Iloilo City, Philippines",
       bullets: [
-        "Led a full-stack QR-based attendance system for 700+ Pharmacy students — eliminating all physical hardware dependencies and replacing manual paper-based processes entirely.",
+        "Led a full-stack QR-based attendance system for 700+ Pharmacy students, eliminating all physical hardware dependencies and replacing manual paper-based processes entirely.",
         "Built a role-based access platform with three distinct portals (Student, Faculty, Admin) using Next.js 14 App Router, Supabase Auth, and PostgreSQL with row-level security policies.",
         "Delivered a full Admin analytics dashboard with CSV/PDF export, system-wide attendance logs, and user management providing department leadership with live operational visibility."
       ]
     },
     {
       role: "Full-Stack Developer · 1st Runner-Up",
-      company: "Solmate / E-Ferry — Nexus Philippines Hackathon",
+      company: "Solmate / E-Ferry | Nexus Philippines Hackathon",
       logo: "/logos/solmate.png",
       date: "May 21–23, 2026",
       location: "Philippines",
       bullets: [
-        "Built E-Ferry (Solmate), a web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka — bridging hardware IoT data with capital planning for electric ferry operations.",
+        "Built E-Ferry (Solmate), a web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka, bridging hardware IoT data with capital planning for electric ferry operations.",
         "Earned 1st Runner-Up at the Nexus Philippines Hackathon: Hacking the Future of Energy, competing against university-level teams with a fully functional deployed MVP in under 3 days.",
         "Integrated real-time telemetry feeds into a React/TypeScript dashboard using Recharts and MapLibre GL, demonstrating cross-domain ability across IoT, geospatial mapping, and financial analytics."
       ]
@@ -290,7 +343,7 @@ export const portfolioData = {
   ],
   certifications: [
     {
-      title: "Certificate of Completion — Backend AI Engineering (2 months)",
+      title: "Certificate of Completion: Backend AI Engineering (2 months)",
       issuer: "FlyRank AI",
       date: "Jul–Sep 2026",
       categories: ["Internship", "AI & ML"],
@@ -308,7 +361,7 @@ export const portfolioData = {
       logo: "/certs/aws-ml-basics.png"
     },
     {
-      title: "2nd Place (National) — National AI Hackathon 2026",
+      title: "2nd Place (National): National AI Hackathon 2026",
       issuer: "National AI Hackathon PH (Team SOLMATE / Marine-AI)",
       date: "2026",
       categories: ["Hackathons"],
@@ -317,7 +370,7 @@ export const portfolioData = {
       logo: "/projects/national-award.jpg"
     },
     {
-      title: "1st Runner-Up (National) — Nexus PH Hackathon 2026",
+      title: "1st Runner-Up (National): Nexus PH Hackathon 2026",
       issuer: "Nexus Philippines & DOST (Solmate / E-Ferry)",
       date: "2026",
       categories: ["Hackathons"],
@@ -326,7 +379,7 @@ export const portfolioData = {
       logo: "/logos/solmate.png"
     },
     {
-      title: "Top 70 — Stellar APAC Hackathon 2026",
+      title: "Top 70: Stellar APAC Hackathon 2026",
       issuer: "Stellar APAC (SplitRails)",
       date: "2026",
       categories: ["Hackathons"],
@@ -434,7 +487,7 @@ export const portfolioData = {
       logo: "/logos/USALOGO.png"
     }
   ],
-  // Active work — mirrors the pinned/most-recently-pushed repos on
+  // Active work, mirrors the pinned/most-recently-pushed repos on
   // github.com/JustineSalinas. Keep `repo` and `demo` in sync with GitHub.
   building: [
     {
@@ -448,7 +501,7 @@ export const portfolioData = {
     {
       name: "Nan Builders",
       logo: "/logos/nan-builders.png",
-      blurb: "Supply chain and procurement portal for a construction materials distributor in Iloilo City — contractor quotations, live inventory, and site logistics.",
+      blurb: "Supply chain and procurement portal for a construction materials distributor in Iloilo City: contractor quotations, live inventory, and site logistics.",
       demo: "https://nan-builders.vercel.app",
       repo: "https://github.com/JustineSalinas/Nan-Builders",
       slug: "nan-builders",
@@ -479,7 +532,7 @@ export const portfolioData = {
             heading: "Architecture",
             body: [
               "Built on Next.js, organised around three capability modules: a quotation engine for bulk pricing, a logistics engine for fulfilment tracking, and inventory management backing both with live warehouse levels.",
-              "Pricing and stock share the same source of truth, which is what makes an instant quote trustworthy — a quote generated against stale inventory is worse than no quote at all.",
+              "Pricing and stock share the same source of truth, which is what makes an instant quote trustworthy. A quote generated against stale inventory is worse than no quote at all.",
             ],
           },
           {
@@ -494,7 +547,7 @@ export const portfolioData = {
     {
       name: "Tuon",
       role: "Solo Developer",
-      blurb: "AI study app for Philippine Senior High School and college students — generates flashcards and quizzes from notes with SM-2 spaced repetition.",
+      blurb: "AI study app for Philippine Senior High School and college students, generates flashcards and quizzes from notes with SM-2 spaced repetition.",
       demo: "https://github.com/JustineSalinas/Tuon",
       repo: "https://github.com/JustineSalinas/Tuon"
     },
@@ -510,12 +563,12 @@ export const portfolioData = {
   projects: [
     {
       title: "Usage Metering & Billing Engine",
-      oneLiner: "Multi-tenant usage metering, quota enforcement, and Stripe billing — safe under retries and replayed webhooks",
+      oneLiner: "Multi-tenant usage metering, quota enforcement, and Stripe billing, safe under retries and replayed webhooks",
       year: "2026",
       role: "FlyRank AI Capstone · Back-End AI Engineering Intern",
       description: "A backend service answering the three questions every SaaS must answer per tenant, per month: how much have they used, what should they pay, and have they hit their limit. Exactly-once metering enforced by database constraints, integer micro-cent token pricing, hard quota boundaries, and signature-verified, deduplicated Stripe webhooks. 20 passing tests, plus end-to-end verification against a real Stripe test-mode account.",
-      problem: "Metering, billing, and quota enforcement all break the same way — under a retried request, a replayed webhook, or a request landing exactly on the quota boundary — and a bug in any of them either overcharges a customer or gives away service for free.",
-      solution: "Exactly-once metering enforced by a database constraint rather than application logic, integer micro-cent token pricing, and Stripe billing verified end-to-end against a real test-mode account — 20 passing tests plus a live Checkout-to-webhook run.",
+      problem: "Metering, billing, and quota enforcement all break the same way: under a retried request, a replayed webhook, or a request landing exactly on the quota boundary, and a bug in any of them either overcharges a customer or gives away service for free.",
+      solution: "Exactly-once metering enforced by a database constraint rather than application logic, integer micro-cent token pricing, and Stripe billing verified end-to-end against a real test-mode account, 20 passing tests plus a live Checkout-to-webhook run.",
       techStack: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "Stripe", "Pytest", "Docker"],
       repo: "https://github.com/JustineSalinas/flyrank-capstone-metering-billing",
       certificate: "/certs/flyrank/certificate-of-completion.pdf",
@@ -523,28 +576,28 @@ export const portfolioData = {
       badge: "FLYRANK CAPSTONE",
       caseStudy: {
         summary:
-          "Billing code fails in one of two directions: it overcharges a real customer, or it gives service away for free. Both are caused by the same thing — a retry, a replayed webhook, or an off-by-one at the quota boundary. This service treats those three as the actual product and makes the database, not application logic, the thing that guarantees correctness.",
+          "Billing code fails in one of two directions: it overcharges a real customer, or it gives service away for free. Both are caused by the same thing: a retry, a replayed webhook, or an off-by-one at the quota boundary. This service treats those three as the actual product and makes the database, not application logic, the thing that guarantees correctness.",
         sections: [
           {
             heading: "The problem",
             body: [
-              "Every SaaS has to answer three questions for every tenant, every month: how much have they used, what should they pay, and have they hit their plan limit. They look like three separate features. They are really one correctness problem, because every one of them breaks under the same conditions — a client retrying a request it already sent, Stripe redelivering an event it already delivered, or a request landing exactly on the quota line.",
+              "Every SaaS has to answer three questions for every tenant, every month: how much have they used, what should they pay, and have they hit their plan limit. They look like three separate features. They are really one correctness problem, because every one of them breaks under the same conditions: a client retrying a request it already sent, Stripe redelivering an event it already delivered, or a request landing exactly on the quota line.",
               "A bug in any of those either bills a real customer for work they did not do, or hands out service nobody paid for. So the design started from the failure modes rather than the endpoints.",
             ],
           },
           {
             heading: "Exactly-once metering, enforced by the database",
             body: [
-              "Every billable call carries an Idempotency-Key header, and the usage_events table holds a UNIQUE constraint on (tenant_id, idempotency_key). That constraint — not an in-memory check, not application logic — is the exactly-once guarantee, which means it still holds when two identical retries race each other concurrently.",
+              "Every billable call carries an Idempotency-Key header, and the usage_events table holds a UNIQUE constraint on (tenant_id, idempotency_key). That constraint (not an in-memory check, not application logic) is the exactly-once guarantee, which means it still holds when two identical retries race each other concurrently.",
               "The lookup path returns the original response for a duplicate key, with no second quota check and no new row. The race path matters more: if two concurrent retries both get past the lookup, one loses on the unique constraint at insert time. That violation is caught and treated as a replay rather than an error, so the loser of the race still receives a correct and consistent answer instead of a 500.",
-              "Stripe webhook dedup works on the same principle — a UNIQUE constraint on stripe_event_id in a webhook_events table. Verified under a genuine replay, not a simulated one: a stripe events resend delivered the same real event twice through the live CLI forward, and it was processed once and ignored the second time.",
+              "Stripe webhook dedup works on the same principle: a UNIQUE constraint on stripe_event_id in a webhook_events table. Verified under a genuine replay, not a simulated one: a stripe events resend delivered the same real event twice through the live CLI forward, and it was processed once and ignored the second time.",
             ],
           },
           {
             heading: "Money math in integers",
             body: [
-              "AI token prices are fractions of a cent, which is exactly where floating point quietly corrupts a ledger. Prices are pinned as integer micro-cents per token — 1 cent = 1,000,000 micro-cents — so fractional-cent-per-token rates stay exact integers all the way through the rollup with no rounding drift.",
-              "Cached input tokens bill at 5 micro-cents against 20 for fresh input, and reasoning tokens bill at the output rate rather than becoming a fourth pricing category — a deliberate choice to keep the pricing table small enough to reason about.",
+              "AI token prices are fractions of a cent, which is exactly where floating point quietly corrupts a ledger. Prices are pinned as integer micro-cents per token (1 cent = 1,000,000 micro-cents), so fractional-cent-per-token rates stay exact integers all the way through the rollup with no rounding drift.",
+              "Cached input tokens bill at 5 micro-cents against 20 for fresh input, and reasoning tokens bill at the output rate rather than becoming a fourth pricing category, a deliberate choice to keep the pricing table small enough to reason about.",
             ],
           },
           {
@@ -557,7 +610,7 @@ export const portfolioData = {
           {
             heading: "Scope discipline",
             body: [
-              "Overage billing, proration, and invoicing were cut on purpose. Usage past quota is rejected, not billed extra. That keeps the money math to one thing — metered token pricing — done correctly, rather than three things done approximately.",
+              "Overage billing, proration, and invoicing were cut on purpose. Usage past quota is rejected, not billed extra. That keeps the money math to one thing, metered token pricing, done correctly, rather than three things done approximately.",
               "The same honesty applies to what is missing. There is no reconciliation job to catch a webhook Stripe tried to deliver and failed to, and the background alert worker logs structured text where a real deployment would want JSON lines going to an aggregator. Both are written down in the repo as known gaps rather than quietly omitted.",
             ],
           },
@@ -580,7 +633,7 @@ export const portfolioData = {
               name: "todo-api",
               url: "https://github.com/JustineSalinas/todo-api",
               blurb:
-                "A CRUD task API in Node and Express whose storage layer was swapped twice — in-memory, then SQLite, then Postgres in Docker — without the endpoint contract changing.",
+                "A CRUD task API in Node and Express whose storage layer was swapped twice (in-memory, then SQLite, then Postgres in Docker) without the endpoint contract changing.",
             },
             {
               name: "auth-api",
@@ -592,7 +645,7 @@ export const portfolioData = {
               name: "auth-api-ai-version",
               url: "https://github.com/JustineSalinas/auth-api-ai-version",
               blurb:
-                "The same API regenerated from a written-from-memory prompt, then tested against the same Supabase project. The generated version authenticated a request sent with the wrong Authorization scheme, and leaked a stack trace on an empty body instead of returning a 400 — both found by testing it, not by reading it.",
+                "The same API regenerated from a written-from-memory prompt, then tested against the same Supabase project. The generated version authenticated a request sent with the wrong Authorization scheme, and leaked a stack trace on an empty body instead of returning a 400. Both found by testing it, not by reading it.",
             },
             {
               name: "polite-scraper",
@@ -604,7 +657,7 @@ export const portfolioData = {
               name: "llm-enrich-api",
               url: "https://github.com/JustineSalinas/llm-enrich-api",
               blurb:
-                "Validates a model's answer against a strict schema and gives it exactly one chance to repair its own invalid output before failing cleanly — rather than passing broken data downstream.",
+                "Validates a model's answer against a strict schema and gives it exactly one chance to repair its own invalid output before failing cleanly, rather than passing broken data downstream.",
             },
             {
               name: "ai-workflow-builder",
@@ -617,20 +670,37 @@ export const portfolioData = {
       },
     },
     {
+      title: "Repo Autopsy",
+      oneLiner: "Scores any public GitHub repo so new contributors know what is safe to change",
+      year: "2026",
+      dates: "Sep 25–27, 2026",
+      startDate: "2026-09-25",
+      role: "Solo Developer",
+      description: "Analyzes a public GitHub repository and produces an onboarding report: where a new contributor should start, what is risky to change, and how well the documentation matches the code. Three stages (documentation drift detection, blast-radius ranking over the import graph, and a 0 to 100 trust score) run against the GitHub API with no clone required. Built during the IBM Bob 2.0 Global Online Hackathon, with IBM Bob as the AI coding assistant.",
+      problem: "Joining an unfamiliar codebase is expensive: documentation goes stale, and TODO comments give no sense of which changes will break the most.",
+      solution: "Paste a GitHub URL and get a scored, ranked report in seconds. It checks the README against the code, ranks tasks by how many modules they touch, and assigns a Ready, Needs care, or Risky onboarding band.",
+      techStack: ["Next.js", "TypeScript", "GitHub REST API", "Vitest", "IBM Bob"],
+      demo: "https://repo-autopsy.vercel.app",
+      repo: "https://github.com/JustineSalinas/repo-autopsy",
+      image: "/projects/repo-autopsy.png",
+      badge: "IBM BOB 2.0 WORLDWIDE HACKATHON",
+      awardImages: ["/projects/repo-autopsy-ide.jpg", "/projects/repo-autopsy.png"],
+    },
+    {
       title: "Marine-AI",
       oneLiner: "Retrofittable IoT & AI advisory system for passenger boats",
       year: "2026",
-      role: "Team SOLMATE · AI Lead",
-      description: "A retrofittable IoT and AI advisory system for traditional diesel fiberglass passenger boats in the Philippines. Three sensor systems feed parallel AI modules — Speed Optimization (XGBoost/ONNX), Route Optimization (gradient-boosted models), and Predictive Maintenance (PCA autoencoder) — converging on a single bridge display showing live route tracks, optimal throttle settings, and an auditable CO₂ emissions layer.",
-      problem: "Fiberglass passenger boats carry inter-island transport across the Philippines and are almost entirely uninstrumented — fuel burn, engine health, and route choice are decided by feel. Replacing the fleet wasn't realistic, so the fix had to retrofit onto boats that already exist.",
-      solution: "Three sensor systems feed three parallel AI modules — XGBoost/ONNX speed optimization, gradient-boosted route optimization, and PCA-autoencoder predictive maintenance — converging on one bridge display with live route tracks, throttle guidance, and an auditable CO₂ emissions layer.",
+      role: "Team SOLMATE · AI Engineer / Full Stack",
+      description: "A retrofittable IoT and AI advisory system for traditional diesel fiberglass passenger boats in the Philippines. Three sensor systems feed parallel AI modules: Speed Optimization (XGBoost/ONNX), Route Optimization (gradient-boosted models), and Predictive Maintenance (PCA autoencoder), converging on a single bridge display showing live route tracks, optimal throttle settings, and an auditable CO₂ emissions layer.",
+      problem: "Fiberglass passenger boats carry inter-island transport across the Philippines and are almost entirely uninstrumented: fuel burn, engine health, and route choice are decided by feel. Replacing the fleet wasn't realistic, so the fix had to retrofit onto boats that already exist.",
+      solution: "Three sensor systems feed three parallel AI modules: XGBoost/ONNX speed optimization, gradient-boosted route optimization, and PCA-autoencoder predictive maintenance, converging on one bridge display with live route tracks, throttle guidance, and an auditable CO₂ emissions layer.",
       techStack: ["Python", "ONNX", "XGBoost", "NumPy", "Next.js", "TypeScript", "FastAPI", "IoT"],
       demo: "https://solmate-marine-ai.vercel.app",
       images: ["/projects/national-team.png", "/projects/national-award.jpg"],
       slug: "marine-ai",
       caseStudy: {
         summary:
-          "Traditional diesel passenger boats in the Philippines run on the skipper's judgement alone. Marine-AI retrofits them with sensors and three AI models that turn that judgement into measurable advice — without replacing the boat.",
+          "Traditional diesel passenger boats in the Philippines run on the skipper's judgement alone. Marine-AI retrofits them with sensors and three AI models that turn that judgement into measurable advice, without replacing the boat.",
         sections: [
           {
             heading: "The problem",
@@ -649,20 +719,22 @@ export const portfolioData = {
           {
             heading: "The three modules",
             body: [
-              "Speed Optimization runs XGBoost exported to ONNX, producing optimal throttle settings. Route Optimization uses gradient-boosted models over live track data. Predictive Maintenance uses a PCA autoencoder — framed as anomaly detection rather than classification, since a retrofit fleet has no labelled failure history to train against.",
+              "Speed Optimization runs XGBoost exported to ONNX, producing optimal throttle settings. Route Optimization uses gradient-boosted models over live track data. Predictive Maintenance uses a PCA autoencoder, framed as anomaly detection rather than classification, since a retrofit fleet has no labelled failure history to train against.",
               "All three converge on one bridge display: live route tracks, throttle guidance, and an auditable CO₂ emissions layer, so the skipper reads a single screen instead of three dashboards.",
             ],
           },
           {
             heading: "Outcome",
             body: [
-              "2nd Place out of 24 teams in the National Open Professional Category at the National AI Hackathon 2026, competing as AI Lead for Team SOLMATE. The system also produces an auditable CO₂ emissions layer, so efficiency gains can be reported rather than merely claimed.",
+              "2nd Place out of 24 teams in the National Open Professional Category at the National AI Hackathon 2026, competing as AI Engineer and Full Stack developer for Team SOLMATE. The system also produces an auditable CO₂ emissions layer, so efficiency gains can be reported rather than merely claimed.",
             ],
           },
         ],
       },
+      dates: "Aug 3–5, 2026",
+      startDate: "2026-08-03",
       badge: "NATIONAL AI HACKATHON 2026",
-      placement: "2nd Place out of 24 teams — National Open Professional Category",
+      placement: "2nd Place out of 24 teams, National Open Professional Category",
       // Team/award photos surfaced in the Hackathons & Awards section
       awardImages: ["/projects/national-team.png", "/projects/national-award.jpg"]
     },
@@ -672,13 +744,15 @@ export const portfolioData = {
       year: "2026",
       role: "Project Manager & Smart Contract Developer",
       description: "A collaborative expense-splitting and invoice management platform integrated with smart-contract escrows. Built for the Stellar APAC Hackathon, utilizing the Stellar testnet and USDC. Features transparent on-chain verification, a general ledger (GL) export system for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
-      problem: "Group expenses and shared invoices are usually settled on trust — no audit trail, and no guarantee the money set aside for a shared bill actually gets paid out.",
-      solution: "A collaborative expense-splitting and invoice platform with smart-contract escrows on the Stellar testnet — transparent on-chain verification, a GL export for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
+      problem: "Group expenses and shared invoices are usually settled on trust, with no audit trail, and no guarantee the money set aside for a shared bill actually gets paid out.",
+      solution: "A collaborative expense-splitting and invoice platform with smart-contract escrows on the Stellar testnet, transparent on-chain verification, a GL export for accounting tools, real-time activity tracking, and a multi-step escrow split creator.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Stellar SDK", "Recharts"],
       demo: "https://split-rails.vercel.app",
       image: "/projects/splitrails.png",
+      dates: "Jul 1–18, 2026",
+      startDate: "2026-07-01",
       badge: "STELLAR APAC HACKATHON",
-      placement: "Top 70 — Stellar APAC Hackathon 2026",
+      placement: "Top 70, Stellar APAC Hackathon 2026",
       awardImages: ["/projects/stellar-team.jpg"]
     },
     {
@@ -704,7 +778,7 @@ export const portfolioData = {
           {
             heading: "Automatic status derivation",
             body: [
-              "The interesting part is not the scanning — it is what happens after. Rather than a facilitator deciding whether someone counts as late, the platform derives status (Present, Late, Absent, Incomplete) from the event time window itself.",
+              "The interesting part is not the scanning. It is what happens after. Rather than a facilitator deciding whether someone counts as late, the platform derives status (Present, Late, Absent, Incomplete) from the event time window itself.",
               "That single decision removes the cutoff errors that made the paper process unreliable, because the rule is applied identically to every scan instead of being re-judged by whoever holds the sheet.",
             ],
           },
@@ -719,7 +793,7 @@ export const portfolioData = {
             heading: "Architecture",
             body: [
               "Next.js 15 and TypeScript on Supabase, with Zod validating input at the boundary, Upstash Redis for rate limiting, and Nodemailer driving email alerts. Access control is enforced with PostgreSQL row-level security rather than in application code, so a client-side bypass still cannot read another cohort's data.",
-              "Three role-based portals — Student, Faculty, and Admin — plus admin approval workflows, real-time faculty dashboards, and PDF/Excel report exports for department leadership.",
+              "Three role-based portals (Student, Faculty, and Admin) plus admin approval workflows, real-time faculty dashboards, and PDF/Excel report exports for department leadership.",
             ],
           },
           {
@@ -735,13 +809,15 @@ export const portfolioData = {
       title: "Solmate",
       oneLiner: "Financial & telemetry dashboard for E-Bangka",
       year: "2026",
-      role: "Solo Developer",
+      role: "AI Engineer / Full Stack",
       description: "A web-based financial and telemetry dashboard acting as the digital brain for the E-Bangka. Built in under 3 days for the Nexus Philippines Hackathon 2026, integrating real-time IoT feeds and geospatial mapping to bridge hardware data with capital planning.",
       problem: "The E-Bangka's IoT telemetry lived apart from the financial and capital-planning side, with no single view bridging live hardware data and cost decisions.",
       solution: "A web-based financial and telemetry dashboard built in under 3 days for the Nexus Philippines Hackathon, integrating real-time IoT feeds and geospatial mapping into one operating view.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
       demo: "https://e-ferry.vercel.app",
       images: ["/projects/solmate.png", "/projects/solmate-team.png", "/projects/solmate-award.png"],
+      dates: "May 21–23, 2026",
+      startDate: "2026-05-21",
       badge: "NEXUS PH HACKATHON 2026",
       placement: "1st Runner-Up (National) out of 17 teams",
       awardImages: ["/projects/solmate-team.png", "/projects/solmate-award.png"]
@@ -761,7 +837,7 @@ export const portfolioData = {
       oneLiner: "Collaborative Family Financial Tracker",
       year: "2026",
       role: "Solo Developer",
-      description: "Designed a dark-themed PWA tracking tuition assessments, savings milestones, debt ledgers, and family project proposals — solving a real household financial visibility problem. Implemented real-time Supabase sync for multi-device collaboration with PWA offline fallback, reflecting strong product intuition and self-driven initiative.",
+      description: "Designed a dark-themed PWA tracking tuition assessments, savings milestones, debt ledgers, and family project proposals, solving a real household financial visibility problem. Implemented real-time Supabase sync for multi-device collaboration with PWA offline fallback, reflecting strong product intuition and self-driven initiative.",
       techStack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "PWA"],
       demo: "https://famly-app.vercel.app",
       image: "/projects/famly.png"
@@ -777,7 +853,7 @@ export const portfolioData = {
     },
     {
       title: "BinSense",
-      oneLiner: "Smart waste bin monitoring — IoT",
+      oneLiner: "Smart waste bin monitoring (IoT)",
       year: "2024",
       role: "Project Manager",
       description: "An IoT-based waste management solution that monitors bin fill levels using ultrasonic sensors and optimizes collection routes in real time via a web dashboard.",
@@ -785,6 +861,11 @@ export const portfolioData = {
       images: ["/projects/binsense1.jpg", "/projects/binsense2.jpg"]
     }
   ],
+  tools: [
+    { name: "Claude Pro Plan", description: "AI assistant" },
+    { name: "Cursor IDE", description: "AI code editor" },
+    { name: "Antigravity (Agentic IDE)", description: "Agentic IDE" },
+  ] as { name: string; description: string }[],
   techStack: {
     "Frontend": ["HTML5", "CSS3", "TypeScript", "React", "Next.js", "Tailwind CSS"],
     "Backend": ["Node.js", "Express", "Python", "Java"],

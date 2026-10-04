@@ -105,16 +105,17 @@ const buildCorpus = (): Chunk[] => {
     section: 'Profile',
     title: personal.name,
     text: [
-      `${personal.name} — ${personal.title}.`,
+      `${personal.name}, ${personal.title}.`,
       `Based in ${personal.location}.`,
       personal.bio,
       `Adrian has built ${personal.projectsBuilt} projects in total; the portfolio features a selection of them.`,
-      `Competition record — ${personal.awards.summary}. Award-winning problem solver.`,
+      `Competition record: ${personal.awards.summary}. Award-winning problem solver.`,
       `National awards: ${personal.awards.national.join(' ')}`,
       `Regional experience: ${personal.awards.regional.join(' ')}`,
+      `Worldwide experience: ${personal.awards.worldwide.join(' ')}`,
       `Current status: ${personal.quickFacts.status}. Focus: ${personal.quickFacts.focus}.`,
       `Looking for: ${personal.quickFacts.lookingFor}. Availability: ${personal.quickFacts.available}.`,
-      `Contact — email ${personal.contact.email}, GitHub ${personal.contact.github}, LinkedIn ${personal.contact.linkedin}.`,
+      `Contact: email ${personal.contact.email}, GitHub ${personal.contact.github}, LinkedIn ${personal.contact.linkedin}.`,
     ].join(' '),
   });
 
@@ -140,7 +141,7 @@ const buildCorpus = (): Chunk[] => {
       section: 'Testimonials',
       title: 'What people say about Adrian',
       text: testimonials
-        .map((t) => `"${t.quote}" — ${t.name}, ${t.role}${t.org ? `, ${t.org}` : ''}.`)
+        .map((t) => `"${t.quote}" (${t.name}, ${t.role}${t.org ? `, ${t.org}` : ''}).`)
         .join(' '),
     });
   }
@@ -190,7 +191,7 @@ const buildCorpus = (): Chunk[] => {
       id: `project-${i}`,
       section: 'Project',
       title: project.title,
-      text: `${project.title} (${project.year}) — ${project.oneLiner}. Role: ${project.role}.${badge}${placement} ${project.description} Built with ${project.techStack.join(', ')}.${demo}${study}`,
+      text: `${project.title} (${project.year}): ${project.oneLiner}. Role: ${project.role}.${badge}${placement} ${project.description} Built with ${project.techStack.join(', ')}.${demo}${study}`,
     });
   });
 

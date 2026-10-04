@@ -4,23 +4,24 @@
 
 @layer base {
   :root {
-    /* --page is the outer rail behind the reading column; --background is the column itself */
-    --page: #f4f4f3;
-    --background: #ffffff;
-    --surface: #fafafa;
-    --primary: #18181b;
-    --secondary: #71717a;
-    --muted: #a1a1aa;
-    --accent: #18181b;
+    /* Palette lifted directly from marwieang.com computed styles: warm
+       cream page, near-black ink, a slightly darker warm gray border. */
+    --page: #fcfcfb;
+    --background: #fcfcfb;
+    --surface: #f5f5f2;
+    --primary: #111113;
+    --secondary: #3a3a3f;
+    --muted: #6e6e73;
+    --muted-2: #9a9a9e;
+    --accent: #111113;
     --accent-hover: #000000;
-    --link: #2563eb;
-    --border: rgba(0, 0, 0, 0.09);
-    --rail: rgba(0, 0, 0, 0.035);
-    /* Cursor sheen on cards — dark ink on light, light on dark. */
-    --sheen: rgba(0, 0, 0, 0.05);
-    --aura: rgba(0, 0, 0, 0.055);
+    --link: #111113;
+    --border: #e2e2de;
+    --border-strong: #dcdcda;
+    --rail: #f2f2ef;
+    --sheen: rgba(17, 17, 19, 0.05);
+    --aura: rgba(17, 17, 19, 0.04);
 
-    /* GitHub's own contribution ramp, light theme */
     --gh-0: #ebedf0;
     --gh-1: #9be9a8;
     --gh-2: #40c463;
@@ -29,28 +30,22 @@
   }
 
   .dark {
-    /*
-      Pure black ground. Note that dropping the background alone *lowers*
-      contrast for semi-transparent text, because the text composites over a
-      darker base — so the alphas below are raised to match. Measured against
-      #000: primary 18.8:1, secondary 7.85:1, muted 4.92:1. The old muted
-      (0.32) sat at 2.86:1, under even the large-text threshold.
-    */
-    --page: #000000;
-    --background: #000000;
-    --surface: #0c0c0e;
-    --primary: rgba(255, 255, 255, 0.95);
-    --secondary: rgba(255, 255, 255, 0.62);
-    --muted: rgba(255, 255, 255, 0.48);
-    --accent: #fafafa;
+    --page: #111113;
+    --background: #111113;
+    --surface: #1a1a1d;
+    --primary: rgba(252, 252, 251, 0.96);
+    --secondary: rgba(252, 252, 251, 0.72);
+    --muted: rgba(252, 252, 251, 0.52);
+    --muted-2: rgba(252, 252, 251, 0.38);
+    --accent: #fcfcfb;
     --accent-hover: #ffffff;
-    --link: #8fb2ff;
-    --border: rgba(255, 255, 255, 0.13);
-    --rail: rgba(255, 255, 255, 0.035);
+    --link: #fcfcfb;
+    --border: rgba(252, 252, 251, 0.12);
+    --border-strong: rgba(252, 252, 251, 0.18);
+    --rail: rgba(252, 252, 251, 0.03);
     --sheen: rgba(255, 255, 255, 0.075);
     --aura: rgba(255, 255, 255, 0.055);
 
-    /* GitHub's own contribution ramp, dark theme */
     --gh-0: #161b22;
     --gh-1: #0e4429;
     --gh-2: #006d32;

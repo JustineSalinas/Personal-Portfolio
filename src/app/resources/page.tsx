@@ -5,7 +5,7 @@ import { ResourcesList } from '@/components/profile/ResourcesList';
 
 export const metadata: Metadata = {
   title: 'Resources',
-  description: `Where ${portfolioData.personal.name} learns — courses, practice sites, and references for building software, AI/data engineering, and staying current.`,
+  description: `Where ${portfolioData.personal.name} learns: courses, practice sites, and references for building software, AI/data engineering, and staying current.`,
 };
 
 export default function ResourcesPage() {

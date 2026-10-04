@@ -23,33 +23,36 @@ export const GearList = () => {
     <div className="space-y-8">
       {[...byCategory.entries()].map(([category, entries]) => (
         <div key={category}>
-          <h2 className="mb-3 text-[13px] font-medium uppercase tracking-wider text-muted">
+          <h2 className="mb-3 text-[14px] font-medium text-muted">
             {category}
           </h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {entries.map((item) => (
               <div
                 key={item.name}
-                className="hover-lift overflow-hidden rounded-xl border border-border bg-white"
+                className="hover-lift overflow-hidden rounded-2xl border border-border bg-surface p-1.5"
               >
-                <div className="relative aspect-square w-full">
+                {/* Product photos are opaque shots on white, so they sit on
+                    their own white plate inside a themed card: the card colors
+                    follow the light/dark theme, and the photo never bleeds into
+                    the label area. */}
+                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
                     sizes="(max-width: 640px) 50vw, 280px"
-                    // A pale product shot (white mouse, white headset) on a
-                    // white card has near-zero edge contrast — the shadow
-                    // gives every photo a visible silhouette regardless of
-                    // its own color, without needing per-item tuning.
+                    // A pale product shot (white mouse) on a white plate has
+                    // near-zero edge contrast; the shadow keeps a visible
+                    // silhouette without per-item tuning.
                     className="object-contain p-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.18)]"
                   />
                 </div>
-                <div className="border-t border-border bg-background px-3 py-2.5">
+                <div className="px-2.5 pb-2 pt-3">
                   <p className="text-[14.5px] font-medium leading-snug text-primary">
                     {item.name}
                   </p>
-                  {item.note && <p className="text-[13px] text-secondary">{item.note}</p>}
+                  {item.note && <p className="mt-0.5 text-[13px] text-muted">{item.note}</p>}
                 </div>
               </div>
             ))}

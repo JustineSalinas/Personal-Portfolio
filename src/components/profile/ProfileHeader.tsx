@@ -2,112 +2,119 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Github, Linkedin, Mail, FileText, MapPin } from 'lucide-react';
+import Link from 'next/link';
+import { FileText, ArrowDown } from 'lucide-react';
 import { portfolioData } from '@/data';
-import { LiveStatusBadge } from './LiveStatusBadge';
-import { Highlights } from './Highlights';
 import { ResumeModal } from './ResumeModal';
 
 const { personal } = portfolioData;
 
-const socials = [
-  { href: personal.contact.github, label: 'GitHub', Icon: Github },
-  { href: personal.contact.linkedin, label: 'LinkedIn', Icon: Linkedin },
-  { href: `mailto:${personal.contact.email}`, label: 'Email', Icon: Mail },
-];
-
+/**
+ * Hero block modeled directly on marwieang.com: small identity row
+ * (avatar + name + title + Resume pill) → a medium-weight H1 that
+ * states what you build → bio paragraph that fades at the bottom → a
+ * "↓ More about me" link, a divider, a Current niche row, and a wide
+ * three-up stats row. No framed cards here; the surrounding card is
+ * the sheet of paper, these are typographic blocks on it.
+ */
 export const ProfileHeader = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
+  const stats: { value: string; label: string }[] = [
+    { value: personal.projectsBuilt, label: 'Projects built' },
+    { value: '2x', label: 'National hackathon wins' },
+    { value: '1+ yr', label: 'Shipping software' },
+  ];
+
   return (
-    <div id="top" className="px-7 pt-8">
-      {/* Side-by-side, not a full-width banner: a square photo beside the
-          name and bio, matching bryllim.com's hero. Sized to roughly match
-          the text column's height rather than leaving the photo small and
-          the right side visually empty. */}
-      <div className="flex gap-5 sm:gap-7">
-        <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-xl border border-border bg-surface sm:h-52 sm:w-52">
+    <div id="top">
+      {/* Identity row */}
+      <div className="flex items-center gap-4">
+        <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-border bg-surface">
           <Image
             src="/portrait.png"
             alt={personal.name}
             fill
-            // Above the fold and the likely LCP element, so skip lazy loading.
             priority
-            sizes="208px"
+            sizes="56px"
             className="object-cover"
             style={{ objectPosition: 'center 20%' }}
           />
         </div>
-
         <div className="min-w-0 flex-1">
-          <h1 className="font-display text-[28px] font-semibold leading-tight tracking-tight text-primary sm:text-[35px]">
-            {personal.name}
-          </h1>
-          {/* Role line carries the professional identity; status and location
-              sit under it so the hierarchy reads name → what → where. */}
-          <p className="mt-1 text-[17px] font-medium text-secondary">{personal.title}</p>
-          <p className="mt-1 font-display text-[16px] italic text-muted">
-            Student by day. Founder the rest of it.
-          </p>
-          <p className="mt-1.5 flex flex-wrap items-center gap-x-1.5 text-[15px] text-muted">
-            <span>{personal.quickFacts.status}</span>
-            <span>•</span>
-            {/* icon and place stay on one line so the pin never dangles at a wrap */}
-            <span className="inline-flex items-center gap-1">
-              <MapPin size={14} className="shrink-0" />
-              {personal.location}
-            </span>
-          </p>
-          <LiveStatusBadge />
-
-          <div className="mt-3 flex flex-wrap items-center gap-1.5">
-            {socials.map(({ href, label, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                title={label}
-                className="hover-lift flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-secondary hover:border-primary/30 hover:text-primary"
-              >
-                <Icon size={17} />
-              </a>
-            ))}
-            {/* Opens in place — navigating away to read a resume is friction. */}
-            <button
-              onClick={() => setIsResumeOpen(true)}
-              aria-label="View resume"
-              title="View resume"
-              className="hover-lift flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-secondary hover:border-primary/30 hover:text-primary"
-            >
-              <FileText size={17} />
-            </button>
-          </div>
+          <p className="text-[16px] font-medium leading-tight text-primary">{personal.name}</p>
+          <p className="text-[14px] text-muted">{personal.title}</p>
         </div>
+        <button
+          onClick={() => setIsResumeOpen(true)}
+          className="flex h-11 items-center gap-2 rounded-full border border-border-strong px-5 text-[14px] font-medium text-primary transition-colors hover:bg-surface"
+        >
+          <FileText size={15} strokeWidth={1.75} />
+          Resume
+        </button>
       </div>
 
-      <p className="mt-5 text-[18px] leading-[1.75] text-secondary">
-        I build full-stack systems and data-driven AI platforms, with{' '}
-        <span className="font-medium text-primary">{personal.projectsBuilt} projects built</span> and a{' '}
-        <span className="font-medium text-primary">2x National Hackathon Winner Awardee</span> record. I run{' '}
-        <a
-          href="https://cdg-official.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="prose-link font-medium"
-        >
-          Cascade Development Group
-        </a>
-        , an IT solutions startup in Iloilo, with a strong niche in{' '}
-        <span className="font-medium text-primary">technical project management</span> and a focused path in{' '}
-        <span className="font-medium text-primary">data engineering and applied AI</span>, from building data pipelines to shipping production AI systems. Open to internships, part-time, and remote roles.
-      </p>
+      {/* H1 statement */}
+      <h1 className="mt-10 text-[34px] font-medium leading-[1.25] tracking-[-0.01em] text-primary">
+        I build full-stack systems and data-driven AI platforms.
+      </h1>
 
-      <Highlights />
+      {/* Bio, with soft fade at the bottom like his */}
+      <div className="relative mt-6">
+        <p className="text-[16px] leading-[1.75] text-secondary">
+          I design and ship end-to-end software, from database schemas and APIs to the polished
+          front-ends they feed. {personal.projectsBuilt} projects built so far, including a
+          2x National Hackathon Winner Awardee record. I run{' '}
+          <Link href="/about" className="font-medium text-primary underline-offset-4 hover:underline">
+            Cascade Development Group
+          </Link>
+          , an IT solutions startup in Iloilo, with a focused path in data engineering and applied AI,
+          from building data pipelines to shipping production AI systems. Open to internships,
+          part-time, and remote roles.
+        </p>
+        {/* Bottom fade — matches his "excerpt with More about me ↓" treatment. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-background"
+        />
+      </div>
+
+      <Link
+        href="/about"
+        className="group mt-2 inline-flex items-center gap-1.5 text-[14.5px] font-medium text-primary transition-colors hover:text-muted"
+      >
+        <ArrowDown size={14} strokeWidth={1.75} className="transition-transform group-hover:translate-y-0.5" />
+        More about me
+      </Link>
+
+      {/* Divider */}
+      <div className="mt-8 border-t border-border" />
+
+      {/* Current niche */}
+      <div className="mt-6 flex flex-wrap items-center gap-3">
+        <span className="text-[14px] text-muted">Current focus</span>
+        <span className="flex h-8 items-center gap-2 rounded-full bg-primary px-3.5 text-[14px] font-medium text-background">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          AI engineering
+        </span>
+        <span className="flex h-8 items-center rounded-full border border-border-strong px-3.5 text-[14px] font-medium text-secondary">
+          Technical PM
+        </span>
+      </div>
+
+      <div className="mt-8 border-t border-border" />
+
+      {/* Big three-up stats */}
+      <div className="mt-8 grid grid-cols-3 gap-6">
+        {stats.map((s) => (
+          <div key={s.label}>
+            <p className="text-[30px] font-medium leading-tight text-primary">{s.value}</p>
+            <p className="mt-1 text-[14px] text-muted">{s.label}</p>
+          </div>
+        ))}
+      </div>
 
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </div>
   );
 };
-

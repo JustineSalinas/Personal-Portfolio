@@ -22,10 +22,12 @@ const config: Config = {
           hover: "var(--accent-hover)",
         },
         border: "var(--border)",
+        "border-strong": "var(--border-strong)",
+        "muted-2": "var(--muted-2)",
       },
       fontFamily: {
-        sans: ["var(--font-outfit)", "sans-serif"],
-        display: ["var(--font-fraunces)", "serif"],
+        sans: ["var(--font-figtree)", "system-ui", "sans-serif"],
+        display: ["var(--font-figtree)", "system-ui", "sans-serif"],
         mono: ["var(--font-dm-mono)", "monospace"],
       },
       spacing: {

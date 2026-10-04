@@ -16,6 +16,10 @@ const SUB_PAGES = [
   'affiliations',
   'resources',
   'gear',
+  'links',
+  'services',
+  'about',
+  'hackathons',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

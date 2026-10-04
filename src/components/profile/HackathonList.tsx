@@ -3,21 +3,17 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Trophy } from 'lucide-react';
-import { portfolioData } from '@/data';
+import { hackathons, type Project } from '@/lib/hackathons';
 import { HackathonOverviewModal } from './HackathonOverviewModal';
-
-type Project = (typeof portfolioData.projects)[number];
-
-/** Only the entries that carry a competition badge. */
-const entries = portfolioData.projects.filter((p) => 'badge' in p && p.badge);
 
 export const HackathonList = () => {
   const [selected, setSelected] = useState<Project | null>(null);
 
   return (
     <div className="peek peek-rows rounded-xl border border-border bg-background px-1.5">
-      {entries.map((project) => {
+      {hackathons.map((project) => {
         const badge = 'badge' in project ? project.badge : undefined;
+        const dates = 'dates' in project ? project.dates : undefined;
         const placement = 'placement' in project ? project.placement : undefined;
         const photos = 'awardImages' in project ? project.awardImages : undefined;
 
@@ -33,15 +29,19 @@ export const HackathonList = () => {
               <span className="flex flex-wrap items-baseline gap-x-2">
                 <span className="text-[17px] font-medium text-primary">{project.title}</span>
                 <span className="text-[14.5px] text-muted">
-                  {/* Several badges already carry the year — don't print it twice */}
-                  {badge?.includes(project.year) ? badge : `${badge} · ${project.year}`}
+                  {/* Exact dates when known; otherwise the year, unless the badge already carries it */}
+                  {dates
+                    ? `${badge} · ${dates}`
+                    : badge?.includes(project.year)
+                      ? badge
+                      : `${badge} · ${project.year}`}
                 </span>
               </span>
               {placement && (
                 <span className="mt-0.5 block text-[16px] font-medium text-primary">{placement}</span>
               )}
               <span className="mt-0.5 block text-[16px] leading-relaxed text-secondary">
-                {project.role} — {project.oneLiner}
+                {project.role}: {project.oneLiner}
               </span>
 
               {photos && photos.length > 0 && (
@@ -54,7 +54,7 @@ export const HackathonList = () => {
                     >
                       <Image
                         src={src}
-                        alt={`${project.title} — ${badge}`}
+                        alt={`${project.title}, ${badge}`}
                         fill
                         // Supersampled for the same reason as the work grid.
                         sizes="(max-width: 640px) 50vw, 600px"

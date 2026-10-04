@@ -1,86 +1,56 @@
 import React from 'react';
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '@/data';
-import { Tag } from './Section';
-import { SheenGroup } from './SheenGroup';
 
 type Project = (typeof portfolioData.projects)[number];
 
-/** Projects carry either a single `image` or an `images` array. */
 const coverOf = (p: Project) =>
   ('image' in p && p.image) || ('images' in p && p.images?.[0]) || null;
 
-const VISIBLE_TAGS = 3;
-
-const ProjectCard = ({ project }: { project: Project }) => {
+/**
+ * One project row — thumbnail + title (with inline tag) + one-liner,
+ * with a right-aligned category/tech tag. Clicking opens the case
+ * study if present, otherwise the live demo. No borders between rows:
+ * the parent decides whether to add dividers.
+ */
+export const ProjectRow = ({ project }: { project: Project }) => {
   const cover = coverOf(project);
   const study = 'slug' in project && 'caseStudy' in project ? `/work/${project.slug}` : undefined;
-  // A case study outranks the live demo: it is the thing that shows judgement.
   const href = study ?? ('demo' in project ? project.demo : undefined);
   const external = !study;
-  const badge = 'badge' in project ? project.badge : undefined;
-  const overflow = project.techStack.length - VISIBLE_TAGS;
+  const tag =
+    ('badge' in project ? (project.badge as string | undefined) : undefined) ??
+    project.techStack[0];
 
   const body = (
     <>
-      <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-border bg-surface">
+      <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-border bg-surface">
         {cover ? (
-          <Image
-            src={cover}
-            alt={project.title}
-            fill
-            // Cards render ~300px wide (two-up in a 660px column). Asking for
-            // 640px supersamples that: crisp on 1x and 2x alike, and still ~89%
-            // smaller than the source PNG. These are dashboard screenshots, so
-            // fine text has to stay legible.
-            sizes="(max-width: 640px) 100vw, 640px"
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-          />
+          <Image src={cover} alt="" fill sizes="44px" className="object-cover object-top" />
         ) : (
-          <div className="flex h-full w-full items-center justify-center font-display text-2xl italic text-muted">
+          <div className="flex h-full w-full items-center justify-center text-[15px] font-medium text-muted">
             {project.title.charAt(0)}
           </div>
         )}
-        {badge && (
-          <span className="absolute left-2 top-2 rounded-md bg-black/70 px-1.5 py-0.5 text-[12px] font-medium uppercase tracking-wide text-white backdrop-blur-sm">
-            {badge}
-          </span>
-        )}
       </div>
-
-      <div className="mt-2.5 flex items-start justify-between gap-2">
-        <h2 className="text-[17px] font-medium text-primary">
-          {project.title}
+      <div className="min-w-0 flex-1">
+        <p className="flex items-center gap-2 text-[15.5px] font-medium leading-tight text-primary">
+          <span className="truncate">{project.title}</span>
           {study && (
-            <span className="ml-2 align-middle text-[13px] font-normal text-muted">
+            <span className="flex h-[20px] shrink-0 items-center rounded-full border border-border-strong px-2 text-[11px] font-medium text-muted">
               Case study
             </span>
           )}
-        </h2>
-        {href && (
-          <ArrowUpRight
-            size={17}
-            className="hover-arrow mt-0.5 shrink-0 text-muted group-hover:text-primary"
-          />
-        )}
+        </p>
+        <p className="mt-1 line-clamp-1 text-[14px] text-muted">{project.oneLiner}</p>
       </div>
-
-      <p className="mt-1 line-clamp-2 text-[16px] leading-relaxed text-secondary">
-        {project.oneLiner}
-      </p>
-
-      <div className="mt-2 flex flex-wrap gap-1">
-        {project.techStack.slice(0, VISIBLE_TAGS).map((tech) => (
-          <Tag key={tech}>{tech}</Tag>
-        ))}
-        {overflow > 0 && <Tag>+{overflow}</Tag>}
-      </div>
+      {tag && (
+        <span className="hidden shrink-0 text-[13px] text-muted sm:block">{tag}</span>
+      )}
     </>
   );
 
-  const shell =
-    'peek-item peek-card group block rounded-xl border border-border bg-background p-2.5 hover:border-primary/30 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/50';
+  const shell = 'group flex items-center gap-4 py-4 transition-opacity hover:opacity-80';
 
   return href ? (
     <a
@@ -95,13 +65,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
   );
 };
 
+/** Full list used on the Projects page. */
 export const WorkGrid = ({ limit }: { limit?: number } = {}) => {
   const projects = limit ? portfolioData.projects.slice(0, limit) : portfolioData.projects;
   return (
-    <SheenGroup className="peek grid gap-3 sm:grid-cols-2">
-      {projects.map((project) => (
-        <ProjectCard key={project.title} project={project} />
+    <div className="divide-y divide-border">
+      {projects.map((p) => (
+        <ProjectRow key={p.title} project={p} />
       ))}
-    </SheenGroup>
+    </div>
   );
 };

@@ -213,7 +213,7 @@ export const ChatbotWidget = () => {
                 <div>
                   <p className="text-[16.5px] font-medium text-primary">Ask about Adrian</p>
                   <p className="text-[14px] text-muted">
-                    Answers from the portfolio — or anything else
+                    Answers from the portfolio, or anything else
                   </p>
                 </div>
               </div>
@@ -241,12 +241,13 @@ export const ChatbotWidget = () => {
 
             {/* Transcript */}
             <div
+              data-lenis-prevent
               className="flex-1 space-y-3 overflow-y-auto overscroll-contain px-3.5 py-3.5"
             >
               {messages.length === 0 && (
                 <div className="py-4">
                   <p className="text-[16.5px] leading-relaxed text-secondary">
-                    Ask about Adrian&apos;s projects, experience, or availability — or ask
+                    Ask about Adrian&apos;s projects, experience, or availability, or ask
                     anything else you&apos;re curious about.
                   </p>
                   <div className="mt-3 flex flex-col gap-1.5">

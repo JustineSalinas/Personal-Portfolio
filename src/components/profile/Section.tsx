@@ -20,12 +20,12 @@ export const Section = ({
   className?: string;
   children: React.ReactNode;
 }) => (
-  <section id={id} className={cn('pt-16', className)}>
-    <div className="flex items-baseline justify-between gap-4 mb-4">
-      <h2 className="text-[17px] font-medium text-muted tracking-tight">{label}</h2>
+  <section id={id} className={cn('pt-12', className)}>
+    <div className="mb-5 flex items-baseline justify-between gap-4">
+      <h2 className="text-[14px] font-medium text-muted">{label}</h2>
       {action}
     </div>
-    {intro && <p className="text-[17px] text-secondary leading-relaxed mb-5 -mt-1">{intro}</p>}
+    {intro && <p className="mb-5 -mt-2 text-[16px] leading-relaxed text-secondary">{intro}</p>}
     {children}
   </section>
 );

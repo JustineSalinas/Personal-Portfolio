@@ -122,7 +122,7 @@ export const HackathonOverviewModal: React.FC<HackathonOverviewModalProps> = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-5">
+        <div data-lenis-prevent className="flex-1 overflow-y-auto overscroll-contain px-5 py-5">
           <dl className="grid grid-cols-2 gap-x-4 gap-y-2 rounded-xl border border-border bg-surface/40 px-4 py-3 text-[14px]">
             <dt className="text-muted">Role</dt>
             <dd className="text-secondary">{project.role}</dd>

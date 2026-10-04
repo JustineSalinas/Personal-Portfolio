@@ -85,9 +85,9 @@ export async function generateMetadata({
   const project = studies.find((p) => p.slug === slug);
   if (!project) return {};
   return {
-    title: `${project.title} — case study`,
+    title: `${project.title}: case study`,
     description: project.caseStudy.summary,
-    openGraph: { title: `${project.title} — case study`, description: project.caseStudy.summary },
+    openGraph: { title: `${project.title}: case study`, description: project.caseStudy.summary },
   };
 }
 

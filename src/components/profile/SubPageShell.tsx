@@ -1,14 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { TopBar } from './TopBar';
+import { Sidebar } from './Sidebar';
+import { HomeFooter } from './HomeFooter';
 
 /**
- * Shared chrome for the seven dedicated pages linked from the sidebar
- * (Projects, Experience, Stack, Certifications, Recommendations,
- * Affiliations, Resources) — same 880px column, back link, and heading
- * treatment as the rest of the site, so a click from the sidebar doesn't
- * feel like it left for a different site.
+ * Shared chrome for every sidebar-linked sub-page. Matches the home
+ * layout exactly — same fixed sidebar, same 640px reading column —
+ * so clicking a sidebar link doesn't feel like landing on a different
+ * site. Each page provides its own small label-sized title (same
+ * weight as a Section heading on home) and intro.
  */
 export const SubPageShell = ({
   title,
@@ -20,25 +21,24 @@ export const SubPageShell = ({
   children: React.ReactNode;
 }) => (
   <main className="relative min-h-screen bg-page">
-    <div className="relative z-10 mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
-      <TopBar />
+    <Sidebar />
+    <div className="mx-auto w-full max-w-[640px] px-6 pb-10 pt-10 lg:pl-6 lg:pr-6">
+      <Link
+        href="/"
+        className="group inline-flex items-center gap-1.5 text-[14px] font-medium text-muted transition-colors hover:text-primary"
+      >
+        <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-0.5" />
+        Back
+      </Link>
 
-      <div className="px-7 py-10">
-        <Link
-          href="/"
-          className="group inline-flex items-center gap-1.5 text-[16px] font-medium text-secondary transition-colors hover:text-primary"
-        >
-          <ArrowLeft size={17} className="transition-transform group-hover:-translate-x-0.5" />
-          Back to home
-        </Link>
+      <h1 className="mt-6 text-[26px] font-medium leading-tight tracking-[-0.01em] text-primary">
+        {title}
+      </h1>
+      {intro && <p className="mt-2 text-[16px] text-muted">{intro}</p>}
 
-        <h1 className="mt-6 font-display text-[29px] font-semibold tracking-tight text-primary">
-          {title}
-        </h1>
-        {intro && <p className="mt-1 text-[17px] text-secondary">{intro}</p>}
+      <div className="mt-8">{children}</div>
 
-        <div className="mt-6">{children}</div>
-      </div>
+      <HomeFooter />
     </div>
   </main>
 );

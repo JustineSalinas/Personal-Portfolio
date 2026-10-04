@@ -3,7 +3,7 @@ import { portfolioData } from '@/data';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const alt = `${portfolioData.personal.name} — ${portfolioData.personal.title}`;
+export const alt = `${portfolioData.personal.name} | ${portfolioData.personal.title}`;
 
 /**
  * Share card. Rendered at request time by Satori, which supports only a subset

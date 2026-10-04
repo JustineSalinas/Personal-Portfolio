@@ -94,7 +94,7 @@ export const ConnectFooter = () => {
             aria-live="polite"
             className="mt-5 rounded-xl border border-border bg-surface px-4 py-3 text-[17px] text-primary"
           >
-            Message sent — I&apos;ll get back to you soon.
+            Message sent. I&apos;ll get back to you soon.
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="relative mt-5 space-y-3">
