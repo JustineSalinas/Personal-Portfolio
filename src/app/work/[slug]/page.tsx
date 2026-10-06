@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { ArrowLeft, ArrowUpRight, Award, Github } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { TopBar } from '@/components/profile/TopBar';
+import { ContactButton } from '@/components/profile/ContactButton';
 import { CursorAura } from '@/components/profile/CursorAura';
 import { Tag } from '@/components/profile/Section';
 
@@ -242,12 +243,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           )}
 
           <div className="mt-14 border-t border-border pt-6">
-            <Link
-              href="/#contact"
-              className="cta-solid hover-lift group relative inline-flex overflow-hidden rounded-lg bg-accent px-4 py-2.5 text-[16px] font-medium text-background"
-            >
-              <span className="relative z-10">Get in touch</span>
-            </Link>
+            <ContactButton>Get in touch</ContactButton>
           </div>
         </article>
       </div>
