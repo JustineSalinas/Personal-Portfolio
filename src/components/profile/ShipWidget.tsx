@@ -25,7 +25,12 @@ export const ShipWidget = () => {
           aria-live="polite"
           className="text-[15px] font-medium tabular-nums text-primary"
         >
-          {count.toLocaleString()}
+          <span
+            key={`count-${launches}`}
+            className={`inline-block ${launches > 0 ? 'animate-ship-bump' : ''}`}
+          >
+            {count.toLocaleString()}
+          </span>
         </p>
       </div>
       <button
@@ -40,6 +45,15 @@ export const ShipWidget = () => {
         >
           <Rocket size={14} strokeWidth={1.75} />
         </span>
+        {launches > 0 && (
+          <span
+            key={`plus-${launches}`}
+            aria-hidden="true"
+            className="animate-ship-plus pointer-events-none absolute -top-3 right-3 text-[13px] font-semibold text-amber-500"
+          >
+            +1
+          </span>
+        )}
         {launches > 0 && (
           <span
             key={`trail-${launches}`}
