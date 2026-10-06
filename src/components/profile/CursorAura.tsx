@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 /**
  * A large soft light that trails the pointer across the page.
  *
