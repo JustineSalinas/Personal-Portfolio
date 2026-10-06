@@ -484,3 +484,18 @@
   .animate-ship-plus { animation: ship-plus 0.9s ease-out both; }
   .animate-ship-bump { animation: ship-bump 0.35s ease-out both; }
 }
+
+/* No flying rocket, trail, +1 or bump for people who ask for reduced motion;
+   the count still updates. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-rocket-launch,
+  .animate-ship-trail,
+  .animate-ship-plus,
+  .animate-ship-bump {
+    animation: none;
+  }
+  .animate-ship-trail,
+  .animate-ship-plus {
+    display: none;
+  }
+}
