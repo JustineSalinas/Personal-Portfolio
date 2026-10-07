@@ -21,7 +21,7 @@ export default function Home() {
     <main className="relative min-h-screen bg-page">
       <Sidebar />
 
-      <div className="mx-auto w-full max-w-[640px] px-6 pb-10 pt-10 lg:pl-6 lg:pr-6">
+      <div className="mx-auto w-full max-w-[640px] px-6 pb-10 pt-[84px] lg:pl-6 lg:pr-6 lg:pt-10">
         <ProfileHeader />
 
         <Section id="experience" label="Experience">

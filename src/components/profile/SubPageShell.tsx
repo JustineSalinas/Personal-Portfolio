@@ -22,10 +22,10 @@ export const SubPageShell = ({
 }) => (
   <main className="relative min-h-screen bg-page">
     <Sidebar />
-    <div className="mx-auto w-full max-w-[640px] px-6 pb-10 pt-10 lg:pl-6 lg:pr-6">
+    <div className="mx-auto w-full max-w-[640px] px-6 pb-10 pt-[84px] lg:pl-6 lg:pr-6 lg:pt-10">
       <Link
         href="/"
-        className="group inline-flex items-center gap-1.5 text-[14px] font-medium text-muted transition-colors hover:text-primary"
+        className="group inline-flex min-h-8 items-center gap-1.5 text-[14px] font-medium text-muted transition-colors hover:text-primary"
       >
         <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-0.5" />
         Back

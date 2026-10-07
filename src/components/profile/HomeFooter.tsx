@@ -27,7 +27,7 @@ export const HomeFooter = () => (
           href={s.href}
           target={s.href.startsWith('http') ? '_blank' : undefined}
           rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          className="text-[13.5px] text-muted hover:text-primary"
+          className="inline-flex min-h-8 items-center text-[13.5px] text-muted hover:text-primary"
         >
           {s.label}
         </a>

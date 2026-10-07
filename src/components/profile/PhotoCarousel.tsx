@@ -68,7 +68,7 @@ export const PhotoCarousel = ({ slides }: { slides: Slide[] }) => {
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${slides.length}`}
               aria-hidden={i !== index}
-              className="relative h-[540px] w-full shrink-0 overflow-hidden"
+              className="relative h-[400px] w-full shrink-0 overflow-hidden sm:h-[540px]"
             >
               {/* Soft blurred copy behind the photo, so a portrait shot never
                   sits in empty gray bars. Decorative, so hidden from screen readers. */}
