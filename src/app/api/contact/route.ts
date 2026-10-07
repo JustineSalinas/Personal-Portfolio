@@ -42,8 +42,16 @@ function recordSend(ip: string): void {
   }
 }
 
+/**
+ * Env values pasted into a hosting dashboard often pick up a trailing
+ * newline or wrapping quote marks, which Resend then rejects as an invalid
+ * key. Strip both so a harmless paste slip cannot break the form.
+ */
+const envValue = (raw: string | undefined) =>
+  raw?.trim().replace(/^["']|["']$/g, '').trim() || undefined;
+
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = envValue(process.env.RESEND_API_KEY);
   if (!apiKey) {
     return NextResponse.json(
       { error: 'Email service is not configured.' },
@@ -105,9 +113,9 @@ export async function POST(request: Request) {
   }
 
   const to =
-    process.env.CONTACT_TO_EMAIL ?? portfolioData.personal.contact.email;
+    envValue(process.env.CONTACT_TO_EMAIL) ?? portfolioData.personal.contact.email;
   const from =
-    process.env.CONTACT_FROM_EMAIL ??
+    envValue(process.env.CONTACT_FROM_EMAIL) ??
     `${portfolioData.personal.name} <onboarding@resend.dev>`;
 
   const { error } = await resend.emails.send({
