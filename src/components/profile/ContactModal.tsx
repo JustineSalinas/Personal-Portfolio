@@ -114,7 +114,9 @@ export const ContactModal = ({ onClose }: { onClose: () => void }) => {
             <h2 id="contact-title" className="text-[20px] font-medium text-primary">
               Contact
             </h2>
-            <p className="mt-0.5 text-[14px] text-muted">Tell me what you are building.</p>
+            <p className="mt-0.5 text-[14px] text-muted">
+              Work with me, ask a question, or just say hi.
+            </p>
           </div>
           <button
             type="button"
@@ -183,7 +185,7 @@ export const ContactModal = ({ onClose }: { onClose: () => void }) => {
                 required
                 rows={4}
                 maxLength={5000}
-                placeholder="What are you building?"
+                placeholder="Tell me about your project, idea, or question"
                 className={`${inputClass} resize-none`}
               />
             </label>
