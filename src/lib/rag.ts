@@ -113,6 +113,7 @@ const buildCorpus = (): Chunk[] => {
       `National awards: ${personal.awards.national.join(' ')}`,
       `Regional experience: ${personal.awards.regional.join(' ')}`,
       `Worldwide experience: ${personal.awards.worldwide.join(' ')}`,
+      `Currently competing: ${personal.awards.ongoing.join(' ')}`,
       `Current status: ${personal.quickFacts.status}. Focus: ${personal.quickFacts.focus}.`,
       `Looking for: ${personal.quickFacts.lookingFor}. Availability: ${personal.quickFacts.available}.`,
       `Contact: email ${personal.contact.email}, GitHub ${personal.contact.github}, LinkedIn ${personal.contact.linkedin}.`,

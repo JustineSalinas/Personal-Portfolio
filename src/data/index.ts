@@ -95,6 +95,9 @@ export const portfolioData = {
       worldwide: [
         "IBM Bob 2.0 Global Online Hackathon, Sep 25–27, 2026, built Repo Autopsy, a tool that scores public GitHub repositories for new-contributor onboarding",
       ],
+      ongoing: [
+        "Hack Iloilo 2026, Top 10 Qualifiers, competing as Team KasCoders (the hackathon is still ongoing)",
+      ],
     },
     quickFacts: {
       status: "IT 3rd Year Level",
@@ -863,6 +866,32 @@ export const portfolioData = {
       images: ["/projects/binsense1.jpg", "/projects/binsense2.jpg"]
     }
   ],
+  /**
+   * Hackathons with no built project to show yet, so they stay out of
+   * `projects` (and the Projects page). Only facts that are known go here;
+   * add dates, a role, a one-liner, or photos as they become available.
+   */
+  hackathonEvents: [
+    {
+      title: "Hack Iloilo 2026",
+      year: "2026",
+      ongoing: true,
+      badge: "TEAM KASCODERS",
+      placement: "Top 10 Qualifiers",
+    },
+  ] as {
+    title: string;
+    year: string;
+    ongoing?: boolean;
+    badge: string;
+    placement?: string;
+    dates?: string;
+    startDate?: string;
+    award?: string;
+    role?: string;
+    oneLiner?: string;
+    awardImages?: string[];
+  }[],
   tools: [
     { name: "Claude Pro Plan", description: "AI assistant, 5 months on Pro" },
     { name: "Cursor IDE", description: "AI code editor" },

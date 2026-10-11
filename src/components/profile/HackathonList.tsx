@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Trophy } from 'lucide-react';
-import { hackathons, type Project } from '@/lib/hackathons';
-import { AwardPill } from './AwardPill';
+import { hackathons, isProject, type Project } from '@/lib/hackathons';
+import { AwardPill, OngoingPill } from './AwardPill';
 import { HackathonOverviewModal } from './HackathonOverviewModal';
 
 export const HackathonList = () => {
@@ -12,43 +12,66 @@ export const HackathonList = () => {
 
   return (
     <div className="peek peek-rows rounded-xl border border-border bg-background px-1.5">
-      {hackathons.map((project) => {
-        const badge = 'badge' in project ? project.badge : undefined;
-        const dates = 'dates' in project ? project.dates : undefined;
-        const award = 'award' in project ? project.award : undefined;
-        const placement = 'placement' in project ? project.placement : undefined;
-        const photos = 'awardImages' in project ? project.awardImages : undefined;
+      {hackathons.map((item) => {
+        const badge = 'badge' in item ? item.badge : undefined;
+        const dates = 'dates' in item ? item.dates : undefined;
+        const award = 'award' in item ? item.award : undefined;
+        const ongoing = 'ongoing' in item && item.ongoing === true;
+        const placement = 'placement' in item ? item.placement : undefined;
+        const photos = 'awardImages' in item ? item.awardImages : undefined;
+        const role = 'role' in item ? item.role : undefined;
+        const oneLiner = 'oneLiner' in item ? item.oneLiner : undefined;
+
+        // Events with no built project have no detail popup, so they render as plain rows.
+        const clickable = isProject(item);
+        const Row: React.ElementType = clickable ? 'button' : 'div';
+        const rowProps = clickable
+          ? {
+              type: 'button' as const,
+              onClick: () => {
+                if (isProject(item)) setSelected(item);
+              },
+            }
+          : {};
+
+        // Exact dates when known; ongoing events show their badge only; otherwise the year,
+        // unless the badge already carries it.
+        const label = ongoing
+          ? badge
+          : dates
+            ? `${badge} · ${dates}`
+            : badge?.includes(item.year)
+              ? badge
+              : `${badge} · ${item.year}`;
 
         return (
-          <button
-            key={project.title}
-            type="button"
-            onClick={() => setSelected(project)}
-            className="peek-item group flex w-full gap-2.5 rounded-lg border-b border-border px-2 py-3 text-left last:border-b-0 hover:bg-surface"
+          <Row
+            key={item.title}
+            {...rowProps}
+            className={`peek-item group flex w-full gap-2.5 rounded-lg border-b border-border px-2 py-3 text-left last:border-b-0 ${
+              clickable ? 'hover:bg-surface' : ''
+            }`}
           >
             <Trophy
               size={17}
               className={`mt-[3px] shrink-0 ${award ? 'text-amber-500' : 'text-muted'}`}
             />
             <span className="min-w-0 flex-1">
-              <span className="flex flex-wrap items-baseline gap-x-2">
-                <span className="text-[17px] font-medium text-primary">{project.title}</span>
+              <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span className="text-[17px] font-medium text-primary">{item.title}</span>
+                {ongoing && <OngoingPill />}
                 {award && <AwardPill label={award} />}
-                <span className="text-[14.5px] text-muted">
-                  {/* Exact dates when known; otherwise the year, unless the badge already carries it */}
-                  {dates
-                    ? `${badge} · ${dates}`
-                    : badge?.includes(project.year)
-                      ? badge
-                      : `${badge} · ${project.year}`}
-                </span>
+                <span className="text-[14.5px] text-muted">{label}</span>
               </span>
               {placement && (
                 <span className="mt-0.5 block text-[16px] font-medium text-primary">{placement}</span>
               )}
-              <span className="mt-0.5 block text-[16px] leading-relaxed text-secondary">
-                {project.role}: {project.oneLiner}
-              </span>
+              {oneLiner && (
+                <span className="mt-0.5 block text-[16px] leading-relaxed text-secondary">
+                  {role ? `${role}: ` : ''}
+                  {oneLiner}
+                </span>
+              )}
 
               {photos && photos.length > 0 && (
                 <span className="mt-2 grid grid-cols-2 gap-1.5">
@@ -60,7 +83,7 @@ export const HackathonList = () => {
                     >
                       <Image
                         src={src}
-                        alt={`${project.title}, ${badge}`}
+                        alt={`${item.title}, ${badge}`}
                         fill
                         // Supersampled for the same reason as the work grid.
                         sizes="(max-width: 640px) 50vw, 600px"
@@ -71,10 +94,12 @@ export const HackathonList = () => {
                 </span>
               )}
             </span>
-            <span className="hover-arrow mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border text-muted group-hover:border-primary/25 group-hover:text-primary">
-              <ArrowUpRight size={16} />
-            </span>
-          </button>
+            {clickable && (
+              <span className="hover-arrow mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border text-muted group-hover:border-primary/25 group-hover:text-primary">
+                <ArrowUpRight size={16} />
+              </span>
+            )}
+          </Row>
         );
       })}
 
