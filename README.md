@@ -74,6 +74,7 @@ When a send fails, the visitor sees "Failed to send message", and the real reaso
 | `npm run build` | Production build |
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
+| `npm test` | Vitest: contact route, chatbot retrieval, and hackathon list tests |
 
 ## Deployment
 
