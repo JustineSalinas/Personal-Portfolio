@@ -3,6 +3,7 @@ import { Sidebar } from '@/components/profile/Sidebar';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
 import { Section } from '@/components/profile/Section';
 import { ExperienceList } from '@/components/profile/ExperienceList';
+import { BuildingNow } from '@/components/profile/BuildingNow';
 import { ProjectsPreview } from '@/components/profile/ProjectsPreview';
 import { StackPreview } from '@/components/profile/StackPreview';
 import { ToolsPreview } from '@/components/profile/ToolsPreview';
@@ -38,6 +39,10 @@ export default function Home() {
 
         <Section id="projects" label="Projects">
           <ProjectsPreview />
+        </Section>
+
+        <Section id="building" label="Currently building">
+          <BuildingNow />
         </Section>
 
         <Section id="tools" label="Tools I use">
