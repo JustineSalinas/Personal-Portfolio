@@ -17,7 +17,7 @@ const SWITCH_MS = 260;
 const noopSubscribe = () => () => {};
 
 /**
- * Shared by every theme-toggle control on the site (TopBar, FloatingDock, …)
+ * Shared by every theme-toggle control on the site (the sidebar and mobile menu)
  * so the View Transitions cross-fade behaves identically everywhere instead
  * of drifting between hand-rolled copies.
  */
