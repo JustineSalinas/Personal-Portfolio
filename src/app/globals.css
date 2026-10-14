@@ -12,7 +12,9 @@
     --primary: #111113;
     --secondary: #3a3a3f;
     --muted: #6e6e73;
-    --muted-2: #9a9a9e;
+    /* Small text (sidebar labels, counts, placeholders). #9a9a9e was 2.73:1
+       on the page color; #737377 is 4.60:1, clearing WCAG AA (4.5:1). */
+    --muted-2: #737377;
     --accent: #111113;
     --accent-hover: #000000;
     --link: #111113;
@@ -36,7 +38,8 @@
     --primary: rgba(252, 252, 251, 0.96);
     --secondary: rgba(252, 252, 251, 0.72);
     --muted: rgba(252, 252, 251, 0.52);
-    --muted-2: rgba(252, 252, 251, 0.38);
+    /* 0.38 was 3.49:1 on the dark page color; 0.48 is 4.91:1. */
+    --muted-2: rgba(252, 252, 251, 0.48);
     --accent: #fcfcfb;
     --accent-hover: #ffffff;
     --link: #fcfcfb;
