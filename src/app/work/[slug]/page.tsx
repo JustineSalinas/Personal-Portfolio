@@ -5,9 +5,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowUpRight, Award, Github } from 'lucide-react';
 import { portfolioData } from '@/data';
-import { TopBar } from '@/components/profile/TopBar';
 import { ContactButton } from '@/components/profile/ContactButton';
-import { CursorAura } from '@/components/profile/CursorAura';
+import { PageFrame } from '@/components/profile/SubPageShell';
 import { Tag } from '@/components/profile/Section';
 
 /**
@@ -100,28 +99,24 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const { cover, demo, repo, certificate, placement } = project;
 
   return (
-    <main className="relative min-h-screen rail-hatch">
-      <CursorAura />
-      <div className="relative z-10 mx-auto min-h-screen w-full max-w-[880px] border-x border-border bg-background">
-        <TopBar />
-
-        <article className="px-7 py-10">
+    <PageFrame>
+      <article>
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-1.5 text-[16px] font-medium text-secondary transition-colors hover:text-primary"
+            className="group inline-flex min-h-8 items-center gap-1.5 text-[14px] font-medium text-muted transition-colors hover:text-primary"
           >
-            <ArrowLeft size={17} className="transition-transform group-hover:-translate-x-0.5" />
+            <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-0.5" />
             Back to projects
           </Link>
 
           <header className="mt-6">
-            <p className="text-[15px] text-muted">
+            <p className="text-[14px] text-muted">
               Case study{project.year && ` · ${project.year}`}{project.role && ` · ${project.role}`}
             </p>
-            <h1 className="mt-2 font-display text-[35px] font-semibold leading-tight tracking-tight text-primary">
+            <h1 className="mt-2 text-[30px] font-medium leading-tight tracking-[-0.01em] text-primary">
               {project.title}
             </h1>
-            <p className="mt-3 text-[18px] leading-[1.75] text-secondary">
+            <p className="mt-3 text-[17px] leading-[1.75] text-secondary">
               {project.caseStudy.summary}
             </p>
 
@@ -182,7 +177,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 src={cover}
                 alt={project.title}
                 fill
-                sizes="880px"
+                sizes="(min-width: 640px) 592px, 100vw"
                 priority
                 className="object-cover object-top"
               />
@@ -192,12 +187,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <div className="mt-10 space-y-9">
             {project.caseStudy.sections.map((section) => (
               <section key={section.heading}>
-                <h2 className="font-display text-[22px] font-semibold tracking-tight text-primary">
+                <h2 className="text-[20px] font-medium tracking-[-0.01em] text-primary">
                   {section.heading}
                 </h2>
                 <div className="mt-3 space-y-3">
                   {section.body.map((para, i) => (
-                    <p key={i} className="text-[17px] leading-[1.8] text-secondary">
+                    <p key={i} className="text-[16px] leading-[1.75] text-secondary">
                       {para}
                     </p>
                   ))}
@@ -208,20 +203,20 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
           {project.caseStudy.relatedRepos && (
             <section className="mt-12">
-              <h2 className="font-display text-[22px] font-semibold tracking-tight text-primary">
+              <h2 className="text-[20px] font-medium tracking-[-0.01em] text-primary">
                 {project.caseStudy.relatedRepos.heading}
               </h2>
-              <p className="mt-3 text-[17px] leading-[1.8] text-secondary">
+              <p className="mt-3 text-[16px] leading-[1.75] text-secondary">
                 {project.caseStudy.relatedRepos.intro}
               </p>
-              <div className="peek peek-rows mt-5 rounded-xl border border-border bg-background px-1.5">
+              <div className="mt-5 divide-y divide-border">
                 {project.caseStudy.relatedRepos.items.map((item) => (
                   <a
                     key={item.url}
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="peek-item group flex items-start gap-3 rounded-lg border-b border-border px-3 py-4 last:border-b-0 hover:bg-surface"
+                    className="group flex items-start gap-3 py-4 transition-opacity hover:opacity-80"
                   >
                     <Github size={17} className="mt-1 shrink-0 text-muted group-hover:text-primary" />
                     <span className="min-w-0 flex-1">
@@ -245,8 +240,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <div className="mt-14 border-t border-border pt-6">
             <ContactButton>Get in touch</ContactButton>
           </div>
-        </article>
-      </div>
-    </main>
+      </article>
+    </PageFrame>
   );
 }
