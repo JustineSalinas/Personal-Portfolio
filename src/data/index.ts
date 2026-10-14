@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: "Adrian Salinas",
     initials: "AJ",
-    title: "AI & Data Engineer",
+    title: "AI Engineer",
     location: "Iloilo City, Philippines",
     availability: "AVAILABLE FOR OPPORTUNITIES",
     bio: "Full-Stack Developer, 2x National Hackathon Winner Awardee, and IT Solutions Founder from Iloilo with a niche in technical project management and AI systems. I build with Next.js, TypeScript, Supabase, and Python.",

@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://ajsalinas.vercel.app"),
   title: {
-    default: "Adrian Salinas | AI & Data Engineer",
+    default: "Adrian Salinas | AI Engineer",
     template: "%s | Adrian Salinas",
   },
   description:
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
     locale: "en_PH",
     url: "https://ajsalinas.vercel.app",
     siteName: "Adrian Salinas",
-    title: "Adrian Salinas | AI & Data Engineer",
+    title: "Adrian Salinas | AI Engineer",
     description:
       "20+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adrian Salinas | AI & Data Engineer",
+    title: "Adrian Salinas | AI Engineer",
     description:
       "20+ projects shipped. QR attendance for 700+ students, a 2nd-place national AI hackathon build, and an IT startup in Iloilo.",
   },
