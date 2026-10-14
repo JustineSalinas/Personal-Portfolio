@@ -30,7 +30,7 @@ const slides: Slide[] = [
     caption: 'An open road at dusk, 2025.',
   },
   {
-    src: '/about/photo-5.png',
+    src: '/about/photo-5.webp',
     alt: 'Adrian in glasses looking at his phone at an outdoor cafe at night',
     title: 'Late-night cafe',
     caption: 'Unwinding between builds.',

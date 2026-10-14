@@ -134,7 +134,7 @@ export const portfolioData = {
       role: "Web Development Lead",
       org: "ITSA",
       note: "IT School Organization, University of San Agustin",
-      logo: "/logos/itsa.jpg",
+      logo: "/logos/itsa.webp",
     },
     {
       role: "Developer",
@@ -185,11 +185,11 @@ export const portfolioData = {
    */
   gear: [
     { name: "ASUS TUF A15", category: "Computer", note: "Daily driver", image: "/gear/asus-tuf-a15.png" },
-    { name: "Attack Shark X11", category: "Input", note: "Main mouse", image: "/gear/attack-shark-x11-black.png" },
+    { name: "Attack Shark X11", category: "Input", note: "Main mouse", image: "/gear/attack-shark-x11-black.webp" },
     { name: "Razer DeathAdder Essential White", category: "Input", note: "Second mouse", image: "/gear/deathadder-essential-white.png" },
     { name: "Gamakay MK61", category: "Input", note: "Keyboard", image: "/gear/gamakay-mk61.jpg" },
-    { name: "AOC 24G42E", category: "Display", note: "23.8-inch Full HD, 180Hz", image: "/gear/aoc-24g42e.png" },
-    { name: "Xiaomi 13T Pro", category: "Mobile", image: "/gear/xiaomi-13t-pro.png" },
+    { name: "AOC 24G42E", category: "Display", note: "23.8-inch Full HD, 180Hz", image: "/gear/aoc-24g42e.webp" },
+    { name: "Xiaomi 13T Pro", category: "Mobile", image: "/gear/xiaomi-13t-pro.webp" },
     { name: "Razer BlackShark V2 X", category: "Audio", image: "/gear/blackshark-v2x.png" },
   ] as {
     name: string;
@@ -699,7 +699,7 @@ export const portfolioData = {
       solution: "Three sensor systems feed three parallel AI modules: XGBoost/ONNX speed optimization, gradient-boosted route optimization, and PCA-autoencoder predictive maintenance, converging on one bridge display with live route tracks, throttle guidance, and an auditable CO₂ emissions layer.",
       techStack: ["Python", "ONNX", "XGBoost", "NumPy", "Next.js", "TypeScript", "FastAPI", "IoT"],
       demo: "https://solmate-marine-ai.vercel.app",
-      images: ["/projects/national-team.png", "/projects/national-award.jpg"],
+      images: ["/projects/national-team.webp", "/projects/national-award.jpg"],
       slug: "marine-ai",
       caseStudy: {
         summary:
@@ -740,7 +740,7 @@ export const portfolioData = {
       badge: "NATIONAL AI HACKATHON 2026",
       placement: "2nd Place out of 24 teams, National Open Professional Category",
       // Team/award photos surfaced in the Hackathons & Awards section
-      awardImages: ["/projects/national-team.png", "/projects/national-award.jpg"]
+      awardImages: ["/projects/national-team.webp", "/projects/national-award.jpg"]
     },
     {
       title: "SplitRails",
@@ -819,13 +819,13 @@ export const portfolioData = {
       solution: "A web-based financial and telemetry dashboard built in under 3 days for the Nexus Philippines Hackathon, integrating real-time IoT feeds and geospatial mapping into one operating view.",
       techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Recharts", "MapLibre GL"],
       demo: "https://e-ferry.vercel.app",
-      images: ["/projects/solmate.png", "/projects/solmate-team.png", "/projects/solmate-award.png"],
+      images: ["/projects/solmate.png", "/projects/solmate-team.webp", "/projects/solmate-award.png"],
       dates: "May 21–23, 2026",
       award: "1st Runner-Up",
       startDate: "2026-05-21",
       badge: "NEXUS PH HACKATHON 2026",
       placement: "1st Runner-Up (National) out of 17 teams",
-      awardImages: ["/projects/solmate-team.png", "/projects/solmate-award.png"]
+      awardImages: ["/projects/solmate-team.webp", "/projects/solmate-award.png"]
     },
     {
       title: "Commit",
@@ -835,7 +835,7 @@ export const portfolioData = {
       description: "An agile workspace for developers combining a Markdown code journal, Pomodoro focus sessions, and sprint task management. Features PWA offline support and real-time collaboration built with Next.js 15, Supabase, and Clerk.",
       techStack: ["Next.js 15", "TypeScript 5", "Supabase", "PostgreSQL", "Clerk"],
       demo: "https://commit-beta.vercel.app",
-      image: "/projects/commit.png"
+      image: "/projects/commit.webp"
     },
     {
       title: "Famly",
