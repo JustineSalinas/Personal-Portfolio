@@ -68,7 +68,7 @@ export const ProfileHeader = () => {
           <Link href="/about" className="font-medium text-primary underline-offset-4 hover:underline">
             Cascade Development Group
           </Link>
-          , an IT solutions startup in Iloilo, with a focused path in data engineering and applied AI,
+          , an IT solutions startup in Iloilo, with a focused path in applied AI,
           from building data pipelines to shipping production AI systems. Open to internships,
           part-time, and remote roles.
         </p>

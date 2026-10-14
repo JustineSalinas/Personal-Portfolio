@@ -199,7 +199,7 @@ export const portfolioData = {
   }[],
   /**
    * Where I actually learn from, courses, practice sites, and references
-   * for building software, getting into AI/data engineering, and staying
+   * for building software, getting into AI engineering, and staying
    * current. Real sources only, categorized by what they're for.
    */
   resources: [

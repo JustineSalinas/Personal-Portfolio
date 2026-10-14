@@ -4,7 +4,7 @@ import { portfolioData } from '@/data';
 
 /**
  * Learning sources, grouped by category — courses, practice sites, and
- * references used for building software, getting into AI/data engineering,
+ * references used for building software, getting into AI engineering,
  * and staying current. Simple link rows rather than image cards, since these
  * are sites and platforms, not physical products.
  */
