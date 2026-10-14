@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { portfolioData } from '@/data';
 import { SubPageShell } from '@/components/profile/SubPageShell';
 import { ExperienceList } from '@/components/profile/ExperienceList';
@@ -13,19 +14,21 @@ export const metadata: Metadata = {
 export default function ExperiencePage() {
   return (
     <SubPageShell title="Experience" intro="Professional experience, hackathons, and awards.">
-      <ExperienceList />
+      <ExperienceList showLogos />
 
-      <h2 className="mt-10 mb-4 text-[17px] font-medium tracking-tight text-muted">
-        Hackathons & Awards
-      </h2>
-      <p className="mb-5 -mt-3 text-[17px] leading-relaxed text-secondary">
+      <h2 className="mb-2 mt-14 text-[14px] font-medium text-muted">Hackathons & Awards</h2>
+      <p className="mb-5 text-[16px] leading-relaxed text-secondary">
         {portfolioData.personal.awards.summary}
       </p>
       <HackathonList />
+      <Link
+        href="/hackathons"
+        className="mt-4 inline-flex min-h-8 items-center text-[14px] font-medium text-muted transition-colors hover:text-primary"
+      >
+        See the timeline →
+      </Link>
 
-      <h2 className="mt-10 mb-4 text-[17px] font-medium tracking-tight text-muted">
-        Education
-      </h2>
+      <h2 className="mb-4 mt-14 text-[14px] font-medium text-muted">Education</h2>
       <EducationList />
     </SubPageShell>
   );
