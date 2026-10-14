@@ -107,11 +107,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         <article className="px-7 py-10">
           <Link
-            href="/#work"
+            href="/projects"
             className="group inline-flex items-center gap-1.5 text-[16px] font-medium text-secondary transition-colors hover:text-primary"
           >
             <ArrowLeft size={17} className="transition-transform group-hover:-translate-x-0.5" />
-            Back to work
+            Back to projects
           </Link>
 
           <header className="mt-6">
