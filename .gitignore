@@ -39,3 +39,6 @@ next-env.d.ts
 
 # playwright-mcp debugging artifacts (console logs, page snapshots)
 .playwright-mcp/
+
+# keep the committed env template
+!.env.example
