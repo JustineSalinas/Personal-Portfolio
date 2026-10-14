@@ -87,6 +87,7 @@ export async function generateMetadata({
   return {
     title: `${project.title}: case study`,
     description: project.caseStudy.summary,
+    alternates: { canonical: `/work/${slug}` },
     openGraph: { title: `${project.title}: case study`, description: project.caseStudy.summary },
   };
 }
@@ -98,8 +99,31 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   const { cover, demo, repo, certificate, placement } = project;
 
+  // Structured data so search engines can read the case study as a work by
+  // this person. "<" is escaped so the JSON can never close the script tag.
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareSourceCode',
+    name: project.title,
+    headline: `${project.title}: case study`,
+    description: project.caseStudy.summary,
+    url: `https://ajsalinas.vercel.app/work/${project.slug}`,
+    author: {
+      '@type': 'Person',
+      name: portfolioData.personal.name,
+      url: 'https://ajsalinas.vercel.app',
+    },
+    keywords: project.tech.join(', '),
+    ...(project.year ? { dateCreated: project.year } : {}),
+    ...(repo ? { codeRepository: repo } : {}),
+  };
+
   return (
     <PageFrame>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+      />
       <article>
           <Link
             href="/projects"
