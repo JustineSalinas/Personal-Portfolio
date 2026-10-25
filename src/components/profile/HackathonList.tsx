@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Trophy } from 'lucide-react';
 import { hackathons, isProject, type Project } from '@/lib/hackathons';
-import { AwardPill, OngoingPill } from './AwardPill';
+import { AwardPill, OngoingPill, isPodium } from './AwardPill';
 import { HackathonOverviewModal } from './HackathonOverviewModal';
 
 export const HackathonList = () => {
@@ -54,7 +54,7 @@ export const HackathonList = () => {
           >
             <Trophy
               size={17}
-              className={`mt-[3px] shrink-0 ${award ? 'text-amber-500' : 'text-muted'}`}
+              className={`mt-[3px] shrink-0 ${award && isPodium(award) ? 'text-amber-500' : 'text-muted'}`}
             />
             <span className="min-w-0 flex-1">
               <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
