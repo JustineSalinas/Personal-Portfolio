@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { portfolioData } from '@/data';
-import { hackathons, isProject } from '@/lib/hackathons';
+import { hackathons, isProject, type HackathonEvent } from '@/lib/hackathons';
 
 describe('hackathons', () => {
   it('includes every standalone event', () => {
@@ -21,14 +21,22 @@ describe('hackathons', () => {
     expect(hackathons.some((h) => h.title === 'Usage Metering & Billing Engine')).toBe(false);
   });
 
-  it('lists standalone events before projects', () => {
-    const firstProject = hackathons.findIndex(isProject);
-    const lastEvent = hackathons.map(isProject).lastIndexOf(false);
-    expect(lastEvent).toBeLessThan(firstProject);
+  it('includes the Hack Iloilo entry (Gilayon)', () => {
+    const entry = hackathons.find((h) => h.title === 'Gilayon');
+    expect(entry).toBeDefined();
+    expect(entry && 'placement' in entry && entry.placement).toMatch(/Top 8/);
+  });
+
+  it('lists the newest start date first', () => {
+    const starts = hackathons.flatMap((h) => ('startDate' in h && h.startDate ? [h.startDate] : []));
+    expect(starts.length).toBeGreaterThan(1);
+    expect(starts).toEqual([...starts].sort((a, b) => b.localeCompare(a)));
+    expect(hackathons[0].title).toBe('Gilayon');
   });
 
   it('tells events and projects apart', () => {
-    expect(isProject(hackathons[0])).toBe(false);
-    expect(isProject(hackathons[hackathons.length - 1])).toBe(true);
+    const event: HackathonEvent = { title: 'Event', year: '2026', badge: 'BADGE' };
+    expect(isProject(event)).toBe(false);
+    expect(hackathons.some(isProject)).toBe(true);
   });
 });

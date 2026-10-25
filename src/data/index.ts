@@ -95,8 +95,8 @@ export const portfolioData = {
       worldwide: [
         "IBM Bob 2.0 Global Online Hackathon, Sep 25–27, 2026, built Repo Autopsy, a tool that scores public GitHub repositories for new-contributor onboarding",
       ],
-      ongoing: [
-        "Hack Iloilo 2026, Top 10 Qualifiers, competing as Team KasCoders (the hackathon is still ongoing)",
+      local: [
+        "Hack Iloilo 2026 (the 2026 Iloilo Province Startup Hackathon), Top 8 Finalist out of 45 entries, Oct 14–16, 2026, Team KasCoders, pitched Gilayon, an offline-first clinic records system validated on-site with the Hospital Management Officer of the Province of Iloilo",
       ],
     },
     quickFacts: {
@@ -673,6 +673,67 @@ export const portfolioData = {
       },
     },
     {
+      title: "Gilayon",
+      oneLiner: "Offline-first records for HMO clinics: never lose a patient's story again",
+      year: "2026",
+      dates: "Oct 14–16, 2026",
+      startDate: "2026-10-14",
+      award: "8th Place",
+      role: "Team KasCoders",
+      description: "Gilayon is an offline-first clinic records system, pitched by Team KasCoders at Hack Iloilo 2026, the 2026 Iloilo Province Startup Hackathon, held Oct 14 to 16 at the Regional iHub, ISAT University. Validated on-site with the Hospital Management Officer of the Province of Iloilo, it took the team into the Top 8 out of 45 entries.",
+      problem: "HMO clinics lose time every day to misfiled paper folders, buried allergy histories, handwritten prescriptions, and manual end-of-day tallies.",
+      solution: "One visit connects the receptionist, nurse and doctor. Notes, prescriptions and scans save locally before syncing to the clinic server, local AI digitizes old paper folders offline, and wrong entries are corrected or voided, never deleted.",
+      techStack: ["Tesseract OCR", "Qwen2.5-VL 3B"],
+      image: "/projects/gilayon.webp",
+      badge: "HACK ILOILO 2026 STARTUP HACKATHON",
+      placement: "Top 8 Finalist out of 45 entries",
+      awardImages: ["/projects/gilayon.webp"],
+      slug: "gilayon",
+      caseStudy: {
+        summary:
+          "Gilayon (\"Never lose a patient's story again\") is an offline-first clinic records system built by Team KasCoders for HMO clinics. It reached the Top 8 out of 45 entries at Hack Iloilo 2026, after being validated on-site with the Hospital Management Officer of the Province of Iloilo.",
+        sections: [
+          {
+            heading: "The problem",
+            body: [
+              "At the 2026 Iloilo Province Startup Hackathon (Oct 14 to 16, Regional iHub, ISAT University), Team KasCoders went after the daily bottlenecks of HMO clinics: misfiled paper folders, buried allergy histories, handwritten prescriptions, and manual end-of-day tallies.",
+              "The idea was validated on-site with the Hospital Management Officer of the Province of Iloilo.",
+            ],
+          },
+          {
+            heading: "Offline-first architecture",
+            body: [
+              "Notes, prescriptions, and scans are saved locally before they sync to the clinic server. That means zero data loss, no duplicates, and patient data that never leaves the clinic.",
+            ],
+          },
+          {
+            heading: "Dual local AI OCR",
+            body: [
+              "Old paper folders are digitized offline with two engines. Tesseract plus rules scored 100% on printed forms and 93% overall, and Qwen2.5-VL 3B got all 60 of 60 forms perfect.",
+            ],
+          },
+          {
+            heading: "One visit, three roles",
+            body: [
+              "A single visit connects the Receptionist (check-in and queue), the Nurse (AI folder scans and updates), and the Doctor (allergy alerts, PIN-signed prescriptions, and an automated census).",
+            ],
+          },
+          {
+            heading: "Strict audit trail",
+            body: [
+              "Wrong entries are never deleted, only corrected or voided, and every change is logged and backed up.",
+            ],
+          },
+          {
+            heading: "Outcome",
+            body: [
+              "Top 8 Finalist out of 45 entries at Hack Iloilo 2026, competing as Team KasCoders.",
+            ],
+          },
+        ],
+      },
+    },
+    {
       title: "Repo Autopsy",
       oneLiner: "Scores any public GitHub repo so new contributors know what is safe to change",
       year: "2026",
@@ -871,15 +932,7 @@ export const portfolioData = {
    * `projects` (and the Projects page). Only facts that are known go here;
    * add dates, a role, a one-liner, or photos as they become available.
    */
-  hackathonEvents: [
-    {
-      title: "Hack Iloilo 2026",
-      year: "2026",
-      ongoing: true,
-      badge: "TEAM KASCODERS",
-      placement: "Top 10 Qualifiers",
-    },
-  ] as {
+  hackathonEvents: [] as {
     title: string;
     year: string;
     ongoing?: boolean;

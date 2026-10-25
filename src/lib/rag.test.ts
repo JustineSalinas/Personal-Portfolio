@@ -13,9 +13,14 @@ describe('retrieve', () => {
     expect(hits.some((c) => /Marine-AI/i.test(c.title + c.text))).toBe(true);
   });
 
-  it('knows about the ongoing Hack Iloilo entry', () => {
+  it('knows about the Hack Iloilo result', () => {
     const hits = retrieve('Hack Iloilo');
     expect(hits.some((c) => /Hack Iloilo/i.test(c.text))).toBe(true);
+  });
+
+  it('finds Gilayon from a question about the clinic records project', () => {
+    const hits = retrieve('Gilayon patient records offline clinic');
+    expect(hits.some((c) => /Gilayon/i.test(c.title + c.text))).toBe(true);
   });
 
   it('honors topK', () => {
