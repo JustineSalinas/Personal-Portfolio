@@ -96,7 +96,7 @@ export const portfolioData = {
         "IBM Bob 2.0 Global Online Hackathon, Sep 25–27, 2026, built Repo Autopsy, a tool that scores public GitHub repositories for new-contributor onboarding",
       ],
       local: [
-        "Hack Iloilo 2026 (the 2026 Iloilo Province Startup Hackathon), Top 8 Finalist out of 45 entries, Oct 14–16, 2026, Team KasCoders, pitched Gilayon, an offline-first clinic records system validated on-site with the Hospital Management Officer of the Province of Iloilo",
+        "Hack Iloilo 2026 (the 2026 Iloilo Province Startup Hackathon), Top 8 Finalist out of 45 entries, Oct 14–16, 2026, Team KasCoders (as team lead, who developed and trained the Tesseract and Qwen OCR models and handled system architecture and business scalability), pitched Gilayon, an offline-first clinic records system validated on-site with the Hospital Management Officer of the Province of Iloilo",
       ],
     },
     quickFacts: {
@@ -679,7 +679,7 @@ export const portfolioData = {
       dates: "Oct 14–16, 2026",
       startDate: "2026-10-14",
       award: "8th Place",
-      role: "Team KasCoders",
+      role: "Team KasCoders · Team Lead",
       description: "Gilayon is an offline-first clinic records system, pitched by Team KasCoders at Hack Iloilo 2026, the 2026 Iloilo Province Startup Hackathon, held Oct 14 to 16 at the Regional iHub, ISAT University. Validated on-site with the Hospital Management Officer of the Province of Iloilo, it took the team into the Top 8 out of 45 entries.",
       problem: "HMO clinics lose time every day to misfiled paper folders, buried allergy histories, handwritten prescriptions, and manual end-of-day tallies.",
       solution: "One visit connects the receptionist, nurse and doctor. Notes, prescriptions and scans save locally before syncing to the clinic server, local AI digitizes old paper folders offline, and wrong entries are corrected or voided, never deleted.",
@@ -698,6 +698,12 @@ export const portfolioData = {
             body: [
               "At the 2026 Iloilo Province Startup Hackathon (Oct 14 to 16, Regional iHub, ISAT University), Team KasCoders went after the daily bottlenecks of HMO clinics: misfiled paper folders, buried allergy histories, handwritten prescriptions, and manual end-of-day tallies.",
               "The idea was validated on-site with the Hospital Management Officer of the Province of Iloilo.",
+            ],
+          },
+          {
+            heading: "My role",
+            body: [
+              "I was the team lead for Team KasCoders. I developed and trained the Tesseract and Qwen models behind the OCR, and handled the system architecture and the business scalability side of the project.",
             ],
           },
           {
