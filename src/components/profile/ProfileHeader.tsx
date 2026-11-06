@@ -3,11 +3,34 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FileText, ArrowDown } from 'lucide-react';
+import { FileText, ArrowDown, Instagram, Linkedin, Facebook, Mail } from 'lucide-react';
 import { portfolioData } from '@/data';
 import { ResumeModal } from './ResumeModal';
 
 const { personal } = portfolioData;
+
+const socialLinks = [
+  {
+    name: 'Instagram',
+    href: personal.contact.instagram,
+    icon: Instagram,
+  },
+  {
+    name: 'LinkedIn',
+    href: personal.contact.linkedin,
+    icon: Linkedin,
+  },
+  {
+    name: 'Facebook',
+    href: personal.contact.facebook,
+    icon: Facebook,
+  },
+  {
+    name: 'Email',
+    href: `mailto:${personal.contact.email}`,
+    icon: Mail,
+  },
+];
 
 /**
  * Hero block: the full portrait beside the name, title, Resume pill and
@@ -31,8 +54,8 @@ export const ProfileHeader = () => {
           the photo's height: name and title at the top, the headline centered,
           Resume at the bottom. On phones the headline drops below the photo row
           so it keeps a readable width. Named grid areas place the same elements
-          differently per breakpoint; the middle row (1fr) absorbs the extra height. */}
-      <div className="grid grid-cols-[150px_1fr] gap-x-4 [grid-template-areas:'photo_identity'_'photo_action'_'headline_headline'] [grid-template-rows:auto_1fr_auto] sm:grid-cols-[280px_1fr] sm:gap-x-7 sm:[grid-template-areas:'photo_identity'_'photo_headline'_'photo_action']">
+          differently per breakpoint; balanced proportions eliminate awkward gaps. */}
+      <div className="grid grid-cols-[140px_1fr] gap-x-4 [grid-template-areas:'photo_identity'_'photo_action'_'headline_headline'] [grid-template-rows:auto_1fr_auto] sm:grid-cols-[220px_1fr] sm:gap-x-7 sm:[grid-template-areas:'photo_identity'_'photo_headline'_'photo_action'] sm:[grid-template-rows:auto_1fr_auto]">
         <div className="relative aspect-[2/3] overflow-hidden rounded-2xl border border-border bg-surface [grid-area:photo]">
           {/* The photo is 2:3 and so is this box, so object-cover shows all of it, uncropped.
               Served as-is (already web-sized, quality 92) so the optimizer cannot soften it. */}
@@ -42,7 +65,7 @@ export const ProfileHeader = () => {
             fill
             priority
             unoptimized
-            sizes="(min-width: 640px) 280px, 150px"
+            sizes="(min-width: 640px) 220px, 140px"
             className="object-cover"
           />
         </div>
@@ -52,6 +75,26 @@ export const ProfileHeader = () => {
             {personal.name}
           </p>
           <p className="mt-1 text-[14px] text-muted sm:text-[15px]">{personal.title}</p>
+
+          <nav aria-label="Social links" className="mt-3.5 flex flex-wrap items-center gap-1.5 sm:gap-2">
+            {socialLinks.map((link) => {
+              const Icon = link.icon;
+              const isExternal = link.href.startsWith('http');
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  aria-label={link.name}
+                  title={link.name}
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface/60 text-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-border-strong hover:bg-surface hover:text-primary active:translate-y-0 active:scale-95 sm:h-9 sm:w-9"
+                >
+                  <Icon className="h-[15px] w-[15px] sm:h-4 sm:w-4" strokeWidth={1.75} />
+                </a>
+              );
+            })}
+          </nav>
         </div>
 
         <div className="mt-4 self-start [grid-area:action] sm:mt-0 sm:self-end">
@@ -65,15 +108,14 @@ export const ProfileHeader = () => {
         </div>
 
         <h1 className="mt-6 text-[28px] font-medium leading-[1.2] tracking-[-0.01em] text-primary [grid-area:headline] sm:mt-0 sm:self-center sm:text-[31px]">
-          I build full-stack systems and data-driven AI platforms.
+          Building full-stack products and applied AI systems.
         </h1>
       </div>
 
       {/* Bio, with soft fade at the bottom like his */}
       <div className="relative mt-6">
         <p className="text-[16px] leading-[1.75] text-secondary">
-          I design and ship end-to-end software, from database schemas and APIs to the polished
-          front-ends they feed. {personal.projectsBuilt} projects built so far, including a
+          I design and ship end-to-end software, from scalable backends to polished front-ends. {personal.projectsBuilt} projects built so far, including a
           2x National Hackathon Winner Awardee record. I run{' '}
           <Link href="/about" className="font-medium text-primary underline-offset-4 hover:underline">
             Cascade Development Group

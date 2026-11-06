@@ -31,7 +31,8 @@ describe('hackathons', () => {
     const starts = hackathons.flatMap((h) => ('startDate' in h && h.startDate ? [h.startDate] : []));
     expect(starts.length).toBeGreaterThan(1);
     expect(starts).toEqual([...starts].sort((a, b) => b.localeCompare(a)));
-    expect(hackathons[0].title).toBe('Gilayon');
+    expect(hackathons[0].title).toBe('Gilayon (Meta Model Integrations)');
+    expect(hackathons[1].title).toBe('Gilayon');
   });
 
   it('tells events and projects apart', () => {
